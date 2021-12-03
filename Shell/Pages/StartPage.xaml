@@ -5,10 +5,9 @@
     xmlns:local="using:Shell.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:telerik="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:notificationsVisualizerLibrary="using:NotificationsVisualizerLibrary"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="StartPage_OnLoaded">
 
     <Page.Resources>
@@ -16,93 +15,48 @@
     </Page.Resources>
 
     <Pivot>
-        <PivotItem Header="Start">
-            <VariableSizedWrapGrid
-                Orientation="Horizontal"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                ItemWidth="75"
-                ItemHeight="75"
-                MaximumRowsOrColumns="6"
-                AllowDrop="True">
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="1"
-                    VariableSizedWrapGrid.ColumnSpan="1"
-                    Width="75"
-                    Height="75"
-                    Title="Test Small"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="1"
-                    VariableSizedWrapGrid.ColumnSpan="1"
-                    Width="75"
-                    Height="75"
-                    Title="Test Small"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="2"
-                    VariableSizedWrapGrid.ColumnSpan="2"
-                    Width="150"
-                    Height="150"
-                    Title="Test Regular"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="2"
-                    VariableSizedWrapGrid.ColumnSpan="2"
-                    Width="150"
-                    Height="150"
-                    Title="Test Regular"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="1"
-                    VariableSizedWrapGrid.ColumnSpan="1"
-                    Width="75"
-                    Height="75"
-                    Title="Test Small"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="1"
-                    VariableSizedWrapGrid.ColumnSpan="1"
-                    Width="75"
-                    Height="75"
-                    Title="Test Small"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="2"
-                    VariableSizedWrapGrid.ColumnSpan="2"
-                    Width="150"
-                    Height="150"
-                    Title="Test Regular"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="2"
-                    VariableSizedWrapGrid.ColumnSpan="4"
-                    Width="300"
-                    Height="150"
-                    Title="Test Wide"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="4"
-                    VariableSizedWrapGrid.ColumnSpan="4"
-                    Width="300"
-                    Height="300"
-                    Title="Test Large"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="2"
-                    VariableSizedWrapGrid.ColumnSpan="2"
-                    Width="150"
-                    Height="150"
-                    Title="Test Regular"
-                    Margin="0"/>
-                <telerik:RadSlideHubTile
-                    VariableSizedWrapGrid.RowSpan="2"
-                    VariableSizedWrapGrid.ColumnSpan="2"
-                    Width="150"
-                    Height="150"
-                    Title="Test Regular"
-                    Margin="0"/>
-            </VariableSizedWrapGrid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Empty setters defaults to the layout specified in XAML below. -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1007"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="StartScreen.Orientation" Value="Vertical" />
+                        <Setter Target="StartScreen.VerticalAlignment" Value="Center" />
+                        <Setter Target="StartScreen.HorizontalAlignment" Value="Left" />
+                        <Setter Target="StartScreen.MaximumRowsOrColumns" Value="6" />
+                        <Setter Target="StartScreenScrollViewer.VerticalScrollMode" Value="Disabled" />
+                        <Setter Target="StartScreenScrollViewer.HorizontalScrollMode" Value="Enabled" />
+                        <Setter Target="StartScreenScrollViewer.HorizontalScrollBarVisibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <PivotItem
+            Header="Start"
+            Padding="10">
+            <ScrollViewer
+                x:Name="StartScreenScrollViewer">
+                <VariableSizedWrapGrid
+                    x:Name="StartScreen"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center"
+                    ItemWidth="64"
+                    ItemHeight="64"
+                    MaximumRowsOrColumns="6"
+                    AllowDrop="True"/>
+            </ScrollViewer>
         </PivotItem>
         <PivotItem Header="Apps">
             <ListView
@@ -113,7 +67,7 @@
                 ItemClick="AppList_OnItemClick">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,0,0,5">
+                        <Grid Margin="0,2.5,0,2.5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="1*"/>

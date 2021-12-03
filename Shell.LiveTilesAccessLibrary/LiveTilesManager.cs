@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Data.Xml.Dom;
 using Windows.Storage;
 
 namespace Shell.LiveTilesAccessLibrary {
@@ -27,6 +28,7 @@ namespace Shell.LiveTilesAccessLibrary {
                 using (var db = new SqliteConnection($"Filename={dbFile.Path}")) {
                     await db.OpenAsync();
 
+
                     // Enable write-ahead logging
                     SqliteCommand walCommand = db.CreateCommand();
                     walCommand.CommandText = "PRAGMA wal_checkpoint";
@@ -38,8 +40,12 @@ namespace Shell.LiveTilesAccessLibrary {
                         SqliteDataReader handleQuery = new SqliteCommand($"SELECT * from NotificationHandler WHERE RecordId=\"{handle}\"", db).ExecuteReader();
                         handleQuery.Read();
 
+                        var payload = new XmlDocument();
+                        payload.LoadXml(tileQuery.GetString(5));
+                        payload.Normalize();
+
                         tiles.Add(new TileModel {
-                            Payload = tileQuery.GetString(5),
+                            Payload = payload,
                             AppId = handleQuery.GetString(1)
                         });
                     }
