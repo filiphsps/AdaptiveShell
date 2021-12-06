@@ -1,20 +1,22 @@
-﻿using System;
+﻿using Shell.Pages;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace Shell {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application {
+    sealed partial class Host : Application {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-        public App() {
+        public Host() {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }
@@ -49,12 +51,19 @@ namespace Shell {
                 return;
             }
 
-            if (rootFrame.Content == null)
-            {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                rootFrame.Navigate(typeof(SplashPage), e.Arguments);
+            if (rootFrame.Content == null) {
+                // Get the requested launch page
+                String page = e.Arguments.Split("://").Length > 1 ? e.Arguments.Split("://")[1] : "";
+
+                switch (page.Split("#")[0]) {
+                    case "settings":
+                        rootFrame.Navigate(typeof(SettingsPage), page.Split("#")[1], new SuppressNavigationTransitionInfo());
+                        break;
+                    default:
+                        rootFrame.Navigate(typeof(SplashPage), typeof(Pages.StartPage), new SuppressNavigationTransitionInfo());
+                        break;
+                }
+
             }
             // Ensure the current window is active
             Window.Current.Activate();

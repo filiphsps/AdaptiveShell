@@ -15,48 +15,10 @@
     </Page.Resources>
 
     <Pivot>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!-- Empty setters defaults to the layout specified in XAML below. -->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1007"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="StartScreen.Orientation" Value="Vertical" />
-                        <Setter Target="StartScreen.VerticalAlignment" Value="Center" />
-                        <Setter Target="StartScreen.HorizontalAlignment" Value="Left" />
-                        <Setter Target="StartScreen.MaximumRowsOrColumns" Value="6" />
-                        <Setter Target="StartScreenScrollViewer.VerticalScrollMode" Value="Disabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollMode" Value="Enabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollBarVisibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
         <PivotItem
             Header="Start"
             Padding="10">
-            <ScrollViewer
-                x:Name="StartScreenScrollViewer">
-                <VariableSizedWrapGrid
-                    x:Name="StartScreen"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Center"
-                    ItemWidth="64"
-                    ItemHeight="64"
-                    MaximumRowsOrColumns="6"
-                    AllowDrop="True"/>
-            </ScrollViewer>
+            <Frame x:Name="StartScreenLayout"/>
         </PivotItem>
         <PivotItem Header="Apps">
             <ListView

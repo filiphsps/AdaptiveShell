@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="Shell.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Shell.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <SplitView 
+        PaneBackground="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}"
+        IsPaneOpen="True"
+        OpenPaneLength="256"
+        CompactPaneLength="48"
+        DisplayMode="Inline">
+        <SplitView.Pane>
+            <ListView
+                x:Name="NavigationList"
+                Padding="15"
+                IsItemClickEnabled="True"
+                ItemClick="NavigationList_OnItemClick">
+
+                <StackPanel
+                    x:Name="PersonalizationItem"
+                    Orientation="Horizontal"
+                    Height="45"
+                    VerticalAlignment="Center">
+                    <SymbolIcon Symbol="PreviewLink" Margin="0, 0, 15, 0"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="16">Personalization</TextBlock>
+                </StackPanel>
+                <StackPanel
+                    x:Name="AdvancedItem"
+                    Orientation="Horizontal"
+                    Height="45"
+                    VerticalAlignment="Center">
+                    <SymbolIcon Symbol="Setting" Margin="0, 0, 15, 0"/>
+                    <TextBlock VerticalAlignment="Center" FontSize="16">Advanced</TextBlock>
+                </StackPanel>
+            </ListView>
+        </SplitView.Pane>
+
+        <Frame x:Name="SettingsFrame" Padding="15"/>
+    </SplitView>
+</Page>
