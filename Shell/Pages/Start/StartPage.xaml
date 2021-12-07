@@ -8,7 +8,8 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:notificationsVisualizerLibrary="using:NotificationsVisualizerLibrary"
     mc:Ignorable="d"
-    Loaded="StartPage_OnLoaded">
+    Loaded="StartPage_OnLoaded"
+    Background="{ThemeResource SystemAccentColor}">
 
     <Page.Resources>
         <CollectionViewSource x:Name="ApplicationList" IsSourceGrouped="True" />

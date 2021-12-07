@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using System.Linq;
 using Windows.UI.Core;
+using System.IO;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Foundation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -61,6 +64,9 @@ namespace Shell.Pages {
         public Boolean IsMedium { get => this.Size == TileSize.Medium; }
         public Boolean IsWide { get => this.Size == TileSize.Wide; }
         public Boolean IsLarge { get => this.Size == TileSize.Large; }
+
+        public ImageBrush Logo { get; set; }
+        public Action Launcher { get; set; }
     }
 
     public sealed partial class StartLiveTilesPage : Page {
@@ -84,7 +90,7 @@ namespace Shell.Pages {
 
             // Temp display all apps
             packages.ToList().ForEach ((package) => {
-                _ = CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                _ = CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () => {
                     if (package.DisplayName.Length <= 0)
                         return;
 
@@ -92,28 +98,63 @@ namespace Shell.Pages {
                         return;
 
                     foreach (AppListEntry runtime in package.GetAppListEntries()) {
-                        if (runtime.DisplayInfo.DisplayName.Length <= 0)
+                        if (runtime.DisplayInfo.DisplayName.Length <= 0 || runtime.DisplayInfo.DisplayName == "NoUIEntryPoints-DesignMode")
                             continue;
 
-                        var gridItem = new StartScreenItem {
+                        var item = new StartScreenItem {
                             AppId = runtime.AppUserModelId,
                             Size = TileSize.Medium,
-                            DisplayName = runtime.DisplayInfo.DisplayName
+                            DisplayName = runtime.DisplayInfo.DisplayName,
+                            Launcher = () => _ = runtime.LaunchAsync()
                         };
-                        this.tileCollection.Add(gridItem);
+
+                        this.tileCollection.Add(item);
+
+                        var inGridItem = (GridViewItem)this.LiveTiles.ItemContainerGenerator.ContainerFromItem(item);
+                        if (inGridItem != null) {
+                            inGridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpawn);
+                            inGridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpawn);
+
+                            // Set logo
+                            var imageStream = await runtime.DisplayInfo.GetLogo(new Windows.Foundation.Size(250, 250)).OpenReadAsync();
+
+                            var memStream = new MemoryStream();
+                            await imageStream.AsStreamForRead().CopyToAsync(memStream);
+                            memStream.Position = 0;
+                            var bitmap = new BitmapImage();
+                            bitmap.SetSource(memStream.AsRandomAccessStream());
+
+                            ((StartScreenItem)inGridItem.Content).Logo = new ImageBrush() {
+                                ImageSource = bitmap,
+                                Stretch = Stretch.UniformToFill
+                            };
+                        }
                     }
                 });
             });
         }
 
-        private async void LiveTile_Loaded(Object sender, RoutedEventArgs e) {
+        private void LiveTile_Loaded(Object sender, RoutedEventArgs e) {
             var item = (StartScreenItem)((Grid)sender).DataContext;
-            var tile = (PreviewTile)((Grid)sender).Children[0];
+            var tile = (PreviewTile)((Grid)((Grid)sender).Children[0]).Children[0];
             item.LiveTile = tile;
 
+            // Set logo
+            ((Grid)((Grid)sender).Children[0]).Background = item.Logo;
+
+            // this shouldn't be needed
+            item.DisplayName = tile.DisplayName;
+
+            // Set tile background as transparent.
+            tile.VisualElements.BackgroundColor = Color.FromArgb(0, 0, 0, 0);
+
+            // Show name on medium tile.
+            tile.VisualElements.ShowNameOnSquare150x150Logo = true;
+
+            // Quick-exit if no tile updates are found.
             var currentTileUpdates = this.tileUpdates.FindAll(update => update.AppId == item.AppId);
             if (currentTileUpdates.Count <= 0) {
-                await tile.UpdateAsync();
+                _ = tile.UpdateAsync();
                 return;
             }
 
@@ -126,15 +167,21 @@ namespace Shell.Pages {
 
             PreviewBadgeUpdater badgeUpdater = tile.CreateBadgeUpdater();
 
-            await tile.UpdateAsync();
+            // Push updates.
+            _ = tile.UpdateAsync();
+
+            // Unset logo since we have a live tile.
+            // FIXME: only do this if a live tile exists for the current size
+            ((Grid)((Grid)sender).Children[0]).Background = null;
         }
 
         private async void LiveTile_Tapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
             // TODO
             var item = (StartScreenItem)((Grid)sender).DataContext;
+            item.Launcher();
         }
 
-        private async void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
+        private void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
             var item = (StartScreenItem)((ToggleMenuFlyoutItem)sender).DataContext;
             var tile = item.LiveTile;
 
@@ -153,10 +200,22 @@ namespace Shell.Pages {
                     break;
             }
 
-            // FIXME: figure out why checkmark doesn't update
-
+            // FIXME: figure out why checkmark doesn't update.
             tile.UpdateLayout();
-            await tile.UpdateAsync();
+
+            // this shouldn't be needed
+            tile.TileSize = item.Size;
+            tile.DisplayName = item.DisplayName;
+
+            var gridItem = this.LiveTiles.ItemContainerGenerator.ContainerFromItem(item);
+
+            if (gridItem != null) {
+                gridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpawn);
+                gridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpawn);
+            }
+
+            // Push updates
+            _ = tile.UpdateAsync();
         }
     }
 }
