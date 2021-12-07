@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{220F3A47-BEC1-40EF-BE2D-98A8345AB983}</ProjectGuid>
+    <OutputType>winmdobj</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NotificationsVisualizerLibrary</RootNamespace>
+    <AssemblyName>NotificationsVisualizerLibrary</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
+    <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\NotificationsVisualizerLibrary.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\x86\Debug\NotificationsVisualizerLibrary.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <DocumentationFile>bin\x86\Release\NotificationsVisualizerLibrary.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Controls\AdaptiveGenerator_Image.cs" />
+    <Compile Include="Controls\AdaptiveGenerator_Progress.cs" />
+    <Compile Include="Controls\AdaptiveGenerator_Text.cs" />
+    <Compile Include="Controls\AdaptiveGrid.cs" />
+    <Compile Include="Controls\AdaptiveImageControl.cs" />
+    <Compile Include="Controls\AdaptiveStackPanel.cs" />
+    <Compile Include="Controls\BadgeValueControl.xaml.cs">
+      <DependentUpon>BadgeValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CallingButton.cs" />
+    <Compile Include="Controls\CallingButtonsPanel.cs" />
+    <Compile Include="Controls\CircleImage.cs" />
+    <Compile Include="Controls\IAdaptiveControl.cs" />
+    <Compile Include="Controls\PeekDisplayerControl.xaml.cs">
+      <DependentUpon>PeekDisplayerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EqualColumnsPanel.cs" />
+    <Compile Include="Controls\ProgressView.xaml.cs">
+      <DependentUpon>ProgressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\StringToVisibilityConverter.cs" />
+    <Compile Include="Helpers\AdaptiveConstants.cs" />
+    <Compile Include="Helpers\AssemblyFileHelper.cs" />
+    <Compile Include="Helpers\DeviceInfoHelper.cs" />
+    <Compile Include="Helpers\StyleInfo.cs" />
+    <Compile Include="Helpers\TextStyleInfo.cs" />
+    <Compile Include="Converters\BadgeValueToStringConverter.cs" />
+    <Compile Include="Converters\BadgeValueToVisibilityConverter.cs" />
+    <Compile Include="Converters\CircleImageBrushConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\InvertConverter.cs" />
+    <Compile Include="Converters\TilePixelSizeToClip.cs" />
+    <Compile Include="Converters\TileSizeToTitleConverter.cs" />
+    <Compile Include="FeatureSet.cs" />
+    <Compile Include="Helpers\ColorConverter.cs" />
+    <Compile Include="Helpers\TextStyleInfoPair.cs" />
+    <Compile Include="Helpers\TextStylesMap.cs" />
+    <Compile Include="Manifest\Application.cs" />
+    <Compile Include="Manifest\Applications.cs" />
+    <Compile Include="Manifest\DefaultTile.cs" />
+    <Compile Include="Manifest\Package.cs" />
+    <Compile Include="Manifest\VisualElements.cs" />
+    <Compile Include="Model\BadgeValue.cs" />
+    <Compile Include="Model\BaseElements\Action.cs" />
+    <Compile Include="Model\BaseElements\Actions.cs" />
+    <Compile Include="Model\BaseElements\ActivationType.cs" />
+    <Compile Include="Model\BaseElements\AdaptiveContainer.cs" />
+    <Compile Include="Model\BaseElements\AdaptiveProgress.cs" />
+    <Compile Include="Model\BaseElements\Audio.cs" />
+    <Compile Include="Model\BaseElements\BaseAdaptiveElement.cs" />
+    <Compile Include="Model\BaseElements\BaseElement.cs" />
+    <Compile Include="Model\BaseElements\AdaptiveBinding.cs" />
+    <Compile Include="Model\BaseElements\Duration.cs" />
+    <Compile Include="Model\BaseElements\Header.cs" />
+    <Compile Include="Model\BaseElements\IActivatableElement.cs" />
+    <Compile Include="Model\BaseElements\Input.cs" />
+    <Compile Include="Model\BaseElements\InputType.cs" />
+    <Compile Include="Model\BindableBase.cs" />
+    <Compile Include="Model\CommonNames.cs" />
+    <Compile Include="Model\BaseElements\Scenario.cs" />
+    <Compile Include="Model\DataBindingValues.cs" />
+    <Compile Include="Model\Enums\ActionPlacement.cs" />
+    <Compile Include="Model\Enums\BadgeValueType.cs" />
+    <Compile Include="Model\Enums\Branding.cs" />
+    <Compile Include="Model\Enums\HintAlign.cs" />
+    <Compile Include="Model\Enums\HintCrop.cs" />
+    <Compile Include="Model\Enums\HintImageAlign.cs" />
+    <Compile Include="Model\Enums\HintStyle.cs" />
+    <Compile Include="Model\Enums\HintSystemCommands.cs" />
+    <Compile Include="Model\Enums\HintTextStacking.cs" />
+    <Compile Include="Model\Enums\Placement.cs" />
+    <Compile Include="Model\Enums\Template.cs" />
+    <Compile Include="Model\BaseElements\AdaptiveGroup.cs" />
+    <Compile Include="Model\AdaptiveChildElement.cs" />
+    <Compile Include="Model\AdaptiveParentElement.cs" />
+    <Compile Include="Model\Enums\TextPlacement.cs" />
+    <Compile Include="Model\Enums\XmlValueAttribute.cs" />
+    <Compile Include="Model\IBindingChild.cs" />
+    <Compile Include="Model\BaseElements\AdaptiveImage.cs" />
+    <Compile Include="Model\NotificationType.cs" />
+    <Compile Include="Model\ObjectModel\ObjectModelBindingPropertyAttribute.cs" />
+    <Compile Include="Model\ObjectModel\ObjectModelEnumAttribute.cs" />
+    <Compile Include="Model\ObjectModel\ObjectModelObject.cs" />
+    <Compile Include="Model\ObjectModel\ObjectModelBaseAttribute.cs" />
+    <Compile Include="Model\ObjectModel\ObjectModelClassAttribute.cs" />
+    <Compile Include="Model\ObjectModel\ObjectModelObjectFromStaticMethod.cs" />
+    <Compile Include="Model\ObjectModel\ObjectModelPropertyAttribute.cs" />
+    <Compile Include="Model\PreviewBadgeUpdater.cs" />
+    <Compile Include="Model\BaseElements\AdaptiveSubgroup.cs" />
+    <Compile Include="Model\BaseElements\AdaptiveTextField.cs" />
+    <Compile Include="Model\PreviewTileUpdater.cs" />
+    <Compile Include="Model\BaseElements\Selection.cs" />
+    <Compile Include="Model\Toast.cs" />
+    <Compile Include="PreviewNotificationData.cs" />
+    <Compile Include="PreviewTileVisualElements.cs" />
+    <Compile Include="Renderers\AdaptiveRenderer.cs" />
+    <Compile Include="Renderers\ImageHelper.cs" />
+    <Compile Include="Previews\IPreviewToast.cs" />
+    <Compile Include="Previews\PreviewAdaptiveContent.cs" />
+    <Compile Include="Previews\PreviewTileNotification.xaml.cs">
+      <DependentUpon>PreviewTileNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Previews\PreviewToast.xaml.cs">
+      <DependentUpon>PreviewToast.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Previews\PreviewXboxToast.xaml.cs">
+      <DependentUpon>PreviewXboxToast.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Previews\PreviewXboxToastInActionCenter.xaml.cs">
+      <DependentUpon>PreviewXboxToastInActionCenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TileDensity.cs" />
+    <Compile Include="Model\BaseElements\Visual.cs" />
+    <Compile Include="Parsers\ITemplateParser.cs" />
+    <Compile Include="Model\Tile.cs" />
+    <Compile Include="Parsers\ParseError.cs" />
+    <Compile Include="Parsers\ParseResult.cs" />
+    <Compile Include="Parsers\XmlTemplateParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Previews\PreviewTileNotificationRaw.xaml.cs">
+      <DependentUpon>PreviewTileNotificationRaw.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Previews\PreviewTile.xaml.cs">
+      <DependentUpon>PreviewTile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TileSize.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\BadgeValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PeekDisplayerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProgressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Previews\PreviewTileNotification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Previews\PreviewTileNotificationRaw.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Previews\PreviewTile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Previews\PreviewToast.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Previews\PreviewXboxToast.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Previews\PreviewXboxToastInActionCenter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Themes\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.2.13</Version>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

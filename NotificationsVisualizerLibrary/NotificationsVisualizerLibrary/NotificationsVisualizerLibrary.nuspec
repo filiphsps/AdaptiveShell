@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>NotificationsVisualizerLibrary</id>
+        <version>0.0.0</version>
+        <authors>Microsoft</authors>
+	<owners>microsoft, andrewbares</owners>
+        <projectUrl>http://blogs.msdn.com/b/tiles_and_toasts/archive/2015/12/18/beta-embed-a-live-tile-in-your-windows-10-app.aspx</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <summary>Display a preview live tile in your Windows 10 app's settings page.</summary>
+        <description>The official NotificationsVisualizerLibrary library from Microsoft. This is for Windows 10 UWP apps using the 10240 SDK or newer.
+
+Have you ever wanted to display a preview of your live tile in your app's settings page, so the user can instantly see how your various settings will affect their live tile?
+
+This library allows you to add a PreviewTile control that replicates the Start tile, and fully supports adaptive tile notifications.</description>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+        <tags>notifications, win10, windows 10, tile, tiles, toast, toasts, badge, xml, PreviewTile</tags>
+        <licenseUrl>https://raw.githubusercontent.com/WindowsNotifications/files/master/NotificationsVisualizerLibrary/LICENSE</licenseUrl>
+    </metadata>
+    <files>
+        <file src="bin\Release\NotificationsVisualizerLibrary.winmd" target="lib\uap10.0"/>
+        <file src="bin\Release\NotificationsVisualizerLibrary.pri" target="lib\uap10.0"/>
+        <file src="bin\Release\NotificationsVisualizerLibrary.pdb" target="lib\uap10.0"/>
+        <file src="bin\Release\NotificationsVisualizerLibrary.xml" target="lib\uap10.0"/>
+        <file src="bin\Release\NotificationsVisualizerLibrary.xml" target="lib\uap10.0\NotificationsVisualizerLibrary.winmd.xml"/>
+        <file src="bin\Release\NotificationsVisualizerLibrary.xr.xml" target="lib\uap10.0\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.xr.xml"/>
+    </files>
+</package>

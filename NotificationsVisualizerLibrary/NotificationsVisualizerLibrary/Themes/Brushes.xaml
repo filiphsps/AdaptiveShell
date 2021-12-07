@@ -1,0 +1,200 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NotificationsVisualizerLibrary.Themes">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <x:Double x:Key="EllipseImageStokeThickness">0</x:Double>
+            <Thickness x:Key="BorderImageThickness">0</Thickness>
+            <Thickness x:Key="ListViewBorderThickness">0</Thickness>
+            <Thickness x:Key="LargeFourButtonMargin">16,0,0,0</Thickness>
+
+            <SolidColorBrush x:Key="ForegroundAccentBrush" Color="{ThemeResource SystemAccentColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="NonInteractiveForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumBrush" Color="{ThemeResource SystemBaseMediumColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumHighBrush" Color="{ThemeResource SystemBaseMediumHighColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumLowBrush" Color="{ThemeResource SystemBaseMediumLowColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseLowBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+            <SolidColorBrush x:Key="NonInteractiveForegroundBaseLowBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+            <SolidColorBrush x:Key="ForegroundTransparentBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="ForegroundTransparentButtonTextBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="PageTextBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+
+            <SolidColorBrush x:Key="GlyphButtonRestForegroundBrush" Color="{ThemeResource SystemBaseMediumColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPointerOverForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPressedForegroundBrush" Color="{ThemeResource SystemBaseMediumHighColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonDisabledForegroundBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPointerOverBorderBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="GlyphButtonRestBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="HyperlinkRestBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="HyperlinkRestForegroundBrush" Color="{ThemeResource SystemBaseMediumColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPointerOverForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPressedForegroundBrush" Color="{ThemeResource SystemBaseMediumHighColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPointerOverBorderBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="HyperlinkDisabledForegroundBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+
+            <SolidColorBrush x:Key="AppLogoBackgroundAccentBrush" Color="{ThemeResource SystemAccentColor}"/>
+            <SolidColorBrush x:Key="AppLogoOverrideBackgroundBrush" Color="Transparent"/>
+
+            <SolidColorBrush x:Key="BackgroundListLowTransparentBrush" Color="{ThemeResource SystemListLowColor}"/>
+            <SolidColorBrush x:Key="BackgroundListMediumTransparentBrush" Color="{ThemeResource SystemListMediumColor}"/>
+            <SolidColorBrush x:Key="BackgroundTransparentHighlightBrush" Color="Transparent"/>
+
+            <SolidColorBrush x:Key="BuddyButtonRestBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonRestBorderBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonRestForegroundBrush" Color="{ThemeResource SystemChromeWhiteColor}"/>
+            <x:Double x:Key="BuddyButtonRestForegroundOpacity">1.0</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonPointerOverBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonPointerOverBorderBrush" Color="Transparent"/>
+            <x:Double x:Key="BuddyButtonPointerOverForegroundOpacity">0.8</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonPressedBackgroundBrush" Color="{ThemeResource SystemListMediumColor}"/>
+            <SolidColorBrush x:Key="BuddyButtonPressedBorderBrush" Color="Transparent"/>
+            <x:Double x:Key="BuddyButtonPressedForegroundOpacity">0.8</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonDisabledBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonDisabledBorderBrush" Color="Transparent"/>
+            <x:Double x:Key="BuddyButtonDisabledForegroundOpacity">0.4</x:Double>
+
+            <SolidColorBrush x:Key="ScrollBarTrackBrush" Opacity="0.1" Color="{ThemeResource SystemChromeWhiteColor}"/>
+            <SolidColorBrush x:Key="ScrollBarTouchThumbBrush" Opacity="0.6" Color="{ThemeResource SystemChromeWhiteColor}"/>
+
+            <SolidColorBrush x:Key="ToastBorderBrush" Color="#858585" Opacity="0.4"/>
+
+            <SolidColorBrush x:Key="ImageSmokeBrush" Color="{ThemeResource SystemChromeBlackLowColor}"/>
+            <SolidColorBrush x:Key="GroupViewBackgroundBrush" Color="Transparent"/>
+
+            <SolidColorBrush x:Key="ProgressBarForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="ProgressTextForegroundBrush" Color="{ThemeResource SystemBaseMediumColor }"/>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <x:Double x:Key="EllipseImageStokeThickness">0</x:Double>
+            <Thickness x:Key="BorderImageThickness">0</Thickness>
+            <Thickness x:Key="ListViewBorderThickness">0</Thickness>
+            <Thickness x:Key="LargeFourButtonMargin">16,0,0,0</Thickness>
+
+            <SolidColorBrush x:Key="ForegroundAccentBrush" Color="{ThemeResource SystemAccentColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="NonInteractiveForegroundBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumBrush" Color="{ThemeResource SystemBaseMediumColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumHighBrush" Color="{ThemeResource SystemBaseMediumHighColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumLowBrush" Color="{ThemeResource SystemBaseMediumLowColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseLowBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+            <SolidColorBrush x:Key="NonInteractiveForegroundBaseLowBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+            <SolidColorBrush x:Key="ForegroundTransparentBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="ForegroundTransparentButtonTextBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="PageTextBaseHighBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+
+            <SolidColorBrush x:Key="GlyphButtonRestForegroundBrush" Color="{ThemeResource SystemBaseMediumColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPointerOverForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPressedForegroundBrush" Color="{ThemeResource SystemBaseMediumHighColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonDisabledForegroundBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPointerOverBorderBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="GlyphButtonRestBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="HyperlinkRestBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="HyperlinkRestForegroundBrush" Color="{ThemeResource SystemBaseMediumColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPointerOverForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPressedForegroundBrush" Color="{ThemeResource SystemBaseMediumHighColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPointerOverBorderBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="HyperlinkDisabledForegroundBrush" Color="{ThemeResource SystemBaseLowColor}"/>
+
+            <SolidColorBrush x:Key="AppLogoBackgroundAccentBrush" Color="{ThemeResource SystemAccentColor}"/>
+            <SolidColorBrush x:Key="AppLogoOverrideBackgroundBrush" Color="Transparent"/>
+
+            <SolidColorBrush x:Key="BackgroundListLowTransparentBrush" Color="{ThemeResource SystemListLowColor}"/>
+            <SolidColorBrush x:Key="BackgroundListMediumTransparentBrush" Color="{ThemeResource SystemListMediumColor}"/>
+            <SolidColorBrush x:Key="BackgroundTransparentHighlightBrush" Color="Transparent"/>
+
+            <SolidColorBrush x:Key="BuddyButtonRestBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonRestBorderBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonRestForegroundBrush" Color="{ThemeResource SystemChromeWhiteColor}"/>
+            <x:Double x:Key="BuddyButtonRestForegroundOpacity">1.0</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonPointerOverBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonPointerOverBorderBrush" Color="Transparent"/>
+            <x:Double x:Key="BuddyButtonPointerOverForegroundOpacity">0.8</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonPressedBackgroundBrush" Color="{ThemeResource SystemListMediumColor}"/>
+            <SolidColorBrush x:Key="BuddyButtonPressedBorderBrush" Color="Transparent"/>
+            <x:Double x:Key="BuddyButtonPressedForegroundOpacity">0.8</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonDisabledBackgroundBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BuddyButtonDisabledBorderBrush" Color="Transparent"/>
+            <x:Double x:Key="BuddyButtonDisabledForegroundOpacity">0.4</x:Double>
+
+            <SolidColorBrush x:Key="ScrollBarTrackBrush" Opacity="0.1" Color="{ThemeResource SystemChromeWhiteColor}"/>
+            <SolidColorBrush x:Key="ScrollBarTouchThumbBrush" Opacity="0.6" Color="{ThemeResource SystemChromeWhiteColor}"/>
+
+            <SolidColorBrush x:Key="ToastBorderBrush" Color="#858585" Opacity="0.4"/>
+
+            <SolidColorBrush x:Key="ImageSmokeBrush" Color="{ThemeResource SystemChromeBlackLowColor}"/>
+            <SolidColorBrush x:Key="GroupViewBackgroundBrush" Color="Transparent"/>
+
+            <SolidColorBrush x:Key="ProgressBarForegroundBrush" Color="{ThemeResource SystemBaseHighColor}"/>
+            <SolidColorBrush x:Key="ProgressTextForegroundBrush" Color="{ThemeResource SystemBaseMediumColor }"/>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <x:Double x:Key="EllipseImageStokeThickness">2</x:Double>
+            <Thickness x:Key="BorderImageThickness">2</Thickness>
+            <Thickness x:Key="ListViewBorderThickness">2</Thickness>
+            <Thickness x:Key="LargeFourButtonMargin">15,0,0,0</Thickness>
+
+            <SolidColorBrush x:Key="ForegroundAccentBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseHighBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="NonInteractiveForegroundBaseHighBrush" Color="{ThemeResource SystemColorWindowTextColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumHighBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseMediumLowBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="ForegroundBaseLowBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="NonInteractiveForegroundBaseLowBrush" Color="{ThemeResource SystemColorWindowTextColor}"/>
+            <SolidColorBrush x:Key="ForegroundTransparentBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="ForegroundTransparentButtonTextBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="PageTextBaseHighBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+
+            <SolidColorBrush x:Key="GlyphButtonRestForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPointerOverForegroundBrush" Color="{ThemeResource SystemColorHighlightTextColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPressedForegroundBrush" Color="{ThemeResource SystemColorHighlightTextColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonDisabledForegroundBrush" Color="{ThemeResource SystemColorGrayTextColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonPointerOverBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="GlyphButtonRestBackgroundBrush" Color="{ThemeResource SystemColorButtonFaceColor}"/>
+            <SolidColorBrush x:Key="HyperlinkRestBackgroundBrush" Color="{ThemeResource SystemColorButtonFaceColor}"/>
+            <SolidColorBrush x:Key="HyperlinkRestForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPointerOverForegroundBrush" Color="{ThemeResource SystemColorHighlightTextColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPressedForegroundBrush" Color="{ThemeResource SystemColorHighlightTextColor}"/>
+            <SolidColorBrush x:Key="HyperlinkPointerOverBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="HyperlinkDisabledForegroundBrush" Color="{ThemeResource SystemColorGrayTextColor}"/>
+
+            <SolidColorBrush x:Key="AppLogoBackgroundAccentBrush" Color="{ThemeResource SystemColorHighlightColor}"/>
+            <SolidColorBrush x:Key="AppLogoOverrideBackgroundBrush" Color="{ThemeResource SystemChromeBlackHighColor}"/>
+
+            <SolidColorBrush x:Key="BackgroundListLowTransparentBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BackgroundListMediumTransparentBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="BackgroundTransparentHighlightBrush" Color="{ThemeResource SystemColorHighlightColor}"/>
+
+            <SolidColorBrush x:Key="BuddyButtonRestBackgroundBrush" Color="{ThemeResource SystemChromeBlackHighColor}"/>
+            <SolidColorBrush x:Key="BuddyButtonRestBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <SolidColorBrush x:Key="BuddyButtonRestForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+            <x:Double x:Key="BuddyButtonRestForegroundOpacity">1.0</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonPointerOverBackgroundBrush" Color="{ThemeResource SystemColorHighlightColor}"/>
+            <SolidColorBrush x:Key="BuddyButtonPointerOverBorderBrush" Color="{ThemeResource SystemColorHighlightColor}"/>
+            <x:Double x:Key="BuddyButtonPointerOverForegroundOpacity">1.0</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonPressedBackgroundBrush" Color="{ThemeResource SystemColorHighlightColor}"/>
+            <SolidColorBrush x:Key="BuddyButtonPressedBorderBrush" Color="{ThemeResource SystemColorHighlightColor}"/>
+            <x:Double x:Key="BuddyButtonPressedForegroundOpacity">1.0</x:Double>
+            <SolidColorBrush x:Key="BuddyButtonDisabledBackgroundBrush" Color="{ThemeResource SystemColorGrayTextColor}"/>
+            <SolidColorBrush x:Key="BuddyButtonDisabledBorderBrush" Color="{ThemeResource SystemColorGrayTextColor}"/>
+            <x:Double x:Key="BuddyButtonDisabledForegroundOpacity">1.0</x:Double>
+
+            <SolidColorBrush x:Key="ScrollBarTrackBrush" Color="{ThemeResource SystemColorWindowColor}"/>
+            <SolidColorBrush x:Key="ScrollBarTouchThumbBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+
+            <SolidColorBrush x:Key="ToastBorderBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+
+            <SolidColorBrush x:Key="ImageSmokeBrush" Color="Transparent"/>
+            <SolidColorBrush x:Key="GroupViewBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}"/>
+
+            <SolidColorBrush x:Key="ProgressBarForegroundBrush" Color="{ThemeResource SystemColorHighlightColor}"/>
+            <SolidColorBrush x:Key="ProgressTextForegroundBrush" Color="{ThemeResource SystemColorButtonTextColor}"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

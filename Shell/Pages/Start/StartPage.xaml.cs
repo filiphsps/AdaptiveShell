@@ -31,6 +31,9 @@ namespace Shell.Pages {
         }
 
         private async void StartPage_OnLoaded(Object sender, RoutedEventArgs e) {
+            // Temporary
+            return;
+
             var packageManager = new PackageManager();
             var packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUserWithPackageTypes("", PackageTypes.Main);
 

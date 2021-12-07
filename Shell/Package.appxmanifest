@@ -43,7 +43,7 @@
       </uap:VisualElements>
     </Application>
 
-    <Application Id="Shell.Settings" Executable="$targetnametoken$.exe" EntryPoint="Shell.Host">
+    <!--<Application Id="Shell.Settings" Executable="$targetnametoken$.exe" EntryPoint="Shell.Host">
       <uap:VisualElements
         AppListEntry="none"
         DisplayName="Shell Settings"
@@ -78,7 +78,7 @@
           </rescap:SettingsApp>
         </rescap:Extension>
       </Extensions>
-    </Application>
+    </Application> -->
   </Applications>
 
   <Capabilities>

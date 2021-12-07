@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="NotificationsVisualizerLibrary.Controls.BadgeValueControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NotificationsVisualizerLibrary.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    xmlns:converters="using:NotificationsVisualizerLibrary.Converters"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <UserControl.Resources>
+
+        <converters:BadgeValueToVisibilityConverter x:Key="BadgeValueToVisibilityConverter"/>
+
+    </UserControl.Resources>
+
+    <Grid Visibility="{Binding Value, Converter={StaticResource BadgeValueToVisibilityConverter}}">
+
+        <!--integer number badge seems to match up with hint-style="body" font size-->
+        <TextBlock
+            Style="{StaticResource BodyTextBlockStyle}"
+            Foreground="White"
+            Text="{Binding Value}"
+            Margin="4,0,0,4"
+            OpticalMarginAlignment="TrimSideBearings"/>
+
+    </Grid>
+</UserControl>

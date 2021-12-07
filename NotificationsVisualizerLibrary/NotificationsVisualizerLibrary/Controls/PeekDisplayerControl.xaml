@@ -1,0 +1,61 @@
+﻿<UserControl
+    x:Name="ThisControl"
+    x:Class="NotificationsVisualizerLibrary.Controls.PeekDisplayerControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NotificationsVisualizerLibrary.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <ExponentialEase x:Key="PeekEasingFunction" EasingMode="EaseOut"/>
+
+        <Storyboard x:Key="PeekStoryboard" RepeatBehavior="0" AutoReverse="False">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Y" Storyboard.TargetName="TranslateContent">
+
+                <!--<EasingDoubleKeyFrame KeyTime="0:0:8" Value="-130"/>-->
+
+                <!--Peek image starts as displayed-->
+                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:0"/>
+
+                <!--Peek image stays visible till now-->
+                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:3.3"/>
+
+                <!--Then peek image is slidden out by now-->
+                <EasingDoubleKeyFrame Value="{Binding TilePixelSize.Height, Converter={StaticResource InvertConverter}}" KeyTime="0:0:4.0" EasingFunction="{StaticResource PeekEasingFunction}"/>
+
+                <!--Content stays visible till now-->
+                <EasingDoubleKeyFrame Value="{Binding TilePixelSize.Height, Converter={StaticResource InvertConverter}}" KeyTime="0:0:7.3"/>
+
+                <!--Then peek image comes back down and stays visible forever-->
+                <EasingDoubleKeyFrame Value="0" KeyTime="0:0:8.0" EasingFunction="{StaticResource PeekEasingFunction}"/>
+
+                <!--Pull the peek image out-->
+                <!--<EasingDoubleKeyFrame KeyTime="0:0:6.7" Value="{Binding TilePixelSize.Height, Converter={StaticResource InvertConverter}}" EasingFunction="{StaticResource PeekEasingFunction}"/>-->
+                <!--<EasingDoubleKeyFrame KeyTime="0:0:10.5" Value="{Binding TilePixelSize.Height, Converter={StaticResource InvertConverter}}">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>-->
+
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Canvas x:Name="PresentationCanvas" SizeChanged="Canvas_SizeChanged">
+
+        <Canvas.Clip>
+            <RectangleGeometry x:Name="CanvasClip"/>
+        </Canvas.Clip>
+
+        <Border x:Name="NotificationContentContainer" Child="{Binding PreviewTileNotificationRaw, ElementName=ThisControl}">
+            <Border.RenderTransform>
+                <TranslateTransform x:Name="TranslateContent"/>
+            </Border.RenderTransform>
+        </Border>
+
+    </Canvas>
+</UserControl>

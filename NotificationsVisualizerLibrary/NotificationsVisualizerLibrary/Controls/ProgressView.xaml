@@ -1,0 +1,76 @@
+﻿<UserControl
+    x:Class="NotificationsVisualizerLibrary.Controls.ProgressView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NotificationsVisualizerLibrary.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    xmlns:converters="using:NotificationsVisualizerLibrary.Converters">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///NotificationsVisualizerLibrary/Themes/Generic.xaml"/>
+                <ResourceDictionary>
+                    <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid Name="ProgressGrid" Margin="0,0,0,12">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="{Binding Title}"
+            Visibility="{Binding Title, Converter={StaticResource StringToVisibilityConverter}}"
+            Grid.ColumnSpan="2"
+            MaxLines="1"
+            TextWrapping="NoWrap"
+            TextTrimming="Clip"
+            Foreground="{ThemeResource ForegroundBaseHighBrush}"
+            Style="{StaticResource LocBodyTextBlockStyle}"/>
+
+        <ProgressBar x:Name="progressBar" 
+            Value="{Binding Value}" 
+            Maximum="1.0" 
+            Margin="0,8,0,8"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Foreground="{ThemeResource ProgressBarForegroundBrush}"
+            IsIndeterminate="{Binding IsIndeterminate}"/>
+
+        <TextBlock Text="{Binding Status}"
+            Grid.Row="2"
+            MaxLines="1"
+            TextWrapping="NoWrap"
+            TextTrimming="Clip"
+            Foreground="{ThemeResource ProgressTextForegroundBrush}"
+            Style="{StaticResource LocBodyTextBlockStyle}"/>
+
+        <TextBlock Text="{Binding ValueString}"
+            TextAlignment="Right"
+            MaxWidth="162"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="12,0,0,0"
+            MaxLines="1"
+            TextWrapping="NoWrap"
+            TextTrimming="Clip"
+            Foreground="{ThemeResource ProgressTextForegroundBrush}"
+            Style="{StaticResource LocBodyTextBlockStyle}"/>
+
+    </Grid>
+</UserControl>
