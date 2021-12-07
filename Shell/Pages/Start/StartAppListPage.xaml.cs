@@ -42,7 +42,9 @@ namespace Shell.Pages {
 
 
             if (this.ScreenWidth <= 950) {
+                this.AppListScrollViewer.Padding = new Thickness(0);
             } else {
+                this.AppListScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.05);
             }
         }
 

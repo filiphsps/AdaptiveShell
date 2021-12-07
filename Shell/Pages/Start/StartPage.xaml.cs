@@ -76,7 +76,7 @@ namespace Shell.Pages {
         }
 
         private void ScrollViewer_ViewChanging(Object sender, ScrollViewerViewChangingEventArgs e) {
-            Int32 MAX_DARK = 65;
+            Int32 MAX_DARK = 85;
 
             if (this.ScreenWidth <= 950) {
                 this.Root.Background = new SolidColorBrush() {
