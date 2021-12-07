@@ -23,6 +23,7 @@
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VariableSizedWrapGrid
+                            x:Name="LiveTilesLayout"
                             MaximumRowsOrColumns="8"
                             ItemHeight="92"
                             ItemWidth="92"
@@ -73,5 +74,32 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Empty setters defaults to the layout specified in XAML below. -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="950"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LiveTilesLayout.Orientation" Value="Vertical" />
+                        <Setter Target="LiveTilesLayout.VerticalAlignment" Value="Center" />
+                        <Setter Target="LiveTilesLayout.HorizontalAlignment" Value="Left" />
+                        <Setter Target="LiveTilesLayout.MaximumRowsOrColumns" Value="6" />
+                        <Setter Target="StartScreenScrollViewer.VerticalScrollMode" Value="Disabled" />
+                        <Setter Target="StartScreenScrollViewer.HorizontalScrollMode" Value="Enabled" />
+                        <Setter Target="StartScreenScrollViewer.HorizontalScrollBarVisibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

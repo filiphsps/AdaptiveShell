@@ -219,6 +219,10 @@
       <Project>{b405da0d-19d9-461e-8dc0-baa1c6dbf790}</Project>
       <Name>Shell.LiveTilesAccessLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shell.PersonalizationLibrary\Shell.PersonalizationLibrary.csproj">
+      <Project>{cc69ed82-d3e7-44b8-aeec-3c12a7b030e1}</Project>
+      <Name>Shell.PersonalizationLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

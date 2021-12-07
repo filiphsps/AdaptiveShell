@@ -7,6 +7,7 @@ using Windows.Management.Deployment;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Size = Windows.Foundation.Size;
 
@@ -31,6 +32,14 @@ namespace Shell.Pages {
         }
 
         private async void StartPage_OnLoaded(Object sender, RoutedEventArgs e) {
+            // Set wallpaper
+            var background = await Shell.PersonalizationLibrary.BackgroundImageManager.GetBackgroundImage();
+            if (background != null)
+                this.Background = new ImageBrush() {
+                    ImageSource = background,
+                    Stretch = Stretch.UniformToFill
+                };
+
             // Temporary
             return;
 

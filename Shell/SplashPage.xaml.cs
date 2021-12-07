@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation.Metadata;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -24,6 +25,11 @@ namespace Shell {
         private void SplashPage_OnLoaded(Object sender, RoutedEventArgs e) {
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
+
+            if (!System.Diagnostics.Debugger.IsAttached) {
+                var view = ApplicationView.GetForCurrentView();
+                view.TryEnterFullScreenMode();
+            }
 
             // TODO
             Boolean res = this.Frame.Navigate(this._page, null, new EntranceNavigationTransitionInfo());

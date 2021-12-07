@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1738
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "Shell\Shell.csproj", "{B3C05A73-451A-49AD-8698-CF5FC74BFBD4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.LiveTilesAccessLibrary", "Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj", "{B405DA0D-19D9-461E-8DC0-BAA1C6DBF790}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsVisualizerLibrary", "NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj", "{220F3A47-BEC1-40EF-BE2D-98A8345AB983}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.PersonalizationLibrary", "Shell.PersonalizationLibrary\Shell.PersonalizationLibrary.csproj", "{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,26 @@ Global
 		{220F3A47-BEC1-40EF-BE2D-98A8345AB983}.Release|x64.Build.0 = Release|x64
 		{220F3A47-BEC1-40EF-BE2D-98A8345AB983}.Release|x86.ActiveCfg = Release|x86
 		{220F3A47-BEC1-40EF-BE2D-98A8345AB983}.Release|x86.Build.0 = Release|x86
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|ARM.ActiveCfg = Debug|ARM
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|ARM.Build.0 = Debug|ARM
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|ARM64.Build.0 = Debug|ARM64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|x64.ActiveCfg = Debug|x64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|x64.Build.0 = Debug|x64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|x86.ActiveCfg = Debug|x86
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Debug|x86.Build.0 = Debug|x86
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|ARM.ActiveCfg = Release|ARM
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|ARM.Build.0 = Release|ARM
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|ARM64.ActiveCfg = Release|ARM64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|ARM64.Build.0 = Release|ARM64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|x64.ActiveCfg = Release|x64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|x64.Build.0 = Release|x64
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|x86.ActiveCfg = Release|x86
+		{CC69ED82-D3E7-44B8-AEEC-3C12A7B030E1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
