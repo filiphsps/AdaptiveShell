@@ -27,6 +27,7 @@ namespace Shell.Pages {
 
             this.StartPage_SizeChanged(null, null);
 
+            this.StartScreenLayout.Visibility = Visibility.Collapsed;
             this.StartScreenLayout.Navigate(typeof(Pages.StartLiveTilesPage), new StartScrenParameters() {
                 AllAppsBtnCallback = () => {
                     if (this.ScreenWidth <= 950) {
@@ -40,33 +41,35 @@ namespace Shell.Pages {
         }
 
         private void StartPage_SizeChanged(Object sender, SizeChangedEventArgs e) {
-            this.ScreenWidth = Window.Current.CoreWindow.Bounds.Width;
-            this.ScreenHeight = Window.Current.CoreWindow.Bounds.Height;
+            try {
+                this.ScreenWidth = Window.Current.CoreWindow.Bounds.Width;
+                this.ScreenHeight = Window.Current.CoreWindow.Bounds.Height;
 
-            if (this.ScreenWidth <= 950) {
-                this.StartScreenLayout.Height = Double.NaN;
-                this.StartScreenLayout.Width = this.ScreenWidth;
-                this.AppsListLayout.Height = Double.NaN;
-                this.AppsListLayout.Width = this.ScreenWidth;
+                if (this.ScreenWidth <= 950) {
+                    this.StartScreenLayout.Height = Double.NaN;
+                    this.StartScreenLayout.Width = this.ScreenWidth;
+                    this.AppsListLayout.Height = Double.NaN;
+                    this.AppsListLayout.Width = this.ScreenWidth;
 
-                this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Center;
-                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
-                this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Center;
-                this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
+                    this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Center;
+                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Top;
+                    this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Center;
+                    this.AppsListLayout.VerticalAlignment = VerticalAlignment.Top;
 
-                this.Start.Orientation = Orientation.Horizontal;
-            } else {
-                this.StartScreenLayout.Height = this.ScreenHeight;
-                this.StartScreenLayout.Width = Double.NaN;
-                this.StartScreenLayout.Height = this.ScreenHeight;
-                this.AppsListLayout.Width = Double.NaN;
+                    this.Start.Orientation = Orientation.Horizontal;
+                } else {
+                    this.StartScreenLayout.Height = this.ScreenHeight;
+                    this.StartScreenLayout.Width = Double.NaN;
+                    this.StartScreenLayout.Height = this.ScreenHeight;
+                    this.AppsListLayout.Width = Double.NaN;
 
-                this.Start.Orientation = Orientation.Vertical;
-                this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
-                this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
-            }
+                    this.Start.Orientation = Orientation.Vertical;
+                    this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
+                    this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
+                }
+            } catch { }
         }
 
         private async void StartPage_OnLoaded(Object sender, RoutedEventArgs e) {
@@ -80,6 +83,8 @@ namespace Shell.Pages {
         }
 
         private void StartScreenLayout_Loaded(Object sender, RoutedEventArgs e) {
+            this.StartScreenLayout.Visibility = Visibility.Visible;
+
             this.StartPage_SizeChanged(null, null);
         }
 
@@ -90,18 +95,44 @@ namespace Shell.Pages {
         private void ScrollViewer_ViewChanging(Object sender, ScrollViewerViewChangingEventArgs e) {
             Int32 MAX_DARK = 85;
 
+            try {
+                if (this.ScreenWidth <= 950) {
+                    if (((ScrollViewer)sender).HorizontalOffset == e.NextView.HorizontalOffset) return;
+
+                    this.Root.Background = new SolidColorBrush() {
+                        Color = Color.FromArgb(Convert.ToByte(
+                            (e.NextView.HorizontalOffset / ((ScrollViewer)sender).ViewportWidth) * MAX_DARK
+                        ), 0, 0, 0)
+                    };
+                } else {
+                    if (((ScrollViewer)sender).VerticalOffset == e.NextView.VerticalOffset) return;
+
+                    this.Root.Background = new SolidColorBrush() {
+                        Color = Color.FromArgb(Convert.ToByte(
+                            (e.NextView.VerticalOffset / ((ScrollViewer)sender).ViewportHeight) * MAX_DARK
+                        ), 0, 0, 0)
+                    };
+                }
+            } catch { }
+        }
+
+        private void StartScreenLayout_PointerEntered(Object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e) {
             if (this.ScreenWidth <= 950) {
-                this.Root.Background = new SolidColorBrush() {
-                    Color = Color.FromArgb(Convert.ToByte(
-                        (e.NextView.HorizontalOffset / ((ScrollViewer)sender).ViewportWidth) * MAX_DARK
-                    ), 0, 0, 0)
-                };
+                this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
+                this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
             } else {
-                this.Root.Background = new SolidColorBrush() {
-                    Color = Color.FromArgb(Convert.ToByte(
-                        (e.NextView.VerticalOffset / ((ScrollViewer)sender).ViewportHeight) * MAX_DARK
-                    ), 0, 0, 0)
-                };
+                this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
+                this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
+            }
+        }
+
+        private void StartScreenLayout_PointerExited(Object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e) {
+            if (this.ScreenWidth <= 950) {
+                this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
+                this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
+            } else {
+                this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
+                this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
             }
         }
     }

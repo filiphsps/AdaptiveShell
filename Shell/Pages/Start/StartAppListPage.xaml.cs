@@ -67,20 +67,23 @@ namespace Shell.Pages {
                     continue;
 
                 IReadOnlyList<AppListEntry> entries = await package.GetAppListEntriesAsync();
-                foreach (AppListEntry item in entries) {
+                foreach (AppListEntry runtime in entries) {
+                    if (runtime.DisplayInfo.DisplayName.Length <= 0 || runtime.DisplayInfo.DisplayName == "NoUIEntryPoints-DesignMode")
+                        continue;
+
                     var logo = new BitmapImage();
 
                     try {
-                        RandomAccessStreamReference logoStream = item.DisplayInfo.GetLogo(new Size(250, 250));
+                        RandomAccessStreamReference logoStream = runtime.DisplayInfo.GetLogo(new Size(250, 250));
                         IRandomAccessStreamWithContentType logoStreamSource = await logoStream.OpenReadAsync();
                         logo.SetSource(logoStreamSource);
                     } catch { }
 
                     list.Add(new AppListItem {
-                        Key = item.DisplayInfo.DisplayName.Substring(0, 1).ToUpper(),
+                        Key = runtime.DisplayInfo.DisplayName.Substring(0, 1).ToUpper(),
                         Logo = logo,
-                        Title = item.DisplayInfo.DisplayName,
-                        Package = item
+                        Title = runtime.DisplayInfo.DisplayName,
+                        Package = runtime
                     });
                 }
             }

@@ -72,30 +72,6 @@ namespace Shell.Pages {
     }
 
     public sealed partial class StartLiveTilesPage : Page {
-        // Only used while using the XAML designer, e.g. design-time.
-        private ObservableCollection<StartScreenItem> designerTileCollection = new ObservableCollection<StartScreenItem>() {
-            new StartScreenItem {
-                AppId = "1",
-                DisplayName = "Small",
-                Size = TileSize.Small
-            },
-            new StartScreenItem {
-                AppId = "2",
-                DisplayName = "Medium",
-                Size = TileSize.Medium
-            },
-            new StartScreenItem {
-                AppId = "3",
-                DisplayName = "Wide",
-                Size = TileSize.Wide
-            },
-            new StartScreenItem {
-                AppId = "4",
-                DisplayName = "Large",
-                Size = TileSize.Large
-            }
-        };
-
         public ObservableCollection<StartScreenItem> tileCollection = new ObservableCollection<StartScreenItem>();
         public List<TileModel> tileUpdates = new List<TileModel>();
 
@@ -121,7 +97,7 @@ namespace Shell.Pages {
             if (this.LiveTiles.ItemsPanelRoot == null)
                 return;
             
-            if (this.ScreenWidth <= 950) {
+            if (this.ScreenWidth <= 1050) {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Horizontal;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Center;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
@@ -130,6 +106,12 @@ namespace Shell.Pages {
                 this.StartScreenScrollViewer.Margin = new Thickness(0);
                 this.AllAppsBtn.Padding = new Thickness(0);
             } else {
+                if (this.ScreenHeight <= 950) {
+                    ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 6;
+                } else {
+                    ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 8;
+                }
+
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Vertical;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Stretch;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;

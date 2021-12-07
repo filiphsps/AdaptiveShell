@@ -53,9 +53,6 @@
                 ItemsSource="{x:Bind tileCollection, Mode=TwoWay}"
                 AllowDrop="True"
                 CanReorderItems="True">
-                <d:GridView.ItemsSource>
-                    <Binding Source="designerTileCollection"/>
-                </d:GridView.ItemsSource>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VariableSizedWrapGrid

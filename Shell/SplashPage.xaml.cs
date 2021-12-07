@@ -29,10 +29,13 @@ namespace Shell {
             if (!System.Diagnostics.Debugger.IsAttached) {
                 var view = ApplicationView.GetForCurrentView();
                 view.TryEnterFullScreenMode();
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+            } else {
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
             }
 
             // TODO
-            Boolean res = this.Frame.Navigate(this._page, null, new EntranceNavigationTransitionInfo());
+            this.Frame.Navigate(this._page, null, new EntranceNavigationTransitionInfo());
             this.Frame.BackStack.Remove(this.Frame.BackStack.Last());
         }
     }

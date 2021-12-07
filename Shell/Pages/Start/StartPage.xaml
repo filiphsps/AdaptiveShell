@@ -47,7 +47,11 @@
             <StackPanel
                 x:Name="Start"
                 Orientation="Horizontal">
-                <Frame x:Name="StartScreenLayout" Loaded="StartScreenLayout_Loaded"/>
+                <Frame
+                    x:Name="StartScreenLayout"
+                    Loaded="StartScreenLayout_Loaded"
+                    PointerEntered="StartScreenLayout_PointerEntered"
+                    PointerExited="StartScreenLayout_PointerExited"/>
                 <Frame x:Name="AppsListLayout" Loaded="AppsListLayout_Loaded"/>
             </StackPanel>
         </ScrollViewer>
