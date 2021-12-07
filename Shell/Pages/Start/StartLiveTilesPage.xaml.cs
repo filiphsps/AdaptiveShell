@@ -70,11 +70,58 @@ namespace Shell.Pages {
     }
 
     public sealed partial class StartLiveTilesPage : Page {
+        // Only used while using the XAML designer, e.g. design-time.
+        private ObservableCollection<StartScreenItem> designerTileCollection = new ObservableCollection<StartScreenItem>() {
+            new StartScreenItem {
+                AppId = "1",
+                DisplayName = "Small",
+                Size = TileSize.Small
+            },
+            new StartScreenItem {
+                AppId = "2",
+                DisplayName = "Medium",
+                Size = TileSize.Medium
+            },
+            new StartScreenItem {
+                AppId = "3",
+                DisplayName = "Wide",
+                Size = TileSize.Wide
+            },
+            new StartScreenItem {
+                AppId = "4",
+                DisplayName = "Large",
+                Size = TileSize.Large
+            }
+        };
+
         public ObservableCollection<StartScreenItem> tileCollection = new ObservableCollection<StartScreenItem>();
         public List<TileModel> tileUpdates = new List<TileModel>();
 
+        private Double ScreenWidth;
+        private Double ScreenHeight;
+
         public StartLiveTilesPage() {
             this.InitializeComponent();
+
+            this.StartLiveTilesPage_SizeChanged(null, null);
+        }
+
+        private void StartLiveTilesPage_SizeChanged(Object sender, SizeChangedEventArgs e) {
+            this.ScreenWidth = Window.Current.CoreWindow.Bounds.Width;
+            this.ScreenHeight = Window.Current.CoreWindow.Bounds.Height;
+
+            if (this.LiveTiles.ItemsPanelRoot == null)
+                return;
+            
+            if (this.ScreenWidth <= 950) {
+                ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Horizontal;
+                ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Center;
+                ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
+            } else {
+                ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Vertical;
+                ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Stretch;
+                ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;
+            }
         }
 
         private async void StartLiveTilesPage_OnLoaded(Object sender, RoutedEventArgs e) {
@@ -115,23 +162,30 @@ namespace Shell.Pages {
                             inGridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpawn);
                             inGridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpawn);
 
-                            // Set logo
-                            var imageStream = await runtime.DisplayInfo.GetLogo(new Windows.Foundation.Size(250, 250)).OpenReadAsync();
+                            try {
+                                // Set logo
+                                var imageStream = await runtime.DisplayInfo.GetLogo(new Windows.Foundation.Size(250, 250)).OpenReadAsync();
 
-                            var memStream = new MemoryStream();
-                            await imageStream.AsStreamForRead().CopyToAsync(memStream);
-                            memStream.Position = 0;
-                            var bitmap = new BitmapImage();
-                            bitmap.SetSource(memStream.AsRandomAccessStream());
+                                var memStream = new MemoryStream();
+                                await imageStream.AsStreamForRead().CopyToAsync(memStream);
+                                memStream.Position = 0;
+                                var bitmap = new BitmapImage();
+                                bitmap.SetSource(memStream.AsRandomAccessStream());
 
-                            ((StartScreenItem)inGridItem.Content).Logo = new ImageBrush() {
-                                ImageSource = bitmap,
-                                Stretch = Stretch.UniformToFill
-                            };
+                                ((StartScreenItem)inGridItem.Content).Logo = new ImageBrush() {
+                                    ImageSource = bitmap,
+                                    Stretch = Stretch.UniformToFill
+                                };
+                            } catch {
+                                // TODO
+                            }
                         }
                     }
                 });
             });
+
+            // Trigger reflow.
+            this.StartLiveTilesPage_SizeChanged(null, null);
         }
 
         private void LiveTile_Loaded(Object sender, RoutedEventArgs e) {
@@ -216,6 +270,10 @@ namespace Shell.Pages {
 
             // Push updates
             _ = tile.UpdateAsync();
+        }
+
+        private void LiveTilesLayout_Loaded(Object sender, RoutedEventArgs e) {
+            this.StartLiveTilesPage_SizeChanged(null, null);
         }
     }
 }

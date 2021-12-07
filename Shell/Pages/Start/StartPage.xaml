@@ -9,54 +9,46 @@
     xmlns:notificationsVisualizerLibrary="using:NotificationsVisualizerLibrary"
     mc:Ignorable="d"
     Loaded="StartPage_OnLoaded"
+    SizeChanged="StartPage_SizeChanged"
     Background="{ThemeResource SystemAccentColor}">
 
-    <Page.Resources>
-        <CollectionViewSource x:Name="ApplicationList" IsSourceGrouped="True" />
-    </Page.Resources>
-
-    <Pivot>
-        <PivotItem
-            Header="Start"
-            Padding="10">
-            <Frame x:Name="StartScreenLayout"/>
-        </PivotItem>
-        <PivotItem Header="Apps">
-            <ListView
-                SelectionMode="None"
-                IsItemClickEnabled="True"
-                ItemsSource="{Binding Source={StaticResource ApplicationList}}"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
-                ItemClick="AppList_OnItemClick">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="0,2.5,0,2.5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="1*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid
-                                Grid.Column="0"
-                                Height="50"
-                                Background="{ThemeResource SystemControlBackgroundAccentBrush}">
-                                <Image Source="{Binding Logo}" />
-                            </Grid>
-                            <TextBlock Grid.Column="1" Margin="15" Text="{Binding Path=Title}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <TextBlock Margin="10" Foreground="Black" Text="{Binding Key}" />
-                                </Grid>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ListView.GroupStyle>
-            </ListView>
-        </PivotItem>
-    </Pivot>
+    <Grid x:Name="Root">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Empty setters defaults to the layout specified in XAML below. -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="950"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Start.Orientation" Value="Vertical" />
+                        <Setter Target="Start.VerticalScrollMode" Value="Auto" />
+                        <Setter Target="Start.ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
+                        <Setter Target="Start.ScrollViewer.HorizontalScrollBarVisibility" Value="Disable" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <ScrollViewer
+            HorizontalSnapPointsType="MandatorySingle"
+            VerticalSnapPointsType="MandatorySingle"
+            HorizontalScrollBarVisibility="Visible"
+            HorizontalScrollMode="Enabled"
+            ViewChanging="ScrollViewer_ViewChanging">
+            <StackPanel
+                x:Name="Start"
+                Orientation="Horizontal">
+                <Frame x:Name="StartScreenLayout" Loaded="StartScreenLayout_Loaded"/>
+                <Frame x:Name="AppsListLayout" Loaded="AppsListLayout_Loaded"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Page>

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Management.Deployment;
 using Windows.Storage.Streams;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -12,23 +14,47 @@ using Windows.UI.Xaml.Media.Imaging;
 using Size = Windows.Foundation.Size;
 
 namespace Shell.Pages {
-    public class AppListItem {
-        public String Key { get; set; }
-        public BitmapImage Logo { get; set; }
-        public String Title { get; set; }
-        public AppListEntry Package { get; set; }
-    }
-
     public sealed partial class StartPage : Page {
+        private Double ScreenWidth;
+        private Double ScreenHeight;
+
         public StartPage() {
             this.InitializeComponent();
 
+            this.StartPage_SizeChanged(null, null);
+
             this.StartScreenLayout.SourcePageType = typeof(Pages.StartLiveTilesPage);
+            this.AppsListLayout.SourcePageType = typeof(Pages.StartAppListPage);
         }
 
-        private async void AppList_OnItemClick(Object sender, ItemClickEventArgs e) {
-            var item = (AppListItem)e.ClickedItem;
-            await item.Package.LaunchAsync();
+        private void StartPage_SizeChanged(Object sender, SizeChangedEventArgs e) {
+            this.ScreenWidth = Window.Current.CoreWindow.Bounds.Width;
+            this.ScreenHeight = Window.Current.CoreWindow.Bounds.Height;
+
+            if (this.ScreenWidth <= 950) {
+                this.StartScreenLayout.Height = Double.NaN;
+                this.StartScreenLayout.Width = this.ScreenWidth;
+                this.AppsListLayout.Height = Double.NaN;
+                this.AppsListLayout.Width = this.ScreenWidth;
+
+                this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Center;
+                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
+                this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Center;
+                this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
+
+                this.Start.Orientation = Orientation.Horizontal;
+            } else {
+                this.StartScreenLayout.Height = this.ScreenHeight;
+                this.StartScreenLayout.Width = Double.NaN;
+                this.StartScreenLayout.Height = this.ScreenHeight;
+                this.AppsListLayout.Width = Double.NaN;
+
+                this.Start.Orientation = Orientation.Vertical;
+                this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
+                this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
+            }
         }
 
         private async void StartPage_OnLoaded(Object sender, RoutedEventArgs e) {
@@ -39,42 +65,32 @@ namespace Shell.Pages {
                     ImageSource = background,
                     Stretch = Stretch.UniformToFill
                 };
+        }
 
-            // Temporary
-            return;
+        private void StartScreenLayout_Loaded(Object sender, RoutedEventArgs e) {
+            this.StartPage_SizeChanged(null, null);
+        }
 
-            var packageManager = new PackageManager();
-            var packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUserWithPackageTypes("", PackageTypes.Main);
+        private void AppsListLayout_Loaded(Object sender, RoutedEventArgs e) {
+            this.StartPage_SizeChanged(null, null);
+        }
 
-            var list = new List<AppListItem>();
+        private void ScrollViewer_ViewChanging(Object sender, ScrollViewerViewChangingEventArgs e) {
+            Int32 MAX_DARK = 65;
 
-            foreach (Package package in packages) {
-                if (package.DisplayName.Length <= 0)
-                    continue;
-
-                if (package.IsFramework || package.IsResourcePackage || package.IsOptional || package.IsBundle)
-                    continue;
-
-                IReadOnlyList<AppListEntry> entries = await package.GetAppListEntriesAsync();
-                foreach (AppListEntry item in entries) {
-                    var logo = new BitmapImage();
-
-                    try {
-                        RandomAccessStreamReference logoStream = item.DisplayInfo.GetLogo(new Size(250, 250));
-                        IRandomAccessStreamWithContentType logoStreamSource = await logoStream.OpenReadAsync();
-                        logo.SetSource(logoStreamSource);
-                    } catch { }
-
-                    list.Add(new AppListItem {
-                        Key = item.DisplayInfo.DisplayName.Substring(0, 1).ToUpper(),
-                        Logo = logo,
-                        Title = item.DisplayInfo.DisplayName,
-                        Package = item
-                    });
-                }
+            if (this.ScreenWidth <= 950) {
+                this.Root.Background = new SolidColorBrush() {
+                    Color = Color.FromArgb(Convert.ToByte(
+                        (e.NextView.HorizontalOffset / ((ScrollViewer)sender).ViewportWidth) * MAX_DARK
+                    ), 0, 0, 0)
+                };
+            } else {
+                this.Root.Background = new SolidColorBrush() {
+                    Color = Color.FromArgb(Convert.ToByte(
+                        (e.NextView.VerticalOffset / ((ScrollViewer)sender).ViewportHeight) * MAX_DARK
+                    ), 0, 0, 0)
+                };
             }
-            IEnumerable<IGrouping<String, AppListItem>> result = from t in list group t by t.Key;
-            this.ApplicationList.Source = result.OrderBy(item => item.Key);
         }
     }
 }

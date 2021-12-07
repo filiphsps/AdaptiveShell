@@ -128,6 +128,9 @@
     <Compile Include="Pages\Settings\SettingsPersonalizationPage.xaml.cs">
       <DependentUpon>SettingsPersonalizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Start\StartAppListPage.xaml.cs">
+      <DependentUpon>StartAppListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Start\StartLiveTilesPage.xaml.cs">
       <DependentUpon>StartLiveTilesPage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Settings\SettingsPersonalizationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Start\StartAppListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,16 +10,52 @@
     mc:Ignorable="d"
     Background="Transparent"
     Loaded="StartLiveTilesPage_OnLoaded"
-    NavigationCacheMode="Required">
+    NavigationCacheMode="Required"
+    SizeChanged="StartLiveTilesPage_SizeChanged">
 
-    <Grid>
+    <Grid Padding="5, 15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!-- Empty setters defaults to the layout specified in XAML below. -->
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="950"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="LiveTilesLayout.Orientation" Value="Vertical" />
+                        <Setter Target="LiveTilesLayout.VerticalAlignment" Value="Center" />
+                        <Setter Target="LiveTilesLayout.HorizontalAlignment" Value="Left" />
+                        <Setter Target="LiveTilesLayout.MaximumRowsOrColumns" Value="6" />
+                        <Setter Target="StartScreenScrollViewer.VerticalScrollMode" Value="Disabled" />
+                        <Setter Target="StartScreenScrollViewer.HorizontalScrollMode" Value="Enabled" />
+                        <Setter Target="StartScreenScrollViewer.HorizontalScrollBarVisibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
         <ScrollViewer
+            Grid.Row="0"
             x:Name="StartScreenScrollViewer">
             <GridView
                 x:Name="LiveTiles"
                 ItemsSource="{x:Bind tileCollection, Mode=TwoWay}"
                 AllowDrop="True"
                 CanReorderItems="True">
+                <d:GridView.ItemsSource>
+                    <Binding Source="designerTileCollection"/>
+                </d:GridView.ItemsSource>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VariableSizedWrapGrid
@@ -30,10 +66,11 @@
                             AllowDrop="True"
                             Orientation="Horizontal"
                             HorizontalAlignment="Center"
+                            Loaded="LiveTilesLayout_Loaded"
                         />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
-                
+
                 <GridView.ItemTemplate>
                     <DataTemplate>
                         <Grid
@@ -74,32 +111,7 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
-        
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!-- Empty setters defaults to the layout specified in XAML below. -->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="950"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LiveTilesLayout.Orientation" Value="Vertical" />
-                        <Setter Target="LiveTilesLayout.VerticalAlignment" Value="Center" />
-                        <Setter Target="LiveTilesLayout.HorizontalAlignment" Value="Left" />
-                        <Setter Target="LiveTilesLayout.MaximumRowsOrColumns" Value="6" />
-                        <Setter Target="StartScreenScrollViewer.VerticalScrollMode" Value="Disabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollMode" Value="Enabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollBarVisibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+
+        <TextBlock Grid.Row="1" FontSize="14" VerticalAlignment="Center">All Apps</TextBlock>
     </Grid>
 </Page>
