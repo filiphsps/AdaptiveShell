@@ -17,6 +17,8 @@ using Windows.UI.Core;
 using System.IO;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.Foundation;
+using Windows.UI.Xaml.Navigation;
+using static Shell.Pages.StartPage;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -99,11 +101,17 @@ namespace Shell.Pages {
 
         private Double ScreenWidth;
         private Double ScreenHeight;
+        private StartScrenParameters Arguments;
 
         public StartLiveTilesPage() {
             this.InitializeComponent();
 
             this.StartLiveTilesPage_SizeChanged(null, null);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            base.OnNavigatedTo(e);
+            this.Arguments = (StartScrenParameters)e.Parameter;
         }
 
         private void StartLiveTilesPage_SizeChanged(Object sender, SizeChangedEventArgs e) {
@@ -119,12 +127,16 @@ namespace Shell.Pages {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
 
                 this.StartScreenScrollViewer.Padding = new Thickness(0);
+                this.StartScreenScrollViewer.Margin = new Thickness(0);
+                this.AllAppsBtn.Padding = new Thickness(0);
             } else {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Vertical;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Stretch;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;
 
                 this.StartScreenScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.05);
+                this.StartScreenScrollViewer.Margin = new Thickness(0, 0, 0, ((this.ScreenWidth * 0.05) * -1) - 14);
+                this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.075, 0, this.ScreenWidth * 0.05, this.ScreenWidth * 0.05);
             }
         }
 
@@ -278,6 +290,12 @@ namespace Shell.Pages {
 
         private void LiveTilesLayout_Loaded(Object sender, RoutedEventArgs e) {
             this.StartLiveTilesPage_SizeChanged(null, null);
+        }
+
+        private void AllAppsBtn_Tapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
+            if (this.Arguments == null) return;
+
+            this.Arguments.AllAppsBtnCallback();
         }
     }
 }

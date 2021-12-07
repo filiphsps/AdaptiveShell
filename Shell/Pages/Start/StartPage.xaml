@@ -38,6 +38,7 @@
         </VisualStateManager.VisualStateGroups>
         
         <ScrollViewer
+            x:Name="RootScroll"
             HorizontalSnapPointsType="MandatorySingle"
             VerticalSnapPointsType="MandatorySingle"
             HorizontalScrollBarVisibility="Visible"

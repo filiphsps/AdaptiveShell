@@ -18,12 +18,24 @@ namespace Shell.Pages {
         private Double ScreenWidth;
         private Double ScreenHeight;
 
+        public class StartScrenParameters {
+            public Action AllAppsBtnCallback { get; set; }
+        }
+
         public StartPage() {
             this.InitializeComponent();
 
             this.StartPage_SizeChanged(null, null);
 
-            this.StartScreenLayout.SourcePageType = typeof(Pages.StartLiveTilesPage);
+            this.StartScreenLayout.Navigate(typeof(Pages.StartLiveTilesPage), new StartScrenParameters() {
+                AllAppsBtnCallback = () => {
+                    if (this.ScreenWidth <= 950) {
+                        this.RootScroll.ChangeView(this.ScreenWidth, null, null);
+                    } else {
+                        this.RootScroll.ChangeView(null, this.ScreenHeight, null);
+                    }
+                }
+            }, null);
             this.AppsListLayout.SourcePageType = typeof(Pages.StartAppListPage);
         }
 

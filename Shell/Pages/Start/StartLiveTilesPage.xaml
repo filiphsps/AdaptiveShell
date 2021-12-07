@@ -111,7 +111,15 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
-
-        <TextBlock Grid.Row="1" FontSize="14" VerticalAlignment="Center">All Apps</TextBlock>
+        
+        <Grid Grid.Row="1" x:Name="AllAppsBtn" Tapped="AllAppsBtn_Tapped">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            
+            <SymbolIcon Grid.Column="0" Symbol="Up" Rotation="180" Margin="0,0,15,0"/>
+            <TextBlock Grid.Column="1" FontSize="14" VerticalAlignment="Center">All Apps</TextBlock>
+        </Grid>
     </Grid>
 </Page>
