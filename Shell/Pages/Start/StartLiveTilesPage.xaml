@@ -52,7 +52,8 @@
                 x:Name="LiveTiles"
                 ItemsSource="{x:Bind tileCollection, Mode=TwoWay}"
                 AllowDrop="True"
-                CanReorderItems="True">
+                CanReorderItems="True"
+                SelectionChanged="LiveTiles_SelectionChanged">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VariableSizedWrapGrid

@@ -115,25 +115,5 @@ namespace Shell.Pages {
                 }
             } catch { }
         }
-
-        private void StartScreenLayout_PointerEntered(Object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e) {
-            if (this.ScreenWidth <= 950) {
-                this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
-                this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
-            } else {
-                this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
-                this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
-            }
-        }
-
-        private void StartScreenLayout_PointerExited(Object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e) {
-            if (this.ScreenWidth <= 950) {
-                this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
-                this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
-            } else {
-                this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
-                this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
-            }
-        }
     }
 }

@@ -97,7 +97,7 @@ namespace Shell.Pages {
             if (this.LiveTiles.ItemsPanelRoot == null)
                 return;
             
-            if (this.ScreenWidth <= 1050) {
+            if (this.ScreenWidth <= 950) {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Horizontal;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Center;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
@@ -106,7 +106,11 @@ namespace Shell.Pages {
                 this.StartScreenScrollViewer.Margin = new Thickness(0);
                 this.AllAppsBtn.Padding = new Thickness(0);
             } else {
-                if (this.ScreenHeight <= 950) {
+                if (this.ScreenHeight <= 1050) {
+                    if (this.ScreenHeight <= 900) {
+                        this.Scale = new System.Numerics.Vector3(0.85f, 0.85f, 0.85f);
+                    }
+
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 6;
                 } else {
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 8;
@@ -278,6 +282,10 @@ namespace Shell.Pages {
             if (this.Arguments == null) return;
 
             this.Arguments.AllAppsBtnCallback();
+        }
+
+        private void LiveTiles_SelectionChanged(Object sender, SelectionChangedEventArgs e) {
+            ((GridView)sender).SelectedItem = null;
         }
     }
 }
