@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Core;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Xaml.Media;
 
@@ -14,17 +16,15 @@ namespace Shell.LiveTilesAccessLibrary {
     }
 
     public class TileModel {
-        public String AppId { get; set; }
-        public String DisplayName { get; set; }
+        public String AppId { get => this.Entry.AppUserModelId; }
+        public String DisplayName { get => this.LiveTile.DisplayName; set => this.LiveTile.DisplayName = value; }
+        public TileSize Size { get => this.LiveTile.TileSize; set => this.LiveTile.TileSize = value; }
         public PreviewTile LiveTile { get; set; }
-        public TileSize Size { get; set; }
-        public TileDataModel TileData { get; set; }
+        public List<TileDataModel> TileData { get; set; }
 
-        public TileDensity Density { get; set; } = TileDensity.Mobile(1.75);
-
-        public Int32 RowSpawn {
+        public Int32 RowSpan {
             get {
-                switch (this.Size) {
+                switch (this.LiveTile.TileSize) {
                     case TileSize.Large:
                         return 4;
                     case TileSize.Wide:
@@ -37,9 +37,9 @@ namespace Shell.LiveTilesAccessLibrary {
             }
         }
 
-        public Int32 ColumnSpawn {
+        public Int32 ColumnSpan {
             get {
-                switch (this.Size) {
+                switch (this.LiveTile.TileSize) {
                     case TileSize.Large:
                         return 4;
                     case TileSize.Wide:
@@ -52,13 +52,9 @@ namespace Shell.LiveTilesAccessLibrary {
                 }
             }
         }
-
-        public Boolean IsSmall { get => this.Size == TileSize.Small; }
-        public Boolean IsMedium { get => this.Size == TileSize.Medium; }
-        public Boolean IsWide { get => this.Size == TileSize.Wide; }
-        public Boolean IsLarge { get => this.Size == TileSize.Large; }
 
         public ImageBrush Logo { get; set; }
-        public Action Launcher { get; set; }
+        public Package Package { get; set; }
+        public AppListEntry Entry { get; set; }
     }
 }

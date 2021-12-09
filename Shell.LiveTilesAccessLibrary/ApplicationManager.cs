@@ -12,15 +12,14 @@ using Windows.ApplicationModel.Core;
 using Windows.Data.Xml.Dom;
 using Windows.Management.Deployment;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shell.LiveTilesAccessLibrary {
     public class ApplicationManager {
         public ObservableCollection<TileModel> LiveTiles { get; set; } = new ObservableCollection<TileModel>();
-        public List<TileDataModel> LiveTilesData { get; private set; } = new List<TileDataModel>();
 
-        public List<Package> Packages { get; private set; } = new List<Package>();
         private String NotificationsPath;
 
         public ApplicationManager() {
@@ -33,18 +32,17 @@ namespace Shell.LiveTilesAccessLibrary {
 
         public async Task<ObservableCollection<TileModel>> Update() {
             // Get all packages.
-            this.Packages.Clear();
             var packageManager = new PackageManager();
-            this.Packages = packageManager.FindPackagesForUserWithPackageTypes("", PackageTypes.Main).ToList();
+            var packages = packageManager.FindPackagesForUserWithPackageTypes("", PackageTypes.Main).ToList();
 
             // Get the new live tile data.
-            this.LiveTilesData = await this.GetLiveTilesData();
+            var tilesData = await this.GetLiveTilesData();
 
             // Remove all live tiles.
             this.LiveTiles.Clear();
 
             // Create a live tile for each entry.
-            foreach (Package package in this.Packages) {
+            foreach (Package package in packages) {
                 if (package.DisplayName.Length <= 0)
                     continue;
 
@@ -64,16 +62,34 @@ namespace Shell.LiveTilesAccessLibrary {
                     var bitmap = new BitmapImage();
                     bitmap.SetSource(memStream.AsRandomAccessStream());
 
-                    this.LiveTiles.Add(new TileModel {
-                        AppId = entry.AppUserModelId,
-                        Size = TileSize.Medium,
-                        DisplayName = entry.DisplayInfo.DisplayName,
-                        Launcher = () => _ = entry.LaunchAsync(),
+                    var logo = new ImageBrush() {
+                        ImageSource = bitmap,
+                        Stretch = Stretch.UniformToFill
+                    };
+
+                    var tile = new TileModel {
+                        TileData = tilesData.FindAll(i => i.AppId == entry.AppUserModelId),
+                        LiveTile = new PreviewTile() {
+                            DisplayName = entry.DisplayInfo.DisplayName,
+                            TileSize = TileSize.Medium,
+                            TileDensity = TileDensity.Mobile(1.75),
+                            VisualElements = {
+                                BackgroundColor = Color.FromArgb(0, 0, 0, 0),
+                                ShowNameOnSquare150x150Logo = true,
+                                ShowNameOnSquare310x310Logo = true,
+                                ShowNameOnWide310x150Logo = true
+                            }
+                        },
+                        Package = package,
+                        Entry = entry,
                         Logo = new ImageBrush() {
                             ImageSource = bitmap,
                             Stretch = Stretch.UniformToFill
                         }
-                    });
+                    };
+
+                    await tile.LiveTile.UpdateAsync();
+                    this.LiveTiles.Add(tile);
                 }
             }
 

@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Controls;
 using System.Linq;
 using Windows.UI.Xaml.Navigation;
 using static Shell.Pages.StartPage;
+using Windows.UI.Xaml.Input;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,7 +22,6 @@ namespace Shell.Pages {
 
         public StartLiveTilesPage() {
             this.InitializeComponent();
-            this.Visibility = Visibility.Collapsed;
 
             this.StartLiveTilesPage_SizeChanged(null, null);
         }
@@ -64,75 +64,43 @@ namespace Shell.Pages {
         }
 
         private void StartLiveTilesPage_OnLoaded(Object sender, RoutedEventArgs e) {
-            foreach (TileModel tile in this.Arguments.LiveTilesManager.LiveTiles) {
-                var inGridItem = (GridViewItem)this.LiveTiles.ItemContainerGenerator.ContainerFromItem(tile);
-                if (inGridItem != null) {
-                    inGridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, tile.RowSpawn);
-                    inGridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, tile.ColumnSpawn);
-                }
-            }
-
-            this.Visibility = Visibility.Visible;
-
             // Trigger reflow.
             this.StartLiveTilesPage_SizeChanged(null, null);
         }
 
-        private void LiveTile_Loaded(Object sender, RoutedEventArgs e) {
-            var item = (TileModel)((Grid)sender).DataContext;
-            var tile = (PreviewTile)((Grid)((Grid)sender).Children[0]).Children[0];
-            item.LiveTile = tile;
+        private async void LiveTile_Loaded(Object sender, RoutedEventArgs e) {
+            var item = (TileModel)((PreviewTile)sender).DataContext;
 
-            // Set logo
-            ((Grid)((Grid)sender).Children[0]).Background = item.Logo;
+            // Set span.
+            var container = this.LiveTiles.ContainerFromItem(item);
+            container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
+            container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
-            // this shouldn't be needed
-            item.DisplayName = tile.DisplayName;
+            await item.LiveTile.UpdateAsync();
+            if (item.TileData != null) {
+                PreviewTileUpdater tileUpdater = item.LiveTile.CreateTileUpdater();
+                PreviewBadgeUpdater badgeUpdater = item.LiveTile.CreateBadgeUpdater();
 
-            // Set tile background as transparent.
-            tile.VisualElements.BackgroundColor = Color.FromArgb(0, 0, 0, 0);
-
-            // Show name on medium tile.
-            tile.VisualElements.ShowNameOnSquare150x150Logo = true;
-
-            // Set tile size & density.
-            tile.TileSize = item.Size;
-            tile.TileDensity = item.Density;
-
-            // Update layout.
-            tile.UpdateLayout();
-
-            // Quick-exit if no tile updates are found.
-            var currentTileUpdates = this.Arguments.LiveTilesManager.LiveTilesData.FindAll(update => update.AppId == item.AppId);
-            if (currentTileUpdates.Count <= 0) {
-                _ = tile.UpdateAsync();
-                return;
+                foreach (var data in item.TileData) {
+                    // FIXME: Queue
+                    tileUpdater.Update(new TileNotification(data.Payload));
+                }
             }
-
-            PreviewTileUpdater tileUpdater = tile.CreateTileUpdater();
-
-            // FIXME: Queue
-            foreach (var update in currentTileUpdates) {
-                tileUpdater.Update(new TileNotification(update.Payload));
-            }
-
-            PreviewBadgeUpdater badgeUpdater = tile.CreateBadgeUpdater();
 
             // Push updates.
-            _ = tile.UpdateAsync();
+            item.LiveTile.UpdateLayout();
+            await item.LiveTile.UpdateAsync();
 
-            // Unset logo since we have a live tile.
-            // FIXME: only do this if a live tile exists for the current size
-            ((Grid)((Grid)sender).Children[0]).Background = null;
+            // TODO: handle background based on tile data,
         }
 
         private async void LiveTile_Tapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
             // TODO
             var item = (TileModel)((Grid)sender).DataContext;
-            item.Launcher();
+            //item.Launcher();
         }
 
-        private void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
+        private async void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
             var item = (TileModel)((ToggleMenuFlyoutItem)sender).DataContext;
             var tile = item.LiveTile;
 
@@ -150,30 +118,23 @@ namespace Shell.Pages {
                     item.Size = TileSize.Large;
                     break;
             }
-
-            // FIXME: figure out why checkmark doesn't update.
-            tile.UpdateLayout();
-
-            // this shouldn't be needed
-            tile.TileSize = item.Size;
-            tile.DisplayName = item.DisplayName;
-
-            var gridItem = this.LiveTiles.ItemContainerGenerator.ContainerFromItem(item);
-
-            if (gridItem != null) {
-                gridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpawn);
-                gridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpawn);
-            }
+            // Set span
+            var gridItem = this.LiveTiles.ContainerFromItem(item);
+            gridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
+            gridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
             // Push updates
-            _ = tile.UpdateAsync();
+            tile.UpdateLayout();
+            await tile.UpdateAsync();
+
+            // FIXME: figure out why checkmark doesn't update.
         }
 
         private void LiveTilesLayout_Loaded(Object sender, RoutedEventArgs e) {
             this.StartLiveTilesPage_SizeChanged(null, null);
         }
 
-        private void AllAppsBtn_Tapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
+        private void AllAppsBtn_Tapped(Object sender, TappedRoutedEventArgs e) {
             if (this.Arguments == null) return;
 
             this.Arguments.AllAppsBtnCallback();
