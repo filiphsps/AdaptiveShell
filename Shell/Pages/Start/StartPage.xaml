@@ -13,30 +13,6 @@
     Background="{ThemeResource SystemAccentColor}">
 
     <Grid x:Name="Root">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!-- Empty setters defaults to the layout specified in XAML below. -->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="950"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="Start.Orientation" Value="Vertical" />
-                        <Setter Target="Start.VerticalScrollMode" Value="Auto" />
-                        <Setter Target="Start.ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-                        <Setter Target="Start.ScrollViewer.HorizontalScrollBarVisibility" Value="Disable" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        
         <ScrollViewer
             x:Name="RootScroll"
             HorizontalSnapPointsType="MandatorySingle"

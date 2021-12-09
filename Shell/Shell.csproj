@@ -122,8 +122,8 @@
     <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Host.xaml.cs">
-      <DependentUpon>Host.xaml</DependentUpon>
+    <Compile Include="Start.xaml.cs">
+      <DependentUpon>Start.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings\SettingsPersonalizationPage.xaml.cs">
       <DependentUpon>SettingsPersonalizationPage.xaml</DependentUpon>
@@ -160,7 +160,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Host.xaml">
+    <ApplicationDefinition Include="Start.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>

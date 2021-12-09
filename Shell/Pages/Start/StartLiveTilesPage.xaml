@@ -18,39 +18,15 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!-- Empty setters defaults to the layout specified in XAML below. -->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="950"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LiveTilesLayout.Orientation" Value="Vertical" />
-                        <Setter Target="LiveTilesLayout.VerticalAlignment" Value="Center" />
-                        <Setter Target="LiveTilesLayout.HorizontalAlignment" Value="Left" />
-                        <Setter Target="LiveTilesLayout.MaximumRowsOrColumns" Value="6" />
-                        <Setter Target="StartScreenScrollViewer.VerticalScrollMode" Value="Disabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollMode" Value="Enabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollBarVisibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        
+
         <ScrollViewer
             Grid.Row="0"
             x:Name="StartScreenScrollViewer">
             <GridView
                 x:Name="LiveTiles"
-                ItemsSource="{x:Bind tileCollection, Mode=TwoWay}"
+                ItemsSource="{x:Bind Arguments.LiveTilesManager.LiveTiles, Mode=TwoWay}"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 AllowDrop="True"
                 CanReorderItems="True"
                 SelectionChanged="LiveTiles_SelectionChanged">
@@ -73,16 +49,16 @@
                     <DataTemplate>
                         <Grid
                             x:Name="LiveTile"
-                            VariableSizedWrapGrid.RowSpan="{Binding RowSpan, Mode=TwoWay}"
+                            VariableSizedWrapGrid.RowSpan="{Binding RowSpawn, Mode=TwoWay}"
                             VariableSizedWrapGrid.ColumnSpan="{Binding ColumnSpan, Mode=TwoWay}"
                             Loaded="LiveTile_Loaded"
                             Tapped="LiveTile_Tapped"
                             CornerRadius="4">
                             <Grid.Background>
                                 <media:AcrylicBrush
-                                    BackgroundSource="Backdrop"
+                                    BackgroundSource="HostBackdrop"
                                     TintOpacity="0.25"
-                                    TintColor="#FFA0A0A0"
+                                    TintColor="{ThemeResource SystemAccentColorLight2}"
                                     FallbackColor="{ThemeResource SystemAccentColor}" />
                             </Grid.Background>
 
@@ -116,8 +92,19 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             
-            <SymbolIcon Grid.Column="0" Symbol="Up" Rotation="180" Margin="0,0,15,0"/>
-            <TextBlock Grid.Column="1" FontSize="14" VerticalAlignment="Center">All Apps</TextBlock>
+            <SymbolIcon
+                Grid.Column="0"
+                Symbol="Up"
+                Rotation="180"
+                Margin="0,0,15,0"
+                Foreground="{ThemeResource SystemAltHighColor}"/>
+            <TextBlock
+                Grid.Column="1"
+                FontSize="14"
+                VerticalAlignment="Center"
+                Foreground="{ThemeResource SystemAltHighColor}">
+                All Apps
+            </TextBlock>
         </Grid>
     </Grid>
 </Page>

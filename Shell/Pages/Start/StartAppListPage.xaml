@@ -47,14 +47,30 @@
                 SelectionMode="None"
                 IsItemClickEnabled="True"
                 ItemsSource="{Binding Source={StaticResource ApplicationList}}"
-                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 ItemClick="AppList_OnItemClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <controls:StaggeredPanel />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
-                
+
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock
+                                        Margin="10"
+                                        Foreground="{ThemeResource SystemAltHighColor}"
+                                        Text="{Binding Key}" />
+                                </Grid>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                    </GroupStyle>
+                </ListView.GroupStyle>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,2.5,0,2.5">
@@ -68,21 +84,15 @@
                                 Background="{ThemeResource SystemControlBackgroundAccentBrush}">
                                 <Image Source="{Binding Logo}" />
                             </Grid>
-                            <TextBlock Grid.Column="1" Margin="15" Text="{Binding Path=Title}" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="15"
+                                Text="{Binding Path=Title}"
+                                Foreground="{ThemeResource SystemAltHighColor}"
+                                TextWrapping="Wrap"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <TextBlock Margin="10" Foreground="Black" Text="{Binding Key}" />
-                                </Grid>
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ListView.GroupStyle>
             </ListView>
         </ScrollViewer>
     </Grid>
