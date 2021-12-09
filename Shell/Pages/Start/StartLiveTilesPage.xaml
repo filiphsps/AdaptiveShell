@@ -30,7 +30,8 @@
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 AllowDrop="True"
                 CanReorderItems="True"
-                SelectionChanged="LiveTiles_SelectionChanged">
+                SelectionChanged="LiveTiles_SelectionChanged"
+                SelectionMode="Single">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VariableSizedWrapGrid
@@ -56,7 +57,7 @@
                             CornerRadius="4">
                             <Grid.Background>
                                 <media:AcrylicBrush
-                                    BackgroundSource="HostBackdrop"
+                                    BackgroundSource="Backdrop"
                                     TintOpacity="0.25"
                                     TintColor="{ThemeResource SystemAccentColorLight2}"
                                     FallbackColor="{ThemeResource SystemAccentColor}" />
@@ -74,10 +75,11 @@
                                 <MenuFlyout>
                                     <MenuFlyoutItem Text="Size"/>
                                     <MenuFlyoutSeparator/>
-                                    <ToggleMenuFlyoutItem x:Name="SmallOpt" Text="Small" Click="LiveTileContext_Click"/>
-                                    <ToggleMenuFlyoutItem x:Name="MediumOpt" Text="Medium" Click="LiveTileContext_Click"/>
-                                    <ToggleMenuFlyoutItem x:Name="WideOpt" Text="Wide" Click="LiveTileContext_Click"/>
-                                    <ToggleMenuFlyoutItem x:Name="LargeOpt" Text="Large" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="SmallOpt" Text="Small" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="MediumOpt" Text="Medium" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="WideOpt" Text="Wide" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="LargeOpt" Text="Large" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutSeparator/>
                                 </MenuFlyout>
                             </Grid.ContextFlyout>
                         </Grid>

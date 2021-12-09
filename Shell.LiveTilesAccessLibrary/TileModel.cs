@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Data.Xml.Dom;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 namespace Shell.LiveTilesAccessLibrary {

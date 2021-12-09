@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shell.LiveTilesAccessLibrary;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,9 +18,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using static Shell.Pages.StartPage;
 
 namespace Shell.Pages {
     public class AppListItem {
+        public String AppId { get; set; }
         public String Key { get; set; }
         public BitmapImage Logo { get; set; }
         public String Title { get; set; }
@@ -27,13 +30,17 @@ namespace Shell.Pages {
     }
     
     public sealed partial class StartAppListPage : Page {
-        // public ObservableCollection<AppListItem> appCollection = new ObservableCollection<AppListItem>();
-
         private Double ScreenWidth;
         private Double ScreenHeight;
+        private AppListParameters Arguments;
 
         public StartAppListPage() {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            base.OnNavigatedTo(e);
+            this.Arguments = (AppListParameters)e.Parameter;
         }
 
         private void StartAppListPage_SizeChanged(Object sender, SizeChangedEventArgs e) {
@@ -43,8 +50,12 @@ namespace Shell.Pages {
 
             if (this.ScreenWidth <= 950) {
                 this.AppListScrollViewer.Padding = new Thickness(0);
+                this.AppListScrollViewer.Margin = new Thickness(0);
+                this.BackToStartBtn.Padding = new Thickness(0);
             } else {
-                this.AppListScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.05);
+                this.AppListScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.025);
+                this.AppListScrollViewer.Margin = new Thickness(0, ((this.ScreenWidth * 0.025) * -1), 0, 0);
+                this.BackToStartBtn.Padding = new Thickness(this.ScreenWidth * 0.05, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025, 14);
             }
         }
 
@@ -54,9 +65,7 @@ namespace Shell.Pages {
         }
 
         private async void StartAppListPage_OnLoaded(Object sender, RoutedEventArgs e) {
-            var packageManager = new PackageManager();
-            var packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUserWithPackageTypes("", PackageTypes.Main);
-
+            var packages = this.Arguments.LiveTilesManager.Packages;
             var list = new List<AppListItem>();
 
             foreach (Package package in packages) {
@@ -80,6 +89,7 @@ namespace Shell.Pages {
                     } catch { }
 
                     list.Add(new AppListItem {
+                        AppId = runtime.AppUserModelId,
                         Key = runtime.DisplayInfo.DisplayName.Substring(0, 1).ToUpper(),
                         Logo = logo,
                         Title = runtime.DisplayInfo.DisplayName,
@@ -89,6 +99,17 @@ namespace Shell.Pages {
             }
             IEnumerable<IGrouping<String, AppListItem>> result = from t in list group t by t.Key;
             this.ApplicationList.Source = result.OrderBy(item => item.Key);
+        }
+
+        private void PinToStart_Click(Object sender, RoutedEventArgs e) {
+            this.Arguments.LiveTilesManager.ToggleIsPinned(
+                ((AppListItem)((MenuFlyoutItem)sender).DataContext).AppId
+            );
+            this.Arguments.StartScreenBtnCallback();
+        }
+
+        private void BackToStartBtn_Tapped(Object sender, TappedRoutedEventArgs e) {
+            this.Arguments.StartScreenBtnCallback();
         }
     }
 }

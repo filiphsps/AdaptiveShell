@@ -18,7 +18,10 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shell.LiveTilesAccessLibrary {
     public class ApplicationManager {
+        // All live tiles.
         public ObservableCollection<TileModel> LiveTiles { get; set; } = new ObservableCollection<TileModel>();
+
+        public List<Package> Packages { get; private set; } = new List<Package>();
 
         private String NotificationsPath;
 
@@ -27,23 +30,31 @@ namespace Shell.LiveTilesAccessLibrary {
         }
 
         public async Task Initilize() {
-            await this.Update();
+            this.UpdateApplications();
+            await this.UpdateLiveTiles();
         }
 
-        public async Task<ObservableCollection<TileModel>> Update() {
+        public List<Package> UpdateApplications() {
             // Get all packages.
             var packageManager = new PackageManager();
             var packages = packageManager.FindPackagesForUserWithPackageTypes("", PackageTypes.Main).ToList();
 
+            this.Packages = packages;
+            return this.Packages;
+        }
+
+        public async Task<ObservableCollection<TileModel>> UpdateLiveTiles() {
             // Get the new live tile data.
             var tilesData = await this.GetLiveTilesData();
 
             // Remove all live tiles.
             this.LiveTiles.Clear();
 
+            var liveTiles = new List<TileModel>();
+
             // Create a live tile for each entry.
-            foreach (Package package in packages) {
-                if (package.DisplayName.Length <= 0)
+            foreach (Package package in this.Packages) {
+                if (package.DisplayName == null || package.DisplayName.Length <= 0)
                     continue;
 
                 if (package.IsFramework || package.IsResourcePackage)
@@ -54,18 +65,25 @@ namespace Shell.LiveTilesAccessLibrary {
                         continue;
                     if (entry.DisplayInfo.DisplayName == "NoUIEntryPoints-DesignMode")
                         continue;
+                    // Temporary hide ourselves
+                    if (entry.DisplayInfo.DisplayName == "Shell.Start")
+                        continue;
 
-                    var imageStream = await entry.DisplayInfo.GetLogo(new Windows.Foundation.Size(250, 250)).OpenReadAsync();
-                    var memStream = new MemoryStream();
-                    await imageStream.AsStreamForRead().CopyToAsync(memStream);
-                    memStream.Position = 0;
-                    var bitmap = new BitmapImage();
-                    bitmap.SetSource(memStream.AsRandomAccessStream());
+                    ImageBrush logo = null;
+                    try {
+                        // TODO: set of images.
+                        var imageStream = await entry.DisplayInfo.GetLogo(new Windows.Foundation.Size(250, 250)).OpenReadAsync();
+                        var memStream = new MemoryStream();
+                        await imageStream.AsStreamForRead().CopyToAsync(memStream);
+                        memStream.Position = 0;
+                        var bitmap = new BitmapImage();
+                        bitmap.SetSource(memStream.AsRandomAccessStream());
 
-                    var logo = new ImageBrush() {
-                        ImageSource = bitmap,
-                        Stretch = Stretch.UniformToFill
-                    };
+                        logo = new ImageBrush() {
+                            ImageSource = bitmap,
+                            Stretch = Stretch.UniformToFill
+                        };
+                    } catch { }
 
                     var tile = new TileModel {
                         TileData = tilesData.FindAll(i => i.AppId == entry.AppUserModelId),
@@ -82,17 +100,16 @@ namespace Shell.LiveTilesAccessLibrary {
                         },
                         Package = package,
                         Entry = entry,
-                        Logo = new ImageBrush() {
-                            ImageSource = bitmap,
-                            Stretch = Stretch.UniformToFill
-                        }
+                        Logo = logo
                     };
 
                     await tile.LiveTile.UpdateAsync();
-                    this.LiveTiles.Add(tile);
+                    liveTiles.Add(tile);
                 }
             }
 
+
+            this.LiveTiles = new ObservableCollection<TileModel>(liveTiles.OrderBy(o => o.DisplayName).ToList());
             return this.LiveTiles;
         }
 
@@ -140,6 +157,11 @@ namespace Shell.LiveTilesAccessLibrary {
             await this.Cleanup();
 
             return tiles;
+        }
+
+        public void ToggleIsPinned(String AppId) {
+            var tile = this.LiveTiles.Single(n => n.AppId == AppId);
+            // TODO
         }
 
         private async Task<StorageFile> CreateTempFiles(StorageFolder location) {

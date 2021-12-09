@@ -57,9 +57,9 @@ namespace Shell.Pages {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Stretch;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;
 
-                this.StartScreenScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.05);
-                this.StartScreenScrollViewer.Margin = new Thickness(0, 0, 0, ((this.ScreenWidth * 0.05) * -1) - 14);
-                this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.075, 0, this.ScreenWidth * 0.05, this.ScreenWidth * 0.05);
+                this.StartScreenScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.025);
+                this.StartScreenScrollViewer.Margin = new Thickness(0, 0, 0, ((this.ScreenWidth * 0.025) * -1));
+                this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05, 14, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025);
             }
         }
 
@@ -72,12 +72,12 @@ namespace Shell.Pages {
             var item = (TileModel)((PreviewTile)sender).DataContext;
 
             // Set span.
-            var container = this.LiveTiles.ContainerFromItem(item);
+            var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
             await item.LiveTile.UpdateAsync();
-            if (item.TileData != null) {
+            if (item.TileData != null && item.TileData.Count >= 1) {
                 PreviewTileUpdater tileUpdater = item.LiveTile.CreateTileUpdater();
                 PreviewBadgeUpdater badgeUpdater = item.LiveTile.CreateBadgeUpdater();
 
@@ -85,23 +85,24 @@ namespace Shell.Pages {
                     // FIXME: Queue
                     tileUpdater.Update(new TileNotification(data.Payload));
                 }
+
+                // TODO: handle background based on tile data,
+                ((Grid)((Grid)container.ContentTemplateRoot).Children[0]).Background = null;
             }
 
             // Push updates.
             item.LiveTile.UpdateLayout();
             await item.LiveTile.UpdateAsync();
-
-            // TODO: handle background based on tile data,
         }
 
-        private async void LiveTile_Tapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e) {
+        private async void LiveTile_Tapped(Object sender, TappedRoutedEventArgs e) {
             // TODO
             var item = (TileModel)((Grid)sender).DataContext;
-            //item.Launcher();
+            await item.Entry.LaunchAsync();
         }
 
         private async void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
-            var item = (TileModel)((ToggleMenuFlyoutItem)sender).DataContext;
+            var item = (TileModel)((MenuFlyoutItem)sender).DataContext;
             var tile = item.LiveTile;
 
             switch (((MenuFlyoutItem)sender).Name) {
