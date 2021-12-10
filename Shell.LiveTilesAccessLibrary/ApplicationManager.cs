@@ -66,7 +66,7 @@ namespace Shell.LiveTilesAccessLibrary {
                     if (entry.DisplayInfo.DisplayName == "NoUIEntryPoints-DesignMode")
                         continue;
                     // Temporary hide ourselves
-                    if (entry.DisplayInfo.DisplayName == "Shell.Start")
+                    if (entry.DisplayInfo.DisplayName == "Adaptive Shell")
                         continue;
 
                     ImageBrush logo = null;

@@ -45,7 +45,7 @@ namespace Shell.Pages {
 
                 this.StartScreenScrollViewer.Padding = new Thickness(0);
                 this.StartScreenScrollViewer.Margin = new Thickness(0);
-                this.AllAppsBtn.Padding = new Thickness(0);
+                this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05);
             } else {
                 if (this.ScreenHeight <= 1050) {
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 6;

@@ -51,11 +51,17 @@ namespace Shell.Pages {
             if (this.ScreenWidth <= 950) {
                 this.AppListScrollViewer.Padding = new Thickness(0);
                 this.AppListScrollViewer.Margin = new Thickness(0);
-                this.BackToStartBtn.Padding = new Thickness(0);
+                this.BackToStartBtn.Padding = new Thickness(this.ScreenWidth * 0.05);
+
+                this.AppListScrollViewer.SetValue(Grid.RowProperty, 0);
+                this.BackToStartBtn.SetValue(Grid.RowProperty, 1);
             } else {
                 this.AppListScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.025);
                 this.AppListScrollViewer.Margin = new Thickness(0, ((this.ScreenWidth * 0.025) * -1), 0, 0);
                 this.BackToStartBtn.Padding = new Thickness(this.ScreenWidth * 0.05, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025, 14);
+
+                this.AppListScrollViewer.SetValue(Grid.RowProperty, 1);
+                this.BackToStartBtn.SetValue(Grid.RowProperty, 0);
             }
         }
 
