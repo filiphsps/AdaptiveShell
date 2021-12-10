@@ -120,7 +120,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LiveTilesManager.cs" />
+    <Compile Include="ApplicationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TileModel.cs" />
     <EmbeddedResource Include="Properties\Shell.LiveTilesAccessLibrary.rd.xml" />
@@ -135,6 +135,12 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj">
+      <Project>{220f3a47-bec1-40ef-be2d-98a8345ab983}</Project>
+      <Name>NotificationsVisualizerLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -22,7 +22,7 @@ namespace Shell {
             this._page = (System.Type)e.Parameter;
         }
 
-        private void SplashPage_OnLoaded(Object sender, RoutedEventArgs e) {
+        private async void SplashPage_OnLoaded(Object sender, RoutedEventArgs e) {
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
 
@@ -34,8 +34,11 @@ namespace Shell {
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
             }
 
+            var liveTilesManager = new LiveTilesAccessLibrary.ApplicationManager();
+            await liveTilesManager.Initilize();
+
             // TODO
-            this.Frame.Navigate(this._page, null, new EntranceNavigationTransitionInfo());
+            this.Frame.Navigate(this._page, liveTilesManager, new EntranceNavigationTransitionInfo());
             this.Frame.BackStack.Remove(this.Frame.BackStack.Last());
         }
     }

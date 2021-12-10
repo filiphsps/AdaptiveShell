@@ -9,14 +9,14 @@
 
   <Identity
     Name="84c771de-d174-49aa-822b-111d600b4917"
-    Publisher="CN=w10m-research"
+    Publisher="CN=Filiph Sandström"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="84c771de-d174-49aa-822b-111d600b4917" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 
   <Properties>
     <DisplayName>Shell</DisplayName>
-    <PublisherDisplayName>w10m-research</PublisherDisplayName>
+    <PublisherDisplayName>Filiph Sandström</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -29,9 +29,9 @@
   </Resources>
   <Applications>
 
-    <Application Id="Shell.StartScreen" Executable="$targetnametoken$.exe" EntryPoint="Shell.Host">
+    <Application Id="Shell.StartScreen" Executable="$targetnametoken$.exe" EntryPoint="Shell.Start">
       <uap:VisualElements
-        AppListEntry="default"
+        AppListEntry="none"
         DisplayName="Start Screen"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"

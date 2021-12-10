@@ -11,6 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 using Size = Windows.Foundation.Size;
 
 namespace Shell.Pages {
@@ -20,15 +21,20 @@ namespace Shell.Pages {
 
         public class StartScrenParameters {
             public Action AllAppsBtnCallback { get; set; }
+            public LiveTilesAccessLibrary.ApplicationManager LiveTilesManager { get; set; }
         }
 
-        public StartPage() {
-            this.InitializeComponent();
+        public class AppListParameters {
+            public Action StartScreenBtnCallback { get; set; }
+            public LiveTilesAccessLibrary.ApplicationManager LiveTilesManager { get; set; }
+        }
 
-            this.StartPage_SizeChanged(null, null);
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            base.OnNavigatedTo(e);
+            var liveTilesManager = (LiveTilesAccessLibrary.ApplicationManager)e.Parameter;
 
-            this.StartScreenLayout.Visibility = Visibility.Collapsed;
             this.StartScreenLayout.Navigate(typeof(Pages.StartLiveTilesPage), new StartScrenParameters() {
+                LiveTilesManager = liveTilesManager,
                 AllAppsBtnCallback = () => {
                     if (this.ScreenWidth <= 950) {
                         this.RootScroll.ChangeView(this.ScreenWidth, null, null);
@@ -37,7 +43,23 @@ namespace Shell.Pages {
                     }
                 }
             }, null);
-            this.AppsListLayout.SourcePageType = typeof(Pages.StartAppListPage);
+
+            this.AppsListLayout.Navigate(typeof(Pages.StartAppListPage), new AppListParameters() {
+                LiveTilesManager = liveTilesManager,
+                StartScreenBtnCallback = () => {
+                    if (this.ScreenWidth <= 950) {
+                        this.RootScroll.ChangeView(0, null, null);
+                    } else {
+                        this.RootScroll.ChangeView(null, 0, null);
+                    }
+                }
+            }, null);
+        }
+
+        public StartPage() {
+            this.InitializeComponent();
+
+            this.StartPage_SizeChanged(null, null);
         }
 
         private void StartPage_SizeChanged(Object sender, SizeChangedEventArgs e) {
@@ -83,8 +105,6 @@ namespace Shell.Pages {
         }
 
         private void StartScreenLayout_Loaded(Object sender, RoutedEventArgs e) {
-            this.StartScreenLayout.Visibility = Visibility.Visible;
-
             this.StartPage_SizeChanged(null, null);
         }
 

@@ -1,5 +1,6 @@
 ﻿<Page
     xmlns:tiles="using:NotificationsVisualizerLibrary" 
+    xmlns:tilesAccessLibrary="using:Shell.LiveTilesAccessLibrary" 
     x:Class="Shell.Pages.StartLiveTilesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -18,42 +19,19 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="Narrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <!-- Empty setters defaults to the layout specified in XAML below. -->
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Wide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="950"></AdaptiveTrigger>
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="LiveTilesLayout.Orientation" Value="Vertical" />
-                        <Setter Target="LiveTilesLayout.VerticalAlignment" Value="Center" />
-                        <Setter Target="LiveTilesLayout.HorizontalAlignment" Value="Left" />
-                        <Setter Target="LiveTilesLayout.MaximumRowsOrColumns" Value="6" />
-                        <Setter Target="StartScreenScrollViewer.VerticalScrollMode" Value="Disabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollMode" Value="Enabled" />
-                        <Setter Target="StartScreenScrollViewer.HorizontalScrollBarVisibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        
+
         <ScrollViewer
             Grid.Row="0"
             x:Name="StartScreenScrollViewer">
             <GridView
                 x:Name="LiveTiles"
-                ItemsSource="{x:Bind tileCollection, Mode=TwoWay}"
+                ItemsSource="{x:Bind Arguments.LiveTilesManager.LiveTiles, Mode=TwoWay}"
+                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 AllowDrop="True"
                 CanReorderItems="True"
-                SelectionChanged="LiveTiles_SelectionChanged">
+                SelectionChanged="LiveTiles_SelectionChanged"
+                SelectionMode="Single">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VariableSizedWrapGrid
@@ -70,38 +48,38 @@
                 </GridView.ItemsPanel>
 
                 <GridView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="tilesAccessLibrary:TileModel">
                         <Grid
                             x:Name="LiveTile"
-                            VariableSizedWrapGrid.RowSpan="{Binding RowSpan, Mode=TwoWay}"
-                            VariableSizedWrapGrid.ColumnSpan="{Binding ColumnSpan, Mode=TwoWay}"
-                            Loaded="LiveTile_Loaded"
+                            VariableSizedWrapGrid.RowSpan="{x:Bind RowSpan}"
+                            VariableSizedWrapGrid.ColumnSpan="{x:Bind ColumnSpan}"
                             Tapped="LiveTile_Tapped"
                             CornerRadius="4">
                             <Grid.Background>
                                 <media:AcrylicBrush
                                     BackgroundSource="Backdrop"
                                     TintOpacity="0.25"
-                                    TintColor="#FFA0A0A0"
+                                    TintColor="{ThemeResource SystemAccentColorLight2}"
                                     FallbackColor="{ThemeResource SystemAccentColor}" />
                             </Grid.Background>
 
-                            <Grid>
+                            <Grid
+                                x:Name="TileWrapper"
+                                Background="{x:Bind Logo}">
                                 <tiles:PreviewTile
-                                    TileSize="{Binding Size, Mode=OneWay}"
-                                    TileDensity="{Binding Density, Mode=OneWay}"
-                                    DisplayName="{Binding DisplayName, Mode=OneWay}"
-                                />
+                                    Content="{x:Bind LiveTile}"
+                                    Loaded="LiveTile_Loaded"/>
                             </Grid>
 
                             <Grid.ContextFlyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem Text="Size"/>
                                     <MenuFlyoutSeparator/>
-                                    <ToggleMenuFlyoutItem x:Name="SmallOpt" Text="Small" IsChecked="{Binding IsSmall, Mode=OneWay}" Click="LiveTileContext_Click"/>
-                                    <ToggleMenuFlyoutItem x:Name="MediumOpt" Text="Medium" IsChecked="{Binding IsMedium, Mode=OneWay}" Click="LiveTileContext_Click"/>
-                                    <ToggleMenuFlyoutItem x:Name="WideOpt" Text="Wide" IsChecked="{Binding IsWide, Mode=OneWay}" Click="LiveTileContext_Click"/>
-                                    <ToggleMenuFlyoutItem x:Name="LargeOpt" Text="Large" IsChecked="{Binding IsLarge, Mode=OneWay}" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="SmallOpt" Text="Small" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="MediumOpt" Text="Medium" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="WideOpt" Text="Wide" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutItem x:Name="LargeOpt" Text="Large" Click="LiveTileContext_Click"/>
+                                    <MenuFlyoutSeparator/>
                                 </MenuFlyout>
                             </Grid.ContextFlyout>
                         </Grid>
@@ -116,8 +94,19 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             
-            <SymbolIcon Grid.Column="0" Symbol="Up" Rotation="180" Margin="0,0,15,0"/>
-            <TextBlock Grid.Column="1" FontSize="14" VerticalAlignment="Center">All Apps</TextBlock>
+            <SymbolIcon
+                Grid.Column="0"
+                Symbol="Up"
+                Rotation="180"
+                Margin="0,0,15,0"
+                Foreground="{ThemeResource SystemAltHighColor}"/>
+            <TextBlock
+                Grid.Column="1"
+                FontSize="14"
+                VerticalAlignment="Center"
+                Foreground="{ThemeResource SystemAltHighColor}">
+                All Apps
+            </TextBlock>
         </Grid>
     </Grid>
 </Page>
