@@ -73,16 +73,17 @@ namespace Shell.LiveTilesAccessLibrary {
                     try {
                         // TODO: set of images.
                         var imageStream = await entry.DisplayInfo.GetLogo(new Windows.Foundation.Size(250, 250)).OpenReadAsync();
-                        var memStream = new MemoryStream();
-                        await imageStream.AsStreamForRead().CopyToAsync(memStream);
-                        memStream.Position = 0;
-                        var bitmap = new BitmapImage();
-                        bitmap.SetSource(memStream.AsRandomAccessStream());
+                        using (var memStream = new MemoryStream()) {
+                            await imageStream.AsStreamForRead().CopyToAsync(memStream);
+                            memStream.Position = 0;
+                            var bitmap = new BitmapImage();
+                            bitmap.SetSource(memStream.AsRandomAccessStream());
 
-                        logo = new ImageBrush() {
-                            ImageSource = bitmap,
-                            Stretch = Stretch.UniformToFill
-                        };
+                            logo = new ImageBrush() {
+                                ImageSource = bitmap,
+                                Stretch = Stretch.UniformToFill
+                            };
+                        }
                     } catch { }
 
                     var tile = new TileModel {
