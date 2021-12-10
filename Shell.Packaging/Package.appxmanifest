@@ -8,12 +8,12 @@
   IgnorableNamespaces="uap rescap uap3">
 
   <Identity
-    Name="9f97dc9e-92bd-4d36-8eec-0a8df26bc27f"
-    Publisher="CN=Filiph Sandström"
+    Name="26941filfat.AdaptiveShell"
+    Publisher="CN=E6D30318-8CED-4D01-ADC2-0ADF8691B6D0"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>Shell</DisplayName>
+    <DisplayName>Adaptive Shell</DisplayName>
     <PublisherDisplayName>Filiph Sandström</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
