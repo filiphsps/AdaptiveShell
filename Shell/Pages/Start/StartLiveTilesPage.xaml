@@ -26,8 +26,6 @@
             <GridView
                 x:Name="LiveTiles"
                 ItemsSource="{x:Bind Arguments.LiveTilesManager.LiveTiles, Mode=TwoWay}"
-                ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 AllowDrop="True"
                 CanReorderItems="True"
                 SelectionChanged="LiveTiles_SelectionChanged"
@@ -57,7 +55,7 @@
                             CornerRadius="4">
                             <Grid.Background>
                                 <media:AcrylicBrush
-                                    BackgroundSource="Backdrop"
+                                    BackgroundSource="HostBackdrop"
                                     TintOpacity="0.25"
                                     TintColor="{ThemeResource SystemAccentColorLight2}"
                                     FallbackColor="{ThemeResource SystemAccentColor}" />

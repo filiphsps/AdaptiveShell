@@ -68,28 +68,43 @@ namespace Shell.Pages {
                 this.ScreenHeight = Window.Current.CoreWindow.Bounds.Height;
 
                 if (this.ScreenWidth <= 950) {
+                    /* this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
+                    this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                    this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
+                    this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+                    this.RootScroll.IsVerticalRailEnabled = false;
+                    this.RootScroll.IsHorizontalRailEnabled = true; */
+
                     this.StartScreenLayout.Height = Double.NaN;
                     this.StartScreenLayout.Width = this.ScreenWidth;
                     this.AppsListLayout.Height = Double.NaN;
                     this.AppsListLayout.Width = this.ScreenWidth;
 
-                    this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Center;
-                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Top;
-                    this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Center;
-                    this.AppsListLayout.VerticalAlignment = VerticalAlignment.Top;
+                    this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
+                    this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
 
                     this.Start.Orientation = Orientation.Horizontal;
                 } else {
+                    /* this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
+                    this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+                    this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
+                    this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                    this.RootScroll.IsVerticalRailEnabled = true;
+                    this.RootScroll.IsHorizontalRailEnabled = false; */
+
                     this.StartScreenLayout.Height = this.ScreenHeight;
-                    this.StartScreenLayout.Width = Double.NaN;
+                    this.StartScreenLayout.Width = this.ScreenWidth;
                     this.StartScreenLayout.Height = this.ScreenHeight;
-                    this.AppsListLayout.Width = Double.NaN;
+                    this.AppsListLayout.Width = this.ScreenWidth;
+
+                    this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
+                    this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
 
                     this.Start.Orientation = Orientation.Vertical;
-                    this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
-                    this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                    this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Center;
                 }
             } catch { }
         }
@@ -113,7 +128,7 @@ namespace Shell.Pages {
         }
 
         private void ScrollViewer_ViewChanging(Object sender, ScrollViewerViewChangingEventArgs e) {
-            Int32 MAX_DARK = 85;
+            Int32 MAX_DARK = 125;
 
             try {
                 if (this.ScreenWidth <= 950) {

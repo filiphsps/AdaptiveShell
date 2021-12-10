@@ -5,12 +5,12 @@
     xmlns:local="using:Shell.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:notificationsVisualizerLibrary="using:NotificationsVisualizerLibrary"
+    xmlns:media="using:Windows.UI.Xaml.Media"
     mc:Ignorable="d"
     Loaded="StartPage_OnLoaded"
     SizeChanged="StartPage_SizeChanged"
-    Background="{ThemeResource SystemAccentColor}">
+    Background="{ThemeResource SystemAccentColor}"
+    NavigationCacheMode="Required">
 
     <Grid x:Name="Root">
         <ScrollViewer
@@ -30,4 +30,26 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar
+            IsSticky="True"
+            ClosedDisplayMode="Hidden"
+            Foreground="{ThemeResource SystemAltHighColor}">
+            <CommandBar.Background>
+                <media:AcrylicBrush
+                    BackgroundSource="Backdrop"
+                    TintOpacity="0.25"
+                    TintColor="{ThemeResource SystemAccentColorLight2}"
+                    FallbackColor="{ThemeResource SystemAccentColor}" />
+            </CommandBar.Background>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton
+                    x:Name="SettingsBtn"
+                    Icon="Setting"
+                    Label="Settings"
+                    Foreground="{ThemeResource SystemAltHighColor}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

@@ -39,14 +39,23 @@ namespace Shell.Pages {
                 return;
             
             if (this.ScreenWidth <= 950) {
+                this.StartScreenScrollViewer.VerticalScrollMode = ScrollMode.Enabled;
+                this.StartScreenScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                this.StartScreenScrollViewer.HorizontalScrollMode = ScrollMode.Disabled;
+                this.StartScreenScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Horizontal;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Center;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
 
-                this.StartScreenScrollViewer.Padding = new Thickness(0);
                 this.StartScreenScrollViewer.Margin = new Thickness(0);
                 this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05);
             } else {
+                this.StartScreenScrollViewer.VerticalScrollMode = ScrollMode.Disabled;
+                this.StartScreenScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.StartScreenScrollViewer.HorizontalScrollMode = ScrollMode.Enabled;
+                this.StartScreenScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+
                 if (this.ScreenHeight <= 1050) {
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 6;
                 } else {
@@ -57,8 +66,9 @@ namespace Shell.Pages {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Stretch;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;
 
-                this.StartScreenScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.025);
-                this.StartScreenScrollViewer.Margin = new Thickness(0, 0, 0, ((this.ScreenWidth * 0.025) * -1));
+                Double padding = this.ScreenWidth * 0.025;
+                this.StartScreenScrollViewer.Padding = new Thickness(padding, 0, padding, 0);
+                this.StartScreenScrollViewer.Margin = new Thickness(0, padding, 0, (padding * -1));
                 this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05, 14, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025);
             }
         }

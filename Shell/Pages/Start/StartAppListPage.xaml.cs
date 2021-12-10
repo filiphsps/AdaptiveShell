@@ -49,6 +49,11 @@ namespace Shell.Pages {
 
 
             if (this.ScreenWidth <= 950) {
+                this.AppListScrollViewer.VerticalScrollMode = ScrollMode.Enabled;
+                this.AppListScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                this.AppListScrollViewer.HorizontalScrollMode = ScrollMode.Disabled;
+                this.AppListScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+
                 this.AppListScrollViewer.Padding = new Thickness(0);
                 this.AppListScrollViewer.Margin = new Thickness(0);
                 this.BackToStartBtn.Padding = new Thickness(this.ScreenWidth * 0.05);
@@ -56,8 +61,14 @@ namespace Shell.Pages {
                 this.AppListScrollViewer.SetValue(Grid.RowProperty, 0);
                 this.BackToStartBtn.SetValue(Grid.RowProperty, 1);
             } else {
-                this.AppListScrollViewer.Padding = new Thickness(this.ScreenWidth * 0.025);
-                this.AppListScrollViewer.Margin = new Thickness(0, ((this.ScreenWidth * 0.025) * -1), 0, 0);
+                this.AppListScrollViewer.VerticalScrollMode = ScrollMode.Disabled;
+                this.AppListScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.AppListScrollViewer.HorizontalScrollMode = ScrollMode.Enabled;
+                this.AppListScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+
+                Double padding = this.ScreenWidth * 0.025;
+                this.AppListScrollViewer.Padding = new Thickness(padding, 0, padding, 0);
+                this.AppListScrollViewer.Margin = new Thickness(0, (padding * -1), 0, padding);
                 this.BackToStartBtn.Padding = new Thickness(this.ScreenWidth * 0.05, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025, 14);
 
                 this.AppListScrollViewer.SetValue(Grid.RowProperty, 1);
