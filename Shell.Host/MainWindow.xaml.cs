@@ -23,7 +23,7 @@ namespace Shell.Host {
 
             var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
             this.Left = desktopWorkingArea.Right - this.Width;
-            this.Top = desktopWorkingArea.Bottom;
+            this.Top = SystemParameters.VirtualScreenHeight - 50;
         }
 
         private void Window_Deactivated(Object sender, EventArgs e) {

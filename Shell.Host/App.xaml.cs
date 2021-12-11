@@ -11,5 +11,14 @@ namespace Shell.Host {
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application {
+        public App() {
+            Functions.HideTaskBar();
+            Functions.MakeNewDesktopArea();
+        }
+
+        private void Application_Exit(Object sender, ExitEventArgs e) {
+            Functions.RestoreDesktopArea();
+            Functions.ShowTaskBar();
+        }
     }
 }

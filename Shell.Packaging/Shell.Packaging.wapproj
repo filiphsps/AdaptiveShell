@@ -56,7 +56,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <NoWarn>$(NoWarn);NU1702</NoWarn>
-    <EntryPointProjectUniqueName>..\Shell\Shell.csproj</EntryPointProjectUniqueName>
+    <EntryPointProjectUniqueName>..\Shell.Host\Shell.Host.csproj</EntryPointProjectUniqueName>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
   <ItemGroup>
@@ -123,6 +123,7 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shell.Host\Shell.Host.csproj" />
     <ProjectReference Include="..\Shell\Shell.csproj" />
   </ItemGroup>
 </Project>
