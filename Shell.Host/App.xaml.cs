@@ -12,13 +12,11 @@ namespace Shell.Host {
     /// </summary>
     public partial class App : Application {
         public App() {
-            Functions.HideTaskBar();
-            Functions.MakeNewDesktopArea();
+            
         }
 
         private void Application_Exit(Object sender, ExitEventArgs e) {
-            Functions.RestoreDesktopArea();
-            Functions.ShowTaskBar();
+            
         }
     }
 }

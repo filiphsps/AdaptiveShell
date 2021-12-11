@@ -25,19 +25,19 @@ namespace Shell.Host {
             this.InitializeComponent();
 
             this.StartScreen = new StartScreen() {
-                Topmost = true,
-                ShowInTaskbar = false
+                Topmost = Shell.Host.Features.StartScreenTopMost,
+               ShowInTaskbar = false
             };
             StartScreen.Show();
 
             this.StatusBar = new StatusBar() {
-                Topmost = true,
+                Topmost = Shell.Host.Features.StatusBarTopMost,
                 ShowInTaskbar = false
             };
             StatusBar.Show();
 
             this.ActionBar = new ActionBar() {
-                Topmost = true,
+                Topmost = Shell.Host.Features.ActionBarTopMost,
                 ShowInTaskbar = false
             };
             ActionBar.Show();

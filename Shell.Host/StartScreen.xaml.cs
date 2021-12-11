@@ -31,22 +31,21 @@ namespace Shell.Host {
         }
 
         private void Window_Loaded(Object sender, RoutedEventArgs e) {
-            var wndHelper = new WindowInteropHelper(this);
+            /* var wndHelper = new WindowInteropHelper(this);
 
             Int32 exStyle = (Int32)WinAPI.GetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE);
 
             exStyle |= (Int32)WinAPI.ExtendedWindowStyles.WS_EX_TOOLWINDOW;
-            WinAPI.SetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
+            WinAPI.SetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle); */
         }
 
-        private async void RootFrame_ChildChanged(Object sender, EventArgs e) {
-            var windowsXamlHost = (WindowsXamlHost)sender;
-            var rootFrame = (Windows.UI.Xaml.Controls.Frame)windowsXamlHost.Child;
-            if (rootFrame == null) return;
+        private void StartScreenControl_ChildChanged(Object sender, EventArgs e) {
+            var windowsXamlHost = sender as global::Microsoft.Toolkit.Wpf.UI.XamlHost.WindowsXamlHost;
 
-            try {
-                // rootFrame.Navigate(typeof(Shell.SplashPage));
-            } catch { }
+            if (windowsXamlHost == null)
+                return; // TODO: handle this.
+
+            var control = windowsXamlHost.GetUwpInternalObject() as global::Shell.Controls.StartScreenControl;
         }
     }
 }

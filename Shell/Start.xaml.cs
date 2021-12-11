@@ -9,7 +9,7 @@
         /// </summary>
         public Start() {
             this.Initialize();
-            this.InitializeComponent();
+            // this.InitializeComponent();
             //this.Suspending += this.OnSuspending;
         }
 

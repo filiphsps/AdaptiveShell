@@ -11,11 +11,13 @@
         ResizeMode="NoResize"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         Height="{Binding Source={x:Static local:Functions.STARTSCREEN_HEIGHT}}"
+        Background="Purple"
         Loaded="Window_Loaded">
+
     <Grid>
         <xamlhost:WindowsXamlHost
-            x:Name="RootFrame"
-            InitialTypeName="Windows.UI.Xaml.Controls.Frame"
-            ChildChanged="RootFrame_ChildChanged"/>
+            x:Name="StartScreenControl"
+            InitialTypeName="Shell.Controls.StartScreenControl"
+            ChildChanged="StartScreenControl_ChildChanged" />
     </Grid>
 </Window>
