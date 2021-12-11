@@ -26,13 +26,13 @@ namespace Shell {
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
 
-            if (!System.Diagnostics.Debugger.IsAttached) {
+            /* if (!System.Diagnostics.Debugger.IsAttached) {
                 var view = ApplicationView.GetForCurrentView();
                 view.TryEnterFullScreenMode();
                 ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
             } else {
-                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            }
+            } */
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
 
             var liveTilesManager = new LiveTilesAccessLibrary.ApplicationManager();
             await liveTilesManager.Initilize();

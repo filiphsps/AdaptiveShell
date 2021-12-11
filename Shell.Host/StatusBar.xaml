@@ -1,0 +1,19 @@
+﻿<Window x:Class="Shell.Host.StatusBar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shell.Host"
+        mc:Ignorable="d"
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}"
+        Height="15"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ShowInTaskbar="False"
+        Loaded="Window_Loaded">
+    <Grid Height="15">
+        <Grid.Background>
+            <SolidColorBrush Color="Black"/>
+        </Grid.Background>
+    </Grid>
+</Window>
