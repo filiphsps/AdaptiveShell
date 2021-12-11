@@ -1,24 +1,16 @@
-﻿using Shell.Pages;
-using System;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
-
-namespace Shell {
+﻿namespace Shell {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class Start : Application {
+    public sealed partial class Start : Microsoft.Toolkit.Win32.UI.XamlHost.XamlApplication {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public Start() {
+            this.Initialize();
             this.InitializeComponent();
-            this.Suspending += this.OnSuspending;
+            //this.Suspending += this.OnSuspending;
         }
 
         /// <summary>
@@ -26,7 +18,7 @@ namespace Shell {
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e) {
+        /* protected override void OnLaunched(LaunchActivatedEventArgs e) {
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -89,6 +81,6 @@ namespace Shell {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
-        }
+        } */
     }
 }
