@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,22 +11,22 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Windows.Management.Deployment;
-using Windows.System;
 
 namespace Shell.Host {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StartScreen.xaml
     /// </summary>
-    public partial class ActionBar : Window {
-        public ActionBar() {
+    public partial class StartScreen : Window {
+        public StartScreen() {
             this.InitializeComponent();
 
-            var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
-            this.Left = desktopWorkingArea.Right - this.Width;
-            this.Top = SystemParameters.VirtualScreenHeight - Functions.ACTIONBAR_HEIGHT;
+            this.Height = Functions.STARTSCREEN_HEIGHT;
+            this.Left = 0;
+            this.Top = Functions.STATUSBAR_HEIGHT;
+
+            // var frame = (Windows.UI.Xaml.Controls.Frame)this.MainFrame.Child;
+            // frame.Navigate(typeof(Shell.SplashPage), null);
         }
 
         private void Window_Loaded(Object sender, RoutedEventArgs e) {
@@ -37,18 +36,6 @@ namespace Shell.Host {
 
             exStyle |= (Int32)WinAPI.ExtendedWindowStyles.WS_EX_TOOLWINDOW;
             WinAPI.SetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
-        }
-
-        private void BackBtn_Click(Object sender, RoutedEventArgs e) {
-            this.Close();
-        }
-
-
-        public Action ToggleStart;
-        private void StartBtn_Click(Object sender, RoutedEventArgs e) {
-            if (this.ToggleStart == null) return;
-
-            this.ToggleStart();
         }
     }
 }

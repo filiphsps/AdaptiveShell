@@ -14,9 +14,14 @@ namespace Shell.Host {
     }
     class Functions {
         #region Private variables
-        private static WinAPI.RECT m_rcOldDesktopRect;
+        private static WinAPI.BoundingBox m_rcOldDesktopRect;
         private static IntPtr m_hTaskBar;
         #endregion
+
+        public static readonly Double STATUSBAR_HEIGHT = 15;
+        public static readonly Double ACTIONBAR_HEIGHT = 48;
+        public static readonly Double STARTSCREEN_HEIGHT = SystemParameters.PrimaryScreenHeight - (Functions.STATUSBAR_HEIGHT + Functions.ACTIONBAR_HEIGHT);
+
 
         /// <summary>
         /// Resizes the Desktop area to our shells' requirements
@@ -29,11 +34,11 @@ namespace Shell.Host {
             m_rcOldDesktopRect.bottom = (Int32)SystemParameters.WorkArea.Bottom;
 
             // Make a new Workspace
-            WinAPI.RECT rc;
+            WinAPI.BoundingBox rc;
             rc.left = (Int32)SystemParameters.VirtualScreenLeft;
-            rc.top = (Int32)SystemParameters.VirtualScreenTop + 15; // statusbar
+            rc.top = (Int32)(SystemParameters.VirtualScreenTop + STATUSBAR_HEIGHT); // statusbar
             rc.right = (Int32)SystemParameters.VirtualScreenWidth;
-            rc.bottom = (Int32)SystemParameters.VirtualScreenHeight - 50; // actionbar/taskbar
+            rc.bottom = (Int32)(SystemParameters.VirtualScreenHeight - ACTIONBAR_HEIGHT); // actionbar/taskbar
             WinAPI.SystemParametersInfo((Int32)WinAPI.SPI.SPI_SETWORKAREA, 0, ref rc, 0);
         }
 

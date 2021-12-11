@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shell.Host {
     internal class WinAPI {
-        public struct RECT {
+        public struct BoundingBox {
             public Int32 left;
             public Int32 top;
             public Int32 right;
@@ -151,7 +151,7 @@ namespace Shell.Host {
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern Boolean SystemParametersInfo(UInt32 uiAction, UInt32 uiParam,
-            ref RECT pvParam, UInt32 fWinIni);
+            ref BoundingBox pvParam, UInt32 fWinIni);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr FindWindow(String lpClassName, String lpWindowName);

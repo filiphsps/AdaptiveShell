@@ -17,20 +17,41 @@ namespace Shell.Host {
     /// Interaction logic for HostWindow.xaml
     /// </summary>
     public partial class HostWindow : Window {
+        private StartScreen StartScreen;
         private ActionBar ActionBar;
         private StatusBar StatusBar;
 
         public HostWindow() {
             this.InitializeComponent();
 
-            this.StatusBar = new StatusBar();
+            this.StartScreen = new StartScreen() {
+                Topmost = true,
+                ShowInTaskbar = false
+            };
+            StartScreen.Show();
+
+            this.StatusBar = new StatusBar() {
+                Topmost = true,
+                ShowInTaskbar = false
+            };
             StatusBar.Show();
 
-            this.ActionBar = new ActionBar();
+            this.ActionBar = new ActionBar() {
+                Topmost = true,
+                ShowInTaskbar = false
+            };
             ActionBar.Show();
             ActionBar.Closed += (Object? sender, EventArgs e) => {
+                this.StartScreen.Close();
                 this.StatusBar.Close();
                 this.Close();
+            };
+
+            ActionBar.ToggleStart += () => {
+                if (this.StartScreen.Visibility == Visibility.Visible)
+                    this.StartScreen.Visibility = Visibility.Collapsed;
+                else
+                    this.StartScreen.Visibility = Visibility.Visible;
             };
         }
 
