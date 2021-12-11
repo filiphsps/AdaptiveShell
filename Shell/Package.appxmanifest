@@ -30,12 +30,13 @@
   <Applications>
 
     <Application Id="Shell.StartScreen" Executable="$targetnametoken$.exe" EntryPoint="Shell.Start">
+	  <!-- TODO: set AppListEntry to "none"-->
       <uap:VisualElements
-        AppListEntry="none"
-        DisplayName="Start Screen"
+        AppListEntry="default"
+        DisplayName="Adaptive Shell"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="StartScreen"
+        Description="The StartScreen component for adaptive shell."
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>

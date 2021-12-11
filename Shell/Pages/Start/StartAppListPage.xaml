@@ -56,7 +56,7 @@
                 ItemClick="AppList_OnItemClick">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <controls:StaggeredPanel />
+                        <controls:WrapPanel />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
 

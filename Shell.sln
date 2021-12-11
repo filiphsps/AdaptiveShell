@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.Host", "Shell.Host\Shell.Host.csproj", "{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +152,26 @@ Global
 		{E5F83D86-9EDB-45D6-AD33-8E8C5B668255}.Release|x86.ActiveCfg = Release|x86
 		{E5F83D86-9EDB-45D6-AD33-8E8C5B668255}.Release|x86.Build.0 = Release|x86
 		{E5F83D86-9EDB-45D6-AD33-8E8C5B668255}.Release|x86.Deploy.0 = Release|x86
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|x64.Build.0 = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Debug|x86.Build.0 = Debug|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|ARM.Build.0 = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|ARM64.Build.0 = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|x64.ActiveCfg = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|x64.Build.0 = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|x86.ActiveCfg = Release|Any CPU
+		{8FA45940-F4DD-45F4-BF77-31F8CD0C3D8A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

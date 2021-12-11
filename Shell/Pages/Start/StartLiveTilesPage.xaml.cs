@@ -48,6 +48,7 @@ namespace Shell.Pages {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Center;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
 
+                this.LiveTiles.Padding = new Thickness(0);
                 this.StartScreenScrollViewer.Margin = new Thickness(0);
                 this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05);
             } else {
@@ -67,7 +68,7 @@ namespace Shell.Pages {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;
 
                 Double padding = this.ScreenWidth * 0.025;
-                this.StartScreenScrollViewer.Padding = new Thickness(padding, 0, padding, 0);
+                this.LiveTiles.Padding = new Thickness(padding, 0, padding, 0);
                 this.StartScreenScrollViewer.Margin = new Thickness(0, padding, 0, (padding * -1));
                 this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05, 14, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025);
             }

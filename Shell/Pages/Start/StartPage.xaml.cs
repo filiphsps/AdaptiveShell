@@ -68,16 +68,14 @@ namespace Shell.Pages {
                 this.ScreenHeight = Window.Current.CoreWindow.Bounds.Height;
 
                 if (this.ScreenWidth <= 950) {
-                    /* this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
+                    this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
                     this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
                     this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
                     this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
-                    this.RootScroll.IsVerticalRailEnabled = false;
-                    this.RootScroll.IsHorizontalRailEnabled = true; */
 
-                    this.StartScreenLayout.Height = Double.NaN;
+                    this.StartScreenLayout.Height = this.ScreenHeight;
                     this.StartScreenLayout.Width = this.ScreenWidth;
-                    this.AppsListLayout.Height = Double.NaN;
+                    this.AppsListLayout.Height = this.ScreenHeight;
                     this.AppsListLayout.Width = this.ScreenWidth;
 
                     this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -87,12 +85,10 @@ namespace Shell.Pages {
 
                     this.Start.Orientation = Orientation.Horizontal;
                 } else {
-                    /* this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
+                    this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
                     this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
                     this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
                     this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
-                    this.RootScroll.IsVerticalRailEnabled = true;
-                    this.RootScroll.IsHorizontalRailEnabled = false; */
 
                     this.StartScreenLayout.Height = this.ScreenHeight;
                     this.StartScreenLayout.Width = this.ScreenWidth;
