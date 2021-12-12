@@ -28,70 +28,13 @@
                 x:Name="Start"
                 Orientation="Horizontal">
                 <Grid x:Name="StartScreenLayout">
-                    <ScrollViewer x:Name="StartScreenScrollViewer">
-                        <GridView
-                            x:Name="LiveTiles"
-                            AllowDrop="True"
-                            CanReorderItems="True"
-                            SelectionChanged="LiveTiles_SelectionChanged"
-                            SelectionMode="Single">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid
-                                        x:Name="LiveTilesLayout"
-                                        MaximumRowsOrColumns="8"
-                                        ItemHeight="92"
-                                        ItemWidth="92"
-                                        AllowDrop="True"
-                                        Orientation="Horizontal"
-                                        HorizontalAlignment="Center"
-                                        Loaded="LiveTilesLayout_Loaded"
-                                    />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate x:DataType="tilesAccessLibrary:TileModel">
-                                    <Grid
-                                        x:Name="LiveTile"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch"
-                                        Height="Auto"
-                                        Width="Auto"
-                                        Tapped="LiveTile_Tapped"
-                                        CornerRadius="4"
-                                        Loaded="LiveTileWrapper_Loaded">
-                                        <Grid.Background>
-                                            <media:AcrylicBrush
-                                                BackgroundSource="HostBackdrop"
-                                                TintOpacity="0.25"
-                                                TintColor="{ThemeResource SystemAccentColorLight2}"
-                                                FallbackColor="{ThemeResource SystemAccentColor}" />
-                                        </Grid.Background>
-
-                                        <Grid
-                                            x:Name="TileWrapper"
-                                            Background="{x:Bind Logo}">
-                                            <tiles:PreviewTile
-                                                Content="{x:Bind LiveTile}"
-                                                Loaded="LiveTile_Loaded"/>
-                                        </Grid>
-
-                                        <Grid.ContextFlyout>
-                                            <MenuFlyout>
-                                                <MenuFlyoutItem Text="Size"/>
-                                                <MenuFlyoutSeparator/>
-                                                <MenuFlyoutItem x:Name="SmallOpt" Text="Small" Click="LiveTileContext_Click"/>
-                                                <MenuFlyoutItem x:Name="MediumOpt" Text="Medium" Click="LiveTileContext_Click"/>
-                                                <MenuFlyoutItem x:Name="WideOpt" Text="Wide" Click="LiveTileContext_Click"/>
-                                                <MenuFlyoutItem x:Name="LargeOpt" Text="Large" Click="LiveTileContext_Click"/>
-                                                <MenuFlyoutSeparator/>
-                                            </MenuFlyout>
-                                        </Grid.ContextFlyout>
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </ScrollViewer>
+                    <local:LiveTilesLayoutControl
+                        x:Name="LiveTilesLayout"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        ItemsSource="{x:Bind ApplicationManager.LiveTiles}"
+                        ScreenHeight="{x:Bind ScreenHeight, Mode=OneWay}"
+                        ScreenWidth="{x:Bind ScreenWidth, Mode=OneWay}"/>
                 </Grid>
                 <Grid x:Name="AppsListLayout">
                     <ScrollViewer></ScrollViewer>

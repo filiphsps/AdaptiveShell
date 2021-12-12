@@ -56,10 +56,12 @@ namespace Shell.Host {
                 var applicationManager = new Shell.LiveTilesAccessLibrary.ApplicationManager();
                 await applicationManager.Initilize();
                 control.ApplicationManager = applicationManager;
+
                 control.ScreenHeight = this.Height;
-                control.Height = this.Height;
+                //control.Height = this.Height;
                 control.ScreenWidth = this.Width;
-                control.Width = this.Width;
+                //control.Width = this.Width;
+
                 control.ToggleVisibility = () => {
                     if (this.Visibility == Visibility.Visible)
                         this.Visibility = Visibility.Collapsed;
