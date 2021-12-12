@@ -34,9 +34,12 @@ namespace Shell.Controls {
         public void Control_OnReady() {
             Debug.WriteLine("[LiveTilesLayout] OnReady!");
             this.LiveTiles.ItemsSource = this.ItemsSource;
+            this.Control_SizeChanged(null, null);
         }
 
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
+            if (this.ScreenWidth == 0) return;
+
             if (this.ScreenWidth <= 950) {
                 this.RootScrollViewer.VerticalScrollMode = ScrollMode.Enabled;
                 this.RootScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
@@ -83,9 +86,14 @@ namespace Shell.Controls {
 
             // Set span.
             var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+            var gridItem = (Grid)container.ContentTemplateRoot;
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
-            this.LiveTileRoot_Loaded(container.ContentTemplateRoot, null);
+
+            //container.Width = (item.ColumnSpan * 92);
+            gridItem.Width = (item.ColumnSpan * 92);
+            //container.Height = (item.RowSpan * 92);
+            gridItem.Height = (item.RowSpan * 92);
 
             await item.LiveTile.UpdateAsync();
             if (item.TileData != null && item.TileData.Count >= 1) {
@@ -137,12 +145,18 @@ namespace Shell.Controls {
                     break;
             }
             // Set span
-            var gridItem = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
-            gridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
-            gridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
-            this.LiveTileRoot_Loaded(gridItem.ContentTemplateRoot, null);
+            var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+            var gridItem = (Grid)container.ContentTemplateRoot;
+            container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
+            container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
+
+            //container.Width = (item.ColumnSpan * 92);
+            gridItem.Width = (item.ColumnSpan * 92);
+            //container.Height = (item.RowSpan * 92);
+            gridItem.Height = (item.RowSpan * 92);
 
             // Push updates
+            container.UpdateLayout();
             tile.UpdateLayout();
             await tile.UpdateAsync();
         }
@@ -153,16 +167,6 @@ namespace Shell.Controls {
 
         private void LiveTiles_SelectionChanged(Object sender, SelectionChangedEventArgs e) {
             ((GridView)sender).SelectedItem = null;
-        }
-
-        private void LiveTileRoot_Loaded(Object sender, RoutedEventArgs e) {
-            var gridItem = (Grid)sender;
-            var container = (GridViewItem)this.LiveTiles.ContainerFromItem(gridItem.DataContext);
-
-            // why do we have to do this? aggghhhhh
-            gridItem.Height = container.ActualHeight;
-            gridItem.Width = container.ActualWidth;
-
         }
     }
 }

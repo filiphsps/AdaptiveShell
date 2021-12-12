@@ -16,7 +16,6 @@
         <ScrollViewer x:Name="RootScrollViewer">
             <GridView
                 x:Name="LiveTiles"
-                ItemsSource="{x:Bind ItemsSource, Mode=TwoWay}"
                 AllowDrop="True"
                 CanReorderItems="True"
                 SelectionChanged="LiveTiles_SelectionChanged"
@@ -42,10 +41,9 @@
                     <DataTemplate x:DataType="tilesAccessLibrary:TileModel">
                         <Grid
                             x:Name="LiveTile"
-                            VariableSizedWrapGrid.RowSpan="{x:Bind RowSpan}"
-                            VariableSizedWrapGrid.ColumnSpan="{x:Bind ColumnSpan}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
                             Tapped="LiveTile_Tapped"
-                            Loaded="LiveTileRoot_Loaded"
                             CornerRadius="4">
                             <Grid.Background>
                                 <media:AcrylicBrush
@@ -54,11 +52,23 @@
                                     TintColor="{ThemeResource SystemAccentColorLight2}"
                                     FallbackColor="{ThemeResource SystemAccentColor}" />
                             </Grid.Background>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
 
                             <Grid
                                 x:Name="TileWrapper"
-                                Background="{x:Bind Logo}">
+                                Background="{x:Bind Logo}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
                                 <tiles:PreviewTile
+                                    VerticalAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
                                     Content="{x:Bind LiveTile}"
                                     Loaded="LiveTile_Loaded"/>
                             </Grid>

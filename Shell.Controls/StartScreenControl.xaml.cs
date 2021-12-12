@@ -34,6 +34,8 @@ namespace Shell.Controls {
 
             if (this.ApplicationManager == null) return;
 
+            this.LiveTilesLayout.ScreenHeight = this.ScreenHeight;
+            this.LiveTilesLayout.ScreenWidth = this.ScreenWidth;
             this.LiveTilesLayout.ItemsSource = this.ApplicationManager.LiveTiles;
             this.LiveTilesLayout.Control_OnReady();
 
