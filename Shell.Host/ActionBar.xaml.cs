@@ -57,9 +57,7 @@ namespace Shell.Host {
             control.ActionBarItemHeight = new Windows.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
             control.ActionBarItemWidth = new Windows.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
 
-            control.OnBack += () => {
-                this.Close();
-            };
+            control.OnBack += () => { };
             control.OnStart += () => {
                 if (this.ToggleStart == null) return;
 

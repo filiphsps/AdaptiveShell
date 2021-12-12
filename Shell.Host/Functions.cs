@@ -18,7 +18,7 @@ namespace Shell.Host {
         private static IntPtr m_hTaskBar;
         #endregion
 
-        public static readonly Double STATUSBAR_HEIGHT = 15;
+        public static Double STATUSBAR_HEIGHT { get => Features.StatusBarEnabled ? 15 : 0; }
         public static readonly Double ACTIONBAR_HEIGHT = 48;
         public static Double STARTSCREEN_HEIGHT { get => SystemParameters.PrimaryScreenHeight - (Functions.STATUSBAR_HEIGHT + Functions.ACTIONBAR_HEIGHT); }
 
@@ -35,10 +35,10 @@ namespace Shell.Host {
 
             // Make a new Workspace
             WinAPI.BoundingBox rc;
-            rc.left = (Int32)SystemParameters.VirtualScreenLeft;
-            rc.top = (Int32)(SystemParameters.VirtualScreenTop + STATUSBAR_HEIGHT); // statusbar
-            rc.right = (Int32)SystemParameters.VirtualScreenWidth;
-            rc.bottom = (Int32)(SystemParameters.VirtualScreenHeight - ACTIONBAR_HEIGHT); // actionbar/taskbar
+            rc.left = 0;
+            rc.top = (Int32)(STATUSBAR_HEIGHT); // statusbar
+            rc.right = (Int32)SystemParameters.WorkArea.Right;
+            rc.bottom = (Int32)(SystemParameters.WorkArea.Top - ACTIONBAR_HEIGHT); // actionbar/taskbar
             WinAPI.SystemParametersInfo((Int32)WinAPI.SPI.SPI_SETWORKAREA, 0, ref rc, 0);
         }
 

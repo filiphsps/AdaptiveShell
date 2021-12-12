@@ -60,7 +60,9 @@ namespace Shell.Controls {
                 this.RootScrollViewer.HorizontalScrollMode = ScrollMode.Enabled;
                 this.RootScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
 
-                if (this.ScreenHeight <= 1050) {
+                if (this.ScreenHeight <= 860) {
+                    ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 4;
+                } else if (this.ScreenHeight <= 1050) {
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 6;
                 } else {
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 8;
@@ -91,8 +93,8 @@ namespace Shell.Controls {
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
-            gridItem.Width = (item.ColumnSpan * 92) - 5;
-            gridItem.Height = (item.RowSpan * 92) - 5;
+            gridItem.Width = (item.ColumnSpan * 92) - 10;
+            gridItem.Height = (item.RowSpan * 92) - 10;
 
             await item.LiveTile.UpdateAsync();
             if (item.TileData != null && item.TileData.Count >= 1) {
@@ -149,8 +151,8 @@ namespace Shell.Controls {
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
-            gridItem.Width = (item.ColumnSpan * 92) - 5;
-            gridItem.Height = (item.RowSpan * 92) - 5;
+            gridItem.Width = (item.ColumnSpan * 92) - 10;
+            gridItem.Height = (item.RowSpan * 92) - 10;
 
             // Push updates
             container.UpdateLayout();

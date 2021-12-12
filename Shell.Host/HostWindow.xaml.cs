@@ -26,13 +26,14 @@ namespace Shell.Host {
 
             this.StartScreen = new StartScreen() {
                 Topmost = Shell.Host.Features.StartScreenTopMost,
-               ShowInTaskbar = false
+                ShowInTaskbar = false,
+                OnExit = this.OnExit
             };
             StartScreen.Show();
 
             this.StatusBar = new StatusBar() {
                 Topmost = Shell.Host.Features.StatusBarTopMost,
-                ShowInTaskbar = false
+                ShowInTaskbar = false,
             };
             if (Shell.Host.Features.StatusBarEnabled)
                 StatusBar.Show();
@@ -42,11 +43,6 @@ namespace Shell.Host {
                 ShowInTaskbar = false
             };
             ActionBar.Show();
-            ActionBar.Closed += (Object? sender, EventArgs e) => {
-                this.StartScreen.Close();
-                this.StatusBar.Close();
-                this.Close();
-            };
 
             ActionBar.ToggleStart += () => {
                 if (this.StartScreen.Visibility == Visibility.Visible)
@@ -54,6 +50,13 @@ namespace Shell.Host {
                 else
                     this.StartScreen.Visibility = Visibility.Visible;
             };
+        }
+
+        private void OnExit() {
+            this.ActionBar.Close();
+            this.StartScreen.Close();
+            this.StatusBar.Close();
+            this.Close();
         }
 
         private void Window_Deactivated(Object sender, EventArgs e) {

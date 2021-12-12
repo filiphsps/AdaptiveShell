@@ -19,6 +19,8 @@ namespace Shell.Host {
     /// Interaction logic for StartScreen.xaml
     /// </summary>
     public partial class StartScreen : Window {
+        public Action OnExit { get; set; }
+
         public StartScreen() {
             this.InitializeComponent();
 
@@ -62,6 +64,7 @@ namespace Shell.Host {
                 control.ScreenWidth = this.Width;
                 control.Width = this.Width;
 
+                control.OnExit = this.OnExit;
                 control.ToggleVisibility = () => {
                     if (this.Visibility == Visibility.Visible)
                         this.Visibility = Visibility.Collapsed;
@@ -88,6 +91,11 @@ namespace Shell.Host {
             this.Height = Functions.STARTSCREEN_HEIGHT;
             this.Left = 0;
             this.Top = Functions.STATUSBAR_HEIGHT;
+        }
+
+        // Handle alt-tab
+        private void Window_LostFocus(Object sender, RoutedEventArgs e) {
+            this.Visibility = Visibility.Collapsed;
         }
     }
 }

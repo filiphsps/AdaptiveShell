@@ -48,6 +48,37 @@
                             Style="{ThemeResource HeaderTextBlockStyle}">
                             Start
                         </TextBlock>
+
+                        <Grid
+                            Grid.Column="1"
+                            Margin="25,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                Grid.Column="0"
+                                Foreground="{ThemeResource SystemAltHighColor}"
+                                Padding="0"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Margin="0,0,25,0">
+                                <SymbolIcon Symbol="Setting"/>
+
+                                <Button.Flyout>
+                                    <MenuFlyout>
+                                        <MenuFlyoutItem Text="Adaptive Shell"/>
+                                        <MenuFlyoutSeparator/>
+                                        <MenuFlyoutItem x:Name="ExitBtn" Text="Exit" Icon="Cancel" Click="ExitBtn_Click"/>
+                                    </MenuFlyout>
+                                </Button.Flyout>
+                            </Button>
+                            <PersonPicture
+                                x:Name="ProfilePicture"
+                                Grid.Column="1"
+                                Height="48"/>
+                        </Grid>
                     </Grid>
                     
                     <local:LiveTilesLayoutControl

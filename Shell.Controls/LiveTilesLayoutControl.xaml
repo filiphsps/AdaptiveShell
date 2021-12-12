@@ -65,10 +65,6 @@
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
                                 <tiles:PreviewTile
-                                    VerticalAlignment="Stretch"
-                                    VerticalContentAlignment="Stretch"
-                                    HorizontalAlignment="Stretch"
-                                    HorizontalContentAlignment="Stretch"
                                     Content="{x:Bind LiveTile}"
                                     Loaded="LiveTile_Loaded"/>
                             </Grid>

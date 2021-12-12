@@ -2,16 +2,21 @@
 using Shell.LiveTilesAccessLibrary;
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using Windows.System;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shell.Controls {
     public sealed partial class StartScreenControl : UserControl {
         public ApplicationManager ApplicationManager { get; set; }
         public Action ToggleVisibility { get; set; }
+        public Action OnExit { get; set; }
         public Double ScreenWidth;
         public Double ScreenHeight;
 
@@ -27,6 +32,18 @@ namespace Shell.Controls {
                     ImageSource = background,
                     Stretch = Stretch.UniformToFill
                 };
+
+            // Set profile
+            try {
+                var users = await Windows.System.User.FindAllAsync();
+                var user = users.Where(p => p.AuthenticationStatus == UserAuthenticationStatus.LocallyAuthenticated &&
+                                            p.Type == UserType.LocalUser).FirstOrDefault();
+
+                var userPicure = await user.GetPictureAsync(Windows.System.UserPictureSize.Size208x208);
+                var contact = new Windows.ApplicationModel.Contacts.Contact { };
+                contact.SourceDisplayPicture = userPicure;
+                this.ProfilePicture.Contact = contact;
+            } catch { }
         }
 
         public void Control_OnReady() {
@@ -103,6 +120,11 @@ namespace Shell.Controls {
                     };
                 }
             } catch { }
+        }
+
+        private void ExitBtn_Click(Object sender, RoutedEventArgs e) {
+            if (this.OnExit == null) return;
+            this.OnExit();
         }
     }
 }
