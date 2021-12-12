@@ -39,6 +39,7 @@ namespace Shell.Controls {
 
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
             if (this.ScreenWidth == 0) return;
+            if ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot == null) return;
 
             if (this.ScreenWidth <= 950) {
                 this.RootScrollViewer.VerticalScrollMode = ScrollMode.Enabled;

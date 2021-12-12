@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shell.Host"
+        xmlns:xamlhost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
         mc:Ignorable="d"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         Height="{Binding Source={x:Static local:Functions.ACTIONBAR_HEIGHT}}"
@@ -11,44 +12,13 @@
         AllowsTransparency="True"
         ShowInTaskbar="False"
         Loaded="Window_Loaded">
-    <Grid Height="50">
-        <Grid.Background>
-            <SolidColorBrush Color="Black"/>
-        </Grid.Background>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="{Binding Source={x:Static local:Functions.ACTIONBAR_HEIGHT}}"/>
-            <ColumnDefinition Width="28" />
-            <ColumnDefinition Width="{Binding Source={x:Static local:Functions.ACTIONBAR_HEIGHT}}"/>
-            <ColumnDefinition Width="28" />
-            <ColumnDefinition Width="{Binding Source={x:Static local:Functions.ACTIONBAR_HEIGHT}}"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="1">
-            <Button
-                x:Name="BackBtn"
-                Margin="10"
-                Content="Back"
-                Click="BackBtn_Click"/>
-        </Grid>
-        <Grid
-            Grid.Column="3">
-            <Button
-                x:Name="StartBtn"
-                Click="StartBtn_Click"
-                BorderThickness="0"
-                Margin="10">
-                <Button.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="/Assets/win11.png"/>
-                </Button.Background>
-            </Button>
-        </Grid>
-        <Grid Grid.Column="5">
-            <Button
-                x:Name="SearchBtn"
-                Margin="10"
-                Content="Search"/>
-        </Grid>
+    <Window.Background>
+        <SolidColorBrush Opacity="0" Color="Black"/>
+    </Window.Background>
+    <Grid Height="{Binding Source={x:Static local:Functions.ACTIONBAR_HEIGHT}}">
+        <xamlhost:WindowsXamlHost
+            x:Name="ActionBarControl"
+            InitialTypeName="Shell.Controls.ActionBarControl"
+            ChildChanged="ActionBarControl_ChildChanged" />
     </Grid>
 </Window>

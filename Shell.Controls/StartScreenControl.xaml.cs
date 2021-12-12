@@ -47,6 +47,8 @@ namespace Shell.Controls {
             this.LiveTilesLayout.ScreenWidth = this.ScreenWidth;
 
             if (this.ScreenWidth <= 950) {
+                this.StartHeaderToolbar.Padding = new Thickness(0);
+
                 this.StartScreenLayout.Height = Double.NaN;
                 this.StartScreenLayout.Width = this.ScreenWidth;
                 this.AppsListLayout.Height = Double.NaN;
@@ -59,6 +61,9 @@ namespace Shell.Controls {
 
                 this.Start.Orientation = Orientation.Horizontal;
             } else {
+                Double padding = this.ScreenWidth * 0.025;
+                this.StartHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
+
                 this.StartScreenLayout.Height = this.ScreenHeight;
                 this.StartScreenLayout.Width = this.ScreenWidth;
                 this.StartScreenLayout.Height = this.ScreenHeight;

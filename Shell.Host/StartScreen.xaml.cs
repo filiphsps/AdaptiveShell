@@ -70,7 +70,24 @@ namespace Shell.Host {
                 };
 
                 control.Control_OnReady();
+                this.Visibility = Visibility.Visible;
             } catch { }
+        }
+
+        private void Window_SizeChanged(Object sender, SizeChangedEventArgs e) {
+            var windowsXamlHost = this.StartScreenControl as global::Microsoft.Toolkit.Wpf.UI.XamlHost.WindowsXamlHost;
+            var control = windowsXamlHost.GetUwpInternalObject() as global::Shell.Controls.StartScreenControl;
+
+            if (control == null) return;
+
+            control.ScreenHeight = this.Height;
+            control.Height = this.Height;
+            control.ScreenWidth = this.Width;
+            control.Width = this.Width;
+
+            this.Height = Functions.STARTSCREEN_HEIGHT;
+            this.Left = 0;
+            this.Top = Functions.STATUSBAR_HEIGHT;
         }
     }
 }

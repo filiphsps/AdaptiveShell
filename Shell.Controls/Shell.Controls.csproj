@@ -120,6 +120,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActionBarControl.xaml.cs">
+      <DependentUpon>ActionBarControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LiveTilesLayoutControl.xaml.cs">
       <DependentUpon>LiveTilesLayoutControl.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ActionBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LiveTilesLayoutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +164,9 @@
       <Project>{cc69ed82-d3e7-44b8-aeec-3c12a7b030e1}</Project>
       <Name>Shell.PersonalizationLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\win11.png" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -22,6 +22,8 @@ namespace Shell.Host {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class ActionBar : Window {
+        public Action ToggleStart;
+
         public ActionBar() {
             this.InitializeComponent();
 
@@ -39,16 +41,31 @@ namespace Shell.Host {
             WinAPI.SetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
         }
 
-        private void BackBtn_Click(Object sender, RoutedEventArgs e) {
-            this.Close();
-        }
+        private void ActionBarControl_ChildChanged(Object sender, EventArgs e) {
+            var windowsXamlHost = sender as global::Microsoft.Toolkit.Wpf.UI.XamlHost.WindowsXamlHost;
 
+            if (windowsXamlHost == null)
+                return; // TODO: handle this.
 
-        public Action ToggleStart;
-        private void StartBtn_Click(Object sender, RoutedEventArgs e) {
-            if (this.ToggleStart == null) return;
+            var control = windowsXamlHost.GetUwpInternalObject() as global::Shell.Controls.ActionBarControl;
 
-            this.ToggleStart();
+            if (control == null)
+                return; // TODO: handle this.
+
+            control.Height = this.Height;
+            control.Width = this.Width;
+            control.ActionBarItemHeight = new Windows.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
+            control.ActionBarItemWidth = new Windows.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
+
+            control.OnBack += () => {
+                this.Close();
+            };
+            control.OnStart += () => {
+                if (this.ToggleStart == null) return;
+
+                this.ToggleStart();
+            };
+            control.OnSearch += () => { };
         }
     }
 }

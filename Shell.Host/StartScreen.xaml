@@ -4,15 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Shell.Host"
-        xmlns:Controls="clr-namespace:Microsoft.Toolkit.Wpf.UI.Controls;assembly=Microsoft.Toolkit.Wpf.UI.Controls"
         xmlns:xamlhost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
+        AllowsTransparency="True"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         Height="{Binding Source={x:Static local:Functions.STARTSCREEN_HEIGHT}}"
         Background="Black"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        SizeChanged="Window_SizeChanged"
+        Visibility="Hidden">
 
     <Grid>
         <xamlhost:WindowsXamlHost

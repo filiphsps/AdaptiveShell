@@ -11,7 +11,8 @@
     mc:Ignorable="d"
     d:DesignHeight="1080"
     d:DesignWidth="1920"
-    Loaded="Control_OnLoaded">
+    Loaded="Control_OnLoaded"
+    Background="Transparent">
     <UserControl.Foreground>
         <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
     </UserControl.Foreground>
@@ -28,7 +29,29 @@
                 x:Name="Start"
                 Orientation="Horizontal">
                 <Grid x:Name="StartScreenLayout">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition  Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid
+                        Grid.Row="0"
+                        x:Name="StartHeaderToolbar"
+                        Margin="15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{ThemeResource HeaderTextBlockStyle}">
+                            Start
+                        </TextBlock>
+                    </Grid>
+                    
                     <local:LiveTilesLayoutControl
+                        Grid.Row="1"
                         x:Name="LiveTilesLayout"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"

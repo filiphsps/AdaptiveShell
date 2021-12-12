@@ -20,7 +20,7 @@ namespace Shell.Host {
 
         public static readonly Double STATUSBAR_HEIGHT = 15;
         public static readonly Double ACTIONBAR_HEIGHT = 48;
-        public static readonly Double STARTSCREEN_HEIGHT = SystemParameters.PrimaryScreenHeight - (Functions.STATUSBAR_HEIGHT + Functions.ACTIONBAR_HEIGHT);
+        public static Double STARTSCREEN_HEIGHT { get => SystemParameters.PrimaryScreenHeight - (Functions.STATUSBAR_HEIGHT + Functions.ACTIONBAR_HEIGHT); }
 
 
         /// <summary>

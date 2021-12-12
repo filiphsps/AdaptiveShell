@@ -30,12 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\win11.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Update="C:\Users\filfa\.nuget\packages\microsoft.toolkit.win32.ui.xamlapplication\6.1.2\build\..\lib\uap10.0\Microsoft.Toolkit.Win32.UI.XamlHost.winmd">
       <CopyLocal>True</CopyLocal>
     </Reference>
