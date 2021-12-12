@@ -10,7 +10,6 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
-        Height="{Binding Source={x:Static local:Functions.STARTSCREEN_HEIGHT}}"
         Background="Black"
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"

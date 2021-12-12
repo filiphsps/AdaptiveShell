@@ -7,7 +7,7 @@
         xmlns:xamlhost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
         mc:Ignorable="d"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
-        Height="{Binding Source={x:Static local:Functions.ACTIONBAR_HEIGHT}}"
+        Height="48"
         WindowStyle="None"
         AllowsTransparency="True"
         ShowInTaskbar="False"
@@ -15,7 +15,7 @@
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="Black"/>
     </Window.Background>
-    <Grid Height="{Binding Source={x:Static local:Functions.ACTIONBAR_HEIGHT}}">
+    <Grid Height="48">
         <xamlhost:WindowsXamlHost
             x:Name="ActionBarControl"
             InitialTypeName="Shell.Controls.ActionBarControl"

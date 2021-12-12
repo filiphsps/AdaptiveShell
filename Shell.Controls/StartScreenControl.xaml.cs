@@ -17,6 +17,7 @@ namespace Shell.Controls {
         public ApplicationManager ApplicationManager { get; set; }
         public Action ToggleVisibility { get; set; }
         public Action OnExit { get; set; }
+        public Action OnFocusLost { get; set; }
         public Double ScreenWidth;
         public Double ScreenHeight;
 
@@ -125,6 +126,12 @@ namespace Shell.Controls {
         private void ExitBtn_Click(Object sender, RoutedEventArgs e) {
             if (this.OnExit == null) return;
             this.OnExit();
+        }
+
+        private void UserControl_FocusDisengaged(Control sender, FocusDisengagedEventArgs args) {
+            if (this.OnFocusLost == null) return;
+
+            this.OnFocusLost();
         }
     }
 }

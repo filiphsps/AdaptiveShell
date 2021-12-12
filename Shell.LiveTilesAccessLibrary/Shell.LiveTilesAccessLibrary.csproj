@@ -140,6 +140,7 @@
     <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj">
       <Project>{220f3a47-bec1-40ef-be2d-98a8345ab983}</Project>
       <Name>NotificationsVisualizerLibrary</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

@@ -218,18 +218,22 @@
     <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj">
       <Project>{220f3a47-bec1-40ef-be2d-98a8345ab983}</Project>
       <Name>NotificationsVisualizerLibrary</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj">
       <Project>{2669ebc6-06b4-44f2-9b86-421a5272973e}</Project>
       <Name>Shell.Controls</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj">
       <Project>{b405da0d-19d9-461e-8dc0-baa1c6dbf790}</Project>
       <Name>Shell.LiveTilesAccessLibrary</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\Shell.PersonalizationLibrary\Shell.PersonalizationLibrary.csproj">
       <Project>{cc69ed82-d3e7-44b8-aeec-3c12a7b030e1}</Project>
       <Name>Shell.PersonalizationLibrary</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

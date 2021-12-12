@@ -64,6 +64,9 @@ namespace Shell.Host {
                 control.ScreenWidth = this.Width;
                 control.Width = this.Width;
 
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+                control.OnFocusLost = () => this.Window_LostFocus(null, null);
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
                 control.OnExit = this.OnExit;
                 control.ToggleVisibility = () => {
                     if (this.Visibility == Visibility.Visible)
