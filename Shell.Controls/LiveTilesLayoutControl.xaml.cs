@@ -90,10 +90,8 @@ namespace Shell.Controls {
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
-            //container.Width = (item.ColumnSpan * 92);
-            gridItem.Width = (item.ColumnSpan * 92);
-            //container.Height = (item.RowSpan * 92);
-            gridItem.Height = (item.RowSpan * 92);
+            gridItem.Width = (item.ColumnSpan * 92) - 5;
+            gridItem.Height = (item.RowSpan * 92) - 5;
 
             await item.LiveTile.UpdateAsync();
             if (item.TileData != null && item.TileData.Count >= 1) {
@@ -150,10 +148,8 @@ namespace Shell.Controls {
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
-            //container.Width = (item.ColumnSpan * 92);
-            gridItem.Width = (item.ColumnSpan * 92);
-            //container.Height = (item.RowSpan * 92);
-            gridItem.Height = (item.RowSpan * 92);
+            gridItem.Width = (item.ColumnSpan * 92) - 5;
+            gridItem.Height = (item.RowSpan * 92) - 5;
 
             // Push updates
             container.UpdateLayout();
