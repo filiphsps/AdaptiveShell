@@ -19,11 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.12" />
     <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls" Version="6.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj" />
+    <ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj" />
     <ProjectReference Include="..\Shell\Shell.csproj" />
   </ItemGroup>
 

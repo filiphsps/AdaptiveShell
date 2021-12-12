@@ -8,6 +8,9 @@ namespace Shell.Host {
         public static void Main() {
             // TODO: Hook into low-level keyboard to capture the physical windows button being pressed.
             // See https://github.com/shanselman/babysmash/blob/master/App.xaml.cs
+
+            // TODO: Setup global exception handler to restore the original state.
+
             Functions.HideTaskBar();
             Functions.MakeNewDesktopArea();
 

@@ -34,7 +34,8 @@ namespace Shell.Host {
                 Topmost = Shell.Host.Features.StatusBarTopMost,
                 ShowInTaskbar = false
             };
-            StatusBar.Show();
+            if (Shell.Host.Features.StatusBarEnabled)
+                StatusBar.Show();
 
             this.ActionBar = new ActionBar() {
                 Topmost = Shell.Host.Features.ActionBarTopMost,

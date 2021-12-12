@@ -1,10 +1,13 @@
 ﻿<UserControl
     x:Class="Shell.Controls.StartScreenControl"
+    xmlns:tiles="using:NotificationsVisualizerLibrary" 
+    xmlns:tilesAccessLibrary="using:Shell.LiveTilesAccessLibrary" 
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Shell.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:Windows.UI.Xaml.Media"
     mc:Ignorable="d"
     d:DesignHeight="1080"
     d:DesignWidth="1920"
@@ -13,7 +16,87 @@
         <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
     </UserControl.Foreground>
 
-    <Grid x:Name="RootGrid">
-        <TextBlock>Hello World!</TextBlock>
+    <Grid x:Name="Root">
+        <ScrollViewer
+            x:Name="RootScroll"
+            HorizontalSnapPointsType="MandatorySingle"
+            VerticalSnapPointsType="MandatorySingle"
+            HorizontalScrollBarVisibility="Visible"
+            HorizontalScrollMode="Enabled"
+            ViewChanging="ScrollViewer_ViewChanging">
+            <StackPanel
+                x:Name="Start"
+                Orientation="Horizontal">
+                <Grid x:Name="StartScreenLayout">
+                    <ScrollViewer x:Name="StartScreenScrollViewer">
+                        <GridView
+                            x:Name="LiveTiles"
+                            AllowDrop="True"
+                            CanReorderItems="True"
+                            SelectionChanged="LiveTiles_SelectionChanged"
+                            SelectionMode="Single">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid
+                                        x:Name="LiveTilesLayout"
+                                        MaximumRowsOrColumns="8"
+                                        ItemHeight="92"
+                                        ItemWidth="92"
+                                        AllowDrop="True"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        Loaded="LiveTilesLayout_Loaded"
+                                    />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="tilesAccessLibrary:TileModel">
+                                    <Grid
+                                        x:Name="LiveTile"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Height="Auto"
+                                        Width="Auto"
+                                        Tapped="LiveTile_Tapped"
+                                        CornerRadius="4"
+                                        Loaded="LiveTileWrapper_Loaded">
+                                        <Grid.Background>
+                                            <media:AcrylicBrush
+                                                BackgroundSource="HostBackdrop"
+                                                TintOpacity="0.25"
+                                                TintColor="{ThemeResource SystemAccentColorLight2}"
+                                                FallbackColor="{ThemeResource SystemAccentColor}" />
+                                        </Grid.Background>
+
+                                        <Grid
+                                            x:Name="TileWrapper"
+                                            Background="{x:Bind Logo}">
+                                            <tiles:PreviewTile
+                                                Content="{x:Bind LiveTile}"
+                                                Loaded="LiveTile_Loaded"/>
+                                        </Grid>
+
+                                        <Grid.ContextFlyout>
+                                            <MenuFlyout>
+                                                <MenuFlyoutItem Text="Size"/>
+                                                <MenuFlyoutSeparator/>
+                                                <MenuFlyoutItem x:Name="SmallOpt" Text="Small" Click="LiveTileContext_Click"/>
+                                                <MenuFlyoutItem x:Name="MediumOpt" Text="Medium" Click="LiveTileContext_Click"/>
+                                                <MenuFlyoutItem x:Name="WideOpt" Text="Wide" Click="LiveTileContext_Click"/>
+                                                <MenuFlyoutItem x:Name="LargeOpt" Text="Large" Click="LiveTileContext_Click"/>
+                                                <MenuFlyoutSeparator/>
+                                            </MenuFlyout>
+                                        </Grid.ContextFlyout>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </ScrollViewer>
+                </Grid>
+                <Grid x:Name="AppsListLayout">
+                    <ScrollViewer></ScrollViewer>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

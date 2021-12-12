@@ -11,7 +11,7 @@
         ResizeMode="NoResize"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         Height="{Binding Source={x:Static local:Functions.STARTSCREEN_HEIGHT}}"
-        Background="Purple"
+        Background="Black"
         Loaded="Window_Loaded">
 
     <Grid>
