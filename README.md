@@ -1,6 +1,11 @@
-# Adpative Shell
+# ![Logo](Shell.Packaging/Images/Square44x44Logo.targetsize-24_altform-unplated.png) Adpative Shell
 
-An Adaptive and modern shell replacment for Windows 10 & Windows 11.
+An adaptive and modern shell replacment for mobile and tablet computing devices running Windows 11 (with Windows 10 backwards-compatibility).
 
-![](.github/img/start-afedb48.png)
-_Screenshot on Surface Pro 2 [afedb48](https://github.com/w10m-research/AdaptiveShell/commit/afedb48c8c54bc1e514439ac335a118a463a3315)_
+## User interface
+
+| ![](.github/img/start-dc70ce9.png) | ![](.github/img/apps-dc70ce9.png) | ![](.github/img/settings-dc70ce9.png) |
+| ---------------------------------- | --------------------------------- | ------------------------------------- |
+| Start screen                       | All apps                          | Settings                              |
+
+_Screenshot on Surface Pro 2 [dc70ce9](https://github.com/w10m-research/AdaptiveShell/commit/dc70ce9cec578cf9b6a7338596697e6106613123)_
