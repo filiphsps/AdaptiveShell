@@ -117,29 +117,8 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Pages\Settings\SettingsAdvancedPage.xaml.cs">
-      <DependentUpon>SettingsAdvancedPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Start.xaml.cs">
       <DependentUpon>Start.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Settings\SettingsPersonalizationPage.xaml.cs">
-      <DependentUpon>SettingsPersonalizationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Start\StartAppListPage.xaml.cs">
-      <DependentUpon>StartAppListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Start\StartLiveTilesPage.xaml.cs">
-      <DependentUpon>StartLiveTilesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Start\StartPage.xaml.cs">
-      <DependentUpon>StartPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SplashPage.xaml.cs">
-      <DependentUpon>SplashPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -165,34 +144,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Pages\Settings\SettingsAdvancedPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Settings\SettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Settings\SettingsPersonalizationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Start\StartAppListPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Start\StartLiveTilesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Start\StartPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SplashPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
@@ -211,9 +162,7 @@
       <Version>2.7.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj">
       <Project>{220f3a47-bec1-40ef-be2d-98a8345ab983}</Project>

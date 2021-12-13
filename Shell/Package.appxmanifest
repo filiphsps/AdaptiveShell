@@ -27,12 +27,12 @@
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
-  <Applications>
 
+  <!--<Applications>
     <Application Id="Shell.StartScreen" Executable="$targetnametoken$.exe" EntryPoint="Shell.Start">
       <uap:VisualElements
         AppListEntry="none"
-        DisplayName="Start Screen"
+        DisplayName="Adaptive Shell"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="StartScreen"
@@ -50,9 +50,10 @@
 		  </uap:Protocol>
 		</uap:Extension>
 	  </Extensions>
+	  
     </Application>
-
-    <!--<Application Id="Shell.Settings" Executable="$targetnametoken$.exe" EntryPoint="Shell.Host">
+	
+    <Application Id="Shell.Settings" Executable="$targetnametoken$.exe" EntryPoint="Shell.Host">
       <uap:VisualElements
         AppListEntry="none"
         DisplayName="Shell Settings"
@@ -87,8 +88,8 @@
           </rescap:SettingsApp>
         </rescap:Extension>
       </Extensions>
-    </Application> -->
-  </Applications>
+    </Application>
+  </Applications> -->
 
   <Capabilities>
     <Capability Name="internetClient" />
@@ -99,7 +100,7 @@
     <rescap:Capability Name="runFullTrust" />
     <rescap:Capability Name="broadFileSystemAccess" />
     <rescap:Capability Name="packageManagement" />
-    <rescap:Capability Name="pacakgeQuery" />
+    <rescap:Capability Name="packageQuery" />
     <DeviceCapability Name="location" />
   </Capabilities>
 

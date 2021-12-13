@@ -13,7 +13,7 @@
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>Adaptive Shell (PREVIEW)</DisplayName>
+    <DisplayName>Adaptive Shell</DisplayName>
     <PublisherDisplayName>Filiph Sandström</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Adaptive Shell"
+        DisplayName="Adaptive Shell (PREVIEW)"
         Description="A modern and adaptive shell for mobile, tablet and desktop computing."
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
@@ -52,7 +52,7 @@
 	<rescap:Capability Name="runFullTrust" />
 	<rescap:Capability Name="broadFileSystemAccess" />
 	<rescap:Capability Name="packageManagement" />
-	<rescap:Capability Name="pacakgeQuery" />
+	<rescap:Capability Name="packageQuery" />
 	<DeviceCapability Name="location" />
   </Capabilities>
 </Package>
