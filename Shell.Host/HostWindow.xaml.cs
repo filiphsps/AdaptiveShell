@@ -46,6 +46,9 @@ namespace Shell.Host {
             };
             ActionBar.Show();
 
+            ActionBar.HideStart += () => {
+                this.StartScreen.Visibility = Visibility.Collapsed;
+            };
             ActionBar.ToggleStart += () => {
                 if (this.StartScreen.Visibility == Visibility.Visible)
                     this.StartScreen.Visibility = Visibility.Collapsed;
@@ -60,6 +63,9 @@ namespace Shell.Host {
 
             this.StartScreen.Visibility = Visibility.Collapsed;
             this.Settings.Focus();
+            this.Settings.Closed += (Object? sender, EventArgs e) => {
+                this.Settings = null;
+            };
         }
 
         private void OnExit() {

@@ -21,6 +21,7 @@ namespace Shell.Controls {
         public Windows.UI.Xaml.GridLength ActionBarItemWidth { get; set; } = new Windows.UI.Xaml.GridLength(48);
 
         public Action OnBack { get; set; }
+        public Action OnTaskView { get; set; }
         public Action OnStart { get; set; }
         public Action OnSearch { get; set; }
 
@@ -38,6 +39,10 @@ namespace Shell.Controls {
 
         private void SearchBtn_Tapped(Object sender, TappedRoutedEventArgs e) {
             this.OnSearch();
+        }
+
+        private void BackBtn_ContextRequested(UIElement sender, ContextRequestedEventArgs args) {
+            this.OnTaskView();
         }
     }
 }

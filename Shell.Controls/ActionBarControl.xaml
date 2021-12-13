@@ -36,7 +36,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="BackBtn" Grid.Column="1" Tapped="BackBtn_Tapped">
+        <Grid x:Name="BackBtn" Grid.Column="1" Tapped="BackBtn_Tapped" ContextRequested="BackBtn_ContextRequested">
             <SymbolIcon Symbol="Back" />
         </Grid>
         <Grid x:Name="StartBtn" Grid.Column="3" Tapped="StartBtn_Tapped">
