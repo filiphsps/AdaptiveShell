@@ -11,7 +11,7 @@
     <PlatformTarget>x64;x86;ARM64</PlatformTarget>
     <Platforms>x64;ARM64;x86</Platforms>
     <RuntimeIdentifiers>win10-x64;win-x64;win10-x86;win-x86</RuntimeIdentifiers>
-    <TargetFramework>netcoreapp3.1-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssetTargetFallback>uap10.0.19041</AssetTargetFallback>
     <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -55,8 +55,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj" />
     <ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj" />
     <ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj" />
+    <ProjectReference Include="..\Shell.PersonalizationLibrary\Shell.PersonalizationLibrary.csproj" />
     <ProjectReference Include="..\Shell\Shell.csproj" />
   </ItemGroup>
 

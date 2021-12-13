@@ -8,14 +8,14 @@
   IgnorableNamespaces="uap mp rescap uap3">
 
   <Identity
-    Name="84c771de-d174-49aa-822b-111d600b4917"
-    Publisher="CN=Filiph Sandström"
+    Name="26941filfat.AdaptiveShell"
+    Publisher="CN=filfa"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="84c771de-d174-49aa-822b-111d600b4917" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <mp:PhoneIdentity PhoneProductId="57682c4f-6177-4691-8470-5b9cae4f1821" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 
   <Properties>
-    <DisplayName>Shell</DisplayName>
+    <DisplayName>Adaptive Shell</DisplayName>
     <PublisherDisplayName>Filiph Sandström</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -89,7 +89,7 @@
         </rescap:Extension>
       </Extensions>
     </Application>
-  </Applications> -->
+  </Applications>-->
 
   <Capabilities>
     <Capability Name="internetClient" />
