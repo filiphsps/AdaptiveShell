@@ -19,14 +19,22 @@ using Windows.UI.Xaml.Navigation;
 namespace Shell.Controls {
     public sealed partial class SettingsControl : UserControl {
         public ObservableCollection<NavLink> NavLinks { get; } = new ObservableCollection<NavLink>() {
-            new NavLink() { Label = "People", Symbol = Windows.UI.Xaml.Controls.Symbol.People  },
-            new NavLink() { Label = "Globe", Symbol = Windows.UI.Xaml.Controls.Symbol.Globe },
-            new NavLink() { Label = "Message", Symbol = Windows.UI.Xaml.Controls.Symbol.Message },
-            new NavLink() { Label = "Mail", Symbol = Windows.UI.Xaml.Controls.Symbol.Mail },
+            new NavLink() {
+                Label = "Start",
+                Symbol = Windows.UI.Xaml.Controls.Symbol.Home
+            },
+            new NavLink() {
+                Label = "Advanced",
+                Symbol = Windows.UI.Xaml.Controls.Symbol.Setting
+            },
         };
 
         public SettingsControl() {
             this.InitializeComponent();
+        }
+
+        private void Nav_ItemClick(Object sender, ItemClickEventArgs e) {
+            return;
         }
     }
 

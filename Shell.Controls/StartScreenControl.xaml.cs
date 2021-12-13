@@ -64,15 +64,19 @@ namespace Shell.Controls {
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
             this.LiveTilesLayout.ScreenHeight = this.ScreenHeight;
             this.LiveTilesLayout.ScreenWidth = this.ScreenWidth;
+            this.AppsListLayout.ScreenHeight = this.ScreenHeight;
+            this.AppsListLayout.ScreenWidth = this.ScreenWidth;
 
             if (this.ScreenWidth <= 950) {
                 this.StartHeaderToolbar.Padding = new Thickness(0);
                 this.StartFooterToolbar.Padding = new Thickness(0);
+                this.AppsHeaderToolbar.Padding = new Thickness(0);
+                this.AppsFooterToolbar.Padding = new Thickness(0);
 
                 this.StartScreenLayout.Height = Double.NaN;
                 this.StartScreenLayout.Width = this.ScreenWidth;
-                this.AppsListLayout.Height = Double.NaN;
-                this.AppsListLayout.Width = this.ScreenWidth;
+                this.AppsScreenLayout.Height = Double.NaN;
+                this.AppsScreenLayout.Width = this.ScreenWidth;
 
                 this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
                 this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
@@ -84,16 +88,19 @@ namespace Shell.Controls {
                 Double padding = this.ScreenWidth * 0.025;
                 this.StartHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
                 this.StartFooterToolbar.Padding = new Thickness(padding, 0, padding, this.ScreenHeight * 0.05);
+                this.AppsHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
+                this.AppsFooterToolbar.Padding = new Thickness(padding, 0, padding, this.ScreenHeight * 0.05);
 
-                this.StartScreenLayout.Height = this.ScreenHeight;
+                this.StartScreenLayout.Height = this.ScreenHeight - (this.StartHeaderToolbar.ActualHeight + this.StartFooterToolbar.ActualHeight) + 15;
                 this.StartScreenLayout.Width = this.ScreenWidth;
-                this.StartScreenLayout.Height = this.ScreenHeight;
+                // Hack to make scrollbar work
+                this.AppsListLayout.Height = this.ScreenHeight - (this.AppsHeaderToolbar.ActualHeight + this.AppsFooterToolbar.ActualHeight) - 115;
                 this.AppsListLayout.Width = this.ScreenWidth;
 
                 this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
                 this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
                 this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
+                this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
 
                 this.Start.Orientation = Orientation.Vertical;
             }
@@ -103,7 +110,7 @@ namespace Shell.Controls {
         }
 
         private void ScrollViewer_ViewChanging(Object sender, ScrollViewerViewChangingEventArgs e) {
-            Int32 MAX_DARK = 150;
+            Int32 MAX_DARK = 175;
 
             try {
                 if (this.ScreenWidth <= 950) {
@@ -140,6 +147,20 @@ namespace Shell.Controls {
             if (this.OnFocusLost == null) return;
 
             this.OnFocusLost();
+        }
+
+        private void AllAppsBtn_Click(Object sender, RoutedEventArgs e) {
+            if (this.ScreenWidth <= 950)
+                this.RootScroll.ChangeView(this.RootScroll.ScrollableWidth, null, null);
+            else
+                this.RootScroll.ChangeView(null, this.RootScroll.ScrollableHeight, null);
+        }
+
+        private void StartBtn_Click(Object sender, RoutedEventArgs e) {
+            if (this.ScreenWidth <= 950)
+                this.RootScroll.ChangeView(0, null, null);
+            else
+                this.RootScroll.ChangeView(null, 0, null);
         }
     }
 }

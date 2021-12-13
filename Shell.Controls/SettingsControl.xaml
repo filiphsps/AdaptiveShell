@@ -31,7 +31,9 @@
                         Margin="0,12,0,0"
                         SelectionMode="Single"
                         VerticalAlignment="Stretch"
-                        ItemsSource="{x:Bind NavLinks}">
+                        IsItemClickEnabled="True"
+                        ItemsSource="{x:Bind NavLinks}"
+                        ItemClick="Nav_ItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:NavLink">
                             <StackPanel
@@ -45,7 +47,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <TextBlock>World</TextBlock>
                 <StackPanel
                         Grid.Row="2"
                         Orientation="Horizontal"
@@ -56,7 +57,6 @@
             </Grid>
         </SplitView.Pane>
         <Grid>
-            <TextBlock>Hello</TextBlock>
         </Grid>
     </SplitView>
 </UserControl>

@@ -32,7 +32,7 @@
                 <Grid x:Name="StartScreenLayout">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition  Height="1*"/>
+                        <RowDefinition Height="1*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
@@ -97,12 +97,70 @@
                         x:Name="StartFooterToolbar"
                         Grid.Row="2"
                         Margin="15">
-                        <Button>All Apps</Button>
+                        <Button
+                            Foreground="{ThemeResource SystemAltHighColor}"
+                            Padding="0"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Click="AllAppsBtn_Click">
+                            <SymbolIcon Symbol="Up" />
+                        </Button>
                     </Grid>
                 </Grid>
+                
                 <Grid
-                    x:Name="AppsListLayout">
-                    <ScrollViewer></ScrollViewer>
+                    x:Name="AppsScreenLayout">
+                    <ScrollViewer>
+                        <StackPanel
+                            x:Name="Apps"
+                            Orientation="Horizontal">
+                            <Grid x:Name="AppListLayout">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid
+                                    Grid.Row="0"
+                                    x:Name="AppsHeaderToolbar"
+                                    Margin="15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Style="{ThemeResource HeaderTextBlockStyle}">
+                                        Apps
+                                    </TextBlock>
+                                </Grid>
+
+                                <local:AppListLayoutControl
+                                    Grid.Row="1"
+                                    x:Name="AppsListLayout"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    ScreenHeight="{x:Bind ScreenHeight, Mode=OneWay}"
+                                    ScreenWidth="{x:Bind ScreenWidth, Mode=OneWay}"/>
+
+                                <Grid
+                                    x:Name="AppsFooterToolbar"
+                                    Grid.Row="2"
+                                    Margin="15">
+                                    <Button
+                                        Foreground="{ThemeResource SystemAltHighColor}"
+                                        Padding="0"
+                                        BorderThickness="0"
+                                        Background="Transparent"
+                                        Click="StartBtn_Click">
+                                        <SymbolIcon Symbol="Up" />
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

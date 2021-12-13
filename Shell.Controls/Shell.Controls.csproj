@@ -105,6 +105,9 @@
     <Compile Include="ActionBarControl.xaml.cs">
       <DependentUpon>ActionBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppListLayoutControl.xaml.cs">
+      <DependentUpon>AppListLayoutControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\VisibilityConverter.cs" />
     <Compile Include="GridViewExControl.cs" />
     <Compile Include="LiveTilesLayoutControl.xaml.cs">
@@ -127,6 +130,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ActionBarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppListLayoutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
