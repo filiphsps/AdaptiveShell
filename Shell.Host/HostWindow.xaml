@@ -13,6 +13,7 @@
         WindowStartupLocation="CenterScreen"
         Deactivated="Window_Deactivated"
         ShowInTaskbar="False"
+        Focusable="False"
         Visibility="Hidden">
     <Grid>
         

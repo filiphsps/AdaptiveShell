@@ -91,6 +91,7 @@ namespace Shell.Host {
 
             WS_EX_OVERLAPPEDWINDOW = (WS_EX_WINDOWEDGE | WS_EX_CLIENTEDGE),
             WS_EX_PALETTEWINDOW = (WS_EX_WINDOWEDGE | WS_EX_TOOLWINDOW | WS_EX_TOPMOST),
+            WS_EX_NOACTIVATE = 0x08000000
         }
 
         public enum GetWindowLongFields {

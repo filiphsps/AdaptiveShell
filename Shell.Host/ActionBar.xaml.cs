@@ -40,7 +40,14 @@ namespace Shell.Host {
         private void Window_Loaded(Object sender, RoutedEventArgs e) {
             var wndHelper = new WindowInteropHelper(this);
 
-            Int32 exStyle = (Int32)WinAPI.GetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE);
+            // Disable focus
+            WinAPI.SetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE, 
+                (IntPtr)((Int32)WinAPI.GetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE) | (Int32)WinAPI.ExtendedWindowStyles.WS_EX_NOACTIVATE)
+            );
+
+            Int32 exStyle = (Int32)WinAPI.GetWindowLong(
+                wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE 
+            );
 
             exStyle |= (Int32)WinAPI.ExtendedWindowStyles.WS_EX_TOOLWINDOW;
             WinAPI.SetWindowLong(wndHelper.Handle, (Int32)WinAPI.GetWindowLongFields.GWL_EXSTYLE, (IntPtr)exStyle);
@@ -64,7 +71,7 @@ namespace Shell.Host {
 
             control.OnBack += () => {
                 Debug.WriteLine("Back requested!");
-                this.InputSimulator.Keyboard.KeyPress(VirtualKeyCode.BROWSER_BACK);
+                this.InputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.MENU, VirtualKeyCode.LEFT);
             };
             control.OnTaskView += () => {
                 Debug.WriteLine("TaskView requested!");

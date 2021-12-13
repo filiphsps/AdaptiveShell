@@ -11,6 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ShowInTaskbar="False"
+        Focusable="False"
         Loaded="Window_Loaded">
     <Window.Background>
         <SolidColorBrush Opacity="0" Color="Black"/>
