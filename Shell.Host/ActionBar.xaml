@@ -1,0 +1,24 @@
+﻿<Window x:Class="Shell.Host.ActionBar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shell.Host"
+        xmlns:xamlhost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
+        mc:Ignorable="d"
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}"
+        Height="48"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ShowInTaskbar="False"
+        Loaded="Window_Loaded">
+    <Window.Background>
+        <SolidColorBrush Opacity="0" Color="Black"/>
+    </Window.Background>
+    <Grid Height="48">
+        <xamlhost:WindowsXamlHost
+            x:Name="ActionBarControl"
+            InitialTypeName="Shell.Controls.ActionBarControl"
+            ChildChanged="ActionBarControl_ChildChanged" />
+    </Grid>
+</Window>

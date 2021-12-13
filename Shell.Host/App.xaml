@@ -1,0 +1,10 @@
+﻿<Application x:Class="Shell.Host.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Shell.Host"
+             StartupUri="HostWindow.xaml"
+             Exit="Application_Exit">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

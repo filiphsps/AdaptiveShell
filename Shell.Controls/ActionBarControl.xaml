@@ -1,0 +1,49 @@
+﻿<UserControl
+    x:Class="Shell.Controls.ActionBarControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Shell.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:Windows.UI.Xaml.Media"
+    mc:Ignorable="d"
+    Background="Transparent"
+    d:DesignHeight="50"
+    d:DesignWidth="400">
+    <UserControl.Foreground>
+        <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
+    </UserControl.Foreground>
+
+    <Grid>
+        <Grid.Background>
+            <media:AcrylicBrush
+                BackgroundSource="HostBackdrop"
+                TintOpacity="0.25"
+                TintLuminosityOpacity="1"
+                TintColor="{ThemeResource SystemAccentColor}"
+                FallbackColor="{ThemeResource SystemAccentColor}" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{x:Bind ActionBarItemHeight}"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="{x:Bind ActionBarItemWidth}"/>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="{x:Bind ActionBarItemWidth}" />
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="{x:Bind ActionBarItemWidth}"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="BackBtn" Grid.Column="1" Tapped="BackBtn_Tapped">
+            <SymbolIcon Symbol="Back" />
+        </Grid>
+        <Grid x:Name="StartBtn" Grid.Column="3" Tapped="StartBtn_Tapped">
+            <SymbolIcon />
+        </Grid>
+        <Grid x:Name="SearchBtn" Grid.Column="5" Tapped="SearchBtn_Tapped">
+            <SymbolIcon Symbol="Zoom" />
+        </Grid>
+    </Grid>
+</UserControl>

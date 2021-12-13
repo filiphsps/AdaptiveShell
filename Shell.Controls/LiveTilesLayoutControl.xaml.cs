@@ -1,62 +1,68 @@
 ﻿using NotificationsVisualizerLibrary;
 using Shell.LiveTilesAccessLibrary;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Windows.UI;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using System.Linq;
-using Windows.UI.Xaml.Navigation;
-using static Shell.Pages.StartPage;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+// The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Shell.Pages {
-    public sealed partial class StartLiveTilesPage : Page {
+namespace Shell.Controls {
+    public sealed partial class LiveTilesLayoutControl : UserControl {
+        public Double ScreenWidth { get; set; }
+        public Double ScreenHeight { get; set; }
 
-        private Double ScreenWidth;
-        private Double ScreenHeight;
-        private StartScrenParameters Arguments;
+        public ObservableCollection<TileModel> ItemsSource { get; set; }
 
-        public StartLiveTilesPage() {
+        public LiveTilesLayoutControl() {
             this.InitializeComponent();
-
-            this.StartLiveTilesPage_SizeChanged(null, null);
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) {
-            base.OnNavigatedTo(e);
-            this.Arguments = (StartScrenParameters)e.Parameter;
+        public void Control_OnReady() {
+            Debug.WriteLine("[LiveTilesLayout] OnReady!");
+            this.LiveTiles.ItemsSource = this.ItemsSource;
+            this.Control_SizeChanged(null, null);
         }
 
-        private void StartLiveTilesPage_SizeChanged(Object sender, SizeChangedEventArgs e) {
-            this.ScreenWidth = Window.Current.CoreWindow.Bounds.Width;
-            this.ScreenHeight = Window.Current.CoreWindow.Bounds.Height;
+        private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
+            if (this.ScreenWidth == 0) return;
+            if ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot == null) return;
 
-            if (this.LiveTiles.ItemsPanelRoot == null)
-                return;
-            
             if (this.ScreenWidth <= 950) {
-                this.StartScreenScrollViewer.VerticalScrollMode = ScrollMode.Enabled;
-                this.StartScreenScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
-                this.StartScreenScrollViewer.HorizontalScrollMode = ScrollMode.Disabled;
-                this.StartScreenScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.RootScrollViewer.VerticalScrollMode = ScrollMode.Enabled;
+                this.RootScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                this.RootScrollViewer.HorizontalScrollMode = ScrollMode.Disabled;
+                this.RootScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
 
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Horizontal;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Center;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
 
-                this.StartScreenScrollViewer.Margin = new Thickness(0);
-                this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05);
+                this.LiveTiles.Padding = new Thickness(0);
+                this.LiveTiles.Margin = new Thickness(0);
+                // this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05);
             } else {
-                this.StartScreenScrollViewer.VerticalScrollMode = ScrollMode.Disabled;
-                this.StartScreenScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-                this.StartScreenScrollViewer.HorizontalScrollMode = ScrollMode.Enabled;
-                this.StartScreenScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                this.RootScrollViewer.VerticalScrollMode = ScrollMode.Disabled;
+                this.RootScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.RootScrollViewer.HorizontalScrollMode = ScrollMode.Enabled;
+                this.RootScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
 
-                if (this.ScreenHeight <= 1050) {
+                if (this.ScreenHeight <= 860) {
+                    ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 4;
+                } else if (this.ScreenHeight <= 1050) {
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 6;
                 } else {
                     ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).MaximumRowsOrColumns = 8;
@@ -67,24 +73,28 @@ namespace Shell.Pages {
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;
 
                 Double padding = this.ScreenWidth * 0.025;
-                this.StartScreenScrollViewer.Padding = new Thickness(padding, 0, padding, 0);
-                this.StartScreenScrollViewer.Margin = new Thickness(0, padding, 0, (padding * -1));
-                this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05, 14, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025);
+                this.LiveTiles.Padding = new Thickness(padding, 0, padding, 0);
+                // this.StartScreenScrollViewer.Margin = new Thickness(0, padding, 0, (padding * -1));
+                // this.AllAppsBtn.Padding = new Thickness(this.ScreenWidth * 0.05, 14, this.ScreenWidth * 0.025, this.ScreenWidth * 0.025);
             }
-        }
 
-        private void StartLiveTilesPage_OnLoaded(Object sender, RoutedEventArgs e) {
-            // Trigger reflow.
-            this.StartLiveTilesPage_SizeChanged(null, null);
+            // Force update
+            this.LiveTiles.UpdateLayout();
         }
 
         private async void LiveTile_Loaded(Object sender, RoutedEventArgs e) {
             var item = (TileModel)((PreviewTile)sender).DataContext;
 
+            Debug.WriteLine($"[LiveTilesLayout] LiveTile_Loaded {item.AppId} - {item.DisplayName}");
+
             // Set span.
             var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+            var gridItem = (Grid)container.ContentTemplateRoot;
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
+
+            gridItem.Width = (item.ColumnSpan * 92) - 10;
+            gridItem.Height = (item.RowSpan * 92) - 10;
 
             await item.LiveTile.UpdateAsync();
             if (item.TileData != null && item.TileData.Count >= 1) {
@@ -103,12 +113,18 @@ namespace Shell.Pages {
             // Push updates.
             item.LiveTile.UpdateLayout();
             await item.LiveTile.UpdateAsync();
+
+            // Should we really do this for every tile?
+            this.Control_SizeChanged(null, null);
         }
 
         private async void LiveTile_Tapped(Object sender, TappedRoutedEventArgs e) {
             // TODO
             var item = (TileModel)((Grid)sender).DataContext;
             await item.Entry.LaunchAsync();
+
+            /* if (this.ToggleVisibility != null)
+                this.ToggleVisibility(); */
         }
 
         private async void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
@@ -130,25 +146,22 @@ namespace Shell.Pages {
                     break;
             }
             // Set span
-            var gridItem = this.LiveTiles.ContainerFromItem(item);
-            gridItem.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
-            gridItem.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
+            var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+            var gridItem = (Grid)container.ContentTemplateRoot;
+            container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
+            container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
+
+            gridItem.Width = (item.ColumnSpan * 92) - 10;
+            gridItem.Height = (item.RowSpan * 92) - 10;
 
             // Push updates
+            container.UpdateLayout();
             tile.UpdateLayout();
             await tile.UpdateAsync();
-
-            // FIXME: figure out why checkmark doesn't update.
         }
 
         private void LiveTilesLayout_Loaded(Object sender, RoutedEventArgs e) {
-            this.StartLiveTilesPage_SizeChanged(null, null);
-        }
-
-        private void AllAppsBtn_Tapped(Object sender, TappedRoutedEventArgs e) {
-            if (this.Arguments == null) return;
-
-            this.Arguments.AllAppsBtnCallback();
+            this.Control_SizeChanged(null, null);
         }
 
         private void LiveTiles_SelectionChanged(Object sender, SelectionChangedEventArgs e) {

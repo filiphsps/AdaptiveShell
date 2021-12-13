@@ -1,0 +1,25 @@
+﻿<Window x:Class="Shell.Host.StartScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shell.Host"
+        xmlns:xamlhost="clr-namespace:Microsoft.Toolkit.Wpf.UI.XamlHost;assembly=Microsoft.Toolkit.Wpf.UI.XamlHost"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}"
+        Background="Black"
+        Loaded="Window_Loaded"
+        SizeChanged="Window_SizeChanged"
+        Visibility="Collapsed"
+        LostFocus="Window_LostFocus">
+
+    <Grid>
+        <xamlhost:WindowsXamlHost
+            x:Name="StartScreenControl"
+            InitialTypeName="Shell.Controls.StartScreenControl"
+            ChildChanged="StartScreenControl_ChildChanged" />
+    </Grid>
+</Window>
