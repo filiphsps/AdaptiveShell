@@ -19,6 +19,7 @@ namespace Shell.LiveTilesAccessLibrary {
     public class TileModel {
         public String AppId { get => this.Entry.AppUserModelId; }
         public String DisplayName { get => this.LiveTile.DisplayName; set => this.LiveTile.DisplayName = value; }
+        public String Publisher { get; set; }
         public TileSize Size { get => this.LiveTile.TileSize; set => this.LiveTile.TileSize = value; }
         public PreviewTile LiveTile { get; set; }
         public List<TileDataModel> TileData { get; set; }

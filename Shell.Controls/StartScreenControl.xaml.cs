@@ -58,6 +58,11 @@ namespace Shell.Controls {
             this.LiveTilesLayout.ItemsSource = this.ApplicationManager.LiveTiles;
             this.LiveTilesLayout.Control_OnReady();
 
+            this.AppsListLayout.ScreenHeight = this.ScreenHeight;
+            this.AppsListLayout.ScreenWidth = this.ScreenWidth;
+            this.AppsListLayout.ItemsSource = this.ApplicationManager.LiveTiles;
+            this.AppsListLayout.Control_OnReady();
+
             this.Control_SizeChanged(null, null);
         }
 
@@ -84,6 +89,7 @@ namespace Shell.Controls {
                 this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
 
                 this.Start.Orientation = Orientation.Horizontal;
+                this.Apps.Orientation = Orientation.Horizontal;
             } else {
                 Double padding = this.ScreenWidth * 0.025;
                 this.StartHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
@@ -91,10 +97,10 @@ namespace Shell.Controls {
                 this.AppsHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
                 this.AppsFooterToolbar.Padding = new Thickness(padding, 0, padding, this.ScreenHeight * 0.05);
 
-                this.StartScreenLayout.Height = this.ScreenHeight - (this.StartHeaderToolbar.ActualHeight + this.StartFooterToolbar.ActualHeight) + 15;
+                this.StartScreenLayout.Height = this.ScreenHeight - (this.StartHeaderToolbar.ActualHeight + this.StartFooterToolbar.ActualHeight) + 25;
                 this.StartScreenLayout.Width = this.ScreenWidth;
                 // Hack to make scrollbar work
-                this.AppsListLayout.Height = this.ScreenHeight - (this.AppsHeaderToolbar.ActualHeight + this.AppsFooterToolbar.ActualHeight) - 115;
+                this.AppsListLayout.Height = this.ScreenHeight - (this.AppsHeaderToolbar.ActualHeight + this.AppsFooterToolbar.ActualHeight) - 125;
                 this.AppsListLayout.Width = this.ScreenWidth;
 
                 this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -103,6 +109,7 @@ namespace Shell.Controls {
                 this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
 
                 this.Start.Orientation = Orientation.Vertical;
+                this.Apps.Orientation = Orientation.Vertical;
             }
 
             // Force update

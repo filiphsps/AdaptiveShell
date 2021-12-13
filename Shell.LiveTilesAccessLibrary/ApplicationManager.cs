@@ -88,6 +88,7 @@ namespace Shell.LiveTilesAccessLibrary {
 
                     var tile = new TileModel {
                         TileData = tilesData.FindAll(i => i.AppId == entry.AppUserModelId),
+                        Publisher = package.PublisherDisplayName,
                         LiveTile = new PreviewTile() {
                             DisplayName = entry.DisplayInfo.DisplayName,
                             TileSize = TileSize.Medium,

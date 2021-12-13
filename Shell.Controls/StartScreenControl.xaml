@@ -99,11 +99,19 @@
                         Margin="15">
                         <Button
                             Foreground="{ThemeResource SystemAltHighColor}"
-                            Padding="0"
+                            Padding="25"
+                            Margin="-25"
                             BorderThickness="0"
                             Background="Transparent"
                             Click="AllAppsBtn_Click">
-                            <SymbolIcon Symbol="Up" />
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Up" Margin="0,0,15,0" Height="18">
+                                    <SymbolIcon.RenderTransform>
+                                        <RotateTransform Angle="180" CenterX="9" CenterY="9" />
+                                    </SymbolIcon.RenderTransform>
+                                </SymbolIcon>
+                                <TextBlock FontSize="18">All Apps</TextBlock>
+                            </StackPanel>
                         </Button>
                     </Grid>
                 </Grid>
@@ -151,11 +159,15 @@
                                     Margin="15">
                                     <Button
                                         Foreground="{ThemeResource SystemAltHighColor}"
-                                        Padding="0"
+                                        Padding="25"
+                                        Margin="-25"
                                         BorderThickness="0"
                                         Background="Transparent"
                                         Click="StartBtn_Click">
-                                        <SymbolIcon Symbol="Up" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="Up" Margin="0,0,15,0" Height="18" />
+                                            <TextBlock FontSize="18">Start</TextBlock>
+                                        </StackPanel>
                                     </Button>
                                 </Grid>
                             </Grid>
