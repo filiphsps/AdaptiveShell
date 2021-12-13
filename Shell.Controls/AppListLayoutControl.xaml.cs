@@ -1,4 +1,5 @@
-﻿using Shell.LiveTilesAccessLibrary;
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using Shell.LiveTilesAccessLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -42,7 +43,7 @@ namespace Shell.Controls {
 
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
             if (this.ScreenWidth == 0) return;
-            if ((StackPanel)this.AppsList.ItemsPanelRoot == null) return;
+            if (this.AppsList.ItemsPanelRoot == null) return;
 
             if (this.ScreenWidth <= 950) {
                 this.RootScrollViewer.VerticalScrollMode = ScrollMode.Enabled;
@@ -53,7 +54,8 @@ namespace Shell.Controls {
                 this.AppsList.HorizontalAlignment = HorizontalAlignment.Center;
                 this.AppsList.VerticalAlignment = VerticalAlignment.Stretch;
 
-                ((StackPanel)this.AppsList.ItemsPanelRoot).Orientation = Orientation.Vertical;
+                ((WrapPanel)this.AppsList.ItemsPanelRoot).Orientation = Orientation.Horizontal;
+                ((WrapPanel)this.AppsList.ItemsPanelRoot).MaxHeight = Double.NaN;
 
                 this.AppsList.Padding = new Thickness(0);
                 this.AppsList.Margin = new Thickness(0);
@@ -63,7 +65,8 @@ namespace Shell.Controls {
                 this.RootScrollViewer.HorizontalScrollMode = ScrollMode.Enabled;
                 this.RootScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
 
-                ((StackPanel)this.AppsList.ItemsPanelRoot).Orientation = Orientation.Horizontal;
+                ((WrapPanel)this.AppsList.ItemsPanelRoot).Orientation = Orientation.Vertical;
+                ((WrapPanel)this.AppsList.ItemsPanelRoot).MaxHeight = 412;
 
                 this.AppsList.HorizontalAlignment = HorizontalAlignment.Stretch;
                 this.AppsList.VerticalAlignment = VerticalAlignment.Center;
