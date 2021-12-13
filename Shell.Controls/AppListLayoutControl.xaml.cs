@@ -25,6 +25,7 @@ namespace Shell.Controls {
         public Double ScreenHeight { get; set; }
 
         public ObservableCollection<TileModel> ItemsSource { get; set; }
+        public Action ToggleVisibility { get; set; }
 
         public AppListLayoutControl() {
             this.InitializeComponent();
@@ -81,6 +82,13 @@ namespace Shell.Controls {
 
         private void StackPanel_Loaded(Object sender, RoutedEventArgs e) {
             this.Control_SizeChanged(null, null);
+        }
+
+        private void AppsListItem_Tapped(Object sender, TappedRoutedEventArgs e) {
+            // TODO
+
+            if (this.ToggleVisibility != null)
+                this.ToggleVisibility();
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Shell.Controls {
         public Double ScreenHeight { get; set; }
 
         public ObservableCollection<TileModel> ItemsSource { get; set; }
+        public Action ToggleVisibility { get; set; }
 
         public LiveTilesLayoutControl() {
             try {
@@ -130,8 +131,8 @@ namespace Shell.Controls {
             var item = (TileModel)((Grid)sender).DataContext;
             await item.Entry.LaunchAsync();
 
-            /* if (this.ToggleVisibility != null)
-                this.ToggleVisibility(); */
+            if (this.ToggleVisibility != null)
+                this.ToggleVisibility(); 
         }
 
         private async void LiveTileContext_Click(Object sender, RoutedEventArgs e) {

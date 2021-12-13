@@ -9,7 +9,8 @@
     mc:Ignorable="d"
     Background="Transparent"
     d:DesignHeight="50"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    SizeChanged="Control_SizeChanged">
     <UserControl.Foreground>
         <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
     </UserControl.Foreground>
@@ -27,13 +28,13 @@
             <RowDefinition Height="{x:Bind ActionBarItemHeight}"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition x:Name="LeftPad" Width="1*" />
             <ColumnDefinition Width="{x:Bind ActionBarItemWidth}"/>
             <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="{x:Bind ActionBarItemWidth}" />
             <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="{x:Bind ActionBarItemWidth}"/>
-            <ColumnDefinition />
+            <ColumnDefinition x:Name="RightPad" Width="1*" />
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="BackBtn" Grid.Column="1" Tapped="BackBtn_Tapped" ContextRequested="BackBtn_ContextRequested">

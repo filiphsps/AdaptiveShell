@@ -60,12 +60,15 @@ namespace Shell.Controls {
             this.LiveTilesLayout.ScreenHeight = this.ScreenHeight;
             this.LiveTilesLayout.ScreenWidth = this.ScreenWidth;
             this.LiveTilesLayout.ItemsSource = this.ApplicationManager.LiveTiles;
+            this.LiveTilesLayout.ToggleVisibility = this.ToggleVisibility;
             this.LiveTilesLayout.Control_OnReady();
 
             this.AppsListLayout.ScreenHeight = this.ScreenHeight;
             this.AppsListLayout.ScreenWidth = this.ScreenWidth;
             this.AppsListLayout.ItemsSource = this.ApplicationManager.LiveTiles;
+            this.AppsListLayout.ToggleVisibility = this.ToggleVisibility;
             this.AppsListLayout.Control_OnReady();
+
 
             this.Control_SizeChanged(null, null);
         }

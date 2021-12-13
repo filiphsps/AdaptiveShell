@@ -25,9 +25,39 @@ namespace Shell.Controls {
         public Action OnStart { get; set; }
         public Action OnSearch { get; set; }
 
+        public HorizontalAlignment TabletAlignment { get; set; } = HorizontalAlignment.Center;
+
         public ActionBarControl() {
             this.InitializeComponent();
+
+            this.Control_SizeChanged(null, null);
         }
+
+        private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
+            if (this.Width > 950)
+                switch (this.TabletAlignment) {
+                    case HorizontalAlignment.Center:
+                        this.LeftPad.Width = new GridLength(1, GridUnitType.Star);
+                        this.RightPad.Width = new GridLength(1, GridUnitType.Star);
+                        break;
+                    case HorizontalAlignment.Left:
+                        this.LeftPad.Width = new GridLength(0);
+                        this.RightPad.Width = new GridLength(1, GridUnitType.Star);
+                        break;
+                    case HorizontalAlignment.Right:
+                        this.LeftPad.Width = new GridLength(1, GridUnitType.Star);
+                        this.RightPad.Width = new GridLength(0);
+                        break;
+            }
+
+            if (this.Width <= 950) {
+            } else {
+                if (this.Width >= 1920) {
+                    // TODO: Taskbar icons
+                }
+            }
+        }
+
 
         private void BackBtn_Tapped(Object sender, TappedRoutedEventArgs e) {
             this.OnBack();

@@ -57,8 +57,10 @@
                             <Grid.Background>
                                 <media:AcrylicBrush
                                     BackgroundSource="HostBackdrop"
-                                    TintOpacity="0.25"
-                                    TintColor="{ThemeResource SystemAccentColorLight2}"
+                                    TintOpacity="0.95"
+                                    TintLuminosityOpacity="0.55"
+                                    AlwaysUseFallback="True"
+                                    TintColor="{ThemeResource SystemAccentColor}"
                                     FallbackColor="{ThemeResource SystemAccentColor}" />
                             </Grid.Background>
                             <Grid.ColumnDefinitions>
