@@ -31,10 +31,13 @@ namespace Shell.Host {
 
         public ActionBar() {
             this.InitializeComponent();
+            this.Window_SizeChanged();
+        }
 
+        public void Window_SizeChanged() {
             var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
             this.Left = desktopWorkingArea.Right - this.Width;
-            this.Top = SystemParameters.VirtualScreenHeight - Functions.ACTIONBAR_HEIGHT;
+            this.Top = desktopWorkingArea.Height /* - Functions.ACTIONBAR_HEIGHT */; // desktopWorkingArea already accounts for ACTIONBAR_HEIGHT
         }
 
         private void Window_Loaded(Object sender, RoutedEventArgs e) {
@@ -71,7 +74,13 @@ namespace Shell.Host {
 
             control.OnBack += () => {
                 Debug.WriteLine("Back requested!");
+                // Press top bar to make sure current window is active
+                // TODO: Hook into the actual winapi back function
+                this.InputSimulator.Mouse.MoveMouseBy(0, (Int32)SystemParameters.WorkArea.Height * -1);
+                this.InputSimulator.Mouse.LeftButtonClick();
                 this.InputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.MENU, VirtualKeyCode.LEFT);
+                this.InputSimulator.Mouse.MoveMouseBy(0, (Int32)(SystemParameters.WorkArea.Height - (Functions.ACTIONBAR_HEIGHT / 2)));
+                // Restore mouse state
             };
             control.OnTaskView += () => {
                 Debug.WriteLine("TaskView requested!");

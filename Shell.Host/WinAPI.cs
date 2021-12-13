@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Shell.Host {
     internal class WinAPI {
@@ -108,6 +109,22 @@ namespace Shell.Host {
         public enum SPI : Int32 {
             SPI_SETWORKAREA = 0x002F,
             SPI_GETWORKAREA = 0x0030
+        }
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern Boolean GetCursorPos(ref Win32Point pt);
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Win32Point {
+            public Int32 X;
+            public Int32 Y;
+        };
+        public static Point GetMousePosition() {
+            var w32Mouse = new Win32Point();
+            GetCursorPos(ref w32Mouse);
+
+            return new Point(w32Mouse.X, w32Mouse.Y);
         }
 
         [DllImport("user32.dll")]

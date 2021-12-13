@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Toolkit.Wpf.UI.XamlHost;
+using Microsoft.Win32;
+using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace Shell.Host {
     /// <summary>
@@ -59,6 +62,18 @@ namespace Shell.Host {
                 var applicationManager = new Shell.LiveTilesAccessLibrary.ApplicationManager();
                 await applicationManager.Initilize();
                 control.ApplicationManager = applicationManager;
+
+                String? userWallpaper = (String)Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop", false).GetValue("WallPaper");
+                if (userWallpaper != null) {
+                    StorageFile background = await StorageFile.GetFileFromPathAsync(userWallpaper);
+
+                    using (IRandomAccessStream fileStream = await background.OpenAsync(Windows.Storage.FileAccessMode.Read)) {
+                        // Set the image source to the selected bitmap
+                        var bitmapImage = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                        await bitmapImage.SetSourceAsync(fileStream);
+                        control.Wallpaper = bitmapImage;
+                    }
+                }
 
                 control.ScreenHeight = this.Height;
                 control.Height = this.Height;

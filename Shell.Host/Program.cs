@@ -10,6 +10,7 @@ namespace Shell.Host {
             // See https://github.com/shanselman/babysmash/blob/master/App.xaml.cs
 
             // TODO: Setup global exception handler to restore the original state.
+            // TODO: listen for applications startup and maximize windows.
 
             Functions.HideTaskBar();
             Functions.MakeNewDesktopArea();

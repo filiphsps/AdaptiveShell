@@ -49,6 +49,7 @@ namespace Shell.Host {
             ActionBar.HideStart += () => {
                 this.StartScreen.Visibility = Visibility.Collapsed;
             };
+
             ActionBar.ToggleStart += () => {
                 if (this.StartScreen.Visibility == Visibility.Visible)
                     this.StartScreen.Visibility = Visibility.Collapsed;

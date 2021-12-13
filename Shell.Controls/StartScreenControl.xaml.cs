@@ -19,6 +19,7 @@ namespace Shell.Controls {
         public Action OnExit { get; set; }
         public Action OnSettings { get; set; }
         public Action OnFocusLost { get; set; }
+        public BitmapImage Wallpaper { get; set; }
         public Double ScreenWidth;
         public Double ScreenHeight;
 
@@ -27,14 +28,6 @@ namespace Shell.Controls {
         }
 
         private async void Control_OnLoaded(Object sender, RoutedEventArgs e) {
-            // Set wallpaper
-            BitmapImage background = await Shell.PersonalizationLibrary.BackgroundImageManager.GetBackgroundImage();
-            if (background != null)
-                this.Root.Background = new ImageBrush() {
-                    ImageSource = background,
-                    Stretch = Stretch.UniformToFill
-                };
-
             // Set profile
             try {
                 System.Collections.Generic.IReadOnlyList<User> users = await Windows.System.User.FindAllAsync();
@@ -50,6 +43,17 @@ namespace Shell.Controls {
 
         public void Control_OnReady() {
             Debug.WriteLine("StartScreenControl OnReady!");
+
+            // Set wallpaper
+            if (this.Wallpaper != null)
+                this.Root.Background = new ImageBrush() {
+                    ImageSource = this.Wallpaper,
+                    Stretch = Stretch.UniformToFill
+                };
+            else
+                this.Root.Background = new SolidColorBrush() {
+                    Color = (Windows.UI.Color)Application.Current.Resources["SystemAccentColorLight1"]
+                };
 
             if (this.ApplicationManager == null) return;
 
