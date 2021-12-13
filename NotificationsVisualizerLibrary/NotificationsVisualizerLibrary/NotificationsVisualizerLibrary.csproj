@@ -212,23 +212,35 @@
     <Compile Include="Model\BaseElements\Selection.cs" />
     <Compile Include="Model\Toast.cs" />
     <Compile Include="PreviewNotificationData.cs" />
-    <Compile Include="PreviewTileVisualElements.cs" />
-    <Compile Include="Renderers\AdaptiveRenderer.cs" />
-    <Compile Include="Renderers\ImageHelper.cs" />
     <Compile Include="Previews\IPreviewToast.cs" />
     <Compile Include="Previews\PreviewAdaptiveContent.cs" />
+    <Compile Include="Previews\PreviewTile.xaml.cs">
+      <DependentUpon>PreviewTile.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Previews\PreviewTileNotification.xaml.cs">
       <DependentUpon>PreviewTileNotification.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Previews\PreviewTileNotificationRaw.xaml.cs">
+      <DependentUpon>PreviewTileNotificationRaw.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Previews\PreviewToast.xaml.cs">
       <DependentUpon>PreviewToast.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Previews\PreviewXboxToast.xaml.cs">
       <DependentUpon>PreviewXboxToast.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Previews\PreviewXboxToastInActionCenter.xaml.cs">
       <DependentUpon>PreviewXboxToastInActionCenter.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="PreviewTileVisualElements.cs" />
+    <Compile Include="Renderers\AdaptiveRenderer.cs" />
+    <Compile Include="Renderers\ImageHelper.cs" />
     <Compile Include="TileDensity.cs" />
     <Compile Include="Model\BaseElements\Visual.cs" />
     <Compile Include="Parsers\ITemplateParser.cs" />
@@ -237,12 +249,6 @@
     <Compile Include="Parsers\ParseResult.cs" />
     <Compile Include="Parsers\XmlTemplateParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Previews\PreviewTileNotificationRaw.xaml.cs">
-      <DependentUpon>PreviewTileNotificationRaw.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Previews\PreviewTile.xaml.cs">
-      <DependentUpon>PreviewTile.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TileSize.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -258,29 +264,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Previews\PreviewTileNotification.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Previews\PreviewTile.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Previews\PreviewTileNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Previews\PreviewTileNotificationRaw.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Previews\PreviewTile.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Previews\PreviewToast.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Previews\PreviewXboxToast.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Previews\PreviewXboxToastInActionCenter.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Themes\Brushes.xaml">
       <SubType>Designer</SubType>

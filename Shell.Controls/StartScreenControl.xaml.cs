@@ -27,7 +27,7 @@ namespace Shell.Controls {
 
         private async void Control_OnLoaded(Object sender, RoutedEventArgs e) {
             // Set wallpaper
-            var background = await Shell.PersonalizationLibrary.BackgroundImageManager.GetBackgroundImage();
+            BitmapImage background = await Shell.PersonalizationLibrary.BackgroundImageManager.GetBackgroundImage();
             if (background != null)
                 this.Root.Background = new ImageBrush() {
                     ImageSource = background,
@@ -36,11 +36,11 @@ namespace Shell.Controls {
 
             // Set profile
             try {
-                var users = await Windows.System.User.FindAllAsync();
-                var user = users.Where(p => p.AuthenticationStatus == UserAuthenticationStatus.LocallyAuthenticated &&
+                System.Collections.Generic.IReadOnlyList<User> users = await Windows.System.User.FindAllAsync();
+                User user = users.Where(p => p.AuthenticationStatus == UserAuthenticationStatus.LocallyAuthenticated &&
                                             p.Type == UserType.LocalUser).FirstOrDefault();
 
-                var userPicure = await user.GetPictureAsync(Windows.System.UserPictureSize.Size208x208);
+                Windows.Storage.Streams.IRandomAccessStreamReference userPicure = await user.GetPictureAsync(Windows.System.UserPictureSize.Size208x208);
                 var contact = new Windows.ApplicationModel.Contacts.Contact { };
                 contact.SourceDisplayPicture = userPicure;
                 this.ProfilePicture.Contact = contact;

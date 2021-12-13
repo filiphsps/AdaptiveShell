@@ -59,7 +59,7 @@
     <ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj" />
     <ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj" />
     <ProjectReference Include="..\Shell.PersonalizationLibrary\Shell.PersonalizationLibrary.csproj" />
-    <ProjectReference Include="..\Shell\Shell.csproj" />
+    <ProjectReference Include="..\Shell\Shell.UWP.csproj" />
   </ItemGroup>
 
   <ItemGroup>

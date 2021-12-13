@@ -28,7 +28,10 @@ namespace Shell.Controls {
         public ObservableCollection<TileModel> ItemsSource { get; set; }
 
         public LiveTilesLayoutControl() {
-            this.InitializeComponent();
+            try {
+                this.InitializeComponent();
+                this.LiveTiles.Root = this;
+            } catch { } // TODO: handle
         }
 
         public void Control_OnReady() {
@@ -101,7 +104,7 @@ namespace Shell.Controls {
                 PreviewTileUpdater tileUpdater = item.LiveTile.CreateTileUpdater();
                 PreviewBadgeUpdater badgeUpdater = item.LiveTile.CreateBadgeUpdater();
 
-                foreach (var data in item.TileData) {
+                foreach (TileDataModel data in item.TileData) {
                     // FIXME: Queue
                     tileUpdater.Update(new TileNotification(data.Payload));
                 }
@@ -129,7 +132,7 @@ namespace Shell.Controls {
 
         private async void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
             var item = (TileModel)((MenuFlyoutItem)sender).DataContext;
-            var tile = item.LiveTile;
+            PreviewTile tile = item.LiveTile;
 
             switch (((MenuFlyoutItem)sender).Name) {
                 case "SmallOpt":

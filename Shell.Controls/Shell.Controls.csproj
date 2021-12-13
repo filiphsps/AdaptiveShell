@@ -105,9 +105,12 @@
     <Compile Include="ActionBarControl.xaml.cs">
       <DependentUpon>ActionBarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\VisibilityConverter.cs" />
+    <Compile Include="GridViewExControl.cs" />
     <Compile Include="LiveTilesLayoutControl.xaml.cs">
       <DependentUpon>LiveTilesLayoutControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewGroupPlaceholderControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartScreenControl.xaml.cs">
       <DependentUpon>StartScreenControl.xaml</DependentUpon>
@@ -129,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StartScreenControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

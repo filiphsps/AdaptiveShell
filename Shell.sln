@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1738
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell", "Shell\Shell.csproj", "{B3C05A73-451A-49AD-8698-CF5FC74BFBD4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.UWP", "Shell\Shell.UWP.csproj", "{B3C05A73-451A-49AD-8698-CF5FC74BFBD4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.LiveTilesAccessLibrary", "Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj", "{B405DA0D-19D9-461E-8DC0-BAA1C6DBF790}"
 EndProject

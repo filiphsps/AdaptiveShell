@@ -14,10 +14,11 @@
 
     <Grid>
         <ScrollViewer x:Name="RootScrollViewer">
-            <GridView
+            <local:GridViewExControl
                 x:Name="LiveTiles"
                 AllowDrop="True"
                 CanReorderItems="True"
+                CanDragItems="True"
                 SelectionChanged="LiveTiles_SelectionChanged"
                 SelectionMode="Single">
                 <GridView.ItemsPanel>
@@ -36,6 +37,13 @@
                         />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
+
+                <GridView.ItemContainerStyle>
+                    <Style TargetType="GridViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </GridView.ItemContainerStyle>
 
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="tilesAccessLibrary:TileModel">
@@ -83,7 +91,7 @@
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
-            </GridView>
+            </local:GridViewExControl>
         </ScrollViewer>
     </Grid>
 </UserControl>
