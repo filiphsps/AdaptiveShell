@@ -32,6 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
+		AppListEntry="default"
         DisplayName="Adaptive Shell (PREVIEW)"
         Description="A modern and adaptive shell for mobile, tablet and desktop computing."
         BackgroundColor="transparent"

@@ -17,6 +17,7 @@ namespace Shell.Controls {
         public ApplicationManager ApplicationManager { get; set; }
         public Action ToggleVisibility { get; set; }
         public Action OnExit { get; set; }
+        public Action OnSettings { get; set; }
         public Action OnFocusLost { get; set; }
         public Double ScreenWidth;
         public Double ScreenHeight;
@@ -66,6 +67,7 @@ namespace Shell.Controls {
 
             if (this.ScreenWidth <= 950) {
                 this.StartHeaderToolbar.Padding = new Thickness(0);
+                this.StartFooterToolbar.Padding = new Thickness(0);
 
                 this.StartScreenLayout.Height = Double.NaN;
                 this.StartScreenLayout.Width = this.ScreenWidth;
@@ -81,6 +83,7 @@ namespace Shell.Controls {
             } else {
                 Double padding = this.ScreenWidth * 0.025;
                 this.StartHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
+                this.StartFooterToolbar.Padding = new Thickness(padding, 0, padding, this.ScreenHeight * 0.05);
 
                 this.StartScreenLayout.Height = this.ScreenHeight;
                 this.StartScreenLayout.Width = this.ScreenWidth;
@@ -126,6 +129,11 @@ namespace Shell.Controls {
         private void ExitBtn_Click(Object sender, RoutedEventArgs e) {
             if (this.OnExit == null) return;
             this.OnExit();
+        }
+
+        private void SettingsBtn_Click(Object sender, RoutedEventArgs e) {
+            if (this.OnSettings == null) return;
+            this.OnSettings();
         }
 
         private void UserControl_FocusDisengaged(Control sender, FocusDisengagedEventArgs args) {

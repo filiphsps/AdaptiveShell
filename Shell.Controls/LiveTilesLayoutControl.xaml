@@ -52,7 +52,8 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             Tapped="LiveTile_Tapped"
-                            CornerRadius="4">
+                            CornerRadius="4"
+                            Drop="LiveTile_Drop">
                             <Grid.Background>
                                 <media:AcrylicBrush
                                     BackgroundSource="HostBackdrop"

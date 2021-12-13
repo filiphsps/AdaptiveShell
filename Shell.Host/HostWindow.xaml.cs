@@ -20,6 +20,7 @@ namespace Shell.Host {
         private StartScreen StartScreen;
         private ActionBar ActionBar;
         private StatusBar StatusBar;
+        private Settings Settings;
 
         public HostWindow() {
             this.InitializeComponent();
@@ -27,7 +28,8 @@ namespace Shell.Host {
             this.StartScreen = new StartScreen() {
                 Topmost = Shell.Host.Features.StartScreenTopMost,
                 ShowInTaskbar = false,
-                OnExit = this.OnExit
+                OnExit = this.OnExit,
+                OnSettings = this.OnSettings
             };
             StartScreen.Show();
 
@@ -52,7 +54,18 @@ namespace Shell.Host {
             };
         }
 
+        private void OnSettings() {
+            if (this.Settings == null) this.Settings = new Settings();
+            if (!this.Settings.IsLoaded) this.Settings.Show();
+
+            this.StartScreen.Visibility = Visibility.Collapsed;
+            this.Settings.Focus();
+        }
+
         private void OnExit() {
+            if(this.Settings != null)
+                this.Settings.Close();
+
             this.ActionBar.Close();
             this.StartScreen.Close();
             this.StatusBar.Close();

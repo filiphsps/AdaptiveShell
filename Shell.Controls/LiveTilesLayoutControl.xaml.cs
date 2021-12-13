@@ -52,7 +52,9 @@ namespace Shell.Controls {
 
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Horizontal;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Center;
+                this.LiveTiles.HorizontalAlignment = HorizontalAlignment.Center;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Stretch;
+                this.LiveTiles.VerticalAlignment = VerticalAlignment.Stretch;
 
                 this.LiveTiles.Padding = new Thickness(0);
                 this.LiveTiles.Margin = new Thickness(0);
@@ -73,7 +75,9 @@ namespace Shell.Controls {
 
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).Orientation = Orientation.Vertical;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).HorizontalAlignment = HorizontalAlignment.Stretch;
+                this.LiveTiles.HorizontalAlignment = HorizontalAlignment.Stretch;
                 ((VariableSizedWrapGrid)this.LiveTiles.ItemsPanelRoot).VerticalAlignment = VerticalAlignment.Center;
+                this.LiveTiles.VerticalAlignment = VerticalAlignment.Center;
 
                 Double padding = this.ScreenWidth * 0.025;
                 this.LiveTiles.Padding = new Thickness(padding, 0, padding, 0);
@@ -169,6 +173,18 @@ namespace Shell.Controls {
 
         private void LiveTiles_SelectionChanged(Object sender, SelectionChangedEventArgs e) {
             ((GridView)sender).SelectedItem = null;
+        }
+
+        private async void LiveTile_Drop(Object sender, DragEventArgs e) {
+            var item = (TileModel)((Grid)sender).DataContext;
+            PreviewTile tile = item.LiveTile;
+
+            var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+
+            // Push updates
+            container.UpdateLayout();
+            tile.UpdateLayout();
+            await tile.UpdateAsync();
         }
     }
 }

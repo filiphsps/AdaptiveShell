@@ -20,6 +20,7 @@ namespace Shell.Host {
     /// </summary>
     public partial class StartScreen : Window {
         public Action OnExit { get; set; }
+        public Action OnSettings { get; set; }
 
         public StartScreen() {
             this.InitializeComponent();
@@ -68,6 +69,8 @@ namespace Shell.Host {
                 control.OnFocusLost = () => this.Window_LostFocus(null, null);
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
                 control.OnExit = this.OnExit;
+                control.OnSettings = this.OnSettings;
+
                 control.ToggleVisibility = () => {
                     if (this.Visibility == Visibility.Visible)
                         this.Visibility = Visibility.Collapsed;

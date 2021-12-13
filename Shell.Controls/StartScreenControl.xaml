@@ -33,6 +33,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition  Height="1*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Grid
@@ -71,6 +72,7 @@
                                     <MenuFlyout>
                                         <MenuFlyoutItem Text="Adaptive Shell"/>
                                         <MenuFlyoutSeparator/>
+                                        <MenuFlyoutItem x:Name="SettingsBtn" Text="Settings" Icon="Setting" Click="SettingsBtn_Click"/>
                                         <MenuFlyoutItem x:Name="ExitBtn" Text="Exit" Icon="Cancel" Click="ExitBtn_Click"/>
                                     </MenuFlyout>
                                 </Button.Flyout>
@@ -90,8 +92,16 @@
                         ItemsSource="{x:Bind ApplicationManager.LiveTiles}"
                         ScreenHeight="{x:Bind ScreenHeight, Mode=OneWay}"
                         ScreenWidth="{x:Bind ScreenWidth, Mode=OneWay}"/>
+
+                    <Grid
+                        x:Name="StartFooterToolbar"
+                        Grid.Row="2"
+                        Margin="15">
+                        <Button>All Apps</Button>
+                    </Grid>
                 </Grid>
-                <Grid x:Name="AppsListLayout">
+                <Grid
+                    x:Name="AppsListLayout">
                     <ScrollViewer></ScrollViewer>
                 </Grid>
             </StackPanel>
