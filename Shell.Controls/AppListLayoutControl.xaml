@@ -86,8 +86,9 @@
 
                             <Grid.ContextFlyout>
                                 <MenuFlyout>
-                                    <MenuFlyoutItem x:Name="PinToStartBtn" Text="Pin to Start" Icon="Pin"/>
-                                    <MenuFlyoutItem x:Name="UninstallBtn" Text="Uninstall" Icon="Delete"/>
+                                    <!-- TODO: replace with "Unpin from Start" if it's pinned already -->
+                                    <MenuFlyoutItem x:Name="PinToStartBtn" Text="Pin to Start" Icon="Pin" Click="PinToStartBtn_Click"/>
+                                    <MenuFlyoutItem x:Name="UninstallBtn" Text="Uninstall" Icon="Delete" IsEnabled="False"/>
                                 </MenuFlyout>
                             </Grid.ContextFlyout>
                         </Grid>

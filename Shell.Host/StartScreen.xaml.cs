@@ -24,6 +24,7 @@ namespace Shell.Host {
     public partial class StartScreen : Window {
         public Action OnExit { get; set; }
         public Action OnSettings { get; set; }
+        private System.Windows.Threading.DispatcherTimer DispatcherTimer = new System.Windows.Threading.DispatcherTimer();
 
         public StartScreen() {
             this.InitializeComponent();
@@ -62,6 +63,13 @@ namespace Shell.Host {
                 var applicationManager = new Shell.LiveTilesAccessLibrary.ApplicationManager();
                 await applicationManager.Initilize();
                 control.ApplicationManager = applicationManager;
+
+                this.DispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+                this.DispatcherTimer.Tick += (Object? tickSender, EventArgs tickE) => {
+                    _ = applicationManager.UpdateLiveTiles();
+                };
+                this.DispatcherTimer.Interval = new TimeSpan(0, 15, 0);
+                this.DispatcherTimer.Start();
 
                 String? userWallpaper = (String)Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop", false).GetValue("WallPaper");
                 if (userWallpaper != null) {
@@ -117,6 +125,10 @@ namespace Shell.Host {
         // Handle alt-tab
         private void Window_LostFocus(Object sender, RoutedEventArgs e) {
             this.Visibility = Visibility.Collapsed;
+        }
+
+        private void Window_Closed(Object sender, EventArgs e) {
+            this.DispatcherTimer.Stop();
         }
     }
 }

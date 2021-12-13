@@ -37,8 +37,16 @@ namespace Shell.Controls {
 
         public void Control_OnReady() {
             Debug.WriteLine("[LiveTilesLayout] OnReady!");
-            this.LiveTiles.ItemsSource = this.ItemsSource;
+            this.UpdateItemsSource();
+            this.ItemsSource.CollectionChanged += (Object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => {
+                this.UpdateItemsSource();
+            };
+
             this.Control_SizeChanged(null, null);
+        }
+
+        public void UpdateItemsSource() {
+            this.LiveTiles.ItemsSource = this.ItemsSource.Where(x => x.IsPinned).ToList();
         }
 
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
@@ -92,12 +100,21 @@ namespace Shell.Controls {
 
         private async void LiveTile_Loaded(Object sender, RoutedEventArgs e) {
             var item = (TileModel)((PreviewTile)sender).DataContext;
+            var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+            var gridItem = (Grid)container.ContentTemplateRoot;
 
             Debug.WriteLine($"[LiveTilesLayout] LiveTile_Loaded {item.AppId} - {item.DisplayName}");
 
+            if (!item.IsPinned) {
+                container.SetValue(VariableSizedWrapGrid.RowSpanProperty, 0);
+                container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, 0);
+
+                gridItem.Width = 0;
+                gridItem.Height = 0;
+                return;
+            }
+
             // Set span.
-            var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
-            var gridItem = (Grid)container.ContentTemplateRoot;
             container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
             container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
 
@@ -111,7 +128,9 @@ namespace Shell.Controls {
 
                 foreach (TileDataModel data in item.TileData) {
                     // FIXME: Queue
-                    tileUpdater.Update(new TileNotification(data.Payload));
+                    try {
+                        tileUpdater.Update(new TileNotification(data.Payload));
+                    } catch { }
                 }
 
                 // TODO: handle background based on tile data,
@@ -136,7 +155,8 @@ namespace Shell.Controls {
         }
 
         private async void LiveTileContext_Click(Object sender, RoutedEventArgs e) {
-            var item = (TileModel)((MenuFlyoutItem)sender).DataContext;
+            var localItem = (TileModel)((MenuFlyoutItem)sender).DataContext;
+            var item = this.ItemsSource.First(i => i.AppId == localItem.AppId);
             PreviewTile tile = item.LiveTile;
 
             switch (((MenuFlyoutItem)sender).Name) {
@@ -186,6 +206,13 @@ namespace Shell.Controls {
             container.UpdateLayout();
             tile.UpdateLayout();
             await tile.UpdateAsync();
+        }
+
+        private void UnPin_Click(Object sender, RoutedEventArgs e) {
+            var localItem = (TileModel)((MenuFlyoutItem)sender).DataContext;
+            var item = this.ItemsSource.First(i => i.AppId == localItem.AppId);
+            item.IsPinned = false;
+            this.UpdateItemsSource();
         }
     }
 }

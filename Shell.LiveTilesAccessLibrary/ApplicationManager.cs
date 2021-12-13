@@ -47,8 +47,15 @@ namespace Shell.LiveTilesAccessLibrary {
             // Get the new live tile data.
             var tilesData = await this.GetLiveTilesData();
 
-            // Remove all live tiles.
-            this.LiveTiles.Clear();
+            // Update tiles if they're already loaded
+            if (this.LiveTiles != null && this.LiveTiles.Count > 0) {
+                foreach (var tile in this.LiveTiles) {
+                    // Only update tiledata
+                    tile.TileData = tilesData.FindAll(i => i.AppId == tile.AppId);
+                }
+
+                return this.LiveTiles;
+            }
 
             var liveTiles = new List<TileModel>();
 
@@ -66,7 +73,7 @@ namespace Shell.LiveTilesAccessLibrary {
                     if (entry.DisplayInfo.DisplayName == "NoUIEntryPoints-DesignMode")
                         continue;
                     // Temporary hide ourselves
-                    if (entry.DisplayInfo.DisplayName == "Adaptive Shell")
+                    if (entry.DisplayInfo.DisplayName == "Adaptive Shell" || entry.DisplayInfo.DisplayName == "Adaptive Shell Preview")
                         continue;
 
                     ImageBrush logo = null;
@@ -87,6 +94,7 @@ namespace Shell.LiveTilesAccessLibrary {
                     } catch { }
 
                     var tile = new TileModel {
+                        IsPinned = true,
                         TileData = tilesData.FindAll(i => i.AppId == entry.AppUserModelId),
                         Publisher = package.PublisherDisplayName,
                         LiveTile = new PreviewTile() {
@@ -110,7 +118,7 @@ namespace Shell.LiveTilesAccessLibrary {
                 }
             }
 
-
+            // TODO: restore saved layout
             this.LiveTiles = new ObservableCollection<TileModel>(liveTiles.OrderBy(o => o.DisplayName).ToList());
             return this.LiveTiles;
         }

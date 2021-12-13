@@ -34,9 +34,9 @@ namespace Shell.Controls {
         public void Control_OnReady() {
             Debug.WriteLine("[AppListLayout] OnReady!");
 
-            /* this.ItemsSource.CollectionChanged += (Object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => {
+            this.ItemsSource.CollectionChanged += (Object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => {
                 this.AppsSource.Source = from c in this.ItemsSource group c by c.DisplayName[0].ToString().ToUpper();
-            }; */
+            };
 
             this.AppsSource.Source = from c in this.ItemsSource group c by c.DisplayName[0].ToString().ToUpper();
             this.Control_SizeChanged(null, null);
@@ -89,6 +89,12 @@ namespace Shell.Controls {
 
             if (this.ToggleVisibility != null)
                 this.ToggleVisibility();
+        }
+
+        private void PinToStartBtn_Click(Object sender, RoutedEventArgs e) {
+            var localItem = (TileModel)((MenuFlyoutItem)sender).DataContext;
+            var item = this.ItemsSource.First(i => i.AppId == localItem.AppId);
+            item.IsPinned = true;
         }
     }
 }

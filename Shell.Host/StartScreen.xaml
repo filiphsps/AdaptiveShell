@@ -14,7 +14,8 @@
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"
         Visibility="Collapsed"
-        LostFocus="Window_LostFocus">
+        LostFocus="Window_LostFocus"
+        Closed="Window_Closed">
 
     <Grid>
         <xamlhost:WindowsXamlHost
