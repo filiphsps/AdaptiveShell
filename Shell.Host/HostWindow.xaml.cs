@@ -17,65 +17,65 @@ namespace Shell.Host {
     /// Interaction logic for HostWindow.xaml
     /// </summary>
     public partial class HostWindow : Window {
-        private StartScreen StartScreen;
-        private ActionBar ActionBar;
-        private StatusBar StatusBar;
-        private Settings Settings;
+        private StartScreen StartScreenWindow;
+        private ActionBar ActionBarWindow;
+        private StatusBar StatusBarWindow;
+        private Settings? SettingsWindow;
 
         public HostWindow() {
             this.InitializeComponent();
 
-            this.StartScreen = new StartScreen() {
+            this.StartScreenWindow = new StartScreen() {
                 Topmost = Shell.Host.Features.StartScreenTopMost,
                 ShowInTaskbar = false,
                 OnExit = this.OnExit,
                 OnSettings = this.OnSettings
             };
-            StartScreen.Show();
+            StartScreenWindow.Show();
 
-            this.StatusBar = new StatusBar() {
+            this.StatusBarWindow = new StatusBar() {
                 Topmost = Shell.Host.Features.StatusBarTopMost,
                 ShowInTaskbar = false,
             };
             if (Shell.Host.Features.StatusBarEnabled)
-                StatusBar.Show();
+                StatusBarWindow.Show();
 
-            this.ActionBar = new ActionBar() {
+            this.ActionBarWindow = new ActionBar() {
                 Topmost = Shell.Host.Features.ActionBarTopMost,
                 ShowInTaskbar = false
             };
-            ActionBar.Show();
+            ActionBarWindow.Show();
 
-            ActionBar.HideStart += () => {
-                this.StartScreen.Visibility = Visibility.Collapsed;
+            ActionBarWindow.HideStart += () => {
+                this.StartScreenWindow.Visibility = Visibility.Collapsed;
             };
 
-            ActionBar.ToggleStart += () => {
-                if (this.StartScreen.Visibility == Visibility.Visible)
-                    this.StartScreen.Visibility = Visibility.Collapsed;
+            ActionBarWindow.ToggleStart += () => {
+                if (this.StartScreenWindow.Visibility == Visibility.Visible)
+                    this.StartScreenWindow.Visibility = Visibility.Collapsed;
                 else
-                    this.StartScreen.Visibility = Visibility.Visible;
+                    this.StartScreenWindow.Visibility = Visibility.Visible;
             };
         }
 
         private void OnSettings() {
-            if (this.Settings == null) this.Settings = new Settings();
-            if (!this.Settings.IsLoaded) this.Settings.Show();
+            if (this.SettingsWindow == null) this.SettingsWindow = new Settings();
+            if (!this.SettingsWindow.IsLoaded) this.SettingsWindow.Show();
 
-            this.StartScreen.Visibility = Visibility.Collapsed;
-            this.Settings.Focus();
-            this.Settings.Closed += (Object? sender, EventArgs e) => {
-                this.Settings = null;
+            this.StartScreenWindow.Visibility = Visibility.Collapsed;
+            this.SettingsWindow.Focus();
+            this.SettingsWindow.Closed += (Object? sender, EventArgs e) => {
+                this.SettingsWindow = null;
             };
         }
 
         private void OnExit() {
-            if(this.Settings != null)
-                this.Settings.Close();
+            if(this.SettingsWindow != null)
+                this.SettingsWindow.Close();
 
-            this.ActionBar.Close();
-            this.StartScreen.Close();
-            this.StatusBar.Close();
+            this.ActionBarWindow.Close();
+            this.StartScreenWindow.Close();
+            this.StatusBarWindow.Close();
             this.Close();
         }
 

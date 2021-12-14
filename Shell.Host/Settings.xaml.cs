@@ -20,7 +20,21 @@ namespace Shell.Host {
         }
 
         private void SettingsControl_ChildChanged(Object sender, EventArgs e) {
+            var windowsXamlHost = sender as global::Microsoft.Toolkit.Wpf.UI.XamlHost.WindowsXamlHost;
 
+            if (windowsXamlHost == null)
+                return; // TODO: handle this.
+
+            var control = windowsXamlHost.GetUwpInternalObject() as global::Shell.Controls.SettingsControl;
+
+            if (control == null)
+                return; // TODO: handle this.
+
+            control.Settings = ((Shell.Host.App)Application.Current).Settings;
+            control.SettingsUpdated = (Shell.Models.SettingsModel settings) => {
+                ((Shell.Host.App)Application.Current).Settings = settings;
+            };
+            control.Control_OnReady();
         }
     }
 }

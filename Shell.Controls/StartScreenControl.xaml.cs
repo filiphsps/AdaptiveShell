@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shell.Controls {
     public sealed partial class StartScreenControl : UserControl {
+        public Shell.Models.SettingsModel Settings { get; set; }
         public ApplicationManager ApplicationManager { get; set; }
         public Action ToggleVisibility { get; set; }
         public Action OnExit { get; set; }
@@ -39,10 +40,13 @@ namespace Shell.Controls {
                 contact.SourceDisplayPicture = userPicure;
                 this.ProfilePicture.Contact = contact;
             } catch { }
+
+            this.Control_SizeChanged(null, null);
         }
 
         public void Control_OnReady() {
-            Debug.WriteLine("StartScreenControl OnReady!");
+            Debug.WriteLine("[StartScreenControl] OnReady!");
+            Debug.WriteLine($"[StartScreenControl] Width: {this.ScreenWidth}, Height: {this.ScreenHeight}");
 
             // Set wallpaper
             if (this.Wallpaper != null)
@@ -54,8 +58,6 @@ namespace Shell.Controls {
                 this.Root.Background = new SolidColorBrush() {
                     Color = (Windows.UI.Color)Application.Current.Resources["SystemAccentColorLight1"]
                 };
-
-            if (this.ApplicationManager == null) return;
 
             this.LiveTilesLayout.ScreenHeight = this.ScreenHeight;
             this.LiveTilesLayout.ScreenWidth = this.ScreenWidth;

@@ -18,13 +18,11 @@ using Windows.UI.Xaml.Navigation;
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Shell.Controls {
-    public class SettingsModel {
-        public Boolean CornerRadius { get; set; } = true;
-    }
 
     public sealed partial class SettingsControl : UserControl {
         public String AppVersion { get; set; }
-        public SettingsModel Settings { get; set; }
+        public Shell.Models.SettingsModel Settings { get; set; }
+        public Action<Shell.Models.SettingsModel> SettingsUpdated { get; set; }
         public ObservableCollection<NavLink> NavLinks { get; } = new ObservableCollection<NavLink>() {
             new NavLink() {
                 Label = "Start",
@@ -48,6 +46,10 @@ namespace Shell.Controls {
             this.AppVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
         }
 
+        public void Control_OnReady() {
+            this.IsEnabled = true;
+        }
+
         private void Nav_ItemClick(Object sender, ItemClickEventArgs e) {
             var children = this.SettingsView.Children;
             foreach(StackPanel child in children) {
@@ -56,6 +58,12 @@ namespace Shell.Controls {
 
             var item = (NavLink)e.ClickedItem;
             ((StackPanel)this.SettingsView.FindName(item.Label)).Visibility = Visibility.Visible;
+        }
+
+        private void ToggleSwitch_Toggled(Object sender, RoutedEventArgs e) {
+            if (this.SettingsUpdated == null) return;
+
+            this.SettingsUpdated(this.Settings);
         }
     }
 

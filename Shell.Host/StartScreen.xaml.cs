@@ -116,6 +116,7 @@ namespace Shell.Host {
             control.Height = this.Height;
             control.ScreenWidth = this.Width;
             control.Width = this.Width;
+            control.Settings = ((Shell.Host.App)Application.Current).Settings;
 
             this.Height = Functions.STARTSCREEN_HEIGHT;
             this.Left = 0;

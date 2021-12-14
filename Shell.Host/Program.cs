@@ -12,16 +12,22 @@ namespace Shell.Host {
             // TODO: Setup global exception handler to restore the original state.
             // TODO: listen for applications startup and maximize windows.
 
+            var settings = Functions.GetSettings();
             Functions.HideTaskBar();
             Functions.MakeNewDesktopArea();
 
             try {
                 using (new Shell.Start()) {
-                    var app = new Shell.Host.App();
+                    var app = new Shell.Host.App() {
+                        Settings = settings
+                    };
+
                     app.InitializeComponent();
-                    app.Run();
+                    Int32 res = app.Run();
                 }
             } catch { }
+
+            Functions.SaveSettings(settings);
 
             // TODO: unhook keyboard
             Functions.RestoreDesktopArea();

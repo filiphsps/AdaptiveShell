@@ -4,11 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Shell.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    Background="Transparent">
+    Background="Transparent"
+    IsEnabled="False">
     
     <SplitView
         HorizontalAlignment="Stretch"
@@ -61,32 +62,44 @@
             </Grid>
         </SplitView.Pane>
         <Grid x:Name="SettingsView" Padding="12">
+            <muxc:InfoBar
+                IsOpen="True"
+                Severity="Warning"
+                Title="Title"
+                Message="You'll need to restart Adaptive Shell for the changes to take effect!" />
+            
             <StackPanel x:Name="Start">
                 <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Personalization</TextBlock>
                 <ToggleSwitch
                     Header="Rounded corners"
-                    IsOn="{x:Bind Settings.CornerRadius}"/>
+                    IsOn="{x:Bind Settings.CornerRadius}"
+                    Toggled="ToggleSwitch_Toggled"/>
 
                 <ToggleSwitch
                     Header="Start uses desktop wallpaper"
-                    IsOn="True"/>
+                    IsOn="True"
+                    Toggled="ToggleSwitch_Toggled"/>
             </StackPanel>
             <StackPanel x:Name="Advanced" Visibility="Collapsed">
                 <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Features</TextBlock>
                 <ToggleSwitch
                     Header="Experimental features"
-                    IsOn="True"/>
+                    IsOn="True"
+                    Toggled="ToggleSwitch_Toggled"/>
                 
                 <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Development</TextBlock>
                 <ToggleSwitch
                     Header="ActionBar"
-                    IsOn="True"/>
+                    IsOn="True"
+                    Toggled="ToggleSwitch_Toggled"/>
                 <ToggleSwitch
                     Header="ActionBar always in mobile mode"
-                    IsOn="True"/>
+                    IsOn="True"
+                    Toggled="ToggleSwitch_Toggled"/>
                 <ToggleSwitch
                     Header="StatusBar"
-                    IsOn="false"/>
+                    IsOn="false"
+                    Toggled="ToggleSwitch_Toggled"/>
             </StackPanel>
             <StackPanel x:Name="About" Visibility="Collapsed">
                 <TextBlock>

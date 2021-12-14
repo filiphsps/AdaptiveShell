@@ -27,6 +27,7 @@ namespace Shell.Controls {
 
         public ObservableCollection<TileModel> ItemsSource { get; set; }
         public Action ToggleVisibility { get; set; }
+        public Shell.Models.SettingsModel Settings { get; set; }
 
         public LiveTilesLayoutControl() {
             try {
@@ -37,6 +38,8 @@ namespace Shell.Controls {
 
         public void Control_OnReady() {
             Debug.WriteLine("[LiveTilesLayout] OnReady!");
+            Debug.WriteLine($"[LiveTilesLayout] Width: {this.ScreenWidth}, Height: {this.ScreenHeight}");
+
             this.UpdateItemsSource();
             this.ItemsSource.CollectionChanged += (Object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => {
                 this.UpdateItemsSource();
@@ -46,7 +49,18 @@ namespace Shell.Controls {
         }
 
         public void UpdateItemsSource() {
+            if (this.ItemsSource == null) return;
             this.LiveTiles.ItemsSource = this.ItemsSource.Where(x => x.IsPinned).ToList();
+
+
+            // Hack to force tile sizing... 🙃
+            /* var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+            if (container == null || (Grid)container.ContentTemplateRoot == null) return;
+            var gridItem = (Grid)container.ContentTemplateRoot;
+            container.SetValue(VariableSizedWrapGrid.RowSpanProperty, 0);
+            container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, 0);
+            container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
+            container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan); */
         }
 
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
@@ -121,11 +135,16 @@ namespace Shell.Controls {
             gridItem.Width = (item.ColumnSpan * 92) - 10;
             gridItem.Height = (item.RowSpan * 92) - 10;
 
+            // Corner radius.
+            if (!this.Settings.CornerRadius) gridItem.CornerRadius = new CornerRadius(0);
+
+            // Tile data.
             await item.LiveTile.UpdateAsync();
             if (item.TileData != null && item.TileData.Count >= 1) {
                 PreviewTileUpdater tileUpdater = item.LiveTile.CreateTileUpdater();
                 PreviewBadgeUpdater badgeUpdater = item.LiveTile.CreateBadgeUpdater();
 
+                // TODO: handle tile updates dynamically
                 foreach (TileDataModel data in item.TileData) {
                     // FIXME: Queue
                     try {
@@ -212,7 +231,10 @@ namespace Shell.Controls {
             var localItem = (TileModel)((MenuFlyoutItem)sender).DataContext;
             var item = this.ItemsSource.First(i => i.AppId == localItem.AppId);
             item.IsPinned = false;
-            this.UpdateItemsSource();
+
+            // Hack to force notify update
+            this.ItemsSource.Move(0, 1);
+            this.ItemsSource.Move(1, 0);
         }
     }
 }

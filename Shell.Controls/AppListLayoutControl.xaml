@@ -52,7 +52,8 @@
                         <Grid
                             x:Name="AppsListItem"
                             Margin="0,0,0,5"
-                            Tapped="AppsListItem_Tapped">
+                            Tapped="AppsListItem_Tapped"
+                            Loaded="AppsListItem_Loaded">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="1*"/>
