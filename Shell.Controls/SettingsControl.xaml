@@ -65,7 +65,7 @@
         <StackPanel>
             <StackPanel
                 Padding="15"
-                Margin="10,0,10,10"
+                Margin="10,0"
                 CornerRadius="4"
                 Background="{ThemeResource SystemControlAcrylicElementBrush}">
                 <TextBlock FontWeight="Bold">
@@ -118,11 +118,16 @@
                         IsEnabled="False"/>
                 </StackPanel>
                 <StackPanel x:Name="About" Visibility="Collapsed">
-                    <TextBlock>
+                    <TextBlock
+                        TextWrapping="Wrap">
                         Developed by <Hyperlink NavigateUri="https://github.com/filiphsandstrom">Filiph Sandström</Hyperlink>.
+                        <Bold>
+                            If you want to support further development you can either become a <Hyperlink NavigateUri="https://github.com/sponsors/filiphsandstrom">GitHub Sponsor</Hyperlink>
+                            or purchase the optional <Hyperlink x:Name="SupportIAP" Click="SupportIAP_Click">Support package</Hyperlink>.
+                        </Bold>
                     </TextBlock>
-                    <TextBlock>
-                        Become a <Hyperlink NavigateUri="https://github.com/sponsors/filiphsandstrom">GitHub Sponsor</Hyperlink>.
+                    <TextBlock TextWrapping="Wrap" FontSize="12" Padding="0,5">
+                        Licensed under the <Hyperlink NavigateUri="https://github.com/w10m-research/AdaptiveShell/blob/master/LICENSE">Mozilla Public License Version 2.0</Hyperlink>.
                     </TextBlock>
                 </StackPanel>
             </Grid>

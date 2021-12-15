@@ -85,6 +85,12 @@ namespace Shell.Controls {
             if (this.SettingsUpdated == null) return;
             this.SettingsUpdated(this.Settings);
         }
+
+        private async void SupportIAP_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args) {
+            try {
+                await Windows.ApplicationModel.Store.CurrentApp.RequestProductPurchaseAsync("support", false);
+            } catch { } // TODO: handle.
+        }
     }
 
     public class NavLink {
