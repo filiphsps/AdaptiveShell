@@ -97,6 +97,8 @@ namespace Shell.Controls {
                 this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
                 this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
 
+                this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
+                this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
                 this.Start.Orientation = Orientation.Horizontal;
                 this.Apps.Orientation = Orientation.Horizontal;
             } else {
@@ -117,6 +119,8 @@ namespace Shell.Controls {
                 this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
                 this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
 
+                this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
+                this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
                 this.Start.Orientation = Orientation.Vertical;
                 this.Apps.Orientation = Orientation.Vertical;
             }
