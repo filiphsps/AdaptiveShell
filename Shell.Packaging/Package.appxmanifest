@@ -10,7 +10,7 @@
   <Identity
     Name="26941filfat.AdaptiveShell"
     Publisher="CN=filfa"
-    Version="1.0.0.0" />
+    Version="2021.12.15.0" />
 
   <Properties>
     <DisplayName>Adaptive Shell</DisplayName>
@@ -20,7 +20,7 @@
 
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.18362.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
 
   <Resources>
@@ -28,11 +28,11 @@
   </Resources>
 
   <Applications>
-    <Application Id="Shell.Start"
+    <Application Id="App"
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-		AppListEntry="default"
+        AppListEntry="default"
         DisplayName="Adaptive Shell (PREVIEW)"
         Description="A modern and adaptive shell for mobile, tablet and desktop computing."
         BackgroundColor="transparent"
@@ -51,15 +51,15 @@
   </Applications>
 
   <Capabilities>
-	<Capability Name="internetClient" />
-	<Capability Name="privateNetworkClientServer" />
-	<Capability Name="internetClientServer" />
-	<uap:Capability Name="userAccountInformation" />
-	<uap3:Capability Name="userNotificationListener" />
-	<rescap:Capability Name="runFullTrust" />
-	<rescap:Capability Name="broadFileSystemAccess" />
-	<rescap:Capability Name="packageManagement" />
-	<rescap:Capability Name="packageQuery" />
-	<DeviceCapability Name="location" />
+    <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClientServer" />
+    <uap:Capability Name="userAccountInformation" />
+    <uap3:Capability Name="userNotificationListener" />
+    <rescap:Capability Name="runFullTrust" />
+    <rescap:Capability Name="broadFileSystemAccess" />
+    <rescap:Capability Name="packageManagement" />
+    <rescap:Capability Name="packageQuery" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>
