@@ -34,8 +34,8 @@ namespace Shell.Host {
             control.SettingsUpdated = (Shell.Models.SettingsModel settings) => {
                 ((Shell.Host.App)Application.Current).Settings = settings;
 
-                if (((Shell.Host.App)Application.Current).OnSettingsUpdate != null)
-                    ((Shell.Host.App)Application.Current).OnSettingsUpdate(settings);
+                //if (((Shell.Host.App)Application.Current).OnSettingsUpdate != null)
+                //    ((Shell.Host.App)Application.Current).OnSettingsUpdate(settings);
             };
             control.Control_OnReady();
         }

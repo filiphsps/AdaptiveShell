@@ -23,8 +23,8 @@ namespace Shell.Host {
         public static Double STATUSBAR_HEIGHT { get => /* Features.StatusBarEnabled ? 15 :*/ 0; }
         public static readonly Double ACTIONBAR_HEIGHT = 48;
         public static Double STARTSCREEN_HEIGHT { get => SystemParameters.PrimaryScreenHeight - (Functions.STATUSBAR_HEIGHT + Functions.ACTIONBAR_HEIGHT); }
-        public static readonly String SETTINGS_PATH = @"C:\.AdaptiveShell\Settings.xml";
-        public static readonly String LAYOUT_PATH = @"C:\.AdaptiveShell\Layout.xml";
+        public static readonly String SETTINGS_PATH = @$"{Path.GetPathRoot(Environment.SystemDirectory)}.AdaptiveShell\Settings.xml";
+        public static readonly String LAYOUT_PATH = @$"{Path.GetPathRoot(Environment.SystemDirectory)}.AdaptiveShell\Layout.xml";
 
         /// <summary>
         /// Parse settings
