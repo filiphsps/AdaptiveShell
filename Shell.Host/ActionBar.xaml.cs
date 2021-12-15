@@ -32,6 +32,11 @@ namespace Shell.Host {
         public ActionBar() {
             this.InitializeComponent();
             this.Window_SizeChanged();
+
+            var settings = ((Shell.Host.App)Application.Current).Settings;
+            if (settings.EnableActionBar == false) {
+                this.Visibility = Visibility.Collapsed;
+            }
         }
 
         public void Window_SizeChanged() {
@@ -67,6 +72,7 @@ namespace Shell.Host {
             if (control == null)
                 return; // TODO: handle this.
 
+            // var settings = ((Shell.Host.App)Application.Current).Settings;
             control.Height = this.Height;
             control.Width = this.Width;
             control.ActionBarItemHeight = new Windows.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);

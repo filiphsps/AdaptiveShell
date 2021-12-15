@@ -20,15 +20,16 @@ namespace Shell.Host {
         private static IntPtr m_hTaskBar;
         #endregion
 
-        public static Double STATUSBAR_HEIGHT { get => Features.StatusBarEnabled ? 15 : 0; }
+        public static Double STATUSBAR_HEIGHT { get => /* Features.StatusBarEnabled ? 15 :*/ 0; }
         public static readonly Double ACTIONBAR_HEIGHT = 48;
         public static Double STARTSCREEN_HEIGHT { get => SystemParameters.PrimaryScreenHeight - (Functions.STATUSBAR_HEIGHT + Functions.ACTIONBAR_HEIGHT); }
         public static readonly String SETTINGS_PATH = @"C:\.AdaptiveShell\Settings.xml";
+        public static readonly String LAYOUT_PATH = @"C:\.AdaptiveShell\Layout.xml";
 
         /// <summary>
         /// Parse settings
         /// </summary>
-        public static Shell.Models.SettingsModel GetSettings() {
+        public static Shell.Models.SettingsModel LoadSettings() {
             var xmlSerializer = new XmlSerializer(typeof(Shell.Models.SettingsModel));
             Shell.Models.SettingsModel settings;
 
@@ -63,6 +64,27 @@ namespace Shell.Host {
                 Debug.WriteLine(ex.Message);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Parse settings
+        /// </summary>
+        public static Shell.Models.LayoutModel LoadLayout() {
+            var xmlSerializer = new XmlSerializer(typeof(Shell.Models.LayoutModel));
+            Shell.Models.LayoutModel layout;
+
+            try {
+                using (var stream = new StreamReader(LAYOUT_PATH)) {
+                    layout = (Shell.Models.LayoutModel)xmlSerializer.Deserialize(stream);
+                }
+            } catch (Exception ex) {
+                Debug.WriteLine(ex.Message);
+
+                // TODO: only return new instance if file isn't found
+                layout = new Shell.Models.LayoutModel();
+            }
+
+            return layout;
         }
 
         /// <summary>

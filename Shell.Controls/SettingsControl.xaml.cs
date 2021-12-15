@@ -41,13 +41,15 @@ namespace Shell.Controls {
         public SettingsControl() {
             this.InitializeComponent();
 
-            Package package = Package.Current;
-            PackageVersion version = package.Id.Version;
-            this.AppVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
+            try {
+                Package package = Package.Current;
+                PackageVersion version = package.Id.Version;
+                this.AppVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
+            } catch { } // TODO: handle.
         }
 
         public void Control_OnReady() {
-            this.IsEnabled = true;
+            // TODO
         }
 
         private void Nav_ItemClick(Object sender, ItemClickEventArgs e) {
@@ -60,9 +62,27 @@ namespace Shell.Controls {
             ((StackPanel)this.SettingsView.FindName(item.Label)).Visibility = Visibility.Visible;
         }
 
-        private void ToggleSwitch_Toggled(Object sender, RoutedEventArgs e) {
-            if (this.SettingsUpdated == null) return;
+        private void CornerRadius_Toggled(Object sender, RoutedEventArgs e) {
+            if (this.Settings.CornerRadius == ((ToggleSwitch)sender).IsOn) return;
+            this.Settings.CornerRadius = ((ToggleSwitch)sender).IsOn;
 
+            if (this.SettingsUpdated == null) return;
+            this.SettingsUpdated(this.Settings);
+        }
+
+        private void UseDesktopWallpaper_Toggled(Object sender, RoutedEventArgs e) {
+            if (this.Settings.UseDesktopWallpaper == ((ToggleSwitch)sender).IsOn) return;
+            this.Settings.UseDesktopWallpaper = ((ToggleSwitch)sender).IsOn;
+
+            if (this.SettingsUpdated == null) return;
+            this.SettingsUpdated(this.Settings);
+        }
+
+        private void EnableActionBar_Toggled(Object sender, RoutedEventArgs e) {
+            if (this.Settings.EnableActionBar == ((ToggleSwitch)sender).IsOn) return;
+            this.Settings.EnableActionBar = ((ToggleSwitch)sender).IsOn;
+
+            if (this.SettingsUpdated == null) return;
             this.SettingsUpdated(this.Settings);
         }
     }

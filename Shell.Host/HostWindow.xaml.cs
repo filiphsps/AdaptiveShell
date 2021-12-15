@@ -24,6 +24,7 @@ namespace Shell.Host {
 
         public HostWindow() {
             this.InitializeComponent();
+            var settings = ((Shell.Host.App)Application.Current).Settings;
 
             this.StartScreenWindow = new StartScreen() {
                 Topmost = Shell.Host.Features.StartScreenTopMost,
@@ -37,14 +38,15 @@ namespace Shell.Host {
                 Topmost = Shell.Host.Features.StatusBarTopMost,
                 ShowInTaskbar = false,
             };
-            if (Shell.Host.Features.StatusBarEnabled)
+            if (settings.EnableStatusBar)
                 StatusBarWindow.Show();
 
             this.ActionBarWindow = new ActionBar() {
                 Topmost = Shell.Host.Features.ActionBarTopMost,
                 ShowInTaskbar = false
             };
-            ActionBarWindow.Show();
+            if (settings.EnableActionBar)
+                ActionBarWindow.Show();
 
             ActionBarWindow.HideStart += () => {
                 this.StartScreenWindow.Visibility = Visibility.Collapsed;

@@ -60,6 +60,12 @@ namespace Shell.Host {
 
             // Temp
             try {
+                var settings = ((Shell.Host.App)Application.Current).Settings;
+                ((Shell.Host.App)Application.Current).OnSettingsUpdate += (Shell.Models.SettingsModel settings) => {
+                    control.Settings = settings;
+                    control.Control_OnReady();
+                };
+
                 var applicationManager = new Shell.LiveTilesAccessLibrary.ApplicationManager();
                 await applicationManager.Initilize();
                 control.ApplicationManager = applicationManager;
@@ -71,16 +77,20 @@ namespace Shell.Host {
                 this.DispatcherTimer.Interval = new TimeSpan(0, 15, 0);
                 this.DispatcherTimer.Start();
 
-                String? userWallpaper = (String)Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop", false).GetValue("WallPaper");
-                if (userWallpaper != null) {
-                    StorageFile background = await StorageFile.GetFileFromPathAsync(userWallpaper);
+                if (settings.UseDesktopWallpaper) {
+                    String? userWallpaper = (String)Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop", false).GetValue("WallPaper");
+                    if (userWallpaper != null) {
+                        StorageFile background = await StorageFile.GetFileFromPathAsync(userWallpaper);
 
-                    using (IRandomAccessStream fileStream = await background.OpenAsync(Windows.Storage.FileAccessMode.Read)) {
-                        // Set the image source to the selected bitmap
-                        var bitmapImage = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
-                        await bitmapImage.SetSourceAsync(fileStream);
-                        control.Wallpaper = bitmapImage;
+                        using (IRandomAccessStream fileStream = await background.OpenAsync(Windows.Storage.FileAccessMode.Read)) {
+                            // Set the image source to the selected bitmap
+                            var bitmapImage = new Windows.UI.Xaml.Media.Imaging.BitmapImage();
+                            await bitmapImage.SetSourceAsync(fileStream);
+                            control.Wallpaper = bitmapImage;
+                        }
                     }
+                } else {
+                    control.Wallpaper = null;
                 }
 
                 control.ScreenHeight = this.Height;
@@ -93,6 +103,7 @@ namespace Shell.Host {
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
                 control.OnExit = this.OnExit;
                 control.OnSettings = this.OnSettings;
+                control.Settings = settings;
 
                 control.ToggleVisibility = () => {
                     if (this.Visibility == Visibility.Visible)
@@ -109,6 +120,7 @@ namespace Shell.Host {
         private void Window_SizeChanged(Object sender, SizeChangedEventArgs e) {
             var windowsXamlHost = this.StartScreenControl as global::Microsoft.Toolkit.Wpf.UI.XamlHost.WindowsXamlHost;
             var control = windowsXamlHost.GetUwpInternalObject() as global::Shell.Controls.StartScreenControl;
+            var settings = ((Shell.Host.App)Application.Current).Settings;
 
             if (control == null) return;
 
@@ -116,7 +128,7 @@ namespace Shell.Host {
             control.Height = this.Height;
             control.ScreenWidth = this.Width;
             control.Width = this.Width;
-            control.Settings = ((Shell.Host.App)Application.Current).Settings;
+            control.Settings = settings;
 
             this.Height = Functions.STARTSCREEN_HEIGHT;
             this.Left = 0;

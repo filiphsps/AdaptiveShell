@@ -40,6 +40,9 @@ namespace Shell.Controls {
             Debug.WriteLine("[LiveTilesLayout] OnReady!");
             Debug.WriteLine($"[LiveTilesLayout] Width: {this.ScreenWidth}, Height: {this.ScreenHeight}");
 
+            // Hack to force tile sizing... 🙃
+            if (this.LiveTiles.ItemsSource != null) this.LiveTiles.ItemsSource = null;
+
             this.UpdateItemsSource();
             this.ItemsSource.CollectionChanged += (Object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => {
                 this.UpdateItemsSource();
@@ -54,13 +57,16 @@ namespace Shell.Controls {
 
 
             // Hack to force tile sizing... 🙃
-            /* var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
-            if (container == null || (Grid)container.ContentTemplateRoot == null) return;
-            var gridItem = (Grid)container.ContentTemplateRoot;
-            container.SetValue(VariableSizedWrapGrid.RowSpanProperty, 0);
-            container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, 0);
-            container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
-            container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan); */
+            try {
+                var item = ((List<TileModel>)this.LiveTiles.ItemsSource).FirstOrDefault();
+                var container = (GridViewItem)this.LiveTiles.ContainerFromItem(item);
+                if (container == null || (Grid)container.ContentTemplateRoot == null) return;
+                var gridItem = (Grid)container.ContentTemplateRoot;
+                container.SetValue(VariableSizedWrapGrid.RowSpanProperty, 0);
+                container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, 0);
+                container.SetValue(VariableSizedWrapGrid.RowSpanProperty, item.RowSpan);
+                container.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, item.ColumnSpan);
+            } catch { }
         }
 
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {

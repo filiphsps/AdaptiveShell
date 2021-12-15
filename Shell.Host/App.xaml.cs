@@ -12,6 +12,7 @@ namespace Shell.Host {
     /// </summary>
     public partial class App : Application {
         public Shell.Models.SettingsModel Settings { get; set; }
+        public Action<Shell.Models.SettingsModel> OnSettingsUpdate { get; set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public App() {

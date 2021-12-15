@@ -12,7 +12,7 @@ namespace Shell.Host {
             // TODO: Setup global exception handler to restore the original state.
             // TODO: listen for applications startup and maximize windows.
 
-            var settings = Functions.GetSettings();
+            var settings = Functions.LoadSettings();
             Functions.HideTaskBar();
             Functions.MakeNewDesktopArea();
 
@@ -24,6 +24,7 @@ namespace Shell.Host {
 
                     app.InitializeComponent();
                     Int32 res = app.Run();
+                    settings = app.Settings;
                 }
             } catch { }
 

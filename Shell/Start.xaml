@@ -5,6 +5,10 @@
     xmlns:xaml="using:Microsoft.Toolkit.Win32.UI.XamlHost"
     xmlns:local="using:Shell">
     <Application.Resources>
-        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </xaml:XamlApplication>

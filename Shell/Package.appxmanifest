@@ -7,10 +7,11 @@
   xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
   IgnorableNamespaces="uap mp rescap uap3">
 
+  <!-- Format: year.month.day.build -->
   <Identity
     Name="26941filfat.AdaptiveShell"
     Publisher="CN=filfa"
-    Version="1.0.0.0" />
+    Version="2021.12.15.0" />
 
   <mp:PhoneIdentity PhoneProductId="57682c4f-6177-4691-8470-5b9cae4f1821" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 

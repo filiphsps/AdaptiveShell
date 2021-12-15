@@ -73,12 +73,13 @@ namespace Shell.LiveTilesAccessLibrary {
                     if (entry.DisplayInfo.DisplayName == "NoUIEntryPoints-DesignMode")
                         continue;
                     // Temporary hide ourselves
-                    if (entry.DisplayInfo.DisplayName == "Adaptive Shell" || entry.DisplayInfo.DisplayName == "Adaptive Shell Preview")
+                    if (entry.DisplayInfo.DisplayName == "Adaptive Shell" || entry.DisplayInfo.DisplayName == "Adaptive Shell (PREVIEW)")
                         continue;
 
                     ImageBrush logo = null;
                     try {
                         // TODO: set of images.
+                        // FIXME: Somne applications (Edge) throws here.
                         var imageStream = await entry.DisplayInfo.GetLogo(new Windows.Foundation.Size(250, 250)).OpenReadAsync();
                         using (var memStream = new MemoryStream()) {
                             await imageStream.AsStreamForRead().CopyToAsync(memStream);
@@ -91,7 +92,7 @@ namespace Shell.LiveTilesAccessLibrary {
                                 Stretch = Stretch.UniformToFill
                             };
                         }
-                    } catch { }
+                    } catch { } // TODO: handle.
 
                     var tile = new TileModel {
                         IsPinned = true,

@@ -63,12 +63,13 @@ namespace Shell.Controls {
             this.LiveTilesLayout.ScreenWidth = this.ScreenWidth;
             this.LiveTilesLayout.ItemsSource = this.ApplicationManager.LiveTiles;
             this.LiveTilesLayout.ToggleVisibility = this.ToggleVisibility;
+            this.LiveTilesLayout.Settings = this.Settings;
             this.LiveTilesLayout.Control_OnReady();
 
             this.AppsListLayout.ScreenHeight = this.ScreenHeight;
             this.AppsListLayout.ScreenWidth = this.ScreenWidth;
             this.AppsListLayout.ItemsSource = this.ApplicationManager.LiveTiles;
-            this.AppsListLayout.ToggleVisibility = this.ToggleVisibility;
+            this.AppsListLayout.Settings = this.Settings;
             this.AppsListLayout.Control_OnReady();
 
 
@@ -99,6 +100,10 @@ namespace Shell.Controls {
 
                 this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
                 this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
+                this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+                this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.RootScroll.HorizontalSnapPointsType = SnapPointsType.OptionalSingle;
+                this.RootScroll.VerticalSnapPointsType = SnapPointsType.None;
                 this.Start.Orientation = Orientation.Horizontal;
                 this.Apps.Orientation = Orientation.Horizontal;
             } else {
@@ -108,10 +113,10 @@ namespace Shell.Controls {
                 this.AppsHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
                 this.AppsFooterToolbar.Padding = new Thickness(padding, 0, padding, this.ScreenHeight * 0.05);
 
-                this.StartScreenLayout.Height = this.ScreenHeight - (this.StartHeaderToolbar.ActualHeight + this.StartFooterToolbar.ActualHeight) + 25;
+                this.StartScreenLayout.Height = this.ScreenHeight;
                 this.StartScreenLayout.Width = this.ScreenWidth;
                 // Hack to make scrollbar work
-                this.AppsListLayout.Height = this.ScreenHeight - (this.AppsHeaderToolbar.ActualHeight + this.AppsFooterToolbar.ActualHeight) - 125;
+                this.AppsListLayout.Height = this.ScreenHeight - (this.AppsHeaderToolbar.ActualHeight + this.AppsFooterToolbar.ActualHeight + 50);
                 this.AppsListLayout.Width = this.ScreenWidth;
 
                 this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -121,6 +126,10 @@ namespace Shell.Controls {
 
                 this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
                 this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
+                this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                this.RootScroll.HorizontalSnapPointsType = SnapPointsType.None;
+                this.RootScroll.VerticalSnapPointsType = SnapPointsType.OptionalSingle;
                 this.Start.Orientation = Orientation.Vertical;
                 this.Apps.Orientation = Orientation.Vertical;
             }
