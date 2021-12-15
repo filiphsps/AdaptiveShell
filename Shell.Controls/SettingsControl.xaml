@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
-    Background="Transparent">
+    d:DesignHeight="500"
+    d:DesignWidth="1000"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
     
     <SplitView
         HorizontalAlignment="Stretch"
@@ -19,7 +19,7 @@
         OpenPaneLength="256"
         CompactPaneLength="48"
         DisplayMode="Inline"
-        PaneBackground="{ThemeResource SystemControlAcrylicWindowBrush}">
+        PaneBackground="{ThemeResource SystemControlAcrylicElementBrush}">
         <SplitView.Pane>
             <Grid>
                 <Grid.RowDefinitions>
@@ -39,7 +39,8 @@
                             <StackPanel
                                 Orientation="Horizontal"
                                 Margin="2,0,0,0"
-                                AutomationProperties.Name="{x:Bind Label}">
+                                AutomationProperties.Name="{x:Bind Label}"
+                                Style="{ThemeResource SettingsFlyoutSectionStyle}">
                                 <SymbolIcon Symbol="{x:Bind Symbol}" />
                                 <TextBlock Text="{x:Bind Label}" Margin="24,0,0,0" VerticalAlignment="Center" />
                             </StackPanel>
@@ -60,42 +61,76 @@
                 </StackPanel>
             </Grid>
         </SplitView.Pane>
-        <Grid x:Name="SettingsView" Padding="12">
-            <StackPanel x:Name="Start">
-                <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Personalization</TextBlock>
-                <ToggleSwitch
-                    Header="Rounded corners"
-                    IsOn="{x:Bind Settings.CornerRadius}"/>
 
-                <ToggleSwitch
-                    Header="Start uses desktop wallpaper"
-                    IsOn="True"/>
+        <StackPanel>
+            <StackPanel
+                Padding="15"
+                Margin="10,0"
+                CornerRadius="4"
+                Background="{ThemeResource SystemControlAcrylicElementBrush}">
+                <TextBlock FontWeight="Bold">
+                    You might need to restart Adaptive Shell for the changes to take effect!
+                </TextBlock>
             </StackPanel>
-            <StackPanel x:Name="Advanced" Visibility="Collapsed">
-                <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Features</TextBlock>
-                <ToggleSwitch
-                    Header="Experimental features"
-                    IsOn="True"/>
+
+            <Grid x:Name="SettingsView" Padding="12">
+                <!--<muxc:InfoBar
+                    IsOpen="True"
+                    Severity="Warning"
+                    Title="Title"
+                    Message="You might need to restart Adaptive Shell for the changes to take effect!" /> -->
+            
+                <StackPanel x:Name="Start">
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Personalization</TextBlock>
+                    <ToggleSwitch
+                        x:Name="CornerRadius"
+                        Header="Rounded corners"
+                        IsOn="{x:Bind Settings.CornerRadius, Mode=OneWay}"
+                        Toggled="CornerRadius_Toggled"/>
+
+                    <ToggleSwitch
+                        x:Name="UseDesktopWallpaper"
+                        Header="Start uses desktop wallpaper"
+                        IsOn="{x:Bind Settings.UseDesktopWallpaper, Mode=OneWay}"
+                        Toggled="UseDesktopWallpaper_Toggled"/>
+                </StackPanel>
+                <StackPanel x:Name="Advanced" Visibility="Collapsed">
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Features</TextBlock>
+                    <ToggleSwitch
+                        Header="Experimental features"
+                        IsOn="True"
+                        IsEnabled="False"/>
                 
-                <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Development</TextBlock>
-                <ToggleSwitch
-                    Header="ActionBar"
-                    IsOn="True"/>
-                <ToggleSwitch
-                    Header="ActionBar always in mobile mode"
-                    IsOn="True"/>
-                <ToggleSwitch
-                    Header="StatusBar"
-                    IsOn="false"/>
-            </StackPanel>
-            <StackPanel x:Name="About" Visibility="Collapsed">
-                <TextBlock>
-                    Developed by <Hyperlink NavigateUri="https://github.com/filiphsandstrom">Filiph Sandström</Hyperlink>.
-                </TextBlock>
-                <TextBlock>
-                    Become a <Hyperlink NavigateUri="https://github.com/sponsors/filiphsandstrom">GitHub Sponsor</Hyperlink>.
-                </TextBlock>
-            </StackPanel>
-        </Grid>
+                    <TextBlock Style="{ThemeResource TitleTextBlockStyle}">Development</TextBlock>
+                    <ToggleSwitch
+                        x:Name="EnableActionBar"
+                        Header="ActionBar"
+                        IsOn="{x:Bind Settings.EnableActionBar, Mode=OneWay}"
+                        IsEnabled="False"
+                        Toggled="EnableActionBar_Toggled"/>
+                    <ToggleSwitch
+                        Header="ActionBar always in mobile mode"
+                        IsOn="True"
+                        IsEnabled="False"/>
+                    <ToggleSwitch
+                        Header="StatusBar"
+                        IsOn="{x:Bind Settings.EnableStatusBar, Mode=OneWay}"
+                        IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel x:Name="About" Visibility="Collapsed">
+                    <TextBlock
+                        TextWrapping="Wrap">
+                        Developed by <Hyperlink NavigateUri="https://github.com/filiphsandstrom">Filiph Sandström</Hyperlink>.
+                        <Bold>
+                            If you want to support further development you can either become a <Hyperlink NavigateUri="https://github.com/sponsors/filiphsandstrom">GitHub Sponsor</Hyperlink>
+                            or purchase the optional <Hyperlink x:Name="SupportIAP" Click="SupportIAP_Click">Support package</Hyperlink>.
+                        </Bold>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" FontSize="12" Padding="0,5">
+                        Licensed under the <Hyperlink NavigateUri="https://github.com/w10m-research/AdaptiveShell/blob/master/LICENSE">Mozilla Public License Version 2.0</Hyperlink>.
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </SplitView>
 </UserControl>

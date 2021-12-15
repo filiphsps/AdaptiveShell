@@ -26,6 +26,7 @@ namespace Shell.Controls {
 
         public ObservableCollection<TileModel> ItemsSource { get; set; }
         public Action ToggleVisibility { get; set; }
+        public Shell.Models.SettingsModel Settings { get; set; }
 
         public AppListLayoutControl() {
             this.InitializeComponent();
@@ -33,6 +34,7 @@ namespace Shell.Controls {
 
         public void Control_OnReady() {
             Debug.WriteLine("[AppListLayout] OnReady!");
+            Debug.WriteLine($"[AppListLayout] Width: {this.ScreenWidth}, Height: {this.ScreenHeight}");
 
             this.ItemsSource.CollectionChanged += (Object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => {
                 this.AppsSource.Source = from c in this.ItemsSource group c by c.DisplayName[0].ToString().ToUpper();
@@ -95,6 +97,17 @@ namespace Shell.Controls {
             var localItem = (TileModel)((MenuFlyoutItem)sender).DataContext;
             var item = this.ItemsSource.First(i => i.AppId == localItem.AppId);
             item.IsPinned = true;
+
+            // Hack to force notify update
+            this.ItemsSource.Move(0, 1);
+            this.ItemsSource.Move(1, 0);
+        }
+
+        private void AppsListItem_Loaded(Object sender, RoutedEventArgs e) {
+            var gridItem = (Grid)((Grid)sender).Children[0];
+
+            // Corner radius.
+            if (!this.Settings.CornerRadius) gridItem.CornerRadius = new CornerRadius(0);
         }
     }
 }

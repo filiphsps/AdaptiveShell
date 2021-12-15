@@ -168,6 +168,11 @@
       <Name>Shell.LiveTilesAccessLibrary</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Shell.Models\Shell.Models.csproj">
+      <Project>{292b1e99-e2c3-4ae7-a46f-b3f392faf301}</Project>
+      <Name>Shell.Models</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

@@ -18,13 +18,11 @@ using Windows.UI.Xaml.Navigation;
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Shell.Controls {
-    public class SettingsModel {
-        public Boolean CornerRadius { get; set; } = true;
-    }
 
     public sealed partial class SettingsControl : UserControl {
         public String AppVersion { get; set; }
-        public SettingsModel Settings { get; set; }
+        public Shell.Models.SettingsModel Settings { get; set; }
+        public Action<Shell.Models.SettingsModel> SettingsUpdated { get; set; }
         public ObservableCollection<NavLink> NavLinks { get; } = new ObservableCollection<NavLink>() {
             new NavLink() {
                 Label = "Start",
@@ -43,9 +41,15 @@ namespace Shell.Controls {
         public SettingsControl() {
             this.InitializeComponent();
 
-            Package package = Package.Current;
-            PackageVersion version = package.Id.Version;
-            this.AppVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
+            try {
+                Package package = Package.Current;
+                PackageVersion version = package.Id.Version;
+                this.AppVersion = $"{version.Major}.{version.Minor}.{version.Revision}.{version.Build}";
+            } catch { } // TODO: handle.
+        }
+
+        public void Control_OnReady() {
+            // TODO
         }
 
         private void Nav_ItemClick(Object sender, ItemClickEventArgs e) {
@@ -56,6 +60,36 @@ namespace Shell.Controls {
 
             var item = (NavLink)e.ClickedItem;
             ((StackPanel)this.SettingsView.FindName(item.Label)).Visibility = Visibility.Visible;
+        }
+
+        private void CornerRadius_Toggled(Object sender, RoutedEventArgs e) {
+            if (this.Settings.CornerRadius == ((ToggleSwitch)sender).IsOn) return;
+            this.Settings.CornerRadius = ((ToggleSwitch)sender).IsOn;
+
+            if (this.SettingsUpdated == null) return;
+            this.SettingsUpdated(this.Settings);
+        }
+
+        private void UseDesktopWallpaper_Toggled(Object sender, RoutedEventArgs e) {
+            if (this.Settings.UseDesktopWallpaper == ((ToggleSwitch)sender).IsOn) return;
+            this.Settings.UseDesktopWallpaper = ((ToggleSwitch)sender).IsOn;
+
+            if (this.SettingsUpdated == null) return;
+            this.SettingsUpdated(this.Settings);
+        }
+
+        private void EnableActionBar_Toggled(Object sender, RoutedEventArgs e) {
+            if (this.Settings.EnableActionBar == ((ToggleSwitch)sender).IsOn) return;
+            this.Settings.EnableActionBar = ((ToggleSwitch)sender).IsOn;
+
+            if (this.SettingsUpdated == null) return;
+            this.SettingsUpdated(this.Settings);
+        }
+
+        private async void SupportIAP_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args) {
+            try {
+                await Windows.ApplicationModel.Store.CurrentApp.RequestProductPurchaseAsync("support", false);
+            } catch { } // TODO: handle.
         }
     }
 

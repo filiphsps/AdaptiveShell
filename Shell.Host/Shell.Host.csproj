@@ -60,6 +60,7 @@
     <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj" />
     <ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj" />
     <ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj" />
+    <ProjectReference Include="..\Shell.Models\Shell.Models.csproj" />
     <ProjectReference Include="..\Shell\Shell.UWP.csproj" />
   </ItemGroup>
 

@@ -91,7 +91,7 @@
                         VerticalAlignment="Stretch"
                         ItemsSource="{x:Bind ApplicationManager.LiveTiles}"
                         ScreenHeight="{x:Bind ScreenHeight, Mode=OneWay}"
-                        ScreenWidth="{x:Bind ScreenWidth, Mode=OneWay}"/>
+                        Settings="{x:Bind Settings, Mode=OneWay}"/>
 
                     <Grid
                         x:Name="StartFooterToolbar"
@@ -150,8 +150,10 @@
                                     x:Name="AppsListLayout"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
+                                    ItemsSource="{x:Bind ApplicationManager.LiveTiles}"
                                     ScreenHeight="{x:Bind ScreenHeight, Mode=OneWay}"
-                                    ScreenWidth="{x:Bind ScreenWidth, Mode=OneWay}"/>
+                                    ScreenWidth="{x:Bind ScreenWidth, Mode=OneWay}"
+                                    Settings="{x:Bind Settings, Mode=OneWay}"/>
 
                                 <Grid
                                     x:Name="AppsFooterToolbar"
