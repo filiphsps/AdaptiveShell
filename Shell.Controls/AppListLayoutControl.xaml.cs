@@ -104,7 +104,7 @@ namespace Shell.Controls {
         }
 
         private void AppsListItem_Loaded(Object sender, RoutedEventArgs e) {
-            var gridItem = (Grid)sender;
+            var gridItem = (Grid)((Grid)sender).Children[0];
 
             // Corner radius.
             if (!this.Settings.CornerRadius) gridItem.CornerRadius = new CornerRadius(0);
