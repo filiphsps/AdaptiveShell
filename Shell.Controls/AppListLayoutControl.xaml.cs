@@ -87,8 +87,10 @@ namespace Shell.Controls {
             this.Control_SizeChanged(null, null);
         }
 
-        private void AppsListItem_Tapped(Object sender, TappedRoutedEventArgs e) {
+        private async void AppsListItem_Tapped(Object sender, TappedRoutedEventArgs e) {
             // TODO
+            var item = (TileModel)((Grid)sender).DataContext;
+            await item.Entry.LaunchAsync();
 
             if (this.ToggleVisibility != null)
                 this.ToggleVisibility();

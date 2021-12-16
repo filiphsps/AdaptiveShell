@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Xml.Serialization;
 
 namespace Shell.Host {
@@ -85,6 +87,35 @@ namespace Shell.Host {
             }
 
             return layout;
+        }
+
+        public static void DisableWPFTabletSupport() {
+            // Get a collection of the tablet devices for this window.
+            TabletDeviceCollection devices = System.Windows.Input.Tablet.TabletDevices;
+
+            if (devices.Count > 0) {
+                // Get the Type of InputManager.  
+                Type inputManagerType = typeof(System.Windows.Input.InputManager);
+
+                // Call the StylusLogic method on the InputManager.Current instance.  
+                Object stylusLogic = inputManagerType.InvokeMember("StylusLogic",
+                            BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+                            null, InputManager.Current, null);
+
+                if (stylusLogic != null) {
+                    //  Get the type of the stylusLogic returned from the call to StylusLogic.
+                    Type stylusLogicType = stylusLogic.GetType();
+
+                    // Loop until there are no more devices to remove.
+                    while (devices.Count > 0) {
+                        // Remove the first tablet device in the devices collection.
+                        stylusLogicType.InvokeMember("OnTabletRemoved",
+                                BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.NonPublic,
+                                null, stylusLogic, new Object[] { (UInt32)0 });
+                    }
+                }
+
+            }
         }
 
         /// <summary>

@@ -27,6 +27,8 @@ namespace Shell.Host {
             this.InitializeComponent();
             var settings = ((Shell.Host.App)Application.Current).Settings;
 
+            Functions.DisableWPFTabletSupport();
+
             this.SplashWindow = new Splash() {
                 Topmost = true,
                 ShowInTaskbar = false

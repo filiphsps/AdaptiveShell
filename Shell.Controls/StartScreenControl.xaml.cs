@@ -69,6 +69,7 @@ namespace Shell.Controls {
             this.AppsListLayout.ScreenHeight = this.ScreenHeight;
             this.AppsListLayout.ScreenWidth = this.ScreenWidth;
             this.AppsListLayout.ItemsSource = this.ApplicationManager.LiveTiles;
+            this.AppsListLayout.ToggleVisibility = this.ToggleVisibility;
             this.AppsListLayout.Settings = this.Settings;
             this.AppsListLayout.Control_OnReady();
 
