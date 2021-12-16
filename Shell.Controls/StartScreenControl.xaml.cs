@@ -21,8 +21,8 @@ namespace Shell.Controls {
         public Action OnSettings { get; set; }
         public Action OnFocusLost { get; set; }
         public BitmapImage Wallpaper { get; set; }
-        public Double ScreenWidth;
-        public Double ScreenHeight;
+        public Double ScreenWidth = 1920;
+        public Double ScreenHeight = 1080;
 
         public StartScreenControl() {
             this.InitializeComponent();
@@ -78,35 +78,7 @@ namespace Shell.Controls {
         }
 
         private void Control_SizeChanged(Object sender, SizeChangedEventArgs e) {
-            this.LiveTilesLayout.ScreenHeight = this.ScreenHeight;
-            this.LiveTilesLayout.ScreenWidth = this.ScreenWidth;
-            this.AppsListLayout.ScreenHeight = this.ScreenHeight;
-            this.AppsListLayout.ScreenWidth = this.ScreenWidth;
-
             if (this.ScreenWidth <= 950) {
-                this.StartHeaderToolbar.Padding = new Thickness(0);
-                this.StartFooterToolbar.Padding = new Thickness(0);
-                this.AppsHeaderToolbar.Padding = new Thickness(0);
-                this.AppsFooterToolbar.Padding = new Thickness(0);
-
-                this.StartScreenLayout.Height = Double.NaN;
-                this.StartScreenLayout.Width = this.ScreenWidth;
-                this.AppsScreenLayout.Height = Double.NaN;
-                this.AppsScreenLayout.Width = this.ScreenWidth;
-
-                this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
-                this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
-
-                this.RootScroll.HorizontalScrollMode = ScrollMode.Enabled;
-                this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
-                this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-                this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-                this.RootScroll.HorizontalSnapPointsType = SnapPointsType.MandatorySingle;
-                this.RootScroll.VerticalSnapPointsType = SnapPointsType.None;
-                this.Start.Orientation = Orientation.Horizontal;
-                this.Apps.Orientation = Orientation.Horizontal;
             } else {
                 Double padding = this.ScreenWidth * 0.025;
                 this.StartHeaderToolbar.Padding = new Thickness(padding, this.ScreenHeight * 0.05, padding, 0);
@@ -119,20 +91,6 @@ namespace Shell.Controls {
                 // Hack to make scrollbar work
                 this.AppsListLayout.Height = this.ScreenHeight - (this.AppsHeaderToolbar.ActualHeight + this.AppsFooterToolbar.ActualHeight + 50);
                 this.AppsListLayout.Width = this.ScreenWidth;
-
-                this.StartScreenLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                this.StartScreenLayout.VerticalAlignment = VerticalAlignment.Stretch;
-                this.AppsListLayout.HorizontalAlignment = HorizontalAlignment.Stretch;
-                this.AppsListLayout.VerticalAlignment = VerticalAlignment.Stretch;
-
-                this.RootScroll.HorizontalScrollMode = ScrollMode.Disabled;
-                this.RootScroll.VerticalScrollMode = ScrollMode.Enabled;
-                this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
-                this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-                this.RootScroll.HorizontalSnapPointsType = SnapPointsType.None;
-                this.RootScroll.VerticalSnapPointsType = SnapPointsType.MandatorySingle;
-                this.Start.Orientation = Orientation.Vertical;
-                this.Apps.Orientation = Orientation.Vertical;
             }
 
             // Force update

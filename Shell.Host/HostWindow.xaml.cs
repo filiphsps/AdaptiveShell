@@ -36,7 +36,7 @@ namespace Shell.Host {
             this.SplashWindow.Show();
 
             this.StartScreenWindow = new StartScreen() {
-                Topmost = Shell.Host.Features.StartScreenTopMost,
+                Topmost = Features.StartScreenTopMost,
                 ShowInTaskbar = false,
                 OnExit = this.OnExit,
                 OnSettings = this.OnSettings,
@@ -48,14 +48,14 @@ namespace Shell.Host {
             this.StartScreenWindow.Show();
 
             this.StatusBarWindow = new StatusBar() {
-                Topmost = Shell.Host.Features.StatusBarTopMost,
+                Topmost = Features.StatusBarTopMost,
                 ShowInTaskbar = false,
             };
             if (settings.EnableStatusBar)
                 this.StatusBarWindow.Show();
 
             this.ActionBarWindow = new ActionBar() {
-                Topmost = Shell.Host.Features.ActionBarTopMost,
+                Topmost = Features.ActionBarTopMost,
                 ShowInTaskbar = false
             };
             if (settings.EnableActionBar)

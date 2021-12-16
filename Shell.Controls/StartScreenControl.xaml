@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:media="using:Windows.UI.Xaml.Media"
+    xmlns:triggers="using:Microsoft.Toolkit.Uwp.UI.Triggers"
     mc:Ignorable="d"
     d:DesignHeight="1080"
     d:DesignWidth="1920"
@@ -23,12 +24,8 @@
             x:Name="RootScroll"
             HorizontalSnapPointsType="MandatorySingle"
             VerticalSnapPointsType="MandatorySingle"
-            HorizontalScrollBarVisibility="Visible"
-            HorizontalScrollMode="Enabled"
             ViewChanging="ScrollViewer_ViewChanging">
-            <StackPanel
-                x:Name="Start"
-                Orientation="Horizontal">
+            <StackPanel x:Name="Start">
                 <Grid x:Name="StartScreenLayout">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -178,5 +175,64 @@
                 </Grid>
             </StackPanel>
         </ScrollViewer>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ControlSizeStates">
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <triggers:ControlSizeTrigger MinWidth="950" TargetElement="{x:Bind Path=Root}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Start.Orientation" Value="Vertical" />
+                        <Setter Target="Apps.Orientation" Value="Vertical" />
+
+                        <!--<Setter Target="StartHeaderToolbar.Padding" Value="15,0" />
+                        <Setter Target="StartFooterToolbar.Padding" Value="15,0" />
+                        <Setter Target="AppsHeaderToolbar.Padding" Value="15,0" />
+                        <Setter Target="AppsFooterToolbar.Padding" Value="15,0" />-->
+
+                        <Setter Target="StartScreenLayout.Height" Value="{x:Bind ScreenHeight}" />
+                        <Setter Target="StartScreenLayout.Width" Value="Auto" />
+                        <Setter Target="AppsScreenLayout.Height" Value="{x:Bind ScreenHeight}" />
+                        <Setter Target="AppsScreenLayout.Width" Value="Auto" />
+
+                        <Setter Target="RootScroll.HorizontalScrollMode" Value="Disabled" />
+                        <Setter Target="RootScroll.HorizontalScrollBarVisibility" Value="Disabled" />
+                        <Setter Target="RootScroll.HorizontalSnapPointsType" Value="None" />
+                        
+                        <Setter Target="RootScroll.VerticalScrollMode" Value="Enabled" />
+                        <Setter Target="RootScroll.VerticalScrollBarVisibility" Value="Auto" />
+                        <Setter Target="RootScroll.VerticalSnapPointsType" Value="MandatorySingle" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <triggers:ControlSizeTrigger MinWidth="0" TargetElement="{x:Bind Path=Root}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="Start.Orientation" Value="Horizontal" />
+                        <Setter Target="Apps.Orientation" Value="Horizontal" />
+
+                        <Setter Target="StartHeaderToolbar.Padding" Value="0" />
+                        <Setter Target="StartFooterToolbar.Padding" Value="0" />
+                        <Setter Target="AppsHeaderToolbar.Padding" Value="0" />
+                        <Setter Target="AppsFooterToolbar.Padding" Value="0" />
+
+                        <Setter Target="StartScreenLayout.Height" Value="Auto" />
+                        <Setter Target="StartScreenLayout.Width" Value="{x:Bind ScreenWidth}" />
+                        <Setter Target="AppsScreenLayout.Height" Value="Auto" />
+                        <Setter Target="AppsScreenLayout.Width" Value="{x:Bind ScreenWidth}" />
+                        
+                        <Setter Target="RootScroll.HorizontalScrollMode" Value="Enabled" />
+                        <Setter Target="RootScroll.HorizontalScrollBarVisibility" Value="Auto" />
+                        <Setter Target="RootScroll.HorizontalSnapPointsType" Value="MandatorySingle" />
+                        
+                        <Setter Target="RootScroll.VerticalScrollMode" Value="Disabled" />
+                        <Setter Target="RootScroll.VerticalScrollBarVisibility" Value="Disabled" />
+                        <Setter Target="RootScroll.VerticalSnapPointsType" Value="None" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </UserControl>
