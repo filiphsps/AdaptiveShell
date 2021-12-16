@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using NotificationsVisualizerLibrary;
+using Shell.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

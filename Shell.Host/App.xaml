@@ -5,6 +5,5 @@
              StartupUri="HostWindow.xaml"
              Exit="Application_Exit">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

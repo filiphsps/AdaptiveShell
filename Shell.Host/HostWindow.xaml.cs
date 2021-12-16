@@ -17,6 +17,7 @@ namespace Shell.Host {
     /// Interaction logic for HostWindow.xaml
     /// </summary>
     public partial class HostWindow : Window {
+        private Splash SplashWindow;
         private StartScreen StartScreenWindow;
         private ActionBar ActionBarWindow;
         private StatusBar StatusBarWindow;
@@ -26,33 +27,43 @@ namespace Shell.Host {
             this.InitializeComponent();
             var settings = ((Shell.Host.App)Application.Current).Settings;
 
+            this.SplashWindow = new Splash() {
+                Topmost = true,
+                ShowInTaskbar = false
+            };
+            this.SplashWindow.Show();
+
             this.StartScreenWindow = new StartScreen() {
                 Topmost = Shell.Host.Features.StartScreenTopMost,
                 ShowInTaskbar = false,
                 OnExit = this.OnExit,
-                OnSettings = this.OnSettings
+                OnSettings = this.OnSettings,
+                Visibility = Visibility.Collapsed
             };
-            StartScreenWindow.Show();
+            this.StartScreenWindow.DoneLoaded += () => {
+                this.SplashWindow.Close();
+            };
+            this.StartScreenWindow.Show();
 
             this.StatusBarWindow = new StatusBar() {
                 Topmost = Shell.Host.Features.StatusBarTopMost,
                 ShowInTaskbar = false,
             };
             if (settings.EnableStatusBar)
-                StatusBarWindow.Show();
+                this.StatusBarWindow.Show();
 
             this.ActionBarWindow = new ActionBar() {
                 Topmost = Shell.Host.Features.ActionBarTopMost,
                 ShowInTaskbar = false
             };
             if (settings.EnableActionBar)
-                ActionBarWindow.Show();
+                this.ActionBarWindow.Show();
 
-            ActionBarWindow.HideStart += () => {
+            this.ActionBarWindow.HideStart += () => {
                 this.StartScreenWindow.Visibility = Visibility.Collapsed;
             };
 
-            ActionBarWindow.ToggleStart += () => {
+            this.ActionBarWindow.ToggleStart += () => {
                 if (this.StartScreenWindow.Visibility == Visibility.Visible)
                     this.StartScreenWindow.Visibility = Visibility.Collapsed;
                 else
@@ -72,7 +83,10 @@ namespace Shell.Host {
         }
 
         private void OnExit() {
-            if(this.SettingsWindow != null)
+            if (this.SplashWindow != null)
+                this.SplashWindow.Close();
+
+            if (this.SettingsWindow != null)
                 this.SettingsWindow.Close();
 
             this.ActionBarWindow.Close();

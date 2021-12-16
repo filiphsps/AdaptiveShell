@@ -1,5 +1,6 @@
 ﻿using NotificationsVisualizerLibrary;
 using Shell.LiveTilesAccessLibrary;
+using Shell.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

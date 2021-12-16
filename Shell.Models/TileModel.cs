@@ -10,7 +10,7 @@ using Windows.Data.Xml.Dom;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
-namespace Shell.LiveTilesAccessLibrary {
+namespace Shell.Models {
     public class TileDataModel {
         public String AppId;
         public XmlDocument Payload;

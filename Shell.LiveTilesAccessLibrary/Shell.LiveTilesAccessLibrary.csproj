@@ -103,7 +103,6 @@
   <ItemGroup>
     <Compile Include="ApplicationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TileModel.cs" />
     <EmbeddedResource Include="Properties\Shell.LiveTilesAccessLibrary.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +121,10 @@
       <Project>{220f3a47-bec1-40ef-be2d-98a8345ab983}</Project>
       <Name>NotificationsVisualizerLibrary</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Shell.Models\Shell.Models.csproj">
+      <Project>{292b1e99-e2c3-4ae7-a46f-b3f392faf301}</Project>
+      <Name>Shell.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

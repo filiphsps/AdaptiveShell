@@ -24,6 +24,7 @@ namespace Shell.Host {
     public partial class StartScreen : Window {
         public Action OnExit { get; set; }
         public Action OnSettings { get; set; }
+        public Action DoneLoaded { get; set; }
         private System.Windows.Threading.DispatcherTimer DispatcherTimer = new System.Windows.Threading.DispatcherTimer();
 
         public StartScreen() {
@@ -113,6 +114,7 @@ namespace Shell.Host {
                 };
 
                 control.Control_OnReady();
+                if (this.DoneLoaded != null) this.DoneLoaded();
                 this.Visibility = Visibility.Visible;
             } catch { }
         }

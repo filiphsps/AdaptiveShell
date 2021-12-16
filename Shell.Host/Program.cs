@@ -13,8 +13,6 @@ namespace Shell.Host {
             // TODO: listen for applications startup and maximize windows.
 
             var settings = Functions.LoadSettings();
-            Functions.HideTaskBar();
-            Functions.MakeNewDesktopArea();
 
             try {
                 using (new Shell.Start()) {
@@ -23,6 +21,10 @@ namespace Shell.Host {
                     };
 
                     app.InitializeComponent();
+
+                    Functions.HideTaskBar();
+                    Functions.MakeNewDesktopArea();
+
                     Int32 res = app.Run();
                     settings = app.Settings;
                 }

@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace Shell.Models {
     public class SettingsModel {
+        public enum OOBExperienceVersion {
+            None = 0,
+        }
+
+        /// <summary>
+        /// The version of the last ran "Out Of the Box" experience.
+        /// </summary>
+        public OOBExperienceVersion OOBExperience { get; set; } = OOBExperienceVersion.None;
+
         /// <summary>
         /// If elements should follow the newer rounded Windows 11 style.
         /// </summary>

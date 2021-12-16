@@ -10,6 +10,10 @@
     <StartupObject>Shell.Host.Program</StartupObject>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
     <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+    <PackageProjectUrl>https://github.com/w10m-research/AdaptiveShell</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/w10m-research/AdaptiveShell</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>C:\Users\filfa\source\repos\AdaptiveShell\LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>

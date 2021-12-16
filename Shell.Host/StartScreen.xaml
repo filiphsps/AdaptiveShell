@@ -10,7 +10,7 @@
         ResizeMode="NoResize"
         AllowsTransparency="True"
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
-        Background="Black"
+        Background="Transparent"
         Loaded="Window_Loaded"
         SizeChanged="Window_SizeChanged"
         Visibility="Collapsed"

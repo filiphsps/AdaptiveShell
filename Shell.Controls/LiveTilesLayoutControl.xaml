@@ -1,6 +1,6 @@
 ﻿<UserControl
-    xmlns:tiles="using:NotificationsVisualizerLibrary" 
-    xmlns:tilesAccessLibrary="using:Shell.LiveTilesAccessLibrary" 
+    xmlns:tiles="using:NotificationsVisualizerLibrary"
+    xmlns:models="using:Shell.Models" 
     x:Class="Shell.Controls.LiveTilesLayoutControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -47,7 +47,7 @@
                 </GridView.ItemContainerStyle>
 
                 <GridView.ItemTemplate>
-                    <DataTemplate x:DataType="tilesAccessLibrary:TileModel">
+                    <DataTemplate x:DataType="models:TileModel">
                         <Grid
                             x:Name="LiveTile"
                             HorizontalAlignment="Stretch"

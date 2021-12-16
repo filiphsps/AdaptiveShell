@@ -102,7 +102,7 @@ namespace Shell.Controls {
                 this.RootScroll.VerticalScrollMode = ScrollMode.Disabled;
                 this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
                 this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
-                this.RootScroll.HorizontalSnapPointsType = SnapPointsType.OptionalSingle;
+                this.RootScroll.HorizontalSnapPointsType = SnapPointsType.MandatorySingle;
                 this.RootScroll.VerticalSnapPointsType = SnapPointsType.None;
                 this.Start.Orientation = Orientation.Horizontal;
                 this.Apps.Orientation = Orientation.Horizontal;
@@ -129,7 +129,7 @@ namespace Shell.Controls {
                 this.RootScroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
                 this.RootScroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
                 this.RootScroll.HorizontalSnapPointsType = SnapPointsType.None;
-                this.RootScroll.VerticalSnapPointsType = SnapPointsType.OptionalSingle;
+                this.RootScroll.VerticalSnapPointsType = SnapPointsType.MandatorySingle;
                 this.Start.Orientation = Orientation.Vertical;
                 this.Apps.Orientation = Orientation.Vertical;
             }
