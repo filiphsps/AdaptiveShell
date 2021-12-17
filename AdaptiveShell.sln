@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1738
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.UWP", "Shell\Shell.UWP.csproj", "{B3C05A73-451A-49AD-8698-CF5FC74BFBD4}"
 EndProject
@@ -23,6 +23,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.Controls", "Shell.Controls\Shell.Controls.csproj", "{2669EBC6-06B4-44F2-9B86-421A5272973E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.Models", "Shell.Models\Shell.Models.csproj", "{292B1E99-E2C3-4AE7-A46F-B3F392FAF301}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.Controls.Test", "Shell.Controls.Test\Shell.Controls.Test.csproj", "{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{18E6F0E3-8FB9-4374-98AC-A7F17A9181BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -174,12 +178,43 @@ Global
 		{292B1E99-E2C3-4AE7-A46F-B3F392FAF301}.Release|x64.Build.0 = Release|x64
 		{292B1E99-E2C3-4AE7-A46F-B3F392FAF301}.Release|x86.ActiveCfg = Release|x86
 		{292B1E99-E2C3-4AE7-A46F-B3F392FAF301}.Release|x86.Build.0 = Release|x86
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|Any CPU.Build.0 = Debug|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|ARM.ActiveCfg = Debug|ARM
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|ARM.Build.0 = Debug|ARM
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|ARM.Deploy.0 = Debug|ARM
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|x64.ActiveCfg = Debug|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|x64.Build.0 = Debug|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|x64.Deploy.0 = Debug|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|x86.ActiveCfg = Debug|x86
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|x86.Build.0 = Debug|x86
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Debug|x86.Deploy.0 = Debug|x86
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|Any CPU.ActiveCfg = Release|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|Any CPU.Build.0 = Release|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|Any CPU.Deploy.0 = Release|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|ARM.ActiveCfg = Release|ARM
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|ARM.Build.0 = Release|ARM
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|ARM.Deploy.0 = Release|ARM
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|ARM64.Build.0 = Release|ARM64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|ARM64.Deploy.0 = Release|ARM64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|x64.ActiveCfg = Release|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|x64.Build.0 = Release|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|x64.Deploy.0 = Release|x64
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|x86.ActiveCfg = Release|x86
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|x86.Build.0 = Release|x86
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{220F3A47-BEC1-40EF-BE2D-98A8345AB983} = {116061DC-9FE5-45CC-A3FD-493672B1E13D}
+		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05} = {18E6F0E3-8FB9-4374-98AC-A7F17A9181BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FEC9161B-38DF-4BB1-9A99-8C5160C28152}
