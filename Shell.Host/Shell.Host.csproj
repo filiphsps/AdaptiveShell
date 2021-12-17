@@ -18,6 +18,13 @@
     <PackageLicenseFile>/../LICENSE.MD</PackageLicenseFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Platform)' == 'x86'">
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'x64'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="InputSimulator" Version="1.0.4" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.6" />
