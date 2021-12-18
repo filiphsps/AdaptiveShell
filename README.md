@@ -1,6 +1,6 @@
-# ![Logo](Shell.Packaging/Images/Square44x44Logo.targetsize-24_altform-unplated.png) Adpative Shell
+# ![Logo](Shell.Packaging/Images/Square44x44Logo.targetsize-24_altform-unplated.png) Adaptive Shell
 
-An adaptive and modern shell replacment for mobile and tablet computing devices running Windows 11 (with Windows 10 backwards-compatibility).
+An adaptive and modern shell replacement for mobile and tablet computing devices running Windows 11 (with Windows 10 backwards-compatibility).
 
 ## User interface
 
