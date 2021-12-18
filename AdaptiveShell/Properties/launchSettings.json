@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AdaptiveShell (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AdaptiveShell (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

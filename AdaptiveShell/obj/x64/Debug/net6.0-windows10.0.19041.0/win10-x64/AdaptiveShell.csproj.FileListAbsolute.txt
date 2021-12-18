@@ -1,0 +1,12 @@
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AdaptiveShell.csproj.AssemblyReference.cache
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\App.g.i.cs
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\App.g.cs
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\MainWindow.g.i.cs
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\MainWindow.g.cs
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\XamlTypeInfo.g.cs
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\App.xaml
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\MainWindow.xaml
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\App.xbf
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\MainWindow.xbf
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\XamlSaveStateFile.xml
+C:\Users\filfa\source\repos\AdaptiveShell\AdaptiveShell\obj\x64\Debug\net6.0-windows10.0.19041.0\win10-x64\AdaptiveShell.GeneratedMSBuildEditorConfig.editorconfig

@@ -1,0 +1,60 @@
+# This workflow sets up and runs MSBuild and VSTest
+# to build and test a Visual Studio solution.
+
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - master
+      - test/*
+      - feature/*
+      - bugfix/*
+
+  pull_request:
+    branches:
+      - master
+      - test/*
+      - feature/*
+      - bugfix/*
+
+jobs:
+  run-msbuild:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [arm64, x86, x64]
+
+    runs-on: windows-2022
+    name: Run MSBuild and VSTest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.1.0
+        id: checkout_code
+
+      - uses: nuget/setup-nuget@v1
+        with:
+         nuget-version: '6.x'
+
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.x
+
+      - name: Restore nuget
+        id: run_nuget
+        working-directory: ${{ github.workspace }}
+        run: nuget.exe restore .\AdaptiveShell.sln
+
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1
+        id: setup_msbuild
+
+      - name: Run MSBuild
+        id: run_msbuild
+        working-directory: ${{ github.workspace }}
+        run: msbuild .\AdaptiveShell.sln /property:Configuration=${{ matrix.configuration }} /p:Platform=x64
+
+      - name: Setup VSTest path
+        uses: darenm/Setup-VSTest@v1
+        id: setup_vstest

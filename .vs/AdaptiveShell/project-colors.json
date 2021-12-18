@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "01c0cddc-61be-4f32-a311-c29600425546": {
+      "ProjectGuid": "01c0cddc-61be-4f32-a311-c29600425546",
+      "DisplayName": "AdaptiveShell",
+      "ColorIndex": 0
+    },
+    "f47acd7c-a4d5-4ed2-9a33-7c4f316ad036": {
+      "ProjectGuid": "f47acd7c-a4d5-4ed2-9a33-7c4f316ad036",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
