@@ -15,6 +15,7 @@ Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "Shell.Packaging", "Shell.Pa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{646804D3-AC1E-4A5C-BE3F-955DB0E04C32}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -27,6 +28,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shell.Controls.Test", "Shell.Controls.Test\Shell.Controls.Test.csproj", "{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{18E6F0E3-8FB9-4374-98AC-A7F17A9181BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9B2E8B6D-2C14-47B9-BD53-89254F23CFF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{64BF5705-A0F2-4F26-A925-21B11EB9AD49}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +223,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{220F3A47-BEC1-40EF-BE2D-98A8345AB983} = {116061DC-9FE5-45CC-A3FD-493672B1E13D}
 		{E2B8F142-08EA-4A6F-A1C3-D74ACC8EBF05} = {18E6F0E3-8FB9-4374-98AC-A7F17A9181BF}
+		{9B2E8B6D-2C14-47B9-BD53-89254F23CFF0} = {646804D3-AC1E-4A5C-BE3F-955DB0E04C32}
+		{64BF5705-A0F2-4F26-A925-21B11EB9AD49} = {9B2E8B6D-2C14-47B9-BD53-89254F23CFF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FEC9161B-38DF-4BB1-9A99-8C5160C28152}
