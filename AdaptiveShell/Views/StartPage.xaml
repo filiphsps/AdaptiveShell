@@ -85,9 +85,11 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource LargeWindowSnapPoint}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="RootScroll.VerticalScrollMode" Value="Enabled" />
                         <Setter Target="RootScroll.HorizontalScrollMode" Value="Disabled" />
                         <Setter Target="RootScroll.VerticalSnapPointsType" Value="MandatorySingle" />
-                        
+                        <Setter Target="RootScroll.VerticalScrollBarVisibility" Value="Auto" />
+
                         <Setter Target="RootStack.Orientation" Value="Vertical" />
                     </VisualState.Setters>
                 </VisualState>
@@ -96,8 +98,10 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="RootScroll.HorizontalSnapPointsType" Value="MandatorySingle" />
                         <Setter Target="RootScroll.VerticalScrollMode" Value="Disabled" />
+                        <Setter Target="RootScroll.HorizontalScrollMode" Value="Enabled" />
+                        <Setter Target="RootScroll.HorizontalSnapPointsType" Value="MandatorySingle" />
+                        <Setter Target="RootScroll.HorizontalScrollBarVisibility" Value="Auto" />
                         
                         <Setter Target="RootStack.Orientation" Value="Horizontal" />
                     </VisualState.Setters>
