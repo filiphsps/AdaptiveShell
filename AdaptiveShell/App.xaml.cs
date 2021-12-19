@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using AdaptiveShell.Helpers;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -38,10 +39,17 @@ namespace AdaptiveShell {
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args) {
-            m_window = new MainWindow();
-            m_window.Activate();
+            this.LauncherWindow = new LauncherWindow();
+            this.LauncherWindow.Activate();
+            this.LauncherWindow.Loaded();
+
+            //this.Taskbar = new Taskbar();
+            //this.Taskbar.Activate();
+            //this.Taskbar.Loaded();
         }
 
-        private Window m_window;
+
+        private LauncherWindow LauncherWindow;
+        // Taskbar Taskbar;
     }
 }

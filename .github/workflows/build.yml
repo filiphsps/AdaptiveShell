@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+      - winui3
       - test/*
       - feature/*
       - bugfix/*
@@ -14,6 +15,7 @@ on:
   pull_request:
     branches:
       - master
+      - winui3
       - test/*
       - feature/*
       - bugfix/*
@@ -53,7 +55,7 @@ jobs:
       - name: Run MSBuild
         id: run_msbuild
         working-directory: ${{ github.workspace }}
-        run: msbuild .\AdaptiveShell.sln /property:Configuration=${{ matrix.configuration }} /p:Platform=x64
+        run: msbuild .\AdaptiveShell.sln /property:Configuration=${{ matrix.configuration }} /p:Platform=x64 /p:PublishReadyToRun=false
 
       - name: Setup VSTest path
         uses: darenm/Setup-VSTest@v1

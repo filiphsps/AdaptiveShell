@@ -1,0 +1,108 @@
+﻿<Page
+    x:Class="AdaptiveShell.Views.StartPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AdaptiveShell.Views"
+    xmlns:controls="using:AdaptiveShell.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:viewmodels="using:AdaptiveShell.ViewModels"
+    Background="{ThemeResource SystemAccentColorLight1}">
+    <Page.DataContext>
+        <viewmodels:StartViewModel />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Style x:Key="TitleText" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
+            <Setter Target="Margin" Value="50, 25" />
+        </Style>
+        <Style x:Key="ButtonTitleText" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
+            <Setter Target="Margin" Value="15, 0, 5, 0" />
+        </Style>
+        <Style x:Key="ToggleViewBtn" TargetType="Button">
+            <Setter Target="Margin" Value="25, -25" />
+            <Setter Target="Padding" Value="25" />
+            <Setter Target="Background" Value="Transparent" />
+            <Setter Target="BorderThickness" Value="0" />
+        </Style>
+        <Style x:Key="SectionBlock" TargetType="Grid">
+            <Setter Target="Height" Value="{x:Bind WindowSize.Height}" />
+            <Setter Target="MaxHeight" Value="{x:Bind WindowSize.Height}" />
+            <Setter Target="Width" Value="{x:Bind WindowSize.Width}" />
+            <Setter Target="MaxWidth" Value="{x:Bind WindowSize.Width}" />
+        </Style>
+    </Page.Resources>
+
+    <Page.Foreground>
+        <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
+    </Page.Foreground>
+
+    <Grid x:Name="Root">
+        <ScrollViewer x:Name="RootScroll" ViewChanging="RootScroll_ViewChanging">
+            <StackPanel x:Name="RootStack">
+                <Grid Style="{StaticResource SectionBlock}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Style="{StaticResource TitleText}" x:Uid="StartScreenLayout"/>
+
+                    <controls:LiveTilesLayoutControl Grid.Row="1" />
+
+                    <Button Grid.Row="2" Style="{StaticResource ToggleViewBtn}">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Up" />
+                            <TextBlock Style="{StaticResource ButtonTitleText}" x:Uid="ShowApps"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <Grid  Style="{StaticResource SectionBlock}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" Style="{StaticResource TitleText}" x:Uid="AppsListLayout"/>
+
+                    <Button Grid.Row="2" Style="{StaticResource ToggleViewBtn}">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Up" />
+                            <TextBlock Style="{StaticResource ButtonTitleText}" x:Uid="ShowStart"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource LargeWindowSnapPoint}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RootScroll.HorizontalScrollMode" Value="Disabled" />
+                        <Setter Target="RootScroll.VerticalSnapPointsType" Value="MandatorySingle" />
+                        
+                        <Setter Target="RootStack.Orientation" Value="Vertical" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowSnapPoint}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RootScroll.HorizontalSnapPointsType" Value="MandatorySingle" />
+                        <Setter Target="RootScroll.VerticalScrollMode" Value="Disabled" />
+                        
+                        <Setter Target="RootStack.Orientation" Value="Horizontal" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
