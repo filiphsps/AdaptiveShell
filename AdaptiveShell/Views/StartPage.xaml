@@ -8,7 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:viewmodels="using:AdaptiveShell.ViewModels"
-    Background="{ThemeResource SystemAccentColorLight1}">
+    Background="{ThemeResource SystemAccentColorLight1}"
+    NavigationCacheMode="Required">
     <Page.DataContext>
         <viewmodels:StartViewModel />
     </Page.DataContext>

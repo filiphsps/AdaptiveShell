@@ -26,12 +26,13 @@ namespace AdaptiveShell {
     /// </summary>
     public sealed partial class LauncherWindow : Window {
         private Frame rootFrame;
+        private Microsoft.UI.Xaml.Navigation.NavigatedEventHandler rootFrameLoadedGandler;
 
         public LauncherWindow() {
             this.InitializeComponent();
         }
 
-        public async void Loaded() {
+        public void Loaded() {
             var handle = WinRT.Interop.WindowNative.GetWindowHandle(this);
             var window = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(handle);
             var screen = DisplayArea.GetFromWindowId(window, DisplayAreaFallback.Primary);
@@ -61,20 +62,32 @@ namespace AdaptiveShell {
             // TODO: do all setup and preloading here.
 
             // Navigate to Start page
-            this.rootFrame = new Frame();
-
-            rootFrame.Height = workArea.Height;
-            rootFrame.Width = workArea.Width;
+            this.rootFrame = new Frame {
+                Height = workArea.Height,
+                Width = workArea.Width
+            };
 
             // Wait for page load.
-            rootFrame.Navigated += (Object sender, NavigationEventArgs e) => {
-                this.Content = rootFrame;
+            rootFrameLoadedGandler = (Object sender, NavigationEventArgs e) => {
+                var start = rootFrame.Content as Views.StartPage;
 
                 // Fill workarea.
                 app.MoveAndResize(workArea);
+
+                // Listen to window resizes and update start accordingly.
+                this.SizeChanged += (Object sender, WindowSizeChangedEventArgs args) => {
+                    start.WindowSize = new Windows.Graphics.SizeInt32((Int32)args.Size.Width, (Int32)args.Size.Height);
+                };
+
+                // Unsubscribe from future events.
+                this.rootFrame.Navigated -= rootFrameLoadedGandler;
+
+                // Show frame.
+                this.Content = rootFrame;
             };
 
-            rootFrame.Navigate(typeof(Views.StartPage), workArea, new Microsoft.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+            this.rootFrame.Navigated += rootFrameLoadedGandler;
+            this.rootFrame.Navigate(typeof(Views.StartPage), workArea, new Microsoft.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
         }
     }
 }
