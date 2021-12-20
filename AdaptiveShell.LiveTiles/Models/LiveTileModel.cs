@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdaptiveShelll.LiveTiles.Models {
-    internal class LiveTileModel {
-        public String AppId;
+namespace AdaptiveShell.LiveTiles.Models {
+    public class LiveTileModel {
+        public String AppId { get; set; }
     }
 }

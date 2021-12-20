@@ -7,31 +7,33 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:viewmodels="using:AdaptiveShell.ViewModels"
+    xmlns:viewModels="using:AdaptiveShell.ViewModels"
     Background="{ThemeResource SystemAccentColorLight1}"
     NavigationCacheMode="Required">
     <Page.DataContext>
-        <viewmodels:StartViewModel />
+        <viewModels:StartViewModel />
     </Page.DataContext>
 
     <Page.Resources>
         <Style x:Key="TitleText" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
             <Setter Target="Margin" Value="50, 25" />
         </Style>
+
         <Style x:Key="ButtonTitleText" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
             <Setter Target="Margin" Value="15, 0, 5, 0" />
         </Style>
-        <Style x:Key="ToggleViewBtn" TargetType="Button">
+        <Style x:Key="ToggleViewBtn" TargetType="Button" BasedOn="{StaticResource ActionButton}">
             <Setter Target="Margin" Value="25, -25" />
-            <Setter Target="Padding" Value="25" />
-            <Setter Target="Background" Value="Transparent" />
-            <Setter Target="BorderThickness" Value="0" />
         </Style>
         <Style x:Key="SectionBlock" TargetType="Grid">
             <Setter Target="Height" Value="{x:Bind WindowSize.Height}" />
-            <Setter Target="MaxHeight" Value="{x:Bind WindowSize.Height}" />
             <Setter Target="Width" Value="{x:Bind WindowSize.Width}" />
-            <Setter Target="MaxWidth" Value="{x:Bind WindowSize.Width}" />
+        </Style>
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Target="Margin" Value="-25" />
+            <Setter Target="Padding" Value="25" />
+            <Setter Target="Background" Value="Transparent" />
+            <Setter Target="BorderThickness" Value="0" />
         </Style>
     </Page.Resources>
 
@@ -49,9 +51,28 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Style="{StaticResource TitleText}" x:Uid="StartScreenLayout"/>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <controls:LiveTilesLayoutControl Grid.Row="1" />
+                        <TextBlock 
+                            Grid.Column="0"
+                            Style="{StaticResource TitleText}"
+                            x:Uid="StartScreenLayout"/>
+                        <StackPanel Grid.Column="1">
+                            <PersonPicture />
+                            <Button Style="{StaticResource ActionButton}">
+                                <SymbolIcon Symbol="Setting"/>
+                            </Button>
+                            <Button Style="{StaticResource ActionButton}">
+                                <SymbolIcon Symbol="Find"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <controls:LiveTilesLayoutControl Grid.Row="1" ItemsSource="{Binding LiveTiles}" />
 
                     <Button Grid.Row="2" Style="{StaticResource ToggleViewBtn}">
                         <StackPanel Orientation="Horizontal">

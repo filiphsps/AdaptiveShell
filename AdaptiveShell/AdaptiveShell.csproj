@@ -97,4 +97,7 @@
   <ItemGroup>
     <Folder Include="Views\Pages\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdaptiveShell.LiveTiles\AdaptiveShell.LiveTiles.csproj" />
+  </ItemGroup>
 </Project>
