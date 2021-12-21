@@ -7,11 +7,14 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-
                 <ResourceDictionary>
-                    <!--  window width adaptive snap points  -->
+                    <!--  Window width adaptive snap points  -->
                     <x:Double x:Key="MinWindowSnapPoint">0</x:Double>
                     <x:Double x:Key="LargeWindowSnapPoint">950</x:Double>
+
+                    <!--  Corner Radius  -->
+                    <CornerRadius x:Key="ControlCornerRadius">4</CornerRadius>
+                    <CornerRadius x:Key="OverlayCornerRadius">8</CornerRadius>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

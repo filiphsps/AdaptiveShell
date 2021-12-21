@@ -15,9 +15,7 @@
     </Page.DataContext>
 
     <Page.Resources>
-        <Style x:Key="TitleText" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}">
-            <Setter Target="Margin" Value="50, 25" />
-        </Style>
+        <Style x:Key="TitleText" TargetType="TextBlock" BasedOn="{StaticResource HeaderTextBlockStyle}" />
 
         <Style x:Key="ButtonTitleText" TargetType="TextBlock" BasedOn="{StaticResource SubtitleTextBlockStyle}">
             <Setter Target="Margin" Value="15, 0, 5, 0" />
@@ -27,13 +25,18 @@
         </Style>
         <Style x:Key="SectionBlock" TargetType="Grid">
             <Setter Target="Height" Value="{x:Bind WindowSize.Height}" />
-            <Setter Target="Width" Value="{x:Bind WindowSize.Width}" />
+            <Setter Target="Width" Value="Auto" />
+            <Setter Target="HorizontalAlignment" Value="Stretch" />
+        </Style>
+        <Style x:Key="SectionHeader" TargetType="Grid">
+            <Setter Target="Margin" Value="50, 25" />
         </Style>
         <Style x:Key="ActionButton" TargetType="Button">
-            <Setter Target="Margin" Value="-25" />
-            <Setter Target="Padding" Value="25" />
+            <Setter Target="Margin" Value="15,0,0,0" />
+            <Setter Target="Padding" Value="15" />
             <Setter Target="Background" Value="Transparent" />
             <Setter Target="BorderThickness" Value="0" />
+            <Setter Target="Foreground" Value="{ThemeResource SystemAltHighColor}" />
         </Style>
     </Page.Resources>
 
@@ -51,7 +54,9 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
+                    <Grid
+                        Grid.Row="0"
+                        Style="{StaticResource SectionHeader}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="Auto"/>
@@ -61,9 +66,9 @@
                             Grid.Column="0"
                             Style="{StaticResource TitleText}"
                             x:Uid="StartScreenLayout"/>
-                        <StackPanel Grid.Column="1">
-                            <PersonPicture />
-                            <Button Style="{StaticResource ActionButton}">
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <PersonPicture Width="48" Height="48" />
+                            <Button Style="{StaticResource ActionButton}" Command="{Binding RequestSettingsDialogCommand}">
                                 <SymbolIcon Symbol="Setting"/>
                             </Button>
                             <Button Style="{StaticResource ActionButton}">
@@ -81,14 +86,24 @@
                         </StackPanel>
                     </Button>
                 </Grid>
-                <Grid  Style="{StaticResource SectionBlock}">
+                <Grid Style="{StaticResource SectionBlock}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     
-                    <TextBlock Grid.Row="0" Style="{StaticResource TitleText}" x:Uid="AppsListLayout"/>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Style="{StaticResource TitleText}"
+                            x:Uid="AppsListLayout"/>
+                    </Grid>
 
                     <Button Grid.Row="2" Style="{StaticResource ToggleViewBtn}">
                         <StackPanel Orientation="Horizontal">

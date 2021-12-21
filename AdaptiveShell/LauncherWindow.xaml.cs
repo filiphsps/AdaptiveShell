@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using Microsoft.UI.Windowing;
 using AdaptiveShell.LiveTiles.Models;
+using AdaptiveShell.ViewModels;
 using Microsoft.UI;
 using Windows.Graphics;
 
@@ -54,8 +55,8 @@ namespace AdaptiveShell {
 
             // Navigate to Start page
             this.rootFrame = new Frame {
-                Height = workArea.Height,
-                Width = workArea.Width
+                Height = size.Height,
+                Width = size.Width
             };
 
             // Wait for page load.
@@ -85,6 +86,8 @@ namespace AdaptiveShell {
                 // Listen to window resizes and update start accordingly.
                 this.SizeChanged += (Object sender, WindowSizeChangedEventArgs args) => {
                     start.WindowSize = new Windows.Graphics.SizeInt32((Int32)args.Size.Width, (Int32)args.Size.Height);
+                    this.rootFrame.Width = args.Size.Width;
+                    this.rootFrame.Height = args.Size.Height;
                 };
 
                 // Unsubscribe from future events.
@@ -92,6 +95,9 @@ namespace AdaptiveShell {
 
                 // Show frame.
                 this.Content = this.rootFrame;
+
+                // Set window.
+                ((StartViewModel)start.DataContext).Window = this;
             };
 
             this.rootFrame.Navigated += this.rootFrameLoadedHandler;

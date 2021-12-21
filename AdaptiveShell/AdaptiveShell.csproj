@@ -65,7 +65,10 @@
     <None Remove="Assets\Square44x44Logo.targetsize-256.png" />
     <None Remove="Assets\StoreLogo.scale-400.png" />
     <None Remove="Assets\Wide310x150Logo.scale-400.png" />
+    <None Remove="Dialogs\SettingsDialog.xaml" />
     <None Remove="UserControls\LiveTilesLayoutControl.xaml" />
+    <None Remove="Views\SettingsPages\About.xaml" />
+    <None Remove="Views\SettingsPages\Preferences.xaml" />
     <None Remove="Views\StartPage.xaml" />
   </ItemGroup>
 
@@ -99,5 +102,20 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdaptiveShell.LiveTiles\AdaptiveShell.LiveTiles.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Dialogs\SettingsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\SettingsPages\Preferences.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\SettingsPages\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

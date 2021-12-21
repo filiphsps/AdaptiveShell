@@ -9,3 +9,6 @@ An adaptive and modern shell replacement for mobile and tablet computing devices
 | Start screen                       | All apps                          | Settings                              |
 
 _Screenshot on Surface Pro 2 [dc70ce9](https://github.com/w10m-research/AdaptiveShell/commit/dc70ce9cec578cf9b6a7338596697e6106613123)_
+
+## Acknowledgements
+- Thanks to [Files](https://github.com/files-community/Files) for providing general UWP help
