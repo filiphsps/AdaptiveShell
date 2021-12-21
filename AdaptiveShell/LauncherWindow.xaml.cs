@@ -55,7 +55,7 @@ namespace AdaptiveShell {
 
             // Navigate to Start page
             this.rootFrame = new Frame {
-                Height = size.Height,
+                Height = size.Height - 20,
                 Width = size.Width
             };
 
@@ -63,19 +63,16 @@ namespace AdaptiveShell {
             this.rootFrameLoadedHandler = (Object sender, NavigationEventArgs e) => {
                 var start = this.rootFrame.Content as Views.StartPage;
 
+                var tiles = new ObservableCollection<LiveTileModel>();
+                for (Int32 i = 0; i < 255; i++) {
+                    tiles.Add(new LiveTileModel() {
+                        AppId = i.ToString()
+                    });
+                }
+
                 // TODO: data context.
                 start.DataContext = new ViewModels.StartViewModel() {
-                    /* LiveTiles = new ObservableCollection<LiveTileModel> {
-                        new LiveTileModel {
-                            AppId = "1"
-                        },
-                        new LiveTileModel {
-                            AppId = "2"
-                        },
-                        new LiveTileModel {
-                            AppId = "3"
-                        }
-                    } */
+                    LiveTiles = tiles
                 };
 
                 // Fill workarea.

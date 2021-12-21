@@ -1,0 +1,53 @@
+﻿<UserControl
+    x:Class="AdaptiveShell.LiveTiles.UserControls.LiveTile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AdaptiveShell.LiveTiles.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <Style x:Key="LiveTileRoot" TargetType="Grid">
+            <Setter Target="Width" Value="152"/>
+            <Setter Target="Height" Value="152"/>
+            <Setter Target="Padding" Value="8"/>
+            <Setter Target="CornerRadius" Value="4"/>
+            <Setter Target="Background" Value="{ThemeResource SystemAccentColor}"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Style="{StaticResource LiveTileRoot}">
+        <Canvas x:Name="Canvas"></Canvas>
+        <Border>
+            <Grid
+                x:Name="Branding"
+                VerticalAlignment="Bottom"
+                Height="24"
+                HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    x:Name="DisplayName"
+                    TextTrimming="CharacterEllipsis"
+                    VerticalAlignment="Bottom"
+                    Grid.Column="0"
+                    Text="Hello World"/>
+
+                <Image
+                    x:Name="AppIcon"
+                    Visibility="Collapsed"
+                    VerticalAlignment="Bottom"
+                    Width="16"
+                    Height="16"
+                    Stretch="Uniform"
+                    HorizontalAlignment="Right"
+                    Grid.Column="1" />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

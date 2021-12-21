@@ -6,6 +6,7 @@
     xmlns:liveTiles="using:AdaptiveShell.LiveTiles.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:AdaptiveShell.LiveTiles.UserControls"
     mc:Ignorable="d">
 
     <Grid>
@@ -14,11 +15,12 @@
         <GridView
             CanDragItems="True"
             CanReorderItems="True"
+            AllowDrop="True"
             ItemsSource="{x:Bind ItemsSource}">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="liveTiles:LiveTileModel">
                     <Grid>
-                        <TextBlock Text="{Binding AppId}" />
+                        <userControls:LiveTile AppId="{Binding AppId}" />
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>
