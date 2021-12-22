@@ -1,5 +1,6 @@
 ﻿using AdaptiveShell.Dialogs;
 using AdaptiveShell.LiveTiles.Models;
+using AdaptiveShell.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
