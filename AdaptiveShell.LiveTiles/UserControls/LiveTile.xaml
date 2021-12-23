@@ -89,13 +89,11 @@
     </UserControl.Resources>
 
 
-    <Grid x:Name="LayoutRoot" Width="{Binding TilePixelSize.Width, ElementName=previewTile}" Height="{Binding TilePixelSize.Height, ElementName=previewTile}">
+    <Grid x:Name="LayoutRoot" Width="{Binding TilePixelSize.Width, ElementName=liveTile}" Height="{Binding TilePixelSize.Height, ElementName=liveTile}">
 
-        <Grid x:Name="canvas" Width="{Binding TilePixelSize.Width, ElementName=previewTile}" Height="{Binding TilePixelSize.Height, ElementName=previewTile}" Clip="{Binding TilePixelSize, Converter={StaticResource TilePixelSizeToClip}, ElementName=previewTile}">
-
-
-
-        </Grid>
+        <Grid x:Name="canvas" Width="{Binding TilePixelSize.Width, ElementName=liveTile}"
+              Height="{Binding TilePixelSize.Height, ElementName=liveTile}"
+              Clip="{Binding TilePixelSize, Converter={StaticResource TilePixelSizeToClip}, ElementName=liveTile}" />
 
         <!--Branding-->
         <Border>
@@ -117,6 +115,5 @@
 
             </Grid>
         </Border>
-
     </Grid>
 </UserControl>

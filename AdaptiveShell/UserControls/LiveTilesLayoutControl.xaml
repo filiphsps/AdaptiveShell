@@ -16,11 +16,16 @@
             CanDragItems="True"
             CanReorderItems="True"
             AllowDrop="True"
-            ItemsSource="{x:Bind ItemsSource}">
+            ItemsSource="{x:Bind ItemsSource}"
+            Padding="50,0">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:LiveTileModel">
-                    <Grid>
+                    <Grid Width="152" Height="152">
                         <liveTiles:LiveTile
+                            DisplayName="Hello World"
+                            TileSize="Large"
+                            Height="152"
+                            Width="152"
                             x:Name="LiveTile"
                             Loaded="LiveTile_OnLoaded" />
                     </Grid>

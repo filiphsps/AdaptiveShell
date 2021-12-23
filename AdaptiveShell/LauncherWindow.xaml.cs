@@ -65,7 +65,7 @@ namespace AdaptiveShell {
                 var start = this.rootFrame.Content as Views.StartPage;
 
                 var tiles = new ObservableCollection<LiveTileModel>();
-                for (Int32 i = 0; i < 255; i++) {
+                for (Int32 i = 0; i < 16; i++) {
                     tiles.Add(new LiveTileModel() {
                         AppId = i.ToString()
                     });
