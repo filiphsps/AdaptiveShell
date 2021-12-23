@@ -7,7 +7,13 @@
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Controls\PeekDisplayerControl.xaml" />
+    <None Remove="Themes\Brushes.xaml" />
+    <None Remove="Themes\Styles.xaml" />
+    <None Remove="UserControls\BadgeValueControl.xaml" />
     <None Remove="UserControls\LiveTile.xaml" />
+    <None Remove="UserControls\LiveTileNotification.xaml" />
+    <None Remove="UserControls\LiveTileNotificationRaw.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +22,45 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Themes\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\PeekDisplayerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UserControls\LiveTileNotificationRaw.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UserControls\LiveTileNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\BadgeValueControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UserControls\LiveTile.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using AdaptiveShell.LiveTiles.Models;
+using AdaptiveShell.LiveTiles.UserControls;
+using AdaptiveShell.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using System;
@@ -19,6 +21,11 @@ namespace AdaptiveShell.UserControls {
 
         public LiveTilesLayoutControl() {
             this.InitializeComponent();
+        }
+
+        private async void LiveTile_OnLoaded(Object sender, RoutedEventArgs e) {
+            var tile = (LiveTile)sender;
+            await tile.UpdateAsync();
         }
     }
 }

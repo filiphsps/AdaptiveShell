@@ -3,10 +3,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AdaptiveShell.UserControls"
-    xmlns:liveTiles="using:AdaptiveShell.LiveTiles.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:AdaptiveShell.LiveTiles.UserControls"
+    xmlns:liveTiles="using:AdaptiveShell.LiveTiles.UserControls" 
+    xmlns:models="using:AdaptiveShell.Models"
     mc:Ignorable="d">
 
     <Grid>
@@ -16,11 +16,18 @@
             CanDragItems="True"
             CanReorderItems="True"
             AllowDrop="True"
-            ItemsSource="{x:Bind ItemsSource}">
+            ItemsSource="{x:Bind ItemsSource}"
+            Padding="50,0">
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="liveTiles:LiveTileModel">
-                    <Grid>
-                        <userControls:LiveTile AppId="{Binding AppId}" />
+                <DataTemplate x:DataType="models:LiveTileModel">
+                    <Grid Width="152" Height="152">
+                        <liveTiles:LiveTile
+                            DisplayName="Hello World"
+                            TileSize="Large"
+                            Height="152"
+                            Width="152"
+                            x:Name="LiveTile"
+                            Loaded="LiveTile_OnLoaded" />
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>

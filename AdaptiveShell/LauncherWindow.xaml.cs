@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using Microsoft.UI.Windowing;
 using AdaptiveShell.LiveTiles.Models;
+using AdaptiveShell.Models;
 using AdaptiveShell.ViewModels;
 using Microsoft.UI;
 using Windows.Graphics;
@@ -55,7 +56,7 @@ namespace AdaptiveShell {
 
             // Navigate to Start page
             this.rootFrame = new Frame {
-                Height = size.Height - 20,
+                Height = size.Height,
                 Width = size.Width
             };
 
@@ -64,7 +65,7 @@ namespace AdaptiveShell {
                 var start = this.rootFrame.Content as Views.StartPage;
 
                 var tiles = new ObservableCollection<LiveTileModel>();
-                for (Int32 i = 0; i < 255; i++) {
+                for (Int32 i = 0; i < 16; i++) {
                     tiles.Add(new LiveTileModel() {
                         AppId = i.ToString()
                     });
@@ -78,6 +79,10 @@ namespace AdaptiveShell {
                 // Fill workarea.
                 if (!System.Diagnostics.Debugger.IsAttached) {
                     app.MoveAndResize(workArea);
+
+                    // Update size
+                    this.rootFrame.Width = workArea.Width;
+                    this.rootFrame.Height = workArea.Height;
                 }
 
                 // Listen to window resizes and update start accordingly.
