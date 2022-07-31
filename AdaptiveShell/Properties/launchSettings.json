@@ -1,11 +1,8 @@
 {
   "profiles": {
-    "AdaptiveShell (Package)": {
+    "AdaptiveShell": {
       "commandName": "MsixPackage",
       "nativeDebugging": true
-    },
-    "AdaptiveShell (Unpackaged)": {
-      "commandName": "Project"
     }
   }
 }

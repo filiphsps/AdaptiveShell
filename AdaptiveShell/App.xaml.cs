@@ -43,13 +43,10 @@ namespace AdaptiveShell {
             this.LauncherWindow.Activate();
             this.LauncherWindow.Loaded();
 
-            //this.Taskbar = new Taskbar();
-            //this.Taskbar.Activate();
-            //this.Taskbar.Loaded();
+
+            //ShellHelper.ShowTaskbar();
         }
 
-
         private LauncherWindow LauncherWindow;
-        // Taskbar Taskbar;
     }
 }
