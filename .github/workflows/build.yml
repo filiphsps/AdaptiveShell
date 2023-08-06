@@ -1,0 +1,42 @@
+name: Build and Test
+on: ['push', 'pull_request']
+
+jobs:
+  run-msbuild:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [arm64, x86, x64]
+
+    runs-on: windows-latest
+    name: Run MSBuild and VSTest
+
+    steps:
+      - uses: actions/checkout@v2.1.0
+        id: checkout_code
+
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: '6.x'
+
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.x
+
+      - uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Restore the application
+        run: msbuild .\AdaptiveShell.sln /t:Restore /p:Configuration=${{ matrix.configuration }}
+
+      - id: run_nuget
+        working-directory: ${{ github.workspace }}
+        run: nuget.exe restore .\AdaptiveShell.sln
+
+      - name: Run MSBuild
+        id: run_msbuild
+        working-directory: ${{ github.workspace }}
+        run: msbuild .\AdaptiveShell.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=x64 /p:PublishReadyToRun=false
+
+      - name: Setup VSTest path
+        uses: darenm/Setup-VSTest@v1
+        id: setup_vstest
