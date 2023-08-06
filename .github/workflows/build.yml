@@ -6,7 +6,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
-        platform: [arm64, x86, x64]
+        platform: [ARM64, x86, x64]
 
     runs-on: windows-latest
     name: Run MSBuild and VSTest
