@@ -113,7 +113,7 @@
       <Version>7.0.13</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.13</Version>
+      <Version>6.2.14</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
