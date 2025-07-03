@@ -52,7 +52,7 @@ jobs:
         run: dotnet restore --locked-mode .\AdaptiveShell.sln
 
       - name: Setup MSBuild path
-        uses: microsoft/setup-msbuild@v1
+        uses: microsoft/setup-msbuild@v2
         id: setup_msbuild
 
       - name: Run MSBuild
