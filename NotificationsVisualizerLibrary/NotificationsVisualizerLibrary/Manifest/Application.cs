@@ -10,7 +10,7 @@ namespace NotificationsVisualizerLibrary.Manifest
     public sealed class Application
     {
         [XmlAttribute]
-        public string Id { get; set; }
+        public String Id { get; set; }
 
         [XmlElement(ElementName = "VisualElements")]
         public VisualElements M1VisualElements { get; set; }
@@ -24,7 +24,7 @@ namespace NotificationsVisualizerLibrary.Manifest
 
         public VisualElements GetVisualElements()
         {
-            return M3VisualElements ?? M2VisualElements ?? M1VisualElements;
+            return this.M3VisualElements ?? this.M2VisualElements ?? this.M1VisualElements;
         }
     }
 }

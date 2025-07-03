@@ -11,9 +11,9 @@ namespace NotificationsVisualizerLibrary.Converters
 {
     public sealed class BadgeValueToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
-            BadgeValue badgeValue = value as BadgeValue;
+            var badgeValue = value as BadgeValue;
             if (badgeValue == null)
                 return Visibility.Collapsed;
 
@@ -23,7 +23,7 @@ namespace NotificationsVisualizerLibrary.Converters
             return Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public Object ConvertBack(Object value, Type targetType, Object parameter, String language)
         {
             throw new NotImplementedException();
         }

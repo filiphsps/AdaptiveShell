@@ -9,9 +9,9 @@ namespace NotificationsVisualizerLibrary.Converters
 {
     public sealed class TileSizeToTitleConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
-            string tileSize = value as string;
+            String tileSize = value as String;
 
             if (tileSize == null)
                 return value;
@@ -35,7 +35,7 @@ namespace NotificationsVisualizerLibrary.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public Object ConvertBack(Object value, Type targetType, Object parameter, String language)
         {
             throw new NotImplementedException();
         }

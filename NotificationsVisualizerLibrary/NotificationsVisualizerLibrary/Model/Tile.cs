@@ -21,20 +21,20 @@ namespace NotificationsVisualizerLibrary.Model
 
         public Tile(FeatureSet supportedFeatures) : base(NotificationType.Tile, supportedFeatures)
         {
-            Visual = new Visual(NotificationType.Tile, SupportedFeatures);
+            this.Visual = new Visual(NotificationType.Tile, this.SupportedFeatures);
         }
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()
         {
             return new AdaptiveChildElement[]
             {
-                Visual
+                this.Visual
             }.Where(i => i != null);
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[0];
+            return new String[0];
         }
     }
 }

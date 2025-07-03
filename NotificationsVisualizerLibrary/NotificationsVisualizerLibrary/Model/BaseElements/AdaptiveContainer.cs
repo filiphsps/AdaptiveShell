@@ -14,18 +14,18 @@ namespace NotificationsVisualizerLibrary.Model
     {
         public AdaptiveContainer(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        private static readonly string ATTR_TEXT_STACKING = "hint-textStacking";
+        private static readonly String ATTR_TEXT_STACKING = "hint-textStacking";
 
         private List<AdaptiveChildElement> _children = new List<AdaptiveChildElement>();
         internal IReadOnlyList<AdaptiveChildElement> Children
         {
-            get { return _children; }
+            get { return this._children; }
         }
 
         public void SwapChildren(IEnumerable<AdaptiveChildElement> newChildren)
         {
-            _children.Clear();
-            _children.AddRange(newChildren);
+            this._children.Clear();
+            this._children.AddRange(newChildren);
         }
 
         public HintTextStacking HintTextStacking { get; set; } = HintTextStacking.Default;
@@ -33,16 +33,16 @@ namespace NotificationsVisualizerLibrary.Model
         /// <summary>
         /// Parses a node that has already been parsed some (for example, the Binding actually parses the node first, and then this parses some extra stuff. Binding is responsible for showing warnings about unknown unprocessed attributes after this method has parsed through what it understands).
         /// </summary>
-        internal void ContinueParsing(ParseResult result, XElement node, AttributesHelper attributes, IEnumerable<XElement> children, string baseUri, bool addImageQuery)
+        internal void ContinueParsing(ParseResult result, XElement node, AttributesHelper attributes, IEnumerable<XElement> children, String baseUri, Boolean addImageQuery)
         {
-            ParseKnownAttributes(node, attributes, result, baseUri, addImageQuery);
+            this.ParseKnownAttributes(node, attributes, result, baseUri, addImageQuery);
 
             // 0-n children
             foreach (XElement child in children)
             {
                 try
                 {
-                    HandleChild(result, child, baseUri, addImageQuery);
+                    this.HandleChild(result, child, baseUri, addImageQuery);
                 }
 
                 catch (IncompleteElementException)
@@ -52,40 +52,40 @@ namespace NotificationsVisualizerLibrary.Model
             }
         }
 
-        protected void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result, string baseUri, bool addImageQuery)
+        protected void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result, String baseUri, Boolean addImageQuery)
         {
-            if (Context != NotificationType.Toast)
+            if (this.Context != NotificationType.Toast)
             {
                 // hint-textStacking is optional
                 HintTextStacking hintTextStacking;
-                if (TryParseEnum(result, attributes, ATTR_TEXT_STACKING, out hintTextStacking))
+                if (this.TryParseEnum(result, attributes, ATTR_TEXT_STACKING, out hintTextStacking))
                     this.HintTextStacking = hintTextStacking;
             }
         }
 
-        private bool _hasWarnedAboutTooManyTextElements;
-        private bool _hasWarnedAboutTooManyInlineImages;
-        protected void HandleChild(ParseResult result, XElement child, string baseUri, bool addImageQuery)
+        private Boolean _hasWarnedAboutTooManyTextElements;
+        private Boolean _hasWarnedAboutTooManyInlineImages;
+        protected void HandleChild(ParseResult result, XElement child, String baseUri, Boolean addImageQuery)
         {
             switch (child.Name.LocalName.ToLower())
             {
                 case "text":
 
-                    AdaptiveTextField text = new AdaptiveTextField(Context, SupportedFeatures);
+                    var text = new AdaptiveTextField(this.Context, this.SupportedFeatures);
                     text.Parse(result, child, true);
 
                     if (!result.IsOkForRender())
                         return;
 
-                    if (text.Placement == TextPlacement.Inline && Context == NotificationType.Toast)
+                    if (text.Placement == TextPlacement.Inline && this.Context == NotificationType.Toast)
                     {
-                        if (Children.OfType<AdaptiveTextField>().Where(i => i.Placement == TextPlacement.Inline).Count() >= 3)
+                        if (this.Children.OfType<AdaptiveTextField>().Where(i => i.Placement == TextPlacement.Inline).Count() >= 3)
                         {
-                            if (!_hasWarnedAboutTooManyTextElements)
+                            if (!this._hasWarnedAboutTooManyTextElements)
                             {
-                                string warningMessage;
+                                String warningMessage;
 
-                                if (SupportedFeatures.RS1_Style_Toasts)
+                                if (this.SupportedFeatures.RS1_Style_Toasts)
                                 {
                                     warningMessage = "Toasts can only display up to 3 text elements outside of a group/subgroup. Place your additional text elements inside a group/subgroup.";
                                 }
@@ -95,7 +95,7 @@ namespace NotificationsVisualizerLibrary.Model
                                 }
 
                                 result.AddWarning(warningMessage, GetErrorPositionInfo(child));
-                                _hasWarnedAboutTooManyTextElements = true;
+                                this._hasWarnedAboutTooManyTextElements = true;
                             }
 
                             return;
@@ -110,23 +110,23 @@ namespace NotificationsVisualizerLibrary.Model
 
                 case "image":
 
-                    AdaptiveImage image = new AdaptiveImage(Context, SupportedFeatures);
+                    var image = new AdaptiveImage(this.Context, this.SupportedFeatures);
                     image.Parse(result, child, baseUri, addImageQuery);
 
                     if (!result.IsOkForRender())
                         return;
 
-                    if (Context == NotificationType.Toast
-                        && !SupportedFeatures.AdaptiveToasts
+                    if (this.Context == NotificationType.Toast
+                        && !this.SupportedFeatures.AdaptiveToasts
                         && image.Placement == Placement.Inline
                         )
                     {
-                        if (Children.OfType<AdaptiveImage>().Where(i => i.Placement == Placement.Inline).Count() >= 6)
+                        if (this.Children.OfType<AdaptiveImage>().Where(i => i.Placement == Placement.Inline).Count() >= 6)
                         {
-                            if (!_hasWarnedAboutTooManyInlineImages)
+                            if (!this._hasWarnedAboutTooManyInlineImages)
                             {
                                 result.AddWarning("Toasts can only display up to 6 inline images.", GetErrorPositionInfo(child));
-                                _hasWarnedAboutTooManyInlineImages = true;
+                                this._hasWarnedAboutTooManyInlineImages = true;
                             }
 
                             return;
@@ -141,11 +141,11 @@ namespace NotificationsVisualizerLibrary.Model
 
                 case "group":
 
-                    if (Context != NotificationType.Toast
-                        || SupportedFeatures.AdaptiveToasts
+                    if (this.Context != NotificationType.Toast
+                        || this.SupportedFeatures.AdaptiveToasts
                         )
                     {
-                        AdaptiveGroup group = new AdaptiveGroup(Context, SupportedFeatures);
+                        var group = new AdaptiveGroup(this.Context, this.SupportedFeatures);
                         group.Parse(result, child, baseUri, addImageQuery);
 
                         if (!result.IsOkForRender())
@@ -163,9 +163,9 @@ namespace NotificationsVisualizerLibrary.Model
 
                 case "progress":
 
-                    if (Context == NotificationType.Toast && SupportedFeatures.ToastProgressBar)
+                    if (this.Context == NotificationType.Toast && this.SupportedFeatures.ToastProgressBar)
                     {
-                        AdaptiveProgress progress = new AdaptiveProgress(Context, SupportedFeatures);
+                        var progress = new AdaptiveProgress(this.Context, this.SupportedFeatures);
                         progress.Parse(result, child);
 
                         if (!result.IsOkForRender())
@@ -184,43 +184,43 @@ namespace NotificationsVisualizerLibrary.Model
 
         private void Add(AdaptiveTextField child)
         {
-            AddHelper(child);
+            this.AddHelper(child);
         }
 
         private void Add(AdaptiveImage child)
         {
-            AddHelper(child);
+            this.AddHelper(child);
         }
 
         private void Add(AdaptiveGroup child)
         {
-            AddHelper(child);
+            this.AddHelper(child);
         }
 
         private void Add(AdaptiveProgress child)
         {
-            AddHelper(child);
+            this.AddHelper(child);
         }
 
         private void AddHelper(AdaptiveChildElement child)
         {
-            _children.Add(child);
+            this._children.Add(child);
             child.Parent = this;
         }
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()
         {
-            return Children;
+            return this.Children;
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { };
+            return new String[] { };
         }
 
-        internal void RemoveChildAt(int index)
+        internal void RemoveChildAt(Int32 index)
         {
-            _children.RemoveAt(index);
+            this._children.RemoveAt(index);
         }
     }
 }

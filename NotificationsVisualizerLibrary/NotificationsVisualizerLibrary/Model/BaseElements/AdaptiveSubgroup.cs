@@ -11,24 +11,24 @@ namespace NotificationsVisualizerLibrary.Model
     {
         public AdaptiveSubgroup(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        private static readonly string ATTR_SUBGROUP_HINT_WEIGHT = "hint-weight";
-        private static readonly string ATTR_SUBGROUP_HINT_TEXT_STACKING = "hint-textStacking";
-        public const string ATTR_ACTIONID = "actionId";
+        private static readonly String ATTR_SUBGROUP_HINT_WEIGHT = "hint-weight";
+        private static readonly String ATTR_SUBGROUP_HINT_TEXT_STACKING = "hint-textStacking";
+        public const String ATTR_ACTIONID = "actionId";
 
-        internal const int WEIGHT_AUTO = int.MinValue;
+        internal const Int32 WEIGHT_AUTO = Int32.MinValue;
 
-        private int? _hintWeight;
+        private Int32? _hintWeight;
         /// <summary>
         /// Auto is WEIGHT_AUTO
         /// </summary>
         [ObjectModelProperty("HintWeight")]
-        public int? HintWeight
+        public Int32? HintWeight
         {
-            get { return _hintWeight; }
+            get { return this._hintWeight; }
             set
             {
                 if (value == null)
-                    _hintWeight = null;
+                    this._hintWeight = null;
 
                 //else if (value.Value < 0)
                 //    _hintWeight = 0;
@@ -37,11 +37,11 @@ namespace NotificationsVisualizerLibrary.Model
                 //    _hintWeight = 100;
 
                 else
-                    _hintWeight = value;
+                    this._hintWeight = value;
             }
         }
 
-        public string ActionId { get; set; }
+        public String ActionId { get; set; }
 
         [ObjectModelProperty("Children")]
         public IList<AdaptiveChildElement> Children { get; private set; } = new List<AdaptiveChildElement>();
@@ -51,62 +51,62 @@ namespace NotificationsVisualizerLibrary.Model
 
         public void Add(AdaptiveTextField child)
         {
-            Children.Add(child);
+            this.Children.Add(child);
             child.Parent = this;
         }
 
         public void Add(AdaptiveImage child)
         {
-            Children.Add(child);
+            this.Children.Add(child);
             child.Parent = this;
         }
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()
         {
-            return Children;
+            return this.Children;
         }
 
         internal override AdaptiveChildElement GetNextElementBelowThisOne()
         {
-            return Parent.GetNextElementBelowThisOne();
+            return this.Parent.GetNextElementBelowThisOne();
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[0];
+            return new String[0];
         }
 
-        internal void Parse(ParseResult result, XElement node, string baseUri, bool addImageQuery)
+        internal void Parse(ParseResult result, XElement node, String baseUri, Boolean addImageQuery)
         {
             if (!XmlTemplateParser.EnsureNodeOnlyHasElementsAsChildren(result, node))
                 throw new IncompleteElementException();
             
 
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(attributes, result, baseUri, addImageQuery);
+            this.ParseKnownAttributes(attributes, result, baseUri, addImageQuery);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
 
             // Children of subgroup
             foreach (XElement n in node.Elements())
             {
                 try
                 {
-                    HandleChild(result, n, baseUri, addImageQuery);
+                    this.HandleChild(result, n, baseUri, addImageQuery);
                 }
 
                 catch (IncompleteElementException) { }
             }
         }
 
-        protected void HandleChild(ParseResult result, XElement child, string baseUri, bool addImageQuery)
+        protected void HandleChild(ParseResult result, XElement child, String baseUri, Boolean addImageQuery)
         {
             switch (child.Name.LocalName.ToLower())
             {
                 case "text":
 
-                    AdaptiveTextField text = new AdaptiveTextField(Context, SupportedFeatures);
+                    var text = new AdaptiveTextField(this.Context, this.SupportedFeatures);
                     text.Parse(result, child, false);
 
                     if (!result.IsOkForRender())
@@ -121,7 +121,7 @@ namespace NotificationsVisualizerLibrary.Model
 
                 case "image":
 
-                    AdaptiveImage image = new AdaptiveImage(Context, SupportedFeatures);
+                    var image = new AdaptiveImage(this.Context, this.SupportedFeatures);
                     image.Parse(result, child, baseUri, addImageQuery);
 
                     if (!result.IsOkForRender())
@@ -147,17 +147,17 @@ namespace NotificationsVisualizerLibrary.Model
             }
         }
 
-        internal virtual void ParseKnownAttributes(AttributesHelper attributes, ParseResult result, string baseUri, bool addImageQuery)
+        internal virtual void ParseKnownAttributes(AttributesHelper attributes, ParseResult result, String baseUri, Boolean addImageQuery)
         {
             // hint-weight
-            ParseHintWeight(attributes, result);
+            this.ParseHintWeight(attributes, result);
 
             // hint-textStacking is optional
             HintTextStacking hintTextStacking;
-            if (TryParseEnum(result, attributes, ATTR_SUBGROUP_HINT_TEXT_STACKING, out hintTextStacking))
+            if (this.TryParseEnum(result, attributes, ATTR_SUBGROUP_HINT_TEXT_STACKING, out hintTextStacking))
                 this.HintTextStacking = hintTextStacking;
 
-            if (Context != NotificationType.Tile && Context != NotificationType.Toast)
+            if (this.Context != NotificationType.Tile && this.Context != NotificationType.Toast)
             {
                 // actionId is optional
                 var attrActionId = attributes.PopAttribute(ATTR_ACTIONID);
@@ -168,7 +168,7 @@ namespace NotificationsVisualizerLibrary.Model
 
         private void ParseHintWeight(AttributesHelper attributes, ParseResult result)
         {
-            int hintWeight;
+            Int32 hintWeight;
             if (TryParse(result, attributes, ATTR_SUBGROUP_HINT_WEIGHT, out hintWeight))
                 this.HintWeight = hintWeight;
         }

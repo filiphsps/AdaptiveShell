@@ -9,15 +9,15 @@ namespace NotificationsVisualizerLibrary.Helpers
 {
     internal class TextStyleInfo
     {
-        public string XamlName { get; private set; }
-        public int Index { get; private set; }
+        public String XamlName { get; private set; }
+        public Int32 Index { get; private set; }
         public TextLineBounds TextLineBounds { get; private set; }
 
-        public TextStyleInfo(string xamlName, int index, TextLineBounds textLineBounds = TextLineBounds.Full)
+        public TextStyleInfo(String xamlName, Int32 index, TextLineBounds textLineBounds = TextLineBounds.Full)
         {
-            XamlName = xamlName;
-            Index = index;
-            TextLineBounds = textLineBounds;
+            this.XamlName = xamlName;
+            this.Index = index;
+            this.TextLineBounds = textLineBounds;
         }
     }
 }

@@ -8,19 +8,19 @@ namespace NotificationsVisualizerLibrary.Helpers
 {
     internal class StyleInfo
     {
-        public double LineHeightOverride;
-        public double MinLineHeight;
-        public double FirstGroupMargin;
-        public double TopOffset;
-        public double[] TopMarginValues;
+        public Double LineHeightOverride;
+        public Double MinLineHeight;
+        public Double FirstGroupMargin;
+        public Double TopOffset;
+        public Double[] TopMarginValues;
 
-        public StyleInfo(double lineHeight, double minLineHeight, double firstGroupMargin, double topOffset, double[] topMarginValues)
+        public StyleInfo(Double lineHeight, Double minLineHeight, Double firstGroupMargin, Double topOffset, Double[] topMarginValues)
         {
-            LineHeightOverride = lineHeight;
-            MinLineHeight = minLineHeight;
-            FirstGroupMargin = firstGroupMargin;
-            TopOffset = topOffset;
-            TopMarginValues = topMarginValues;
+            this.LineHeightOverride = lineHeight;
+            this.MinLineHeight = minLineHeight;
+            this.FirstGroupMargin = firstGroupMargin;
+            this.TopOffset = topOffset;
+            this.TopMarginValues = topMarginValues;
         }
     }
 }

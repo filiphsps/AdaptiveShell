@@ -1,4 +1,6 @@
-﻿using NotificationsVisualizerLibrary.Model;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media.Imaging;
+using NotificationsVisualizerLibrary.Model;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Renderers;
 using System;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace NotificationsVisualizerLibrary.Controls
 {
@@ -15,9 +16,9 @@ namespace NotificationsVisualizerLibrary.Controls
     {
         public static FrameworkElement GenerateImage(
             AdaptiveImage imageNode,
-            double topMargin,
-            bool isInsideGroup,
-            out bool needsMargin)
+            Double topMargin,
+            Boolean isInsideGroup,
+            out Boolean needsMargin)
         {
             needsMargin = !imageNode.HintRemoveMargin.GetValueOrDefault(false);
 
@@ -85,7 +86,7 @@ namespace NotificationsVisualizerLibrary.Controls
 
             if (!imageNode.HintRemoveMargin.GetValueOrDefault(false))
             {
-                imageControl.Margin = new Thickness(0, topMargin, 0, 0);
+                imageControl.Margin = new Microsoft.UI.Xaml.Thickness(0, topMargin, 0, 0);
             }
 
             return imageControl;

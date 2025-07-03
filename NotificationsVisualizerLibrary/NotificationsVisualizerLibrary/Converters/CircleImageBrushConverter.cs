@@ -10,9 +10,9 @@ namespace NotificationsVisualizerLibrary.Converters
 {
     public sealed class CircleImageBrushConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
-            ImageSource source = value as ImageSource;
+            var source = value as ImageSource;
             if (source != null)
                 return new ImageBrush()
                 {
@@ -23,7 +23,7 @@ namespace NotificationsVisualizerLibrary.Converters
             return value;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public Object ConvertBack(Object value, Type targetType, Object parameter, String language)
         {
             throw new NotImplementedException();
         }

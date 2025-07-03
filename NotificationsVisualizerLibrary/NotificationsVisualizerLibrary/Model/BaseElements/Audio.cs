@@ -13,29 +13,29 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
     {
         public Audio(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        private const string ATTR_SRC = "src";
-        private const string ATTR_LOOP = "loop";
-        private const string ATTR_SILENT = "silent";
+        private const String ATTR_SRC = "src";
+        private const String ATTR_LOOP = "loop";
+        private const String ATTR_SILENT = "silent";
 
         [ObjectModelProperty("Src")]
         public Uri Src { get; set; }
 
         [ObjectModelProperty("Loop", false)]
-        public bool Loop { get; set; }
+        public Boolean Loop { get; set; }
 
         [ObjectModelProperty("Silent", false)]
-        public bool Silent { get; set; }
+        public Boolean Silent { get; set; }
 
         internal void Parse(ParseResult result, XElement node)
         {
             if (!XmlTemplateParser.EnsureNodeOnlyHasElementsAsChildren(result, node))
                 throw new IncompleteElementException();
 
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
-            
-            ParseKnownAttributes(node, attributes, result);
+            var attributes = new AttributesHelper(node.Attributes());
 
-            HandleRemainingAttributes(attributes, result);
+            this.ParseKnownAttributes(node, attributes, result);
+
+            this.HandleRemainingAttributes(attributes, result);
         }
 
         internal virtual void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result)
@@ -47,7 +47,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
                 Uri srcUri;
                 if (Uri.TryCreate(srcAttr.Value, UriKind.RelativeOrAbsolute, out srcUri))
                 {
-                    Src = srcUri;
+                    this.Src = srcUri;
                 }
                 else
                 {
@@ -56,21 +56,21 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             }
 
             // loop is optional, must be bool
-            bool boolean;
+            Boolean boolean;
             if (TryParse(result, attributes, ATTR_LOOP, out boolean))
             {
-                Loop = boolean;
+                this.Loop = boolean;
             }
 
             if (TryParse(result, attributes, ATTR_SILENT, out boolean))
             {
-                Silent = boolean;
+                this.Silent = boolean;
             }
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { };
+            return new String[] { };
         }
     }
 }

@@ -9,24 +9,24 @@ namespace NotificationsVisualizerLibrary.Model
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     internal class ObjectModelPropertyAttribute : ObjectModelBaseAttribute
     {
-        public string Name { get; private set; }
-        public object DefaultValue { get; private set; }
+        public String Name { get; private set; }
+        public Object DefaultValue { get; private set; }
 
-        public ObjectModelPropertyAttribute(string name)
+        public ObjectModelPropertyAttribute(String name)
         {
-            Name = name;
+            this.Name = name;
         }
 
-        public ObjectModelPropertyAttribute(string name, object defaultValue)
+        public ObjectModelPropertyAttribute(String name, Object defaultValue)
         {
-            Name = name;
-            DefaultValue = defaultValue;
+            this.Name = name;
+            this.DefaultValue = defaultValue;
         }
 
-        public ObjectModelPropertyAttribute(string name, object defaultValue, NotificationType context) : base(context)
+        public ObjectModelPropertyAttribute(String name, Object defaultValue, NotificationType context) : base(context)
         {
-            Name = name;
-            DefaultValue = defaultValue;
+            this.Name = name;
+            this.DefaultValue = defaultValue;
         }
     }
 }

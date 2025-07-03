@@ -14,17 +14,17 @@ namespace NotificationsVisualizerLibrary.Manifest
     public sealed class Package
     {
         [XmlIgnore]
-        public string RootPath { get; set; }
+        public String RootPath { get; set; }
 
         [XmlElement]
         public Applications Applications { get; set; }
 
 
-        public IAsyncOperation<string> GetMrtUri(string path)
+        public IAsyncOperation<String> GetMrtUri(String path)
         {
             return Task.Run(async delegate
             {
-                var fullLogoPath = Path.Combine(RootPath, path);
+                var fullLogoPath = Path.Combine(this.RootPath, path);
 
                 StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(fullLogoPath);
 

@@ -14,7 +14,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
     {
         public Actions(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        internal const string ATTR_HINT_SYSTEMCOMMANDS = "hint-systemCommands";
+        internal const String ATTR_HINT_SYSTEMCOMMANDS = "hint-systemCommands";
 
         internal HintSystemCommands HintSystemCommands { get; private set; } = HintSystemCommands.None;
 
@@ -28,7 +28,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         {
             get
             {
-                return ActionElements.Where(i => i.Placement == ActionPlacement.Inline);
+                return this.ActionElements.Where(i => i.Placement == ActionPlacement.Inline);
             }
         }
 
@@ -37,7 +37,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         {
             get
             {
-                return ActionElements.Where(i => i.Placement == ActionPlacement.ContextMenu);
+                return this.ActionElements.Where(i => i.Placement == ActionPlacement.ContextMenu);
             }
         }
 
@@ -46,13 +46,13 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             if (!XmlTemplateParser.EnsureNodeOnlyHasElementsAsChildren(result, node))
                 throw new IncompleteElementException();
 
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
 
 
-            ParseKnownAttributes(node, attributes, result);
+            this.ParseKnownAttributes(node, attributes, result);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
 
             // 0-n children
             foreach (XElement child in node.Elements())
@@ -62,7 +62,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
                 try
                 {
-                    HandleChild(result, child);
+                    this.HandleChild(result, child);
                 }
 
                 catch (IncompleteElementException)
@@ -76,7 +76,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         {
             // hint-systemCommands is optional
             HintSystemCommands hintSystemCommands;
-            if (TryParseEnum(result, attributes, ATTR_HINT_SYSTEMCOMMANDS, out hintSystemCommands))
+            if (this.TryParseEnum(result, attributes, ATTR_HINT_SYSTEMCOMMANDS, out hintSystemCommands))
                 this.HintSystemCommands = hintSystemCommands;
         }
 
@@ -86,22 +86,22 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             {
                 case "input":
 
-                    var input = new Input(Context, SupportedFeatures);
+                    var input = new Input(this.Context, this.SupportedFeatures);
                     input.Parse(result, child);
 
                     if (!result.IsOkForRender())
                         return;
 
-                    if (Context == NotificationType.Toast)
+                    if (this.Context == NotificationType.Toast)
                     {
-                        if (Inputs.Count >= 5)
+                        if (this.Inputs.Count >= 5)
                         {
                             result.AddErrorButRenderAllowed("Toasts can only display up to 5 inputs.", GetErrorPositionInfo(child));
                             return;
                         }
                     }
 
-                    Inputs.Add(input);
+                    this.Inputs.Add(input);
                     input.Parent = this;
 
                     break;
@@ -109,22 +109,22 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
                 case "action":
 
-                    var action = new Action(Context, SupportedFeatures);
+                    var action = new Action(this.Context, this.SupportedFeatures);
                     action.Parse(result, child);
 
                     if (!result.IsOkForRender())
                         return;
 
-                    if (Context == NotificationType.Toast)
+                    if (this.Context == NotificationType.Toast)
                     {
-                        if (ActionElements.Count >= 5)
+                        if (this.ActionElements.Count >= 5)
                         {
                             result.AddErrorButRenderAllowed("Toasts can only display up to 5 actions.", GetErrorPositionInfo(child));
                             return;
                         }
                     }
 
-                    ActionElements.Add(action);
+                    this.ActionElements.Add(action);
                     action.Parent = this;
 
                     break;
@@ -136,23 +136,23 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             }
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { ATTR_HINT_SYSTEMCOMMANDS };
+            return new String[] { ATTR_HINT_SYSTEMCOMMANDS };
         }
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()
         {
-            foreach (var i in Inputs)
+            foreach (var i in this.Inputs)
                 yield return i;
 
-            foreach (var a in ActionElements)
+            foreach (var a in this.ActionElements)
                 yield return a;
         }
 
         public override ObjectModelObject ConvertToObject()
         {
-            switch (HintSystemCommands)
+            switch (this.HintSystemCommands)
             {
                 case HintSystemCommands.SnoozeAndDismiss:
                     return null;

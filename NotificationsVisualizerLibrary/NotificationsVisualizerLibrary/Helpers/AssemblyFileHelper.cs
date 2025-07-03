@@ -15,10 +15,10 @@ namespace NotificationsVisualizerLibrary.Helpers
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static string GetResourceText(string fileName)
+        public static String GetResourceText(String fileName)
         {
             // This code came from here: https://github.com/matthidinger/CardedUrls/blob/1aec9ad4e79d84914bfe648673d937ddae88486c/source/CardedUrls.Core/Models/AdaptiveCardTemplate.cs#L60
-            string resourceName = "NotificationsVisualizerLibrary." + fileName;
+            String resourceName = "NotificationsVisualizerLibrary." + fileName;
 
             using (var stream = typeof(AssemblyFileHelper).GetTypeInfo().Assembly.GetManifestResourceStream(resourceName))
             {

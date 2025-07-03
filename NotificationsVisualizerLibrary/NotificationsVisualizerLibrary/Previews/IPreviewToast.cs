@@ -14,6 +14,6 @@ namespace NotificationsVisualizerLibrary
         ParseResult Initialize(XmlDocument content, PreviewNotificationData data);
         void Update(PreviewNotificationData data);
         PreviewToastProperties Properties { get; set; }
-        int OSBuildNumber { get; set; }
+        Int32 OSBuildNumber { get; set; }
     }
 }

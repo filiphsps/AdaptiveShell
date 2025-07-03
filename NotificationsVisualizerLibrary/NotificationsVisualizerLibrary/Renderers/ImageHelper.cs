@@ -12,7 +12,7 @@ namespace NotificationsVisualizerLibrary.Renderers
 {
     internal static class ImageHelper
     {
-        internal static BitmapImage GetBitmap(string uriStr)
+        internal static BitmapImage GetBitmap(String uriStr)
         {
             if (uriStr == null)
                 return null;
@@ -21,7 +21,7 @@ namespace NotificationsVisualizerLibrary.Renderers
             {
                 if (uriStr.StartsWith("ms-appdata", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    BitmapImage img = new BitmapImage();
+                    var img = new BitmapImage();
 
                     // I'll set the image after first returning
                     var dontWait = SetAppDataImageAsync(img, uriStr);
@@ -39,7 +39,7 @@ namespace NotificationsVisualizerLibrary.Renderers
             catch { return null; }
         }
 
-        private static async Task SetAppDataImageAsync(BitmapImage img, string uriStr)
+        private static async Task SetAppDataImageAsync(BitmapImage img, String uriStr)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace NotificationsVisualizerLibrary.Renderers
 
                 using (Stream s = await file.OpenStreamForReadAsync())
                 {
-                    MemoryStream copiedStream = new MemoryStream((int)s.Length);
+                    var copiedStream = new MemoryStream((Int32)s.Length);
 
                     s.CopyTo(copiedStream);
 
@@ -71,7 +71,7 @@ namespace NotificationsVisualizerLibrary.Renderers
             }
         }
 
-        internal static Uri GetImageUri(string uriStr)
+        internal static Uri GetImageUri(String uriStr)
         {
             var uri = new Uri("image1.png", UriKind.Relative);
 

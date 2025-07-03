@@ -11,7 +11,7 @@ namespace NotificationsVisualizerLibrary.Converters
 {
     public sealed class BadgeValueToStringConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
             if (value is BadgeValue)
                 return (value as BadgeValue).ToString();
@@ -19,10 +19,10 @@ namespace NotificationsVisualizerLibrary.Converters
             return "";
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public Object ConvertBack(Object value, Type targetType, Object parameter, String language)
         {
-            if (value is string)
-                return BadgeValue.Parse(value as string);
+            if (value is String)
+                return BadgeValue.Parse(value as String);
 
             return BadgeValue.Parse(null);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,9 @@ namespace NotificationsVisualizerLibrary.Converters
 {
     internal sealed class StringToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
-            bool answer = value is string && !string.IsNullOrWhiteSpace(value as string);
+            Boolean answer = value is String && !String.IsNullOrWhiteSpace(value as String);
 
             if (parameter != null)
             {
@@ -21,7 +22,7 @@ namespace NotificationsVisualizerLibrary.Converters
             return answer;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public Object ConvertBack(Object value, Type targetType, Object parameter, String language)
         {
             throw new NotImplementedException();
         }

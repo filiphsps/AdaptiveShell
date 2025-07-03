@@ -19,7 +19,7 @@ namespace NotificationsVisualizerLibrary
 
         internal PreviewTileUpdater(PreviewTile previewTile)
         {
-            _previewTile = previewTile;
+            this._previewTile = previewTile;
         }
 
         /// <summary>
@@ -30,11 +30,11 @@ namespace NotificationsVisualizerLibrary
         public ParseResult Update(TileNotification notification)
         {
             // TODO: handle notification queue
-            ParseResult result = _parser.Parse(notification.Content.GetXml(), _previewTile.CurrFeatureSet);
+            ParseResult result = _parser.Parse(notification.Content.GetXml(), this._previewTile.CurrFeatureSet);
 
             if (result.IsOkForRender())
             {
-                _previewTile.Show(result.Tile, true);
+                this._previewTile.Show(result.Tile, true);
             }
 
             return result;
@@ -45,7 +45,7 @@ namespace NotificationsVisualizerLibrary
         /// </summary>
         public void Clear()
         {
-            _previewTile.Show(null, true);
+            this._previewTile.Show(null, true);
         }
     }
 }

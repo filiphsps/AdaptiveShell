@@ -33,19 +33,19 @@ namespace NotificationsVisualizerLibrary
         {
             this.InitializeComponent();
 
-            m_AppWindow = GetAppWindowForCurrentWindow();
+            this.m_AppWindow = this.GetAppWindowForCurrentWindow();
 
             // Check to see if customization is supported.
             // Currently only supported on Windows 11.
             if (AppWindowTitleBar.IsCustomizationSupported())
             {
-                var titleBar = m_AppWindow.TitleBar;
+                var titleBar = this.m_AppWindow.TitleBar;
                 titleBar.ExtendsContentIntoTitleBar = true;
-                AppTitleBar.Loaded += AppTitleBar_Loaded;
-                AppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
+                this.AppTitleBar.Loaded += this.AppTitleBar_Loaded;
+                this.AppTitleBar.SizeChanged += this.AppTitleBar_SizeChanged;
 
-                BackButton.Click += OnBackClicked;
-                BackButton.Visibility = Visibility.Collapsed;
+                this.BackButton.Click += this.OnBackClicked;
+                this.BackButton.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -58,34 +58,34 @@ namespace NotificationsVisualizerLibrary
             }
         }
 
-        public Button BackButton => AppTitleBarBackButton;
+        public Button BackButton => this.AppTitleBarBackButton;
 
-        private void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
+        private void AppTitleBar_Loaded(Object sender, RoutedEventArgs e)
         {
-            SetTitleBar(AppTitleBar);
+            this.SetTitleBar(this.AppTitleBar);
             // TODO Raname MainPage in case your app Main Page has a different name
-            PageFrame.Navigate(typeof(MainPage));
+            this.PageFrame.Navigate(typeof(MainPage));
             if (AppWindowTitleBar.IsCustomizationSupported())
             {
-                SetDragRegionForCustomTitleBar(m_AppWindow);
+                this.SetDragRegionForCustomTitleBar(this.m_AppWindow);
             }
         }
 
-        private void OnBackClicked(object sender, RoutedEventArgs e)
+        private void OnBackClicked(Object sender, RoutedEventArgs e)
         {
-            if (PageFrame.CanGoBack)
+            if (this.PageFrame.CanGoBack)
             {
-                PageFrame.GoBack();
+                this.PageFrame.GoBack();
             }
         }
 
-        private void AppTitleBar_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void AppTitleBar_SizeChanged(Object sender, SizeChangedEventArgs e)
         {
             if (AppWindowTitleBar.IsCustomizationSupported()
-                && m_AppWindow.TitleBar.ExtendsContentIntoTitleBar)
+                && this.m_AppWindow.TitleBar.ExtendsContentIntoTitleBar)
             {
                 // Update drag region if the size of the title bar changes.
-                SetDragRegionForCustomTitleBar(m_AppWindow);
+                this.SetDragRegionForCustomTitleBar(this.m_AppWindow);
             }
         }
 
@@ -101,19 +101,19 @@ namespace NotificationsVisualizerLibrary
             if (AppWindowTitleBar.IsCustomizationSupported()
                 && appWindow.TitleBar.ExtendsContentIntoTitleBar)
             {
-                double scaleAdjustment = GetScaleAdjustment();
+                Double scaleAdjustment = this.GetScaleAdjustment();
 
-                RightPaddingColumn.Width = new GridLength(appWindow.TitleBar.RightInset / scaleAdjustment);
-                LeftPaddingColumn.Width = new GridLength(appWindow.TitleBar.LeftInset / scaleAdjustment);
+                this.RightPaddingColumn.Width = new GridLength(appWindow.TitleBar.RightInset / scaleAdjustment);
+                this.LeftPaddingColumn.Width = new GridLength(appWindow.TitleBar.LeftInset / scaleAdjustment);
 
                 List<Windows.Graphics.RectInt32> dragRectsList = new();
 
                 Windows.Graphics.RectInt32 dragRectL;
-                dragRectL.X = (int)((LeftPaddingColumn.ActualWidth + IconColumn.ActualWidth) * scaleAdjustment);
+                dragRectL.X = (Int32)((this.LeftPaddingColumn.ActualWidth + this.IconColumn.ActualWidth) * scaleAdjustment);
                 dragRectL.Y = 0;
-                dragRectL.Height = (int)((AppTitleBar.ActualHeight) * scaleAdjustment);
-                dragRectL.Width = (int)((TitleColumn.ActualWidth
-                                        + DragColumn.ActualWidth) * scaleAdjustment);
+                dragRectL.Height = (Int32)((this.AppTitleBar.ActualHeight) * scaleAdjustment);
+                dragRectL.Width = (Int32)((this.TitleColumn.ActualWidth
+                                        + this.DragColumn.ActualWidth) * scaleAdjustment);
                 dragRectsList.Add(dragRectL);
 
                 Windows.Graphics.RectInt32[] dragRects = dragRectsList.ToArray();
@@ -122,31 +122,30 @@ namespace NotificationsVisualizerLibrary
         }
 
         [DllImport("Shcore.dll", SetLastError = true)]
-        internal static extern int GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
+        internal static extern Int32 GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out UInt32 dpiX, out UInt32 dpiY);
 
-        internal enum Monitor_DPI_Type : int
-        {
+        internal enum Monitor_DPI_Type : Int32 {
             MDT_Effective_DPI = 0,
             MDT_Angular_DPI = 1,
             MDT_Raw_DPI = 2,
             MDT_Default = MDT_Effective_DPI
         }
 
-        private double GetScaleAdjustment()
+        private Double GetScaleAdjustment()
         {
             IntPtr hWnd = WindowNative.GetWindowHandle(this);
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
-            DisplayArea displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
+            var displayArea = DisplayArea.GetFromWindowId(wndId, DisplayAreaFallback.Primary);
             IntPtr hMonitor = Win32Interop.GetMonitorFromDisplayId(displayArea.DisplayId);
 
             // Get DPI.
-            int result = GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out uint dpiX, out uint _);
+            Int32 result = GetDpiForMonitor(hMonitor, Monitor_DPI_Type.MDT_Default, out UInt32 dpiX, out UInt32 _);
             if (result != 0)
             {
                 throw new Exception("Could not get DPI for monitor.");
             }
 
-            uint scaleFactorPercent = (uint)(((long)dpiX * 100 + (96 >> 1)) / 96);
+            UInt32 scaleFactorPercent = (UInt32)(((Int64)dpiX * 100 + (96 >> 1)) / 96);
             return scaleFactorPercent / 100.0;
         }
     }

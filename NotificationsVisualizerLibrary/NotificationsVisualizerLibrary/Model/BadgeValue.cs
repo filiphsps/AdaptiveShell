@@ -9,25 +9,25 @@ namespace NotificationsVisualizerLibrary.Model
 {
     public sealed class BadgeValue
     {
-        public int Integer { get; private set; } = 0;
+        public Int32 Integer { get; private set; } = 0;
 
         public BadgeValueType Type { get; private set; } = BadgeValueType.none;
 
-        private BadgeValue(string value)
+        private BadgeValue(String value)
         {
             if (value == null)
                 return;
 
-            int integer;
+            Int32 integer;
 
             //if they provided a valid integer
-            if (int.TryParse(value, out integer))
+            if (Int32.TryParse(value, out integer))
             {
                 if (integer < 0)
                     integer = 0;
 
-                Type = BadgeValueType.integer;
-                Integer = integer;
+                this.Type = BadgeValueType.integer;
+                this.Integer = integer;
                 return;
             }
 
@@ -39,30 +39,30 @@ namespace NotificationsVisualizerLibrary.Model
                 if (type == BadgeValueType.integer)
                     type = BadgeValueType.none;
 
-                Type = type;
+                this.Type = type;
                 return;
             }
 
             //otherwise their value wasn't valid, and we fall back to none
         }
 
-        public override string ToString()
+        public override String ToString()
         {
-            if (Type == BadgeValueType.none)
+            if (this.Type == BadgeValueType.none)
                 return "";
 
-            if (Type == BadgeValueType.integer)
+            if (this.Type == BadgeValueType.integer)
             {
-                if (Integer <= 0)
+                if (this.Integer <= 0)
                     return "";
 
-                return Integer.ToString();
+                return this.Integer.ToString();
             }
 
-            return Type.ToString();
+            return this.Type.ToString();
         }
 
-        public static BadgeValue Parse(string str)
+        public static BadgeValue Parse(String str)
         {
             return new BadgeValue(str);
         }
@@ -76,12 +76,12 @@ namespace NotificationsVisualizerLibrary.Model
         /// Returns true if there's a badge to be displayed. Otherwise returns false.
         /// </summary>
         /// <returns></returns>
-        public bool HasBadge()
+        public Boolean HasBadge()
         {
-            if (Type == BadgeValueType.none)
+            if (this.Type == BadgeValueType.none)
                 return false;
 
-            if (Type == BadgeValueType.integer && Integer <= 0)
+            if (this.Type == BadgeValueType.integer && this.Integer <= 0)
                 return false;
 
             return true;

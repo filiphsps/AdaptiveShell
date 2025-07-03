@@ -23,7 +23,7 @@ namespace NotificationsVisualizerLibrary.Model
 
         Audio Audio { get; set; }
 
-        string Launch { get; set; }
+        String Launch { get; set; }
 
         Scenario Scenario { get; set; }
 
@@ -31,17 +31,17 @@ namespace NotificationsVisualizerLibrary.Model
 
         Duration? Duration { get; set; }
 
-        string People { get; set; }
+        String People { get; set; }
     }
 
     [ObjectModelClass("ToastContent")]
     internal class Toast : AdaptiveParentElement, IToast
     {
-        private const string ATTR_LAUNCH = "launch";
-        private const string ATTR_DURATION = "duration";
-        private const string ATTR_SCENARIO = "scenario";
-        private const string ATTR_HINT_PEOPLE = "hint-people";
-        private const string ATTR_DISPLAYTIMESTAMP = "displayTimestamp";
+        private const String ATTR_LAUNCH = "launch";
+        private const String ATTR_DURATION = "duration";
+        private const String ATTR_SCENARIO = "scenario";
+        private const String ATTR_HINT_PEOPLE = "hint-people";
+        private const String ATTR_DISPLAYTIMESTAMP = "displayTimestamp";
 
         public DataBindingValues DataBinding { get; private set; }
 
@@ -62,7 +62,7 @@ namespace NotificationsVisualizerLibrary.Model
         public Audio Audio { get; set; }
 
         [ObjectModelProperty("Launch", "")]
-        public string Launch { get; set; } = "";
+        public String Launch { get; set; } = "";
 
         [ObjectModelProperty("Scenario", Scenario.Default)]
         public Scenario Scenario { get; set; } = Scenario.Default;
@@ -76,11 +76,11 @@ namespace NotificationsVisualizerLibrary.Model
         [ObjectModelProperty("DisplayTimestamp")]
         public DateTime? DisplayTimestamp { get; set; }
 
-        public string People { get; set; }
+        public String People { get; set; }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { };
+            return new String[] { };
         }
 
         internal void Parse(ParseResult result, XElement node)
@@ -88,18 +88,18 @@ namespace NotificationsVisualizerLibrary.Model
             if (!XmlTemplateParser.EnsureNodeOnlyHasElementsAsChildren(result, node))
                 throw new IncompleteElementException();
 
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            
-            ParseKnownAttributes(attributes, result);
 
-            HandleRemainingAttributes(attributes, result);
+            this.ParseKnownAttributes(attributes, result);
+
+            this.HandleRemainingAttributes(attributes, result);
 
             foreach (XElement n in node.Elements())
             {
                 try
                 {
-                    HandleChild(result, n);
+                    this.HandleChild(result, n);
                 }
 
                 catch (IncompleteElementException) { }
@@ -111,39 +111,39 @@ namespace NotificationsVisualizerLibrary.Model
             // Launch is optional
             var attrLaunc = attributes.PopAttribute(ATTR_LAUNCH);
             if (attrLaunc != null)
-                Launch = attrLaunc.Value;
+                this.Launch = attrLaunc.Value;
 
             // TODO - check duration is valid
 
             // activationType is optional
             ActivationType activationType;
-            if (TryParseEnum<ActivationType>(result, attributes, ATTR_ACTIVATIONTYPE, out activationType))
-                ActivationType = activationType;
+            if (this.TryParseEnum(result, attributes, ATTR_ACTIVATIONTYPE, out activationType))
+                this.ActivationType = activationType;
 
             // scenario is optional
             Scenario scenario;
-            if (TryParseEnum(result, attributes, ATTR_SCENARIO, out scenario))
-                Scenario = scenario;
+            if (this.TryParseEnum(result, attributes, ATTR_SCENARIO, out scenario))
+                this.Scenario = scenario;
 
             // duration is optional
             Duration duration;
-            if (TryParseEnum(result, attributes, ATTR_DURATION, out duration))
-                Duration = duration;
+            if (this.TryParseEnum(result, attributes, ATTR_DURATION, out duration))
+                this.Duration = duration;
 
             // hint-people is optional
             var attrPeople = attributes.PopAttribute(ATTR_HINT_PEOPLE);
             if (attrPeople != null)
-                People = attrPeople.Value;
+                this.People = attrPeople.Value;
 
             // displayTimestamp is optional
-            if (SupportedFeatures.ToastDisplayTimestamp)
+            if (this.SupportedFeatures.ToastDisplayTimestamp)
             {
                 var attrDisplayTimestamp = attributes.PopAttribute(ATTR_DISPLAYTIMESTAMP);
                 if (attrDisplayTimestamp != null)
                 {
                     try
                     {
-                        DisplayTimestamp = System.Xml.XmlConvert.ToDateTime(attrDisplayTimestamp.Value, System.Xml.XmlDateTimeSerializationMode.RoundtripKind);
+                        this.DisplayTimestamp = System.Xml.XmlConvert.ToDateTime(attrDisplayTimestamp.Value, System.Xml.XmlDateTimeSerializationMode.RoundtripKind);
                     }
                     catch (FormatException)
                     {
@@ -157,58 +157,58 @@ namespace NotificationsVisualizerLibrary.Model
         {
             if (child.IsType("visual"))
             {
-                if (Visual != null)
+                if (this.Visual != null)
                 {
                     result.AddWarning("A visual element was already provided. Only the first one will be used.", GetErrorPositionInfo(child));
                     return;
                 }
 
-                Visual visual = new Visual(NotificationType.Toast, SupportedFeatures);
+                var visual = new Visual(NotificationType.Toast, this.SupportedFeatures);
                 visual.Parse(result, child);
 
-                Visual = visual;
+                this.Visual = visual;
             }
 
             else if (child.IsType("actions"))
             {
-                if (Actions != null)
+                if (this.Actions != null)
                 {
                     result.AddWarning("An actions element was already provided. Only the first one will be used.", GetErrorPositionInfo(child));
                     return;
                 }
 
-                Actions actions = new Actions(NotificationType.Toast, SupportedFeatures);
+                var actions = new Actions(NotificationType.Toast, this.SupportedFeatures);
                 actions.Parse(result, child);
 
-                Actions = actions;
+                this.Actions = actions;
             }
 
             else if (child.IsType("audio"))
             {
-                if (Audio != null)
+                if (this.Audio != null)
                 {
                     result.AddWarning("An audio element was already provided. Only the first one will be used.", GetErrorPositionInfo(child));
                     return;
                 }
 
-                Audio audio = new Audio(NotificationType.Toast, SupportedFeatures);
+                var audio = new Audio(NotificationType.Toast, this.SupportedFeatures);
                 audio.Parse(result, child);
 
-                Audio = audio;
+                this.Audio = audio;
             }
 
-            else if (SupportedFeatures.ToastHeaders && child.IsType("header"))
+            else if (this.SupportedFeatures.ToastHeaders && child.IsType("header"))
             {
-                if (Header != null)
+                if (this.Header != null)
                 {
                     result.AddErrorButRenderAllowed("A header element was already provided. Only one header is allowed.", GetErrorPositionInfo(child));
                     return;
                 }
 
-                Header header = new Header(NotificationType.Toast, SupportedFeatures);
+                var header = new Header(NotificationType.Toast, this.SupportedFeatures);
                 header.Parse(result, child);
 
-                Header = header;
+                this.Header = header;
             }
 
             else
@@ -219,9 +219,9 @@ namespace NotificationsVisualizerLibrary.Model
         {
             return new AdaptiveChildElement[]
             {
-                Visual,
-                Actions,
-                Audio
+                this.Visual,
+                this.Actions,
+                this.Audio
             }.Where(i => i != null);
         }
     }

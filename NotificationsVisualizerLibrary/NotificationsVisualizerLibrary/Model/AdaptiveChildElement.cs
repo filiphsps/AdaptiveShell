@@ -19,12 +19,12 @@ namespace NotificationsVisualizerLibrary.Model
         /// <returns></returns>
         internal virtual AdaptiveChildElement GetNextElementBelowThisOne()
         {
-            if (Parent == null)
+            if (this.Parent == null)
                 return null;
 
-            bool foundMyself = false;
+            Boolean foundMyself = false;
 
-            foreach (var child in Parent.GetAllChildren())
+            foreach (var child in this.Parent.GetAllChildren())
             {
                 if (foundMyself)
                     return child;
@@ -34,7 +34,7 @@ namespace NotificationsVisualizerLibrary.Model
             }
 
             // There was no next child, so go to the parent and have the parent return its next element
-            return Parent.GetNextElementBelowThisOne();
+            return this.Parent.GetNextElementBelowThisOne();
         }
     }
 }

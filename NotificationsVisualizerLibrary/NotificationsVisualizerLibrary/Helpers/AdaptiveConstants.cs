@@ -8,15 +8,15 @@ namespace NotificationsVisualizerLibrary.Helpers
 {
     internal class AdaptiveConstants
     {
-        public const int KNOWN_TEXT_STYLES_COUNT = 9;
-        public const double DefaultExternalMargin = 8.0;
-        public const double SmallExternalMargin = 4.0;
+        public const Int32 KNOWN_TEXT_STYLES_COUNT = 9;
+        public const Double DefaultExternalMargin = 8.0;
+        public const Double SmallExternalMargin = 4.0;
 
-        public const double DefaultGroupTopMargin = 0.0; // Margin between group items (when not text)
-        public const double DefaultImageMargin = 8.0;
+        public const Double DefaultGroupTopMargin = 0.0; // Margin between group items (when not text)
+        public const Double DefaultImageMargin = 8.0;
 
-        public const int DefaultColumnWeight = 50;
-        public const int SpacingColumnWidth = 8;
-        public const double DefaultOverlayOpacity = 0.2; // 20%
+        public const Int32 DefaultColumnWeight = 50;
+        public const Int32 SpacingColumnWidth = 8;
+        public const Double DefaultOverlayOpacity = 0.2; // 20%
     }
 }

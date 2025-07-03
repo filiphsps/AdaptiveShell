@@ -66,7 +66,7 @@ namespace NotificationsVisualizerLibrary
             // Read: https://docs.microsoft.com/en-us/windows/apps/windows-app-sdk/migrate-to-windows-app-sdk/guides/applifecycle#file-type-association
             if (activatedEventArgs.Kind == ExtendedActivationKind.File)
             {
-                OnFileActivated(activatedEventArgs);
+                this.OnFileActivated(activatedEventArgs);
             }
 
             // Initialize MainWindow here

@@ -13,43 +13,43 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
     {
         public Input(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        internal const string ATTR_ID = "id";
-        internal const string ATTR_TYPE = "type";
-        internal const string ATTR_TITLE = "title";
-        internal const string ATTR_PLACEHOLDERCONTENT = "placeHolderContent";
-        internal const string ATTR_DEFAULTINPUT = "defaultInput";
+        internal const String ATTR_ID = "id";
+        internal const String ATTR_TYPE = "type";
+        internal const String ATTR_TITLE = "title";
+        internal const String ATTR_PLACEHOLDERCONTENT = "placeHolderContent";
+        internal const String ATTR_DEFAULTINPUT = "defaultInput";
 
-        public string Id { get; set; }
+        public String Id { get; set; }
 
         public InputType Type { get; set; }
 
         [ObjectModelProperty("Title")]
-        public string Title { get; set; }
+        public String Title { get; set; }
 
         [ObjectModelProperty("PlaceholderContent")]
-        public string PlaceHolderContent { get; set; }
+        public String PlaceHolderContent { get; set; }
 
         [ObjectModelProperty("DefaultInput")]
-        public string DefaultInput { get; set; }
+        public String DefaultInput { get; set; }
 
-        public bool HintVisible { get; set; } = true;
+        public Boolean HintVisible { get; set; } = true;
 
         internal IList<Selection> Children { get; private set; } = new List<Selection>();
 
 
         internal void Parse(ParseResult result, XElement node)
         {
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(node, attributes, result);
+            this.ParseKnownAttributes(node, attributes, result);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
 
             foreach (XElement n in node.Elements())
             {
                 try
                 {
-                    HandleChild(result, n);
+                    this.HandleChild(result, n);
                 }
 
                 catch (IncompleteElementException) { }
@@ -59,7 +59,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
         protected void HandleChild(ParseResult result, XElement child)
         {
-            if (Type != InputType.Selection)
+            if (this.Type != InputType.Selection)
             {
                 result.AddWarning($"Invalid child '{child.Name.LocalName}' found in an input. Only inputs of type 'selection' can contain children.", GetErrorPositionInfo(child));
                 return;
@@ -68,13 +68,13 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             if (child.IsType("selection"))
             {
 
-                Selection selection = new Selection(Context, SupportedFeatures);
+                var selection = new Selection(this.Context, this.SupportedFeatures);
                 selection.Parse(result, child);
 
                 if (!result.IsOkForRender())
                     throw new IncompleteElementException();
 
-                Children.Add(selection);
+                this.Children.Add(selection);
                 selection.Parent = this;
             }
 
@@ -96,7 +96,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
             // type is required
             InputType type;
-            if (!TryParseEnum(result, attributes, ATTR_TYPE, out type))
+            if (!this.TryParseEnum(result, attributes, ATTR_TYPE, out type))
             {
                 result.AddErrorButRenderAllowed("type attribute on input element is required.", XmlTemplateParser.GetErrorPositionInfo(node));
                 throw new IncompleteElementException();
@@ -122,32 +122,32 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
                 this.DefaultInput = attrDefaultInput.Value;
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { };
+            return new String[] { };
         }
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()
         {
-            return Children;
+            return this.Children;
         }
 
         public override ObjectModelObject ConvertToObject()
         {
             var obj = base.ConvertToObject();
 
-            switch (Type)
+            switch (this.Type)
             {
                 case InputType.Selection:
-                    return new ObjectModelObject("ToastSelectionBox", new ObjectModelString(Id))
+                    return new ObjectModelObject("ToastSelectionBox", new ObjectModelString(this.Id))
                     {
-                        { "Title", Title },
-                        { "DefaultSelectionBoxItemId", DefaultInput },
-                        { "Items", new ObjectModelListInitialization(Children.Select(i => i.ConvertToObject())) }
+                        { "Title", this.Title },
+                        { "DefaultSelectionBoxItemId", this.DefaultInput },
+                        { "Items", new ObjectModelListInitialization(this.Children.Select(i => i.ConvertToObject())) }
                     };
 
                 case InputType.Text:
-                    obj.ConstructorValues.Add(new ObjectModelString(Id));
+                    obj.ConstructorValues.Add(new ObjectModelString(this.Id));
                     break;
             }
 

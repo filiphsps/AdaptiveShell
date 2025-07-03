@@ -1,45 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <Platforms>arm64;x64</Platforms>
-    <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
-    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-    <StartupObject>Shell.Host.Program</StartupObject>
-    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
-    <PackageProjectUrl>https://github.com/w10m-research/AdaptiveShell</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/w10m-research/AdaptiveShell</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageLicenseFile>/../LICENSE.MD</PackageLicenseFile>
-    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
+		<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
+		<TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+		<UseWPF>true</UseWPF>
+		<StartupObject>Shell.Host.Program</StartupObject>
+		<DefaultLanguage>en-US</DefaultLanguage>
+		<Platforms>x64;arm64</Platforms>
+		<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+		<UseWinUI>true</UseWinUI>
+		<WindowsAppSDKLatest>true</WindowsAppSDKLatest>
 
-  <PropertyGroup Condition="'$(Platform)' == 'arm64'">
-    <RuntimeIdentifier>win-arm64</RuntimeIdentifier>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)' == 'x64'">
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-  </PropertyGroup>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 
-  <ItemGroup>
-    <PackageReference Include="InputSimulator" Version="1.0.4" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.6" />
-    <PackageReference Include="CommunityToolkit.Uwp.Controls.Primitives" Version="8.2.250402" />
-    <PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls" Version="6.1.2" />
-    <PackageReference Include="Microsoft.Toolkit.Wpf.UI.XamlHost" Version="6.1.2" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.17" />
-    <PackageReference Update="Microsoft.VCRTForwarders.140" Version="1.1.0" />
-  </ItemGroup>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj" />
-    <ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj" />
-    <ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj" />
-    <ProjectReference Include="..\Shell.Models\Shell.Models.csproj" />
-    <ProjectReference Include="..\Shell\Shell.UWP.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="InputSimulator" Version="1.0.4" />
+		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.6" />
+		<PackageReference Include="CommunityToolkit.Uwp.Controls.Primitives" Version="8.2.250402" />
+		<PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls" Version="6.1.2" />
+		<PackageReference Include="Microsoft.Toolkit.Wpf.UI.XamlHost" Version="6.1.2" />
+		<PackageReference Include="System.Drawing.Common" Version="9.0.6" />
+		<PackageReference Update="Microsoft.VCRTForwarders.140" Version="1.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj" />
+		<ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj" />
+		<ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj" />
+		<ProjectReference Include="..\Shell.Models\Shell.Models.csproj" />
+		<ProjectReference Include="..\Shell\Shell.UWP.csproj" />
+	</ItemGroup>
 </Project>

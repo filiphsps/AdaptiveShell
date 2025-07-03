@@ -8,20 +8,20 @@ namespace NotificationsVisualizerLibrary
 {
     public sealed class PreviewNotificationData
     {
-        public IEnumerable<KeyValuePair<string, string>> Values { get; private set; }
+        public IEnumerable<KeyValuePair<String, String>> Values { get; private set; }
 
-        public uint Version { get; private set; }
+        public UInt32 Version { get; private set; }
 
-        public PreviewNotificationData(IEnumerable<KeyValuePair<string, string>> values, uint version)
+        public PreviewNotificationData(IEnumerable<KeyValuePair<String, String>> values, UInt32 version)
         {
-            Values = values;
-            Version = version;
+            this.Values = values;
+            this.Version = version;
         }
 
         public PreviewNotificationData()
         {
-            Values = new KeyValuePair<string, string>[0];
-            Version = 0;
+            this.Values = new KeyValuePair<String, String>[0];
+            this.Version = 0;
         }
     }
 }

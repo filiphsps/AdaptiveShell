@@ -1,4 +1,5 @@
-﻿using NotificationsVisualizerLibrary.Converters;
+﻿using Microsoft.UI.Xaml;
+using NotificationsVisualizerLibrary.Converters;
 using NotificationsVisualizerLibrary.Model;
 using System;
 using System.Collections.Generic;

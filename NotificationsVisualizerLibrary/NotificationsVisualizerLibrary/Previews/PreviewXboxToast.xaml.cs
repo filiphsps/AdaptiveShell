@@ -1,4 +1,6 @@
-﻿using NotificationsVisualizerLibrary.Model;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using NotificationsVisualizerLibrary.Model;
 using NotificationsVisualizerLibrary.Model.BaseElements;
 using NotificationsVisualizerLibrary.Parsers;
 using NotificationsVisualizerLibrary.Renderers;
@@ -14,9 +16,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -30,51 +30,51 @@ namespace NotificationsVisualizerLibrary
         {
             this.InitializeComponent();
 
-            CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
+            this.CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
         }
 
         private DataBindingValues _lastDataBindingValues;
         public ParseResult Initialize(XmlDocument content, PreviewNotificationData data)
         {
-            ParseResult result = _parser.ParseToast(content.GetXml(), CurrFeatureSet);
+            ParseResult result = _parser.ParseToast(content.GetXml(), this.CurrFeatureSet);
 
             if (result.IsOkForRender())
             {
-                _lastDataBindingValues = new DataBindingValues(data);
-                result.Toast.ApplyDataBinding(_lastDataBindingValues);
+                this._lastDataBindingValues = new DataBindingValues(data);
+                result.Toast.ApplyDataBinding(this._lastDataBindingValues);
 
                 if (result.IsOkForRender())
                 {
-                    InitializeContent(result.Toast);
+                    this.InitializeContent(result.Toast);
                 }
             }
 
             return result;
         }
 
-        private string _currLaunch = "";
+        private String _currLaunch = "";
         private ActivationType _currActivationType = ActivationType.Foreground;
-        private Dictionary<string, FrameworkElement> _elementsWithIds;
+        private Dictionary<String, FrameworkElement> _elementsWithIds;
 
         private IToast _currContent;
 
-        public bool HasContent { get; private set; }
+        public Boolean HasContent { get; private set; }
 
         private void ReInitializeContent()
         {
-            InitializeContent(_currContent);
+            this.InitializeContent(this._currContent);
         }
 
         private void InitializeContent(IToast toastContent)
         {
-            HasContent = false;
+            this.HasContent = false;
 
-            TextBlockTitle.Text = "";
-            TextBlockSubtitle.Text = "";
-            TextBlockSubtitle.Visibility = Visibility.Collapsed;
+            this.TextBlockTitle.Text = "";
+            this.TextBlockSubtitle.Text = "";
+            this.TextBlockSubtitle.Visibility = Visibility.Collapsed;
 
-            ImageAppLogoOverride.Visibility = Visibility.Collapsed;
-            CircleImageAppLogoOverride.Visibility = Visibility.Collapsed;
+            this.ImageAppLogoOverride.Visibility = Visibility.Collapsed;
+            this.CircleImageAppLogoOverride.Visibility = Visibility.Collapsed;
 
             if (toastContent != null)
             {
@@ -86,7 +86,7 @@ namespace NotificationsVisualizerLibrary
 
                     if (binding != null)
                     {
-                        HasContent = true;
+                        this.HasContent = true;
 
                         var container = binding.Container;
 
@@ -95,14 +95,14 @@ namespace NotificationsVisualizerLibrary
                         var titleText = texts.ElementAtOrDefault(0);
                         if (titleText != null)
                         {
-                            TextBlockTitle.Text = titleText.Text;
+                            this.TextBlockTitle.Text = titleText.Text;
                         }
 
                         var bodyTextLine1 = texts.ElementAtOrDefault(1);
                         if (bodyTextLine1 != null)
                         {
-                            TextBlockSubtitle.Text = bodyTextLine1.Text;
-                            TextBlockSubtitle.Visibility = Visibility.Visible;
+                            this.TextBlockSubtitle.Text = bodyTextLine1.Text;
+                            this.TextBlockSubtitle.Visibility = Visibility.Visible;
                         }
 
                         var appLogoOverride = container.Children.OfType<AdaptiveImage>().FirstOrDefault(i => i.Placement == Model.Enums.Placement.AppLogoOverride);
@@ -111,13 +111,13 @@ namespace NotificationsVisualizerLibrary
                             var bmp = ImageHelper.GetBitmap(appLogoOverride.Src);
                             if (appLogoOverride.HintCrop == Model.Enums.HintCrop.Circle)
                             {
-                                CircleImageAppLogoOverride.Source = bmp;
-                                CircleImageAppLogoOverride.Visibility = Visibility.Visible;
+                                this.CircleImageAppLogoOverride.Source = bmp;
+                                this.CircleImageAppLogoOverride.Visibility = Visibility.Visible;
                             }
                             else
                             {
-                                ImageAppLogoOverride.Source = bmp;
-                                ImageAppLogoOverride.Visibility = Visibility.Visible;
+                                this.ImageAppLogoOverride.Source = bmp;
+                                this.ImageAppLogoOverride.Visibility = Visibility.Visible;
                             }
                         }
                     }
@@ -129,8 +129,8 @@ namespace NotificationsVisualizerLibrary
 
         public PreviewToastProperties Properties
         {
-            get { return GetValue(PropertiesProperty) as PreviewToastProperties; }
-            set { SetValue(PropertiesProperty, value); }
+            get { return this.GetValue(PropertiesProperty) as PreviewToastProperties; }
+            set { this.SetValue(PropertiesProperty, value); }
         }
 
         #region DeviceFamily
@@ -142,11 +142,11 @@ namespace NotificationsVisualizerLibrary
         /// </summary>
         public DeviceFamily DeviceFamily
         {
-            get { return (DeviceFamily)GetValue(DeviceFamilyProperty); }
-            set { SetValue(DeviceFamilyProperty, value); }
+            get { return (DeviceFamily)this.GetValue(DeviceFamilyProperty); }
+            set { this.SetValue(DeviceFamilyProperty, value); }
         }
 
-        private static void OnDeviceFamilyChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private static void OnDeviceFamilyChanged(Object sender, DependencyPropertyChangedEventArgs e)
         {
             (sender as PreviewXboxToast).OnDeviceFamilyChanged(e);
         }
@@ -154,7 +154,7 @@ namespace NotificationsVisualizerLibrary
         private void OnDeviceFamilyChanged(DependencyPropertyChangedEventArgs e)
         {
             // Feature set is affected
-            UpdateFeatureSet();
+            this.UpdateFeatureSet();
         }
 
         #endregion
@@ -164,10 +164,10 @@ namespace NotificationsVisualizerLibrary
         /// <summary>
         /// Gets or sets the current OS version, which impacts what features and bug fixes are available.
         /// </summary>
-        public int OSBuildNumber
+        public Int32 OSBuildNumber
         {
-            get { return (int)GetValue(OSBuildNumberProperty); }
-            set { SetValue(OSBuildNumberProperty, value); }
+            get { return (Int32)this.GetValue(OSBuildNumberProperty); }
+            set { this.SetValue(OSBuildNumberProperty, value); }
         }
 
         private static void OnOSBuildNumberChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -177,21 +177,21 @@ namespace NotificationsVisualizerLibrary
 
         private void OnOSBuildNumberChanged(DependencyPropertyChangedEventArgs e)
         {
-            UpdateFeatureSet();
+            this.UpdateFeatureSet();
         }
 
         internal FeatureSet CurrFeatureSet { get; private set; }
 
         private void UpdateFeatureSet()
         {
-            CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
+            this.CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
 
             this.ReInitializeContent();
         }
 
         public ParseResult Initialize(XmlDocument content)
         {
-            return Initialize(content, null);
+            return this.Initialize(content, null);
         }
 
         public void Update(PreviewNotificationData data)

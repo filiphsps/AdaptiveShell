@@ -11,13 +11,13 @@ namespace NotificationsVisualizerLibrary.Converters
 {
     public sealed class TilePixelSizeToClip : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
             if (value is Size)
             {
-                Size s = (Size)value;
+                var s = (Size)value;
 
-                Size clipSize = new Size(s.Width * 3, s.Height);
+                var clipSize = new Size(s.Width * 3, s.Height);
 
                 return new RectangleGeometry()
                 {
@@ -28,7 +28,7 @@ namespace NotificationsVisualizerLibrary.Converters
             return value;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public Object ConvertBack(Object value, Type targetType, Object parameter, String language)
         {
             throw new NotImplementedException();
         }
