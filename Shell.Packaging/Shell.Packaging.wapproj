@@ -28,12 +28,10 @@
       <Configuration>Release</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" PrivateAssets="all" Version="10.0.26100.4188" />
   </ItemGroup>
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
-  </PropertyGroup>
-  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
-  <PropertyGroup>
     <ProjectGuid>e5f83d86-9edb-45d6-ad33-8e8c5b668255</ProjectGuid>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
@@ -50,6 +48,7 @@
     <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
     <EntryPointProjectUniqueName>..\Shell.Host\Shell.Host.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
@@ -133,13 +132,10 @@
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" PrivateAssets="all" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shell.Host\Shell.Host.csproj" />
   </ItemGroup>
   <Target Name="AfterBuild">
     <Exec Command="mkdir &quot;$(ProjectDir)\bin\$(Platform)\$(Configuration)\AppX\Shell.Host&quot;" ContinueOnError="true" />
-    <Exec Command="xcopy &quot;$(SolutionDir)\Shell.Host\bin\$(Platform)\$(Configuration)\netcoreapp3.1\Start.xbf&quot; &quot;$(ProjectDir)\bin\$(Platform)\$(Configuration)\AppX\Shell.Host&quot; /Y /R" ContinueOnError="true" />
+    <Exec Command="xcopy &quot;$(SolutionDir)\Shell.Host\bin\$(Platform)\$(Configuration)\net8.0\Start.xbf&quot; &quot;$(ProjectDir)\bin\$(Platform)\$(Configuration)\AppX\Shell.Host&quot; /Y /R" ContinueOnError="true" />
   </Target>
 </Project>

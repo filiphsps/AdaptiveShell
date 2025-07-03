@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Shell.LiveTilesAccessLibrary (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Shell.LiveTilesAccessLibrary (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

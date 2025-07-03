@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Shell.Controls (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Shell.Controls (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

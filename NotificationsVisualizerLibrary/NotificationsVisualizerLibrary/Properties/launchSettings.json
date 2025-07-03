@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NotificationsVisualizerLibrary (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "NotificationsVisualizerLibrary (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
