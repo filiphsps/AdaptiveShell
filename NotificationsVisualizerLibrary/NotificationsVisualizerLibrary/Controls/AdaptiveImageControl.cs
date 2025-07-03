@@ -15,7 +15,7 @@ namespace NotificationsVisualizerLibrary.Controls
 {
     public sealed class AdaptiveImageControl : Control, IAdaptiveControl
     {
-        public bool DoesAllContentFit { get; private set; }
+        public Boolean DoesAllContentFit { get; private set; }
 
         public AdaptiveImageControl()
         {
@@ -37,12 +37,12 @@ namespace NotificationsVisualizerLibrary.Controls
 
         private void OnSourcePropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            BitmapImage oldBitmap = e.OldValue as BitmapImage;
+            var oldBitmap = e.OldValue as BitmapImage;
 
             if (oldBitmap != null)
                 oldBitmap.ImageOpened -= Bitmap_ImageOpened;
             
-            BitmapImage newBitmap = e.NewValue as BitmapImage;
+            var newBitmap = e.NewValue as BitmapImage;
 
             if (newBitmap != null)
             {
@@ -52,28 +52,28 @@ namespace NotificationsVisualizerLibrary.Controls
             base.InvalidateMeasure();
         }
 
-        private void Bitmap_ImageOpened(object sender, RoutedEventArgs e)
+        private void Bitmap_ImageOpened(Object sender, RoutedEventArgs e)
         {
             base.InvalidateMeasure();
         }
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            DoesAllContentFit = true;
+            this.DoesAllContentFit = true;
 
-            if (Source == null || Source.PixelHeight == 0 || Source.PixelWidth == 0)
+            if (this.Source == null || this.Source.PixelHeight == 0 || this.Source.PixelWidth == 0)
                 return new Size();
 
-            switch (Stretch)
+            switch (this.Stretch)
             {
                 case AdaptiveImageStretch.None:
 
                     // If it can't fit, flag it as not fitting
-                    if (Source.PixelHeight > availableSize.Height)
-                        DoesAllContentFit = false;
+                    if (this.Source.PixelHeight > availableSize.Height)
+                        this.DoesAllContentFit = false;
 
                     // We still display it at its full size despite not fitting
-                    return new Size(Source.PixelWidth, Source.PixelHeight);
+                    return new Size(this.Source.PixelWidth, this.Source.PixelHeight);
 
 
 
@@ -81,17 +81,17 @@ namespace NotificationsVisualizerLibrary.Controls
                 case AdaptiveImageStretch.UniformToWidth:
 
                     // If infinite width (this shouldn't ever get hit for tiles, but might as well implement it)
-                    if (double.IsInfinity(availableSize.Width))
+                    if (Double.IsInfinity(availableSize.Width))
                     {
                         // If can't fit at its native height
-                        if (Source.PixelHeight > availableSize.Height)
+                        if (this.Source.PixelHeight > availableSize.Height)
                         {
-                            DoesAllContentFit = false;
+                            this.DoesAllContentFit = false;
                             return FitToHeight(availableSize.Height); // Then fit it to the height
                         }
 
                         // Otherwise display at its full size
-                        return new Size(Source.PixelWidth, Source.PixelHeight);
+                        return new Size(this.Source.PixelWidth, this.Source.PixelHeight);
                     }
 
 
@@ -104,7 +104,7 @@ namespace NotificationsVisualizerLibrary.Controls
                     // If all can't fit, flag it as so and fit to its height
                     if (fitted.Height > availableSize.Height)
                     {
-                        DoesAllContentFit = false;
+                        this.DoesAllContentFit = false;
                         return FitToHeight(availableSize.Height);
                     }
 
@@ -113,14 +113,14 @@ namespace NotificationsVisualizerLibrary.Controls
 
                 case AdaptiveImageStretch.Uniform:
 
-                    if (double.IsInfinity(availableSize.Width) && double.IsInfinity(availableSize.Height))
-                        return new Size(Source.PixelWidth, Source.PixelHeight);
+                    if (Double.IsInfinity(availableSize.Width) && Double.IsInfinity(availableSize.Height))
+                        return new Size(this.Source.PixelWidth, this.Source.PixelHeight);
 
                     if (availableSize.Width <= 0 || availableSize.Height <= 0)
                         return new Size();
 
                     // If need to fit to height
-                    if (double.IsInfinity(availableSize.Width) || (!double.IsInfinity(availableSize.Height) && (Source.PixelHeight / (double)Source.PixelWidth) >= (availableSize.Height / availableSize.Width)))
+                    if (Double.IsInfinity(availableSize.Width) || (!Double.IsInfinity(availableSize.Height) && (this.Source.PixelHeight / (Double)this.Source.PixelWidth) >= (availableSize.Height / availableSize.Width)))
                         return FitToHeight(availableSize.Height);
 
                     // Otherwise fit to width
@@ -133,58 +133,58 @@ namespace NotificationsVisualizerLibrary.Controls
             }
         }
 
-        private Size FitToHeight(double height)
+        private Size FitToHeight(Double height)
         {
-            if (Source == null || Source.PixelHeight == 0 || Source.PixelWidth == 0)
+            if (this.Source == null || this.Source.PixelHeight == 0 || this.Source.PixelWidth == 0)
                 return new Size();
 
-            return new Size(Math.Ceiling(height * (Source.PixelWidth / (double)Source.PixelHeight)), height);
+            return new Size(Math.Ceiling(height * (this.Source.PixelWidth / (Double)this.Source.PixelHeight)), height);
         }
 
-        private Size FitToWidth(double width)
+        private Size FitToWidth(Double width)
         {
-            if (Source == null || Source.PixelHeight == 0 || Source.PixelWidth == 0)
+            if (this.Source == null || this.Source.PixelHeight == 0 || this.Source.PixelWidth == 0)
                 return new Size();
 
-            return new Size(width, Math.Ceiling(width * (Source.PixelHeight / (double)Source.PixelWidth)));
+            return new Size(width, Math.Ceiling(width * (this.Source.PixelHeight / (Double)this.Source.PixelWidth)));
         }
 
         private Size CalculateDesiredSize(Size availableSize)
         {
-            if (Source == null || Source.PixelHeight == 0 || Source.PixelWidth == 0)
+            if (this.Source == null || this.Source.PixelHeight == 0 || this.Source.PixelWidth == 0)
                 return new Size();
 
-            switch (Stretch)
+            switch (this.Stretch)
             {
                 case AdaptiveImageStretch.None:
-                    return new Size(Source.PixelWidth, Source.PixelHeight);
+                    return new Size(this.Source.PixelWidth, this.Source.PixelHeight);
 
                 case AdaptiveImageStretch.UniformToWidth:
 
-                    if (double.IsInfinity(availableSize.Width))
-                        return new Size(Source.PixelWidth, Source.PixelHeight);
+                    if (Double.IsInfinity(availableSize.Width))
+                        return new Size(this.Source.PixelWidth, this.Source.PixelHeight);
 
                     if (availableSize.Width <= 0)
                         return new Size();
 
-                    return new Size(availableSize.Width, Math.Ceiling(availableSize.Width * (Source.PixelHeight / (double)Source.PixelWidth)));
+                    return new Size(availableSize.Width, Math.Ceiling(availableSize.Width * (this.Source.PixelHeight / (Double)this.Source.PixelWidth)));
 
 
                 case AdaptiveImageStretch.Uniform:
 
-                    if (double.IsInfinity(availableSize.Width) && double.IsInfinity(availableSize.Height))
-                        return new Size(Source.PixelWidth, Source.PixelHeight);
+                    if (Double.IsInfinity(availableSize.Width) && Double.IsInfinity(availableSize.Height))
+                        return new Size(this.Source.PixelWidth, this.Source.PixelHeight);
 
                     if (availableSize.Width <= 0 || availableSize.Height <= 0)
                         return new Size();
 
                     // If need to fit to height
-                    if (double.IsInfinity(availableSize.Width) || (!double.IsInfinity(availableSize.Height) && (Source.PixelHeight / (double)Source.PixelWidth) >= (availableSize.Height / availableSize.Width)))
-                        return new Size(Math.Ceiling(availableSize.Height * (Source.PixelWidth / (double)Source.PixelHeight)), availableSize.Height);
+                    if (Double.IsInfinity(availableSize.Width) || (!Double.IsInfinity(availableSize.Height) && (this.Source.PixelHeight / (Double)this.Source.PixelWidth) >= (availableSize.Height / availableSize.Width)))
+                        return new Size(Math.Ceiling(availableSize.Height * (this.Source.PixelWidth / (Double)this.Source.PixelHeight)), availableSize.Height);
 
                     // Otherwise fit to width
                     else
-                        return new Size(availableSize.Width, Math.Ceiling(availableSize.Width * (Source.PixelHeight / (double)Source.PixelWidth)));
+                        return new Size(availableSize.Width, Math.Ceiling(availableSize.Width * (this.Source.PixelHeight / (Double)this.Source.PixelWidth)));
 
 
                 default:

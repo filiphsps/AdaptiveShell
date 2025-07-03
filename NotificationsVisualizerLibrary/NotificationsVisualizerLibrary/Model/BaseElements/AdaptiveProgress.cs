@@ -13,55 +13,55 @@ namespace NotificationsVisualizerLibrary.Model
     {
         public AdaptiveProgress(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        private static readonly string ATTR_TITLE = "title";
-        private static readonly string ATTR_VALUE_STRING_OVERRIDE = "valueStringOverride";
-        private static readonly string ATTR_VALUE = "value";
-        private static readonly string ATTR_STATUS = "status";
+        private static readonly String ATTR_TITLE = "title";
+        private static readonly String ATTR_VALUE_STRING_OVERRIDE = "valueStringOverride";
+        private static readonly String ATTR_VALUE = "value";
+        private static readonly String ATTR_STATUS = "status";
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[0];
+            return new String[0];
         }
 
-        private string _title;
+        private String _title;
         /// <summary>
         /// Optional
         /// </summary>
-        public string Title
+        public String Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get { return this._title; }
+            set { this.SetProperty(ref this._title, value); }
         }
 
         [ObjectModelBindingProperty("Value", "BindableProgressBarValue")]
-        public string BindingValue { get; set; }
+        public String BindingValue { get; set; }
 
         [ObjectModelBindingProperty("ValueStringOverride", "BindableString")]
-        public string BindingValueStringOverride { get; set; }
+        public String BindingValueStringOverride { get; set; }
 
         [ObjectModelBindingProperty("Title", "BindableString")]
-        public string BindingTitle { get; set; }
+        public String BindingTitle { get; set; }
 
         [ObjectModelBindingProperty("Status", "BindableString")]
-        public string BindingStatus { get; set; }
+        public String BindingStatus { get; set; }
 
         [ObjectModelProperty("Value", null)]
         public IObjectModelValue PropertyValue
         {
             get
             {
-                if (BindingValue != null)
+                if (this.BindingValue != null)
                 {
                     // If data binding being used, the other property will pick it up
                     return null;
                 }
 
-                if (IsIndeterminate)
+                if (this.IsIndeterminate)
                 {
                     return new ObjectModelEnum("AdaptiveProgressBarValue", "Intermediate");
                 }
 
-                return new ObjectModelObjectFromStaticMethod("AdaptiveProgressBarValue", "FromValue", new ObjectModelDouble(Value));
+                return new ObjectModelObjectFromStaticMethod("AdaptiveProgressBarValue", "FromValue", new ObjectModelDouble(this.Value));
             }
         }
 
@@ -70,17 +70,17 @@ namespace NotificationsVisualizerLibrary.Model
         {
             get
             {
-                if (BindingValueStringOverride != null)
+                if (this.BindingValueStringOverride != null)
                 {
                     return null;
                 }
 
-                if (ValueStringOverride == null)
+                if (this.ValueStringOverride == null)
                 {
                     return null;
                 }
 
-                return new ObjectModelString(ValueStringOverride);
+                return new ObjectModelString(this.ValueStringOverride);
             }
         }
 
@@ -89,17 +89,17 @@ namespace NotificationsVisualizerLibrary.Model
         {
             get
             {
-                if (BindingTitle != null)
+                if (this.BindingTitle != null)
                 {
                     return null;
                 }
 
-                if (Title == null)
+                if (this.Title == null)
                 {
                     return null;
                 }
 
-                return new ObjectModelString(Title);
+                return new ObjectModelString(this.Title);
             }
         }
 
@@ -108,109 +108,109 @@ namespace NotificationsVisualizerLibrary.Model
         {
             get
             {
-                if (BindingStatus != null)
+                if (this.BindingStatus != null)
                 {
                     return null;
                 }
 
-                if (Status == null)
+                if (this.Status == null)
                 {
                     return null;
                 }
 
-                return new ObjectModelString(Status);
+                return new ObjectModelString(this.Status);
             }
         }
 
-        private double _value;
+        private Double _value;
         /// <summary>
         /// Required, value between 0.0 and 1.0
         /// </summary>
-        public double Value
+        public Double Value
         {
-            get { return _value; }
-            set { SetProperty(ref _value, value); NotifyPropertyChanged(nameof(ValueString)); }
+            get { return this._value; }
+            set { this.SetProperty(ref this._value, value); this.NotifyPropertyChanged(nameof(this.ValueString)); }
         }
 
-        public string ValueString
+        public String ValueString
         {
             get
             {
-                if (ValueStringOverride != null)
+                if (this.ValueStringOverride != null)
                 {
-                    return ValueStringOverride;
+                    return this.ValueStringOverride;
                 }
 
-                return (Value).ToString("0%");
+                return (this.Value).ToString("0%");
             }
         }
 
-        private bool _isIndeterminate;
-        public bool IsIndeterminate
+        private Boolean _isIndeterminate;
+        public Boolean IsIndeterminate
         {
-            get { return _isIndeterminate; }
-            set { SetProperty(ref _isIndeterminate, value); }
+            get { return this._isIndeterminate; }
+            set { this.SetProperty(ref this._isIndeterminate, value); }
         }
 
-        private string _valueStringOverride;
-        public string ValueStringOverride
+        private String _valueStringOverride;
+        public String ValueStringOverride
         {
-            get { return _valueStringOverride; }
-            set { SetProperty(ref _valueStringOverride, value); NotifyPropertyChanged(nameof(ValueString)); }
+            get { return this._valueStringOverride; }
+            set { this.SetProperty(ref this._valueStringOverride, value); this.NotifyPropertyChanged(nameof(this.ValueString)); }
         }
 
-        private string _status;
+        private String _status;
         /// <summary>
         /// Optional
         /// </summary>
-        public string Status
+        public String Status
         {
-            get { return _status; }
-            set { SetProperty(ref _status, value); }
+            get { return this._status; }
+            set { this.SetProperty(ref this._status, value); }
         }
 
         internal void Parse(ParseResult result, XElement node)
         {
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(node, attributes, result);
+            this.ParseKnownAttributes(node, attributes, result);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
         }
 
         internal void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result)
         {
             // title is optional
-            string bindingTitle;
-            TryPopAttributeValueWithBinding(result, attributes, ATTR_TITLE, out bindingTitle, (val) =>
+            String bindingTitle;
+            this.TryPopAttributeValueWithBinding(result, attributes, ATTR_TITLE, out bindingTitle, (val) =>
             {
-                Title = val;
+                this.Title = val;
             });
-            BindingTitle = bindingTitle;
+            this.BindingTitle = bindingTitle;
 
             // valueStringOverride is optional
-            string bindingValueStringOverride;
-            TryPopAttributeValueWithBinding(result, attributes, ATTR_VALUE_STRING_OVERRIDE, out bindingValueStringOverride, (val) =>
+            String bindingValueStringOverride;
+            this.TryPopAttributeValueWithBinding(result, attributes, ATTR_VALUE_STRING_OVERRIDE, out bindingValueStringOverride, (val) =>
             {
-                ValueStringOverride = val;
+                this.ValueStringOverride = val;
             });
-            BindingValueStringOverride = bindingValueStringOverride;
+            this.BindingValueStringOverride = bindingValueStringOverride;
 
             // value is required
-            string bindingValue;
-            bool hadValue = TryPopAttributeValueWithBinding(result, attributes, ATTR_VALUE, out bindingValue, (val) =>
+            String bindingValue;
+            Boolean hadValue = this.TryPopAttributeValueWithBinding(result, attributes, ATTR_VALUE, out bindingValue, (val) =>
             {
                 if (val == null)
                 {
                     throw new ParseErrorException(new ParseError(ParseErrorType.ErrorButRenderAllowed, "progress value wasn't provided.", XmlTemplateParser.GetErrorPositionInfo(node)));
                 }
 
-                double value = 0;
+                Double value = 0;
                 if (val.Equals("indeterminate", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    IsIndeterminate = true;
+                    this.IsIndeterminate = true;
                 }
-                else if (!double.TryParse(val, out value))
+                else if (!Double.TryParse(val, out value))
                 {
                     throw new ParseErrorException(new ParseError(ParseErrorType.ErrorButRenderAllowed, "progress value must be a double between 0.0 and 1.0, or 'indeterminate'.", XmlTemplateParser.GetErrorPositionInfo(node)));
                 }
@@ -218,30 +218,30 @@ namespace NotificationsVisualizerLibrary.Model
                 {
                     if (value < 0 || value > 1)
                     {
-                        IsIndeterminate = false;
-                        Value = (value < 0) ? 0 : 1;
+                        this.IsIndeterminate = false;
+                        this.Value = (value < 0) ? 0 : 1;
                         throw new ParseErrorException(new ParseError(ParseErrorType.ErrorButRenderAllowed, "progress value must be between 0.0 and 1.0, or 'indeterminate'.", XmlTemplateParser.GetErrorPositionInfo(node)));
                     }
 
-                    IsIndeterminate = false;
-                    Value = value;
+                    this.IsIndeterminate = false;
+                    this.Value = value;
                 }
             });
             if (!hadValue)
             {
-                Value = 0;
+                this.Value = 0;
                 result.AddErrorButRenderAllowed("value attribute on progress element is required and must be a double between 0.0 and 1.0, or 'indeterminate'.", XmlTemplateParser.GetErrorPositionInfo(node));
             }
 
-            BindingValue = bindingValue;
+            this.BindingValue = bindingValue;
 
             // status is optional
-            string bindingStatus;
-            TryPopAttributeValueWithBinding(result, attributes, ATTR_STATUS, out bindingStatus, (val) =>
+            String bindingStatus;
+            this.TryPopAttributeValueWithBinding(result, attributes, ATTR_STATUS, out bindingStatus, (val) =>
             {
-                Status = val;
+                this.Status = val;
             });
-            BindingStatus = bindingStatus;
+            this.BindingStatus = bindingStatus;
         }
     }
 }

@@ -9,8 +9,8 @@ namespace NotificationsVisualizerLibrary.Parsers
 {
     public interface ITemplateParser
     {
-        bool IsMatch(string text);
+        Boolean IsMatch(String text);
 
-        ParseResult Parse(string text);
+        ParseResult Parse(String text);
     }
 }

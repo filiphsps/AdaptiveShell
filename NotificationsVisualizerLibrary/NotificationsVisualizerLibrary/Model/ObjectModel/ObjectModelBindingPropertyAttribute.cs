@@ -8,19 +8,19 @@ namespace NotificationsVisualizerLibrary.Model
 {
     internal class ObjectModelBindingPropertyAttribute : ObjectModelBaseAttribute
     {
-        public string PropertyName { get; set; }
-        public string BindableTypeName { get; set; }
+        public String PropertyName { get; set; }
+        public String BindableTypeName { get; set; }
 
-        public ObjectModelBindingPropertyAttribute(string propertyName, string bindableTypeName)
+        public ObjectModelBindingPropertyAttribute(String propertyName, String bindableTypeName)
         {
-            PropertyName = propertyName;
-            BindableTypeName = bindableTypeName;
+            this.PropertyName = propertyName;
+            this.BindableTypeName = bindableTypeName;
         }
 
-        public ObjectModelBindingPropertyAttribute(string propertyName, string bindableTypeName, NotificationType context) : base(context)
+        public ObjectModelBindingPropertyAttribute(String propertyName, String bindableTypeName, NotificationType context) : base(context)
         {
-            PropertyName = propertyName;
-            BindableTypeName = bindableTypeName;
+            this.PropertyName = propertyName;
+            this.BindableTypeName = bindableTypeName;
         }
     }
 }

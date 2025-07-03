@@ -14,7 +14,7 @@ namespace NotificationsVisualizerLibrary.Model
 
         public ObjectModelBaseAttribute(NotificationType context)
         {
-            Context = context;
+            this.Context = context;
         }
     }
 }

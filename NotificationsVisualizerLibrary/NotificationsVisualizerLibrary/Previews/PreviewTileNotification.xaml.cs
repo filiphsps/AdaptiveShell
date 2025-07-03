@@ -35,13 +35,13 @@ namespace NotificationsVisualizerLibrary
         /// <param name="visualElements"></param>
         /// <param name="isBrandingVisible"></param>
         /// <param name="binding"></param>
-        public void InitializeFromXml(TileSize tileSize, PreviewTileVisualElements visualElements, bool isBrandingVisible, AdaptiveBinding binding)
+        public void InitializeFromXml(TileSize tileSize, PreviewTileVisualElements visualElements, Boolean isBrandingVisible, AdaptiveBinding binding)
         {
             if (binding == null)
                 throw new ArgumentNullException("binding");
 
 
-            PreviewTileNotificationRaw raw = new PreviewTileNotificationRaw();
+            var raw = new PreviewTileNotificationRaw();
             raw.InitializeFromXml(tileSize, visualElements, isBrandingVisible, binding);
 
             if (raw.UsingPeek)

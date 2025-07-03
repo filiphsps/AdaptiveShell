@@ -16,7 +16,7 @@ namespace NotificationsVisualizerLibrary.Controls
     internal class AdaptiveGenerator_Text
     {
         private static readonly SolidColorBrush TextBlockBrush = new SolidColorBrush(Colors.White);
-        private const double SubtleOpacity = 0.6;
+        private const Double SubtleOpacity = 0.6;
         private const OpticalMarginAlignment DefaultOpticalMarginAlignment = OpticalMarginAlignment.TrimSideBearings;
         private const TextTrimming DefaultTextTrimming = TextTrimming.CharacterEllipsis;
         private const TextWrapping DefaultTextWrapping = TextWrapping.NoWrap;
@@ -24,15 +24,15 @@ namespace NotificationsVisualizerLibrary.Controls
         public static StyleInfo[] DefaultTypeRamp = new StyleInfo[]
         {
             //              LineHeight minLineHeight SFirstGRP TopOffset        { Caption Body Subtitle Title SubHeader Header TitleNumeral SubheaderNumeral HeaderNumeral
-            new StyleInfo(  16,           16.0,          4,         4, new double[] { 0,     1,     0,      0,     0,       0,       4,            8,              8, }), // 0 Caption
-            new StyleInfo(  20,           20.0,          3,         5, new double[] { 1,     0,     0,      0,     0,       0,       5,            7,              8, }),    // 1 Body
-            new StyleInfo(  24,           26.6,          0,         7, new double[] { 2,     1,     0,      0,     0,       0,       6,            8,             10, }),    // 2 Subtitle
-            new StyleInfo(  30,           31.9,          0,         9, new double[] { 1,     1,     0,      0,     0,       0,       7,            9,             12, }),    // 3 Title
-            new StyleInfo(  40,           45.2,          0,        12, new double[] { 1,     4,     0,      0,     0,       0,      10,           12,             15, }),    // 4 SubHeader 
-            new StyleInfo(  56,           61.3,          0,        17, new double[] { 4,     5,     3,      5,     0,       0,      12,           16,             20, }),    // 5 Header
-            new StyleInfo(  17.9,         17.9,          8,         0, new double[] { 3,     4,     5,      6,    10,       0,      12,           14,             16, }),    // 6 TitleNumeral
-            new StyleInfo(  24.8,         24.8,          8,         0, new double[] { 6,     4,     5,      6,     3,       3,      14,           14,             16, }),    // 7 SubHeaderNumeral
-            new StyleInfo(  33.3,         33.3,          8,         0, new double[] { 8,     7,     6,      8,     6,       5,      16,           16,             20, }),    // 8 HeaderNumeral
+            new StyleInfo(  16,           16.0,          4,         4, new Double[] { 0,     1,     0,      0,     0,       0,       4,            8,              8, }), // 0 Caption
+            new StyleInfo(  20,           20.0,          3,         5, new Double[] { 1,     0,     0,      0,     0,       0,       5,            7,              8, }),    // 1 Body
+            new StyleInfo(  24,           26.6,          0,         7, new Double[] { 2,     1,     0,      0,     0,       0,       6,            8,             10, }),    // 2 Subtitle
+            new StyleInfo(  30,           31.9,          0,         9, new Double[] { 1,     1,     0,      0,     0,       0,       7,            9,             12, }),    // 3 Title
+            new StyleInfo(  40,           45.2,          0,        12, new Double[] { 1,     4,     0,      0,     0,       0,      10,           12,             15, }),    // 4 SubHeader 
+            new StyleInfo(  56,           61.3,          0,        17, new Double[] { 4,     5,     3,      5,     0,       0,      12,           16,             20, }),    // 5 Header
+            new StyleInfo(  17.9,         17.9,          8,         0, new Double[] { 3,     4,     5,      6,    10,       0,      12,           14,             16, }),    // 6 TitleNumeral
+            new StyleInfo(  24.8,         24.8,          8,         0, new Double[] { 6,     4,     5,      6,     3,       3,      14,           14,             16, }),    // 7 SubHeaderNumeral
+            new StyleInfo(  33.3,         33.3,          8,         0, new Double[] { 8,     7,     6,      8,     6,       5,      16,           16,             20, }),    // 8 HeaderNumeral
         };
 
         public static TextStyleInfo DefaultStyleInfo;
@@ -65,9 +65,9 @@ namespace NotificationsVisualizerLibrary.Controls
             EnsureStyleTable();
         }
 
-        private static TextStyleInfo GetStyleIndex(string styleName, out bool subtle)
+        private static TextStyleInfo GetStyleIndex(String styleName, out Boolean subtle)
         {
-            const string subtleSuffix = "subtle";
+            const String subtleSuffix = "subtle";
 
             styleName = styleName.ToLower();
 
@@ -90,7 +90,7 @@ namespace NotificationsVisualizerLibrary.Controls
             return textStyleInfo;
         }
 
-        public static TextStyleInfo GetStyleIndex(HintStyle style, out bool subtle)
+        public static TextStyleInfo GetStyleIndex(HintStyle style, out Boolean subtle)
         {
             if (style == HintStyle.Default)
             {
@@ -112,17 +112,17 @@ namespace NotificationsVisualizerLibrary.Controls
         /// <param name="lineStyleIndex"></param>
         /// <returns></returns>
         public static TextBlock GenerateText(
-            AdaptiveTextField textField, 
-            bool isFirst, 
-            bool isFirstGroup, 
-            int previousLineStyleIndex, 
-            double topMarginOffset,
-            bool needsImageMargin,
-            out int lineStyleIndex)
+            AdaptiveTextField textField,
+            Boolean isFirst,
+            Boolean isFirstGroup,
+            Int32 previousLineStyleIndex,
+            Double topMarginOffset,
+            Boolean needsImageMargin,
+            out Int32 lineStyleIndex)
         {
             lineStyleIndex = -1;
 
-            TextBlock spTextBlock = new TextBlock()
+            var spTextBlock = new TextBlock()
             {
                 //Foreground = TextBlockBrush,
                 Text = textField.Text,
@@ -130,7 +130,7 @@ namespace NotificationsVisualizerLibrary.Controls
             };
 
             // Get the text style info
-            bool isSubtle;
+            Boolean isSubtle;
             TextStyleInfo textStyleInfo = GetStyleIndex(textField.HintStyle, out isSubtle);
 
             // Set the XAML text style
@@ -147,7 +147,7 @@ namespace NotificationsVisualizerLibrary.Controls
             lineStyleIndex = textStyleInfo.Index;
 
             // Default top margin values for textblocks
-            double topMargin;
+            Double topMargin;
             if (isFirst)
             {
                 if (isFirstGroup)
@@ -218,13 +218,13 @@ namespace NotificationsVisualizerLibrary.Controls
             spTextBlock.MinHeight = textField.HintMinLines.GetValueOrDefault(1) * DefaultTypeRamp[lineStyleIndex].MinLineHeight;
 
             // Margins
-            Thickness margins = new Thickness(0, topMargin, 0, 0);
+            var margins = new Thickness(0, topMargin, 0, 0);
             spTextBlock.Margin = margins;
 
             return spTextBlock;
         }
 
-        private static void SetStyle(TextBlock textBlock, string xamlStyleName)
+        private static void SetStyle(TextBlock textBlock, String xamlStyleName)
         {
             textBlock.Style = (Style)Application.Current.Resources[xamlStyleName];
         }

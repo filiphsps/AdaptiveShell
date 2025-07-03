@@ -9,16 +9,16 @@ namespace NotificationsVisualizerLibrary.Model
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     internal class ObjectModelClassAttribute : ObjectModelBaseAttribute
     {
-        public string Name { get; private set; }
+        public String Name { get; private set; }
 
-        public ObjectModelClassAttribute(string name)
+        public ObjectModelClassAttribute(String name)
         {
-            Name = name;
+            this.Name = name;
         }
 
-        public ObjectModelClassAttribute(string name, NotificationType context) : base(context)
+        public ObjectModelClassAttribute(String name, NotificationType context) : base(context)
         {
-            Name = name;
+            this.Name = name;
         }
     }
 }

@@ -14,54 +14,54 @@ namespace NotificationsVisualizerLibrary.Model
     {
         public AdaptiveImage(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        private static readonly string ATTR_IMAGE_SRC = "src";
-        private static readonly string ATTR_IMAGE_ALT = "alt";
-        private static readonly string ATTR_IMAGE_ADDIMAGEQUERY = "addImageQuery";
-        private static readonly string ATTR_IMAGE_HINT_CROP = "hint-crop";
-        private static readonly string ATTR_IMAGE_PLACEMENT = "placement";
-        private static readonly string ATTR_IMAGE_HINT_REMOVE_MARGIN = "hint-removeMargin";
-        private static readonly string ATTR_IMAGE_HINT_ALIGN = "hint-align";
-        private const string ATTR_HINT_OVERLAY = "hint-overlay";
+        private static readonly String ATTR_IMAGE_SRC = "src";
+        private static readonly String ATTR_IMAGE_ALT = "alt";
+        private static readonly String ATTR_IMAGE_ADDIMAGEQUERY = "addImageQuery";
+        private static readonly String ATTR_IMAGE_HINT_CROP = "hint-crop";
+        private static readonly String ATTR_IMAGE_PLACEMENT = "placement";
+        private static readonly String ATTR_IMAGE_HINT_REMOVE_MARGIN = "hint-removeMargin";
+        private static readonly String ATTR_IMAGE_HINT_ALIGN = "hint-align";
+        private const String ATTR_HINT_OVERLAY = "hint-overlay";
 
-        public string Id { get; set; }
+        public String Id { get; set; }
 
         [ObjectModelProperty("AlternateText")]
-        public string AlternateText { get; set; }
+        public String AlternateText { get; set; }
 
         [ObjectModelProperty("AddImageQuery")]
-        public bool? AddImageQuery { get; set; }
+        public Boolean? AddImageQuery { get; set; }
 
         [ObjectModelProperty("HintCrop", HintCrop.Default)]
         public HintCrop HintCrop { get; set; } = HintCrop.Default;
 
         [ObjectModelProperty("HintRemoveMargin")]
-        public bool? HintRemoveMargin { get; set; }
+        public Boolean? HintRemoveMargin { get; set; }
 
         [ObjectModelProperty("HintAlign", HintImageAlign.Default)]
         public HintImageAlign HintAlign { get; set; } = HintImageAlign.Default;
 
         public Placement Placement { get; set; } = Placement.Inline;
 
-        private double? _hintOverlay = null;
-        public double? HintOverlay
+        private Double? _hintOverlay = null;
+        public Double? HintOverlay
         {
-            get { return _hintOverlay; }
+            get { return this._hintOverlay; }
             set
             {
                 if (value != null)
                 {
                     if (value.Value < 0)
-                        _hintOverlay = 0;
+                        this._hintOverlay = 0;
 
                     else if (value.Value > 100)
-                        _hintOverlay = 100;
+                        this._hintOverlay = 100;
 
                     else
-                        _hintOverlay = value;
+                        this._hintOverlay = value;
                 }
 
                 else
-                    _hintOverlay = value;
+                    this._hintOverlay = value;
             }
         }
 
@@ -69,27 +69,27 @@ namespace NotificationsVisualizerLibrary.Model
         /// Required
         /// </summary>
         [ObjectModelProperty("Source")]
-        public string Src { get; set; }
+        public String Src { get; set; }
 
 
-        internal void Parse(ParseResult result, XElement node, string baseUri, bool addImageQuery)
+        internal void Parse(ParseResult result, XElement node, String baseUri, Boolean addImageQuery)
         {
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(node, attributes, result, baseUri, addImageQuery);
+            this.ParseKnownAttributes(node, attributes, result, baseUri, addImageQuery);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
         }
 
-        internal void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result, string baseUri, bool addImageQuery)
+        internal void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result, String baseUri, Boolean addImageQuery)
         {
             // AddImageQuery is optional
             {
-                bool val;
+                Boolean val;
                 if (TryParse(result, attributes, ATTR_IMAGE_ADDIMAGEQUERY, out val))
                 {
                     addImageQuery = val; // Overwrite cascaded value if it was specified
-                    AddImageQuery = val;
+                    this.AddImageQuery = val;
                 }
             }
 
@@ -109,33 +109,33 @@ namespace NotificationsVisualizerLibrary.Model
             var altAttr = attributes.PopAttribute(ATTR_IMAGE_ALT);
             if (altAttr != null)
             {
-                AlternateText = altAttr.Value;
+                this.AlternateText = altAttr.Value;
             }
 
             // placement defaults to inline
             Placement placement;
-            if (TryParseEnum(result, attributes, ATTR_IMAGE_PLACEMENT, out placement))
+            if (this.TryParseEnum(result, attributes, ATTR_IMAGE_PLACEMENT, out placement))
                 this.Placement = placement;
 
             switch (placement)
             {
                 case Placement.Background:
 
-                    if (SupportedFeatures.CropCircleOnBackgroundImage)
-                        HandleHintCrop(result, attributes);
+                    if (this.SupportedFeatures.CropCircleOnBackgroundImage)
+                        this.HandleHintCrop(result, attributes);
 
-                    if (SupportedFeatures.OverlayForBothBackgroundAndPeek)
-                        HandleHintOverlay(result, attributes);
+                    if (this.SupportedFeatures.OverlayForBothBackgroundAndPeek)
+                        this.HandleHintOverlay(result, attributes);
 
                     break;
 
                 case Placement.Peek:
 
-                    if (SupportedFeatures.CropCircleOnPeekImage)
-                        HandleHintCrop(result, attributes);
+                    if (this.SupportedFeatures.CropCircleOnPeekImage)
+                        this.HandleHintCrop(result, attributes);
 
-                    if (SupportedFeatures.OverlayForBothBackgroundAndPeek)
-                        HandleHintOverlay(result, attributes);
+                    if (this.SupportedFeatures.OverlayForBothBackgroundAndPeek)
+                        this.HandleHintOverlay(result, attributes);
 
                     break;
 
@@ -143,21 +143,21 @@ namespace NotificationsVisualizerLibrary.Model
                     break;
 
                 default:
-                    HandleHintCrop(result, attributes);
+                    this.HandleHintCrop(result, attributes);
                     
                     // These only apply to tiles, and only to inline images
-                    if (Context != NotificationType.Toast
-                        || SupportedFeatures.AdaptiveToasts
+                    if (this.Context != NotificationType.Toast
+                        || this.SupportedFeatures.AdaptiveToasts
                         )
                     {
                         // hint-removeMargin is optional
-                        bool hintRemoveMargin;
+                        Boolean hintRemoveMargin;
                         if (TryParse(result, attributes, ATTR_IMAGE_HINT_REMOVE_MARGIN, out hintRemoveMargin))
                             this.HintRemoveMargin = hintRemoveMargin;
 
                         // hint-align is optional
                         HintImageAlign hintAlign;
-                        if (TryParseEnum(result, attributes, ATTR_IMAGE_HINT_ALIGN, out hintAlign))
+                        if (this.TryParseEnum(result, attributes, ATTR_IMAGE_HINT_ALIGN, out hintAlign))
                             this.HintAlign = hintAlign;
                     }
 
@@ -168,7 +168,7 @@ namespace NotificationsVisualizerLibrary.Model
         private void HandleHintOverlay(ParseResult result, AttributesHelper attributes)
         {
             // hint-overlay is optional
-            double hintOverlay;
+            Double hintOverlay;
             if (TryParse(result, attributes, ATTR_HINT_OVERLAY, out hintOverlay))
                 this.HintOverlay = hintOverlay;
         }
@@ -176,7 +176,7 @@ namespace NotificationsVisualizerLibrary.Model
         private void HandleHintCrop(ParseResult result, AttributesHelper attributes)
         {
             HintCrop hintCrop;
-            if (TryParseEnum(result, attributes, ATTR_IMAGE_HINT_CROP, out hintCrop))
+            if (this.TryParseEnum(result, attributes, ATTR_IMAGE_HINT_CROP, out hintCrop))
                 this.HintCrop = hintCrop;
         }
 
@@ -184,11 +184,11 @@ namespace NotificationsVisualizerLibrary.Model
         {
             if (typeof(TEnum) == typeof(Placement))
             {
-                switch (Context)
+                switch (this.Context)
                 {
                     case NotificationType.Toast:
 
-                        if (SupportedFeatures.RS1_Style_Toasts)
+                        if (this.SupportedFeatures.RS1_Style_Toasts)
                             return new Placement[] { Placement.Inline, Placement.AppLogoOverride, Placement.Hero };
 
                         return new Placement[] { Placement.Inline, Placement.AppLogoOverride };
@@ -201,50 +201,50 @@ namespace NotificationsVisualizerLibrary.Model
             return base.GetSupportedEnums<TEnum>();
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { };
+            return new String[] { };
         }
 
         public override ObjectModelObject ConvertToObject()
         {
-            switch (Placement)
+            switch (this.Placement)
             {
                 case Placement.Hero:
                     return new ObjectModelObject("ToastGenericHeroImage")
                     {
-                        { "Source", Src },
-                        { "AlternateText", AlternateText },
-                        { "AddImageQuery", AddImageQuery }
+                        { "Source", this.Src },
+                        { "AlternateText", this.AlternateText },
+                        { "AddImageQuery", this.AddImageQuery }
                     };
 
                 case Placement.AppLogoOverride:
                     return new ObjectModelObject("ToastGenericAppLogo")
                     {
-                        { "Source", Src },
-                        { "AlternateText", AlternateText },
-                        { "AddImageQuery", AddImageQuery },
-                        { "HintCrop", HintCrop != HintCrop.Default ? new ObjectModelEnum("ToastGenericAppLogoCrop", HintCrop.ToString()) : null }
+                        { "Source", this.Src },
+                        { "AlternateText", this.AlternateText },
+                        { "AddImageQuery", this.AddImageQuery },
+                        { "HintCrop", this.HintCrop != HintCrop.Default ? new ObjectModelEnum("ToastGenericAppLogoCrop", this.HintCrop.ToString()) : null }
                     };
 
                 case Placement.Peek:
                     return new ObjectModelObject("TilePeekImage")
                     {
-                        { "Source", Src },
-                        { "AlternateText", AlternateText },
-                        { "AddImageQuery", AddImageQuery },
-                        { "HintOverlay", HintOverlay },
-                        { "HintCrop", HintCrop != HintCrop.Default ? new ObjectModelEnum("TilePeekImageCrop", HintCrop.ToString()) : null }
+                        { "Source", this.Src },
+                        { "AlternateText", this.AlternateText },
+                        { "AddImageQuery", this.AddImageQuery },
+                        { "HintOverlay", this.HintOverlay },
+                        { "HintCrop", this.HintCrop != HintCrop.Default ? new ObjectModelEnum("TilePeekImageCrop", this.HintCrop.ToString()) : null }
                     };
 
                 case Placement.Background:
                     return new ObjectModelObject("TileBackgroundImage")
                     {
-                        { "Source", Src },
-                        { "AlternateText", AlternateText },
-                        { "AddImageQuery", AddImageQuery },
-                        { "HintOverlay", HintOverlay },
-                        { "HintCrop", HintCrop != HintCrop.Default ? new ObjectModelEnum("TileBackgroundImageCrop", HintCrop.ToString()) : null }
+                        { "Source", this.Src },
+                        { "AlternateText", this.AlternateText },
+                        { "AddImageQuery", this.AddImageQuery },
+                        { "HintOverlay", this.HintOverlay },
+                        { "HintCrop", this.HintCrop != HintCrop.Default ? new ObjectModelEnum("TileBackgroundImageCrop", this.HintCrop.ToString()) : null }
                     };
 
                 default:

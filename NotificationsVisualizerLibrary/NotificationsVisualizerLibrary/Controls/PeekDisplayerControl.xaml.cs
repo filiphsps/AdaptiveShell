@@ -47,14 +47,14 @@ namespace NotificationsVisualizerLibrary.Controls
 
         private static readonly DependencyProperty PeekStartsOnProperty = DependencyProperty.Register("PeekStartsOn", typeof(PeekContentDisplayed), typeof(PeekDisplayerControl), new PropertyMetadata(PeekContentDisplayed.PeekImage, OnPeekStartsOnPropertyChanged));
 
-        private static void OnPeekStartsOnPropertyChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private static void OnPeekStartsOnPropertyChanged(Object sender, DependencyPropertyChangedEventArgs e)
         {
             (sender as PeekDisplayerControl).OnPeekStartsOnPropertyChanged(e);
         }
 
         private void OnPeekStartsOnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            InitializePeekAnimation();
+            this.InitializePeekAnimation();
         }
 
         public PeekContentDisplayed PeekStartsOn
@@ -65,34 +65,34 @@ namespace NotificationsVisualizerLibrary.Controls
 
         #endregion
 
-        private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void Canvas_SizeChanged(Object sender, SizeChangedEventArgs e)
         {
             Size size = e.NewSize;
 
-            if (size.IsEmpty || double.IsInfinity(size.Height) || double.IsInfinity(size.Width))
+            if (size.IsEmpty || Double.IsInfinity(size.Height) || Double.IsInfinity(size.Width))
                 return;
 
             // Set clipping so content outside the canvas isn't displayed
-            CanvasClip.Rect = new Rect(new Point(), size);
+            this.CanvasClip.Rect = new Rect(new Point(), size);
 
             // Set the size of the content container
-            NotificationContentContainer.Width = size.Width;
-            NotificationContentContainer.Height = size.Height * 2; // Height gets doubled to support peek
+            this.NotificationContentContainer.Width = size.Width;
+            this.NotificationContentContainer.Height = size.Height * 2; // Height gets doubled to support peek
 
             // And update the peek animation
-            InitializePeekAnimation();
+            this.InitializePeekAnimation();
         }
 
-        private static DoubleAnimationUsingKeyFrames GeneratePeekAnimation(double normalHeight, PeekContentDisplayed startingContent, TimeSpan timeBetweenSwitch)
+        private static DoubleAnimationUsingKeyFrames GeneratePeekAnimation(Double normalHeight, PeekContentDisplayed startingContent, TimeSpan timeBetweenSwitch)
         {
-            double valueWhenPeekVisible = 0;
-            double valueWhenContentVisible = normalHeight * -1;
-            double halfValue = normalHeight * -0.5;
+            Double valueWhenPeekVisible = 0;
+            Double valueWhenContentVisible = normalHeight * -1;
+            Double halfValue = normalHeight * -0.5;
 
-            double initialValue;
-            double switchedValue;
+            Double initialValue;
+            Double switchedValue;
 
-            TimeSpan durationOfSwitchAnimation = TimeSpan.FromSeconds(1.5);
+            var durationOfSwitchAnimation = TimeSpan.FromSeconds(1.5);
 
             switch (startingContent)
             {
@@ -118,7 +118,7 @@ namespace NotificationsVisualizerLibrary.Controls
 
             
 
-            DoubleAnimationUsingKeyFrames a = new DoubleAnimationUsingKeyFrames();
+            var a = new DoubleAnimationUsingKeyFrames();
 
             // Initial position
             a.KeyFrames.Add(new EasingDoubleKeyFrame()
@@ -165,16 +165,16 @@ namespace NotificationsVisualizerLibrary.Controls
 
         private void InitializePeekAnimation()
         {
-            double normalHeight = PresentationCanvas.ActualHeight;
+            Double normalHeight = this.PresentationCanvas.ActualHeight;
 
-            if (_storyboard != null)
+            if (this._storyboard != null)
             {
-                _storyboard.Stop();
+                this._storyboard.Stop();
             }
 
-            
-            
-            _storyboard = new Storyboard()
+
+
+            this._storyboard = new Storyboard()
             {
                 RepeatBehavior = RepeatBehavior.Forever
             };
@@ -182,16 +182,16 @@ namespace NotificationsVisualizerLibrary.Controls
 
             DoubleAnimationUsingKeyFrames a = GeneratePeekAnimation(
                 normalHeight,
-                PeekStartsOn,
+                this.PeekStartsOn,
                 TimeSpan.FromSeconds(4));
 
 
-            _storyboard.Children.Add(a);
+            this._storyboard.Children.Add(a);
 
-            Storyboard.SetTarget(a, TranslateContent);
+            Storyboard.SetTarget(a, this.TranslateContent);
             Storyboard.SetTargetProperty(a, "Y");
 
-            _storyboard.Begin();
+            this._storyboard.Begin();
         }
     }
 }

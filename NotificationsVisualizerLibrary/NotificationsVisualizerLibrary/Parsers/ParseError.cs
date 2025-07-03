@@ -8,45 +8,45 @@ namespace NotificationsVisualizerLibrary.Parsers
 {
     public sealed class ErrorPositionInfo
     {
-        public int LineNumber { get; set; }
+        public Int32 LineNumber { get; set; }
 
         internal static readonly ErrorPositionInfo Default = new ErrorPositionInfo()
         {
             LineNumber = 0
         };
 
-        public bool Equals(ErrorPositionInfo other)
+        public Boolean Equals(ErrorPositionInfo other)
         {
-            return LineNumber == other.LineNumber;
+            return this.LineNumber == other.LineNumber;
         }
     }
 
     public sealed class ParseError
     {
-        public string Message { get; private set; }
+        public String Message { get; private set; }
 
         public ParseErrorType Type { get; private set; }
 
         public ErrorPositionInfo Position { get; private set; }
 
-        public ParseError(ParseErrorType type, string message)
+        public ParseError(ParseErrorType type, String message)
         {
-            Type = type;
-            Message = message;
+            this.Type = type;
+            this.Message = message;
         }
 
-        public ParseError(ParseErrorType type, string message, ErrorPositionInfo position)
+        public ParseError(ParseErrorType type, String message, ErrorPositionInfo position)
         {
-            Type = type;
-            Message = message;
-            Position = position;
+            this.Type = type;
+            this.Message = message;
+            this.Position = position;
         }
 
-        public bool Equals(ParseError other)
+        public Boolean Equals(ParseError other)
         {
-            return Message.Equals(other.Message)
-                && Type == other.Type
-                && ((Position == null && other.Position == null) || (Position != null && other.Position != null && Position.Equals(other.Position)));
+            return this.Message.Equals(other.Message)
+                && this.Type == other.Type
+                && ((this.Position == null && other.Position == null) || (this.Position != null && other.Position != null && this.Position.Equals(other.Position)));
         }
     }
 

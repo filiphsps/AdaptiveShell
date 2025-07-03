@@ -14,64 +14,64 @@ namespace NotificationsVisualizerLibrary
         private Color _backgroundColor = Colors.Blue;
         public Color BackgroundColor
         {
-            get { return _backgroundColor; }
-            set { SetProperty(ref _backgroundColor, value); }
+            get { return this._backgroundColor; }
+            set { SetProperty(ref this._backgroundColor, value); }
         }
 
-        private bool _showNameOnSquare150x150Logo = false;
-        public bool ShowNameOnSquare150x150Logo
+        private Boolean _showNameOnSquare150x150Logo = false;
+        public Boolean ShowNameOnSquare150x150Logo
         {
-            get { return _showNameOnSquare150x150Logo; }
-            set { SetProperty(ref _showNameOnSquare150x150Logo, value); }
+            get { return this._showNameOnSquare150x150Logo; }
+            set { this.SetProperty(ref this._showNameOnSquare150x150Logo, value); }
         }
 
-        private bool _showNameOnSquare310x310Logo = true;
-        public bool ShowNameOnSquare310x310Logo
+        private Boolean _showNameOnSquare310x310Logo = true;
+        public Boolean ShowNameOnSquare310x310Logo
         {
-            get { return _showNameOnSquare310x310Logo; }
-            set { SetProperty(ref _showNameOnSquare310x310Logo, value); }
+            get { return this._showNameOnSquare310x310Logo; }
+            set { this.SetProperty(ref this._showNameOnSquare310x310Logo, value); }
         }
 
-        private bool _showNameOnWide310x150Logo = true;
-        public bool ShowNameOnWide310x150Logo
+        private Boolean _showNameOnWide310x150Logo = true;
+        public Boolean ShowNameOnWide310x150Logo
         {
-            get { return _showNameOnWide310x150Logo; }
-            set { SetProperty(ref _showNameOnWide310x150Logo, value); }
+            get { return this._showNameOnWide310x150Logo; }
+            set { this.SetProperty(ref this._showNameOnWide310x150Logo, value); }
         }
 
         private Uri _square150x150Logo;
         public Uri Square150x150Logo
         {
-            get { return _square150x150Logo; }
-            set { SetProperty(ref _square150x150Logo, value); }
+            get { return this._square150x150Logo; }
+            set { this.SetProperty(ref this._square150x150Logo, value); }
         }
 
         private Uri _square310x310Logo;
         public Uri Square310x310Logo
         {
-            get { return _square310x310Logo; }
-            set { SetProperty(ref _square310x310Logo, value); }
+            get { return this._square310x310Logo; }
+            set { this.SetProperty(ref this._square310x310Logo, value); }
         }
 
         private Uri _square44x44Logo;
         public Uri Square44x44Logo
         {
-            get { return _square44x44Logo; }
-            set { SetProperty(ref _square44x44Logo, value); }
+            get { return this._square44x44Logo; }
+            set { this.SetProperty(ref this._square44x44Logo, value); }
         }
 
         private Uri _square71x71Logo;
         public Uri Square71x71Logo
         {
-            get { return _square71x71Logo; }
-            set { SetProperty(ref _square71x71Logo, value); }
+            get { return this._square71x71Logo; }
+            set { this.SetProperty(ref this._square71x71Logo, value); }
         }
 
         private Uri _wide310x150Logo;
         public Uri Wide310x150Logo
         {
-            get { return _wide310x150Logo; }
-            set { SetProperty(ref _wide310x150Logo, value); }
+            get { return this._wide310x150Logo; }
+            set { this.SetProperty(ref this._wide310x150Logo, value); }
         }
 
 
@@ -92,7 +92,7 @@ namespace NotificationsVisualizerLibrary
         /// <param name="value"></param>
         /// <param name="propertyName"></param>
         /// <returns></returns>
-        private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+        private Boolean SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
         {
             if (Equals(storage, value))
             {
@@ -105,7 +105,7 @@ namespace NotificationsVisualizerLibrary
             return true;
         }
 
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] String propertyName = null)
         {
             PropertyChangedEventHandler eventHandler = this.PropertyChanged;
             if (eventHandler != null)

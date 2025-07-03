@@ -29,94 +29,94 @@ namespace NotificationsVisualizerLibrary.Parsers
         /// Returns true if there's no fatal error, meaning that the tile rendering can proceed (but there still may be warnings or critical system errors that Windows won't allow).
         /// </summary>
         /// <returns></returns>
-        public bool IsOkForRender()
+        public Boolean IsOkForRender()
         {
-            return !Errors.Any(i => i.Type == ParseErrorType.Error);
+            return !this.Errors.Any(i => i.Type == ParseErrorType.Error);
         }
 
         /// <summary>
         /// Returns true if the content uses data binding
         /// </summary>
         /// <returns></returns>
-        public bool UsesDataBinding()
+        public Boolean UsesDataBinding()
         {
-            return (Toast != null && Toast.AnyUseDataBinding())
-                || (AdaptiveContent != null && AdaptiveContent.AnyUseDataBinding());
+            return (this.Toast != null && this.Toast.AnyUseDataBinding())
+                || (this.AdaptiveContent != null && this.AdaptiveContent.AnyUseDataBinding());
         }
 
         public static ParseResult GenerateForError(ParseError error)
         {
-            ParseResult result = new ParseResult();
+            var result = new ParseResult();
             result.Errors.Add(error);
             return result;
         }
 
-        public void AddError(string message, ErrorPositionInfo errorPositionInfo)
+        public void AddError(String message, ErrorPositionInfo errorPositionInfo)
         {
-            ParseError error = new ParseError(ParseErrorType.Error, message, errorPositionInfo);
+            var error = new ParseError(ParseErrorType.Error, message, errorPositionInfo);
 
-            Add(error);
+            this.Add(error);
         }
 
-        public void AddErrorButRenderAllowed(string message, ErrorPositionInfo errorPositionInfo)
+        public void AddErrorButRenderAllowed(String message, ErrorPositionInfo errorPositionInfo)
         {
-            ParseError error = new ParseError(ParseErrorType.ErrorButRenderAllowed, message, errorPositionInfo);
+            var error = new ParseError(ParseErrorType.ErrorButRenderAllowed, message, errorPositionInfo);
 
-            Add(error);
+            this.Add(error);
         }
 
-        public void AddWarning(string message, ErrorPositionInfo errorPositionInfo)
+        public void AddWarning(String message, ErrorPositionInfo errorPositionInfo)
         {
-            Add(new ParseError(ParseErrorType.Warning, message, errorPositionInfo));
+            this.Add(new ParseError(ParseErrorType.Warning, message, errorPositionInfo));
         }
 
         public void Add(ParseError error)
         {
             if (error.Type == ParseErrorType.Error)
             {
-                for (int i = 0; i < Errors.Count; i++)
-                    if (Errors[i].Type != ParseErrorType.Error)
+                for (Int32 i = 0; i < this.Errors.Count; i++)
+                    if (this.Errors[i].Type != ParseErrorType.Error)
                     {
-                        Errors.Insert(i, error);
+                        this.Errors.Insert(i, error);
                         return;
                     }
             }
             else if (error.Type == ParseErrorType.ErrorButRenderAllowed)
             {
-                for (int i = 0; i < Errors.Count; i++)
-                    if (Errors[i].Type == ParseErrorType.Warning)
+                for (Int32 i = 0; i < this.Errors.Count; i++)
+                    if (this.Errors[i].Type == ParseErrorType.Warning)
                     {
-                        Errors.Insert(i, error);
+                        this.Errors.Insert(i, error);
                         return;
                     }
             }
 
-            Errors.Add(error);
+            this.Errors.Add(error);
         }
 
         /// <summary>
         /// Returns a string of C# code using the Notifications library that represents the content of the notification.
         /// </summary>
         /// <returns></returns>
-        public string GenerateCSharpCode()
+        public String GenerateCSharpCode()
         {
-            if (Toast != null)
+            if (this.Toast != null)
             {
-                return WrapToastForCSharp(Toast.ConvertToObject().ToString());
+                return WrapToastForCSharp(this.Toast.ConvertToObject().ToString());
             }
-            if (Tile != null)
+            if (this.Tile != null)
             {
-                return WrapTileForCSharp(Tile.ConvertToObject().ToString());
+                return WrapTileForCSharp(this.Tile.ConvertToObject().ToString());
             }
             return "Not implemented";
         }
 
-        private static string WrapTileForCSharp(string original)
+        private static String WrapTileForCSharp(String original)
         {
             return $"var tileContent = {original};";
         }
 
-        private static string WrapToastForCSharp(string original)
+        private static String WrapToastForCSharp(String original)
         {
             return $"var toastContent = {original};";
         }
@@ -125,17 +125,17 @@ namespace NotificationsVisualizerLibrary.Parsers
         /// Returns a string of Javascript code usign the Notifications library that represents the content of the notification.
         /// </summary>
         /// <returns></returns>
-        public string GenerateJavascriptCode()
+        public String GenerateJavascriptCode()
         {
-            if (Toast != null)
+            if (this.Toast != null)
             {
-                return IncludeJsNamespaceDeclaration(
-                    Toast.ConvertToObject().ToJavascriptString());
+                return this.IncludeJsNamespaceDeclaration(
+                    this.Toast.ConvertToObject().ToJavascriptString());
             }
-            if (Tile != null)
+            if (this.Tile != null)
             {
-                return IncludeJsNamespaceDeclaration(
-                    Tile.ConvertToObject().ToJavascriptString());
+                return this.IncludeJsNamespaceDeclaration(
+                    this.Tile.ConvertToObject().ToJavascriptString());
             }
             return "Not implemented";
         }
@@ -144,20 +144,20 @@ namespace NotificationsVisualizerLibrary.Parsers
         /// Returns a string of C++ code usign the Notifications library that represents the content of the notification.
         /// </summary>
         /// <returns></returns>
-        public string GenerateCPlusPlusCode()
+        public String GenerateCPlusPlusCode()
         {
-            if (Toast != null)
+            if (this.Toast != null)
             {
-                return Toast.ConvertToObject().ToCPlusPlusString();
+                return this.Toast.ConvertToObject().ToCPlusPlusString();
             }
-            if (Tile != null)
+            if (this.Tile != null)
             {
-                return Tile.ConvertToObject().ToCPlusPlusString();
+                return this.Tile.ConvertToObject().ToCPlusPlusString();
             }
             return "Not implemented";
         }
 
-        private string IncludeJsNamespaceDeclaration(string code)
+        private String IncludeJsNamespaceDeclaration(String code)
         {
             return $"var {ObjectModelObject.ROOT_JS_NAMESPACE} = Microsoft.Toolkit.Uwp.Notifications;\n\n{code}";
         }

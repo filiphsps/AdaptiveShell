@@ -13,54 +13,54 @@ namespace NotificationsVisualizerLibrary.Model
     internal class AdaptiveGroup : AdaptiveParentElement, IBindingChild
     {
         public AdaptiveGroup(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
-        public const string ATTR_ACTIONID = "actionId";
+        public const String ATTR_ACTIONID = "actionId";
 
         [ObjectModelProperty("Children")]
         public IList<AdaptiveSubgroup> Subgroups { get; private set; } = new List<AdaptiveSubgroup>();
 
-        public string ActionId { get; set; }
+        public String ActionId { get; set; }
 
         public void Add(AdaptiveSubgroup element)
         {
-            Subgroups.Add(element);
+            this.Subgroups.Add(element);
             element.Parent = this;
         }
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()
         {
-            return Subgroups;
+            return this.Subgroups;
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[0];
+            return new String[0];
         }
 
-        internal void Parse(ParseResult result, XElement node, string baseUri, bool addImageQuery)
+        internal void Parse(ParseResult result, XElement node, String baseUri, Boolean addImageQuery)
         {
             if (!XmlTemplateParser.EnsureNodeOnlyHasElementsAsChildren(result, node))
                 throw new IncompleteElementException();
 
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(attributes, result, baseUri, addImageQuery);
+            this.ParseKnownAttributes(attributes, result, baseUri, addImageQuery);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
             
             foreach (XElement n in node.Elements())
             {
                 try
                 {
-                    HandleChild(result, n, baseUri, addImageQuery);
+                    this.HandleChild(result, n, baseUri, addImageQuery);
                 }
 
                 catch (IncompleteElementException) { }
             }
         }
 
-        internal void ParseKnownAttributes(AttributesHelper attributes, ParseResult result, string baseUri, bool addImageQuery)
+        internal void ParseKnownAttributes(AttributesHelper attributes, ParseResult result, String baseUri, Boolean addImageQuery)
         {
-            if (Context != NotificationType.Tile && Context != NotificationType.Toast)
+            if (this.Context != NotificationType.Tile && this.Context != NotificationType.Toast)
             {
                 // actionId is optional
                 var attrActionId = attributes.PopAttribute(ATTR_ACTIONID);
@@ -69,11 +69,11 @@ namespace NotificationsVisualizerLibrary.Model
             }
         }
 
-        protected void HandleChild(ParseResult result, XElement child, string baseUri, bool addImageQuery)
+        protected void HandleChild(ParseResult result, XElement child, String baseUri, Boolean addImageQuery)
         {
             if (child.IsType("subgroup"))
             {
-                AdaptiveSubgroup subgroup = new AdaptiveSubgroup(Context, SupportedFeatures);
+                var subgroup = new AdaptiveSubgroup(this.Context, this.SupportedFeatures);
                 subgroup.Parse(result, child, baseUri, addImageQuery);
 
                 if (!result.IsOkForRender())

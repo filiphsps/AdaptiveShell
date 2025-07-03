@@ -14,16 +14,16 @@ namespace NotificationsVisualizerLibrary.Model
         /// Returns true if this element or any descendants use data binding
         /// </summary>
         /// <returns></returns>
-        public bool AnyUseDataBinding()
+        public Boolean AnyUseDataBinding()
         {
-            return UsesDataBinding || GetAllDescendants().Any(i => i.UsesDataBinding);
+            return this.UsesDataBinding || this.GetAllDescendants().Any(i => i.UsesDataBinding);
         }
 
         internal abstract IEnumerable<AdaptiveChildElement> GetAllChildren();
 
         internal IEnumerable<AdaptiveChildElement> GetAllDescendants()
         {
-            foreach (var child in GetAllChildren())
+            foreach (var child in this.GetAllChildren())
             {
                 yield return child;
 
@@ -39,7 +39,7 @@ namespace NotificationsVisualizerLibrary.Model
         {
             base.ApplyDataBindingToThisInstance(dataBinding);
 
-            foreach (var child in GetAllChildren())
+            foreach (var child in this.GetAllChildren())
             {
                 child.ApplyDataBinding(dataBinding);
             }

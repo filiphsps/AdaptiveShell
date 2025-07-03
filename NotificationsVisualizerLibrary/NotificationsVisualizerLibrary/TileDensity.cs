@@ -29,7 +29,7 @@ namespace NotificationsVisualizerLibrary
                 );
         }
 
-        public static TileDensity Mobile(double customDensity)
+        public static TileDensity Mobile(Double customDensity)
         {
             return new TileDensity(
                 small: new Size(48 * customDensity, 48 * customDensity),
@@ -49,10 +49,10 @@ namespace NotificationsVisualizerLibrary
 
         private TileDensity(Size small, Size medium, Size wide, Size large)
         {
-            Small = small;
-            Medium = medium;
-            Wide = wide;
-            Large = large;
+            this.Small = small;
+            this.Medium = medium;
+            this.Wide = wide;
+            this.Large = large;
         }
     }
 }

@@ -16,127 +16,127 @@ namespace NotificationsVisualizerLibrary.Model
     {
         public Visual(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        private static readonly string ATTR_VISUAL_VERSION = "version";
-        private static readonly string ATTR_VISUAL_LANG = "lang";
-        private static readonly string ATTR_VISUAL_BASEURI = "baseUri";
-        private static readonly string ATTR_VISUAL_ADDIMAGEQUERY = "addImageQuery";
-        private static readonly string ATTR_VISUAL_CONTENTID = "contentId";
+        private static readonly String ATTR_VISUAL_VERSION = "version";
+        private static readonly String ATTR_VISUAL_LANG = "lang";
+        private static readonly String ATTR_VISUAL_BASEURI = "baseUri";
+        private static readonly String ATTR_VISUAL_ADDIMAGEQUERY = "addImageQuery";
+        private static readonly String ATTR_VISUAL_CONTENTID = "contentId";
 
-        private static readonly string ATTR_VISUAL_BRANDING = "branding";
-        private static readonly string ATTR_VISUAL_DISPLAY_NAME = "displayName";
+        private static readonly String ATTR_VISUAL_BRANDING = "branding";
+        private static readonly String ATTR_VISUAL_DISPLAY_NAME = "displayName";
 
-        private const string ATTR_VISUAL_ARGUMENTS = "arguments";
+        private const String ATTR_VISUAL_ARGUMENTS = "arguments";
 
-        public int Version { get; set; } = 3;
+        public Int32 Version { get; set; } = 3;
 
         [ObjectModelProperty("Branding", null, NotificationType.Tile)]
         public Branding? Branding { get; set; } = null;
 
         [ObjectModelProperty("DisplayName", null, NotificationType.Tile)]
-        public string DisplayName { get; set; } = null;
+        public String DisplayName { get; set; } = null;
 
         [ObjectModelProperty("Arguments", null, NotificationType.Tile)]
-        public string Arguments { get; set; } = null;
+        public String Arguments { get; set; } = null;
 
         [ObjectModelProperty("Language")]
-        public string Language { get; set; }
+        public String Language { get; set; }
 
         [ObjectModelProperty("BaseUri")]
         public Uri BaseUri { get; set; }
 
         [ObjectModelProperty("AddImageQuery")]
-        public bool? AddImageQuery { get; set; }
+        public Boolean? AddImageQuery { get; set; }
 
         private List<AdaptiveBinding> _bindings = new List<AdaptiveBinding>();
-        public IReadOnlyList<AdaptiveBinding> Bindings { get { return _bindings; } }
+        public IReadOnlyList<AdaptiveBinding> Bindings { get { return this._bindings; } }
 
         [ObjectModelProperty("BindingGeneric", null, NotificationType.Toast)]
         public AdaptiveBinding ToastBindingGeneric
         {
-            get { return GetBinding(Template.ToastGeneric); }
+            get { return this.GetBinding(Template.ToastGeneric); }
         }
 
         [ObjectModelProperty("TileSmall", null, NotificationType.Tile)]
         public AdaptiveBinding TileSmall
         {
-            get { return GetBinding(Template.TileSmall); }
+            get { return this.GetBinding(Template.TileSmall); }
         }
 
         [ObjectModelProperty("TileMedium", null, NotificationType.Tile)]
         public AdaptiveBinding TileMedium
         {
-            get { return GetBinding(Template.TileMedium); }
+            get { return this.GetBinding(Template.TileMedium); }
         }
 
         [ObjectModelProperty("TileWide", null, NotificationType.Tile)]
         public AdaptiveBinding TileWide
         {
-            get { return GetBinding(Template.TileWide); }
+            get { return this.GetBinding(Template.TileWide); }
         }
 
         [ObjectModelProperty("TileLarge", null, NotificationType.Tile)]
         public AdaptiveBinding TileLarge
         {
-            get { return GetBinding(Template.TileLarge); }
+            get { return this.GetBinding(Template.TileLarge); }
         }
 
         private AdaptiveBinding GetBinding(Template template)
         {
-            return Bindings.FirstOrDefault(i => i.Template == template);
+            return this.Bindings.FirstOrDefault(i => i.Template == template);
         }
 
         [ObjectModelProperty("LockDetailedStatus1", null, NotificationType.Tile)]
-        public string LockDetailedStatus1
+        public String LockDetailedStatus1
         {
             get
             {
-                var wide = TileWide;
+                var wide = this.TileWide;
                 if (wide != null && wide.HintLockDetailedStatus1 != null)
                 {
                     return wide.HintLockDetailedStatus1;
                 }
-                return wide?.GetAllChildren().OfType<AdaptiveTextField>().FirstOrDefault(i => object.Equals(i.Id, "1"))?.Text;
+                return wide?.GetAllChildren().OfType<AdaptiveTextField>().FirstOrDefault(i => Object.Equals(i.Id, "1"))?.Text;
             }
         }
 
         [ObjectModelProperty("LockDetailedStatus2", null, NotificationType.Tile)]
-        public string LockDetailedStatus2
+        public String LockDetailedStatus2
         {
             get
             {
-                var wide = TileWide;
+                var wide = this.TileWide;
                 if (wide != null && wide.HintLockDetailedStatus2 != null)
                 {
                     return wide.HintLockDetailedStatus2;
                 }
-                return wide?.GetAllChildren().OfType<AdaptiveTextField>().FirstOrDefault(i => object.Equals(i.Id, "2"))?.Text;
+                return wide?.GetAllChildren().OfType<AdaptiveTextField>().FirstOrDefault(i => Object.Equals(i.Id, "2"))?.Text;
             }
         }
 
         [ObjectModelProperty("LockDetailedStatus3", null, NotificationType.Tile)]
-        public string LockDetailedStatus3
+        public String LockDetailedStatus3
         {
             get
             {
-                var wide = TileWide;
+                var wide = this.TileWide;
                 if (wide != null && wide.HintLockDetailedStatus3 != null)
                 {
                     return wide.HintLockDetailedStatus3;
                 }
-                return wide?.GetAllChildren().OfType<AdaptiveTextField>().FirstOrDefault(i => object.Equals(i.Id, "3"))?.Text;
+                return wide?.GetAllChildren().OfType<AdaptiveTextField>().FirstOrDefault(i => Object.Equals(i.Id, "3"))?.Text;
             }
         }
 
         private void Add(AdaptiveBinding element)
         {
-            _bindings.Add(element);
+            this._bindings.Add(element);
             element.Parent = this;
         }
 
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { ATTR_VISUAL_LANG, ATTR_VISUAL_CONTENTID };
+            return new String[] { ATTR_VISUAL_LANG, ATTR_VISUAL_CONTENTID };
         }
 
         internal void Parse(ParseResult result, XElement node)
@@ -144,10 +144,10 @@ namespace NotificationsVisualizerLibrary.Model
             if (!XmlTemplateParser.EnsureNodeOnlyHasElementsAsChildren(result, node))
                 throw new IncompleteElementException();
 
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
-            
+            var attributes = new AttributesHelper(node.Attributes());
+
             // BaseUri is optional
-            string baseUri = null;
+            String baseUri = null;
             {
                 XAttribute attrBaseUri = attributes.PopAttribute(ATTR_VISUAL_BASEURI);
                 if (attrBaseUri != null)
@@ -156,59 +156,59 @@ namespace NotificationsVisualizerLibrary.Model
                     Uri uri;
                     if (Uri.TryCreate(baseUri, UriKind.RelativeOrAbsolute, out uri))
                     {
-                        BaseUri = uri;
+                        this.BaseUri = uri;
                     }
                 }
             }
 
             // AddImageQuery is optional
-            bool addImageQuery;
+            Boolean addImageQuery;
             if (TryParse(result, attributes, ATTR_VISUAL_ADDIMAGEQUERY, out addImageQuery))
             {
-                AddImageQuery = addImageQuery;
+                this.AddImageQuery = addImageQuery;
             }
             else
             {
                 addImageQuery = false; // Defaults to false if not specified
             }
 
-            if (Context == NotificationType.Tile)
+            if (this.Context == NotificationType.Tile)
             {
-                if (SupportedFeatures.ChaseableTiles)
+                if (this.SupportedFeatures.ChaseableTiles)
                 {
                     XAttribute attrArguments = attributes.PopAttribute(ATTR_VISUAL_ARGUMENTS);
                     if (attrArguments != null)
-                        Arguments = attrArguments.Value;
+                        this.Arguments = attrArguments.Value;
                 }
             }
 
-            ParseKnownAttributes(attributes, result, baseUri, addImageQuery);
+            this.ParseKnownAttributes(attributes, result, baseUri, addImageQuery);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
 
             foreach (XElement n in node.Elements())
             {
                 try
                 {
-                    HandleChild(result, n, baseUri, addImageQuery);
+                    this.HandleChild(result, n, baseUri, addImageQuery);
                 }
 
                 catch (IncompleteElementException) { }
             }
         }
 
-        internal virtual void ParseKnownAttributes(AttributesHelper attributes, ParseResult result, string baseUri, bool addImageQuery)
+        internal virtual void ParseKnownAttributes(AttributesHelper attributes, ParseResult result, String baseUri, Boolean addImageQuery)
         {
             // version is optional
-            int version;
+            Int32 version;
             if (TryParse(result, attributes, ATTR_VISUAL_VERSION, out version))
                 this.Version = version;
 
-            if (Context != NotificationType.Toast)
+            if (this.Context != NotificationType.Toast)
             {
                 // Branding is optional
                 Branding branding;
-                if (TryParseEnum(result, attributes, ATTR_VISUAL_BRANDING, out branding, false)) // not case-sensitive
+                if (this.TryParseEnum(result, attributes, ATTR_VISUAL_BRANDING, out branding, false)) // not case-sensitive
                     this.Branding = branding;
 
                 // DisplayName is optional
@@ -219,11 +219,11 @@ namespace NotificationsVisualizerLibrary.Model
         }
 
 
-        protected void HandleChild(ParseResult result, XElement child, string baseUri, bool addImageQuery)
+        protected void HandleChild(ParseResult result, XElement child, String baseUri, Boolean addImageQuery)
         {
             if (child.IsType("binding"))
             {
-                AdaptiveBinding binding = new AdaptiveBinding(Context, SupportedFeatures);
+                var binding = new AdaptiveBinding(this.Context, this.SupportedFeatures);
                 binding.Parse(result, child, baseUri, addImageQuery);
 
                 if (!result.IsOkForRender())
@@ -238,7 +238,7 @@ namespace NotificationsVisualizerLibrary.Model
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()
         {
-            return Bindings;
+            return this.Bindings;
         }
 
         //public override ObjectModelObject ConvertToObject()

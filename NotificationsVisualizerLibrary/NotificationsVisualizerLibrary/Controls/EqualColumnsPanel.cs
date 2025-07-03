@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +13,12 @@ namespace NotificationsVisualizerLibrary.Controls
 {
     internal class EqualColumnsPanel : Panel
     {
-        private static readonly DependencyProperty ColumnSpacingProperty = DependencyProperty.Register("ColumnSpacing", typeof(double), typeof(EqualColumnsPanel), new PropertyMetadata(0.0, OnDisplayPropertyChanged));
+        private static readonly DependencyProperty ColumnSpacingProperty = DependencyProperty.Register("ColumnSpacing", typeof(Double), typeof(EqualColumnsPanel), new PropertyMetadata(0.0, OnDisplayPropertyChanged));
 
-        public double ColumnSpacing
+        public Double ColumnSpacing
         {
-            get { return (double)GetValue(ColumnSpacingProperty); }
-            set { SetValue(ColumnSpacingProperty, value); }
+            get { return (Double)this.GetValue(ColumnSpacingProperty); }
+            set { this.SetValue(ColumnSpacingProperty, value); }
         }
 
         private static void OnDisplayPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -31,11 +33,11 @@ namespace NotificationsVisualizerLibrary.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            double maxHeight = 0;
+            Double maxHeight = 0;
 
-            double[] columnWidths = GetColumnWidths(availableSize);
+            Double[] columnWidths = this.GetColumnWidths(availableSize);
 
-            int i = 0;
+            Int32 i = 0;
             foreach (var child in this.Children.Where(x => CountsForDisplay(x)))
             {
                 child.Measure(new Size(columnWidths[i], availableSize.Height));
@@ -50,51 +52,51 @@ namespace NotificationsVisualizerLibrary.Controls
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            double[] columnWidths = GetColumnWidths(finalSize);
+            Double[] columnWidths = this.GetColumnWidths(finalSize);
 
-            int i = 0;
-            double posX = 0;
+            Int32 i = 0;
+            Double posX = 0;
             foreach (var child in this.Children.Where(x => CountsForDisplay(x)))
             {
-                Size childFinalSize = new Size(columnWidths[i], finalSize.Height);
+                var childFinalSize = new Size(columnWidths[i], finalSize.Height);
 
                 child.Arrange(new Rect(
                     new Point(posX, 0),
                     childFinalSize));
 
                 i++;
-                posX += childFinalSize.Width + ColumnSpacing;
+                posX += childFinalSize.Width + this.ColumnSpacing;
             }
 
             return finalSize;
         }
 
-        private static bool CountsForDisplay(UIElement el)
+        private static Boolean CountsForDisplay(UIElement el)
         {
             return el.Visibility == Visibility.Visible;
         }
 
-        private int GetNumberOfColumns()
+        private Int32 GetNumberOfColumns()
         {
             return this.Children.Count(i => CountsForDisplay(i));
         }
 
-        private double[] GetColumnWidths(Size totalSize)
+        private Double[] GetColumnWidths(Size totalSize)
         {
-            int numOfCols = GetNumberOfColumns();
+            Int32 numOfCols = this.GetNumberOfColumns();
 
             if (numOfCols <= 0)
-                return new double[0];
+                return new Double[0];
 
             if (numOfCols == 1)
-                return new double[] { totalSize.Width };
+                return new Double[] { totalSize.Width };
 
-            double[] colWidths = new double[numOfCols];
+            Double[] colWidths = new Double[numOfCols];
 
-            double widthWithoutSpacing = totalSize.Width - ColumnSpacing * (numOfCols - 1);
-            double remainingWidth = widthWithoutSpacing;
+            Double widthWithoutSpacing = totalSize.Width - this.ColumnSpacing * (numOfCols - 1);
+            Double remainingWidth = widthWithoutSpacing;
 
-            for (int i = 0; i < colWidths.Length; i++)
+            for (Int32 i = 0; i < colWidths.Length; i++)
             {
                 // If it's the last one, we can allow it to have decimal width to stretch to the end
                 if (i == colWidths.Length - 1)
@@ -104,7 +106,7 @@ namespace NotificationsVisualizerLibrary.Controls
                 }
 
                 // Take the ceiling of the remaining column width, ensuring it's an even integer
-                double thisColWidth = Math.Ceiling(remainingWidth / (colWidths.Length - i));
+                Double thisColWidth = Math.Ceiling(remainingWidth / (colWidths.Length - i));
                 colWidths[i] = thisColWidth;
                 remainingWidth -= thisColWidth;
             }

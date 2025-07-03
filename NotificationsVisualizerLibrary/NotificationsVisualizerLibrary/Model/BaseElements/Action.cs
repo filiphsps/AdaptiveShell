@@ -14,42 +14,42 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
     {
         public Action(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        internal const string ATTR_CONTENT = "content";
-        internal const string ATTR_IMAGEURI = "imageUri";
-        internal const string ATTR_HINT_INPUTID = "hint-inputId";
-        internal const string ATTR_PLACEMENT = "placement";
+        internal const String ATTR_CONTENT = "content";
+        internal const String ATTR_IMAGEURI = "imageUri";
+        internal const String ATTR_HINT_INPUTID = "hint-inputId";
+        internal const String ATTR_PLACEMENT = "placement";
 
-        public string Id { get; set; }
+        public String Id { get; set; }
 
         public ActionPlacement Placement { get; set; }
 
-        public string Content { get; set; }
+        public String Content { get; set; }
 
-        public string Arguments { get; set; }
+        public String Arguments { get; set; }
 
         [ObjectModelProperty("ActivationType")]
         public ActivationType ActivationType { get; set; } = ActivationType.Foreground;
 
         [ObjectModelProperty("ImageUri")]
-        public string ImageUri { get; set; }
+        public String ImageUri { get; set; }
 
         [ObjectModelProperty("InputId")]
-        public string InputId { get; set; }
+        public String InputId { get; set; }
 
-        public bool HintVisible { get; set; } = true;
+        public Boolean HintVisible { get; set; } = true;
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { };
+            return new String[] { };
         }
 
         internal void Parse(ParseResult result, XElement node)
         {
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(node, attributes, result);
+            this.ParseKnownAttributes(node, attributes, result);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
         }
 
         internal virtual void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result)
@@ -79,7 +79,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
                 this.InputId = attrInputId.Value;
 
             ActionPlacement placement;
-            if (TryParseEnum(result, attributes, ATTR_PLACEMENT, out placement))
+            if (this.TryParseEnum(result, attributes, ATTR_PLACEMENT, out placement))
                 this.Placement = placement;
         }
 
@@ -87,11 +87,11 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         {
             // Override the allowed text placement values, since they depend on OS version / supported features
             if (typeof(TEnum) == typeof(ActionPlacement))
-                switch (Context)
+                switch (this.Context)
                 {
                     case NotificationType.Toast:
 
-                        if (SupportedFeatures.ToastContextMenu)
+                        if (this.SupportedFeatures.ToastContextMenu)
                             return new ActionPlacement[] { ActionPlacement.Inline, ActionPlacement.ContextMenu };
 
                         return new ActionPlacement[] { ActionPlacement.Inline };
@@ -109,40 +109,40 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         {
             var obj = base.ConvertToObject();
 
-            obj.ConstructorValues.Add(new ObjectModelString(Content));
-            obj.ConstructorValues.Add(new ObjectModelString(Arguments));
+            obj.ConstructorValues.Add(new ObjectModelString(this.Content));
+            obj.ConstructorValues.Add(new ObjectModelString(this.Arguments));
 
-            switch (Placement)
+            switch (this.Placement)
             {
                 case ActionPlacement.ContextMenu:
                     obj.Name = "ToastContextMenuItem";
                     break;
 
                 default:
-                    switch (ActivationType)
+                    switch (this.ActivationType)
                     {
                         case ActivationType.System:
                             obj.PropertyValues.Clear();
-                            var args = Arguments != null ? Arguments : "";
+                            var args = this.Arguments != null ? this.Arguments : "";
                             switch (args.ToLower())
                             {
                                 case "snooze":
                                     obj = new ObjectModelObject("ToastButtonSnooze");
-                                    if (!string.IsNullOrWhiteSpace(Content))
+                                    if (!String.IsNullOrWhiteSpace(this.Content))
                                     {
-                                        obj.ConstructorValues.Add(new ObjectModelString(Content));
+                                        obj.ConstructorValues.Add(new ObjectModelString(this.Content));
                                     }
-                                    if (InputId != null)
+                                    if (this.InputId != null)
                                     {
-                                        obj.Add("SelectionBoxId", new ObjectModelString(InputId));
+                                        obj.Add("SelectionBoxId", new ObjectModelString(this.InputId));
                                     }
                                     break;
 
                                 default:
                                     obj = new ObjectModelObject("ToastButtonDismiss");
-                                    if (!string.IsNullOrWhiteSpace(Content))
+                                    if (!String.IsNullOrWhiteSpace(this.Content))
                                     {
-                                        obj.ConstructorValues.Add(new ObjectModelString(Content));
+                                        obj.ConstructorValues.Add(new ObjectModelString(this.Content));
                                     }
                                     break;
                             }

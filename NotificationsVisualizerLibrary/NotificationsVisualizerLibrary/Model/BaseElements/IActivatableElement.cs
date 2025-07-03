@@ -10,7 +10,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 {
     internal interface IActivatableElement
     {
-        string Arguments { get; set; }
+        String Arguments { get; set; }
 
         ActivationType ActivationType { get; set; }
     }

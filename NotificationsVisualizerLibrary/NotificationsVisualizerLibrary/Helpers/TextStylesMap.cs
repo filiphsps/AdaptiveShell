@@ -12,12 +12,12 @@ namespace NotificationsVisualizerLibrary.Helpers
 
         public void Add(TextStyleInfoPair pair)
         {
-            _pairs.Add(pair);
+            this._pairs.Add(pair);
         }
 
-        public TextStyleInfo Find(string styleName)
+        public TextStyleInfo Find(String styleName)
         {
-            return _pairs.FirstOrDefault(i => i.StyleName.Equals(styleName))?.TextStyleInfo;
+            return this._pairs.FirstOrDefault(i => i.StyleName.Equals(styleName))?.TextStyleInfo;
         }
     }
 }

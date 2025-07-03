@@ -25,19 +25,19 @@ namespace NotificationsVisualizerLibrary.Controls
             this.Height = 72;
             this.Background = new SolidColorBrush();
 
-            _textBlock = new TextBlock()
+            this._textBlock = new TextBlock()
             {
                 TextWrapping = TextWrapping.Wrap,
                 FontSize = 12
             };
-            Grid.SetRow(_textBlock, 2);
+            Grid.SetRow(this._textBlock, 2);
 
-            _image = new Image()
+            this._image = new Image()
             {
                 Stretch = Stretch.Uniform
             };
 
-            _grid = new Grid()
+            this._grid = new Grid()
             {
                 RowDefinitions =
                 {
@@ -48,38 +48,38 @@ namespace NotificationsVisualizerLibrary.Controls
 
                 Children =
                 {
-                    _image,
-                    _textBlock
+                    this._image,
+                    this._textBlock
                 }
             };
 
-            this.Content = _grid;
+            this.Content = this._grid;
         }
 
-        public string Text
+        public String Text
         {
             set
             {
-                _textBlock.Text = value;
+                this._textBlock.Text = value;
             }
         }
 
-        public string ImageUri
+        public String ImageUri
         {
             set
             {
-                _image.Source = ImageHelper.GetBitmap(value);
+                this._image.Source = ImageHelper.GetBitmap(value);
             }
         }
 
-        public bool IsAnswerButton
+        public Boolean IsAnswerButton
         {
             set
             {
                 if (value)
                 {
                     Background = new SolidColorBrush((Color)Application.Current.Resources["SystemColorHighlightColor"]);
-                    this.Width = double.NaN;
+                    this.Width = Double.NaN;
                     this.HorizontalAlignment = HorizontalAlignment.Stretch;
                 }
 

@@ -8,16 +8,16 @@ namespace NotificationsVisualizerLibrary.Model
 {
     internal class ObjectModelEnumAttribute : ObjectModelBaseAttribute
     {
-        public string Name { get; set; }
+        public String Name { get; set; }
 
-        public ObjectModelEnumAttribute(string name)
+        public ObjectModelEnumAttribute(String name)
         {
-            Name = name;
+            this.Name = name;
         }
 
-        public ObjectModelEnumAttribute(string name, NotificationType context) : base(context)
+        public ObjectModelEnumAttribute(String name, NotificationType context) : base(context)
         {
-            Name = name;
+            this.Name = name;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace NotificationsVisualizerLibrary
 
         internal PreviewBadgeUpdater(PreviewTile previewTile)
         {
-            _previewTile = previewTile;
+            this._previewTile = previewTile;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace NotificationsVisualizerLibrary
         /// </summary>
         public void Clear()
         {
-            _previewTile.SetBadge(BadgeValue.Default());
+            this._previewTile.SetBadge(BadgeValue.Default());
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace NotificationsVisualizerLibrary
             if (valueAttribute == null)
                 throw new NullReferenceException("<badge> element must have a \"value\" attribute specified.");
 
-            _previewTile.SetBadge(BadgeValue.Parse(valueAttribute.InnerText));
+            this._previewTile.SetBadge(BadgeValue.Parse(valueAttribute.InnerText));
         }
     }
 }

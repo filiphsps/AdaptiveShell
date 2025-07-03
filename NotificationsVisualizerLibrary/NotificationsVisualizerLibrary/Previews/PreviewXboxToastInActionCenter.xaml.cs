@@ -36,80 +36,80 @@ namespace NotificationsVisualizerLibrary
         {
             this.InitializeComponent();
 
-            CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
+            this.CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
 
-            ListViewButtons.ItemsSource = _buttons;
+            this.ListViewButtons.ItemsSource = this._buttons;
         }
 
         private DataBindingValues _lastDataBindingValues;
         public ParseResult Initialize(XmlDocument content, PreviewNotificationData data)
         {
-            ParseResult result = _parser.ParseToast(content.GetXml(), CurrFeatureSet);
+            ParseResult result = _parser.ParseToast(content.GetXml(), this.CurrFeatureSet);
 
             if (result.IsOkForRender())
             {
-                _lastDataBindingValues = new DataBindingValues(data);
-                result.Toast.ApplyDataBinding(_lastDataBindingValues);
+                this._lastDataBindingValues = new DataBindingValues(data);
+                result.Toast.ApplyDataBinding(this._lastDataBindingValues);
 
                 if (result.IsOkForRender())
                 {
-                    InitializeContent(result.Toast);
+                    this.InitializeContent(result.Toast);
                 }
             }
 
             return result;
         }
 
-        private string _currLaunch = "";
+        private String _currLaunch = "";
         private ActivationType _currActivationType = ActivationType.Foreground;
-        private Dictionary<string, FrameworkElement> _elementsWithIds;
+        private Dictionary<String, FrameworkElement> _elementsWithIds;
 
         private IToast _currContent;
 
-        public bool HasContent { get; private set; }
+        public Boolean HasContent { get; private set; }
 
         private void ReInitializeContent()
         {
-            InitializeContent(_currContent);
+            this.InitializeContent(this._currContent);
         }
 
         private void InitializeContent(IToast toastContent)
         {
-            _currContent = toastContent;
-            HasContent = false;
+            this._currContent = toastContent;
+            this.HasContent = false;
 
-            TextBlockTitle.Text = "";
-            TextBlockTitle.MaxLines = 3;
-            TextBlockTitle.TextWrapping = TextWrapping.WrapWholeWords;
+            this.TextBlockTitle.Text = "";
+            this.TextBlockTitle.MaxLines = 3;
+            this.TextBlockTitle.TextWrapping = TextWrapping.WrapWholeWords;
 
-            TextBlockBody.Text = "";
-            TextBlockBody.MaxLines = 3;
-            TextBlockBody.TextWrapping = TextWrapping.WrapWholeWords;
+            this.TextBlockBody.Text = "";
+            this.TextBlockBody.MaxLines = 3;
+            this.TextBlockBody.TextWrapping = TextWrapping.WrapWholeWords;
 
-            TextBlockBody2.Visibility = Visibility.Collapsed;
-            TextBlockBody2.MaxLines = 3;
-            TextBlockBody2.TextWrapping = TextWrapping.WrapWholeWords;
+            this.TextBlockBody2.Visibility = this.Visibility.Collapsed;
+            this.TextBlockBody2.MaxLines = 3;
+            this.TextBlockBody2.TextWrapping = TextWrapping.WrapWholeWords;
 
-            StackPanelInlineImages.Children.Clear();
+            this.StackPanelInlineImages.Children.Clear();
 
-            DefaultImageAppLogo.Visibility = Visibility.Visible;
-            ImageAppLogo.Visibility = Visibility.Collapsed;
-            CircleImageAppLogo.Visibility = Visibility.Collapsed;
+            this.DefaultImageAppLogo.Visibility = this.Visibility.Visible;
+            this.ImageAppLogo.Visibility = this.Visibility.Collapsed;
+            this.CircleImageAppLogo.Visibility = this.Visibility.Collapsed;
 
-            _elementsWithIds = new Dictionary<string, FrameworkElement>();
+            this._elementsWithIds = new Dictionary<String, FrameworkElement>();
 
-            _currLaunch = "";
-            _currActivationType = ActivationType.Foreground;
+            this._currLaunch = "";
+            this._currActivationType = ActivationType.Foreground;
 
-            _buttons.Clear();
-            _buttons.Add(CreateButton("Launch", toastContent?.Launch, null, toastContent != null ? toastContent.ActivationType.GetValueOrDefault(ActivationType.Foreground) : ActivationType.Foreground, Scenario.Default));
+            this._buttons.Clear();
+            this._buttons.Add(this.CreateButton("Launch", toastContent?.Launch, null, toastContent != null ? toastContent.ActivationType.GetValueOrDefault(ActivationType.Foreground) : ActivationType.Foreground, Scenario.Default));
 
 
 
             if (toastContent != null)
             {
-                _currLaunch = toastContent.Launch;
-                _currActivationType = toastContent.ActivationType.GetValueOrDefault(ActivationType.Foreground);
+                this._currLaunch = toastContent.Launch;
+                this._currActivationType = toastContent.ActivationType.GetValueOrDefault(ActivationType.Foreground);
 
                 if (toastContent.Visual != null)
                 {
@@ -125,26 +125,26 @@ namespace NotificationsVisualizerLibrary
 
                     if (binding != null)
                     {
-                        HasContent = true;
+                        this.HasContent = true;
 
                         var container = binding.Container;
 
 
                         var texts = container.Children.OfType<AdaptiveTextField>().ToList();
                         List<AdaptiveImage> appLogoOverrides = null;
-                        List<AdaptiveImage> heroImages = new List<AdaptiveImage>();
+                        var heroImages = new List<AdaptiveImage>();
                         var attributionTexts = container.Children.OfType<AdaptiveTextField>().Where(i => i.Placement == Model.Enums.TextPlacement.Attribution).ToList();
 
                         appLogoOverrides = new List<AdaptiveImage>();
 
                         // First pull out images with placements and attribution text
-                        for (int i = 0; i < container.Children.Count; i++)
+                        for (Int32 i = 0; i < container.Children.Count; i++)
                         {
                             var child = container.Children[i];
 
                             if (child is AdaptiveImage)
                             {
-                                AdaptiveImage img = child as AdaptiveImage;
+                                var img = child as AdaptiveImage;
 
                                 switch (img.Placement)
                                 {
@@ -164,7 +164,7 @@ namespace NotificationsVisualizerLibrary
 
                             else if (child is AdaptiveTextField)
                             {
-                                AdaptiveTextField txt = child as AdaptiveTextField;
+                                var txt = child as AdaptiveTextField;
 
                                 if (txt.Placement != Model.Enums.TextPlacement.Inline)
                                 {
@@ -177,21 +177,21 @@ namespace NotificationsVisualizerLibrary
                         // Assign hero
                         if (heroImages.Any())
                         {
-                            ImageHero.Visibility = Visibility.Visible;
-                            ImageHeroBrush.ImageSource = ImageHelper.GetBitmap(heroImages.First().Src);
+                            this.ImageHero.Visibility = this.Visibility.Visible;
+                            this.ImageHeroBrush.ImageSource = ImageHelper.GetBitmap(heroImages.First().Src);
                         }
 
                         else
                         {
-                            ImageHero.Visibility = Visibility.Collapsed;
-                            ImageHeroBrush.ImageSource = null;
+                            this.ImageHero.Visibility = this.Visibility.Collapsed;
+                            this.ImageHeroBrush.ImageSource = null;
                         }
 
 
                         texts = new List<AdaptiveTextField>();
 
                         // Pull out all texts
-                        for (int i = 0; i < container.Children.Count; i++)
+                        for (Int32 i = 0; i < container.Children.Count; i++)
                         {
                             var child = container.Children[i];
 
@@ -206,32 +206,32 @@ namespace NotificationsVisualizerLibrary
                         var titleText = texts.ElementAtOrDefault(0);
                         if (titleText != null)
                         {
-                            TextBlockTitle.Text = titleText.Text;
+                            this.TextBlockTitle.Text = titleText.Text;
 
                             var bodyTextLine1 = texts.ElementAtOrDefault(1);
                             if (bodyTextLine1 != null)
                             {
-                                TextBlockBody.Text = bodyTextLine1.Text;
+                                this.TextBlockBody.Text = bodyTextLine1.Text;
 
                                 var bodyTextLine2 = texts.ElementAtOrDefault(2);
                                 if (bodyTextLine2 != null)
                                 {
-                                    TextBlockBody2.Text = bodyTextLine2.Text;
-                                    TextBlockBody2.Visibility = Visibility.Visible;
+                                    this.TextBlockBody2.Text = bodyTextLine2.Text;
+                                    this.TextBlockBody2.Visibility = this.Visibility.Visible;
                                 }
 
-                                TextBlockBody.Visibility = Visibility.Visible;
+                                this.TextBlockBody.Visibility = this.Visibility.Visible;
                             }
 
                             else
-                                TextBlockBody.Visibility = Visibility.Collapsed;
+                                this.TextBlockBody.Visibility = this.Visibility.Collapsed;
                         }
 
                         else
                         {
-                            TextBlockTitle.Text = Properties.DisplayName;
-                            TextBlockBody.Text = "New notification";
-                            TextBlockBody.Visibility = Visibility.Visible;
+                            this.TextBlockTitle.Text = this.Properties.DisplayName;
+                            this.TextBlockBody.Text = "New notification";
+                            this.TextBlockBody.Visibility = this.Visibility.Visible;
                         }
 
                         var images = container.Children.OfType<AdaptiveImage>().ToList();
@@ -243,20 +243,20 @@ namespace NotificationsVisualizerLibrary
                         var appLogoOverride = appLogoOverrides.FirstOrDefault();
                         if (appLogoOverride != null)
                         {
-                            DefaultImageAppLogo.Visibility = Visibility.Collapsed;
+                            this.DefaultImageAppLogo.Visibility = this.Visibility.Collapsed;
 
                             var source = ImageHelper.GetBitmap(appLogoOverride.Src);
 
                             if (appLogoOverride.HintCrop == Model.Enums.HintCrop.Circle)
                             {
-                                CircleImageAppLogo.Source = source;
-                                CircleImageAppLogo.Visibility = Visibility.Visible;
+                                this.CircleImageAppLogo.Source = source;
+                                this.CircleImageAppLogo.Visibility = this.Visibility.Visible;
                             }
 
                             else
                             {
-                                ImageAppLogo.Source = source;
-                                ImageAppLogo.Visibility = Visibility.Visible;
+                                this.ImageAppLogo.Source = source;
+                                this.ImageAppLogo.Visibility = this.Visibility.Visible;
                             }
                         }
 
@@ -267,11 +267,11 @@ namespace NotificationsVisualizerLibrary
                                 Source = ImageHelper.GetBitmap(image.Src),
                                 MaxHeight = 100,
                                 Stretch = Stretch.Uniform,
-                                HorizontalAlignment = HorizontalAlignment.Stretch,
+                                HorizontalAlignment = this.HorizontalAlignment.Stretch,
                                 Margin = new Thickness(0, 0, 0, 6)
                             };
 
-                            StackPanelInlineImages.Children.Add(uiImage);
+                            this.StackPanelInlineImages.Children.Add(uiImage);
                         }
 
                         // Attribution
@@ -279,15 +279,15 @@ namespace NotificationsVisualizerLibrary
                         {
                             if (attributionTexts.Any())
                             {
-                                TextBlockAttributionSeparationDot.Visibility = Visibility.Visible;
-                                TextBlockAttributionSecondPart.Visibility = Visibility.Visible;
-                                TextBlockAttributionSecondPart.Text = attributionTexts.First().Text;
+                                this.TextBlockAttributionSeparationDot.Visibility = this.Visibility.Visible;
+                                this.TextBlockAttributionSecondPart.Visibility = this.Visibility.Visible;
+                                this.TextBlockAttributionSecondPart.Text = attributionTexts.First().Text;
                             }
 
                             else
                             {
-                                TextBlockAttributionSeparationDot.Visibility = Visibility.Collapsed;
-                                TextBlockAttributionSecondPart.Visibility = Visibility.Collapsed;
+                                this.TextBlockAttributionSeparationDot.Visibility = this.Visibility.Collapsed;
+                                this.TextBlockAttributionSecondPart.Visibility = this.Visibility.Collapsed;
                             }
                         }
                     }
@@ -339,13 +339,13 @@ namespace NotificationsVisualizerLibrary
                         //    }
                         //}, "9", true));
 
-                        AddButton(CreateButton("Snooze", "snooze", null, ActivationType.System, toastContent.Scenario));
-                        AddButton(CreateButton("Dismiss", "dismiss", null, ActivationType.System, toastContent.Scenario));
+                        this.AddButton(this.CreateButton("Snooze", "snooze", null, ActivationType.System, toastContent.Scenario));
+                        this.AddButton(this.CreateButton("Dismiss", "dismiss", null, ActivationType.System, toastContent.Scenario));
                     }
 
                     else
                     {
-                        List<Model.BaseElements.Action> actionElements = actions.ActionElements.ToList();
+                        var actionElements = actions.ActionElements.ToList();
 
                         if (toastContent.SupportedFeatures.RS1_Style_Toasts)
                         {
@@ -373,53 +373,53 @@ namespace NotificationsVisualizerLibrary
                                     throw new NotImplementedException();
                             }
 
-                            AddButton(button);
+                            this.AddButton(button);
                         }
 
                         // Initialize buttons
                         foreach (var a in actionElements)
                         {
-                            ListViewButton uiButton = CreateButton(a.Content, a.Arguments, a.ImageUri, a.ActivationType, toastContent.Scenario);
+                            ListViewButton uiButton = this.CreateButton(a.Content, a.Arguments, a.ImageUri, a.ActivationType, toastContent.Scenario);
 
                             //AssignId(uiButton, a.Id);
 
                             //if (!a.HintVisible)
                             //    uiButton.Visibility = Visibility.Collapsed;
 
-                            AddButton(uiButton);
+                            this.AddButton(uiButton);
                         }
                     }
                 }
             }
 
-            ListViewButtons.SelectedIndex = 0;
+            this.ListViewButtons.SelectedIndex = 0;
         }
 
         internal class ListViewButton : BindableBase
         {
-            public string Title { get; set; }
+            public String Title { get; set; }
 
-            private string _content;
-            public string Content
+            private String _content;
+            public String Content
             {
-                get { return _content; }
-                set { SetProperty(ref _content, value); }
+                get { return this._content; }
+                set { this.SetProperty(ref this._content, value); }
             }
 
             public UIElement Icon { get; set; }
 
             public Action<FrameworkElement> Action { get; set; }
 
-            public override string ToString()
+            public override String ToString()
             {
-                return Content;
+                return this.Content;
             }
         }
 
         private interface IInput
         {
             Input Input { get; }
-            string Value { get; }
+            String Value { get; }
         }
 
         internal class TextBoxButton : ListViewButton, IInput
@@ -428,56 +428,56 @@ namespace NotificationsVisualizerLibrary
 
             public TextBoxButton(Input input)
             {
-                Input = input;
+                this.Input = input;
 
                 // Automatically assigns Content too
-                Value = input.DefaultInput;
+                this.Value = input.DefaultInput;
 
-                Title = input.Title;
+                this.Title = input.Title;
 
-                Icon = new SymbolIcon(Symbol.Keyboard);
+                this.Icon = new SymbolIcon(Symbol.Keyboard);
 
-                Action = ShowPopup;
+                this.Action = this.ShowPopup;
             }
 
-            private string _value;
+            private String _value;
             /// <summary>
             /// The actual text value the user typed. Content will reflect this
             /// </summary>
-            public string Value
+            public String Value
             {
-                get { return _value; }
+                get { return this._value; }
                 private set
                 {
-                    _value = value;
+                    this._value = value;
                     if (value == null || value.Length == 0)
                     {
-                        Content = Input.PlaceHolderContent;
-                        _value = string.Empty;
+                        this.Content = this.Input.PlaceHolderContent;
+                        this._value = String.Empty;
                     }
                     else
                     {
-                        Content = value;
+                        this.Content = value;
                     }
                 }
             }
 
             private void ShowPopup(FrameworkElement el)
             {
-                TextBox textBox = new TextBox()
+                var textBox = new TextBox()
                 {
-                    Header = Input.Title,
-                    Text = Value
+                    Header = this.Input.Title,
+                    Text = this.Value
                 };
 
-                Button buttonEnter = new Button()
+                var buttonEnter = new Button()
                 {
                     Content = "Enter",
                     HorizontalAlignment = HorizontalAlignment.Right,
                     Margin = new Thickness(0, 12, 0, 0)
                 };
 
-                Flyout flyout = new Flyout();
+                var flyout = new Flyout();
                 flyout.Content = new StackPanel()
                 {
                     Width = 300,
@@ -490,7 +490,7 @@ namespace NotificationsVisualizerLibrary
 
                 System.Action actionEnter = delegate
                 {
-                    Value = textBox.Text;
+                    this.Value = textBox.Text;
                     flyout.Hide();
                 };
 
@@ -518,66 +518,66 @@ namespace NotificationsVisualizerLibrary
 
             public SelectionButton(Input input)
             {
-                Input = input;
+                this.Input = input;
 
                 if (input.DefaultInput != null)
                 {
                     var defaultSelection = input.Children.FirstOrDefault(i => i.Id == input.DefaultInput);
-                    SelectItem(defaultSelection);
+                    this.SelectItem(defaultSelection);
                 }
 
-                Title = input.Title;
+                this.Title = input.Title;
 
-                Icon = new Viewbox()
+                this.Icon = new Viewbox()
                 {
                     Child = new SymbolIcon(Symbol.Edit),
                     Height = 15,
                     Width = 15
                 };
 
-                Action = ShowPopup;
+                this.Action = this.ShowPopup;
             }
 
             private void SelectItem(Selection selection)
             {
-                Value = selection.Id;
-                Content = selection.Content;
+                this.Value = selection.Id;
+                this.Content = selection.Content;
             }
 
-            private string _value;
+            private String _value;
             /// <summary>
             /// The actual text value the user typed. Content will reflect this
             /// </summary>
-            public string Value
+            public String Value
             {
-                get { return _value; }
+                get { return this._value; }
                 private set
                 {
-                    _value = value;
+                    this._value = value;
                     if (value == null || value.Length == 0)
                     {
-                        Content = Input.PlaceHolderContent;
-                        _value = string.Empty;
+                        this.Content = this.Input.PlaceHolderContent;
+                        this._value = String.Empty;
                     }
                     else
                     {
-                        Content = value;
+                        this.Content = value;
                     }
                 }
             }
 
             private void ShowPopup(FrameworkElement el)
             {
-                ListView listView = new ListView()
+                var listView = new ListView()
                 {
-                    Header = Input.Title,
+                    Header = this.Input.Title,
                     DisplayMemberPath = "Content",
-                    ItemsSource = Input.Children,
-                    SelectedItem = Input.Children.FirstOrDefault(i => i.Id == Value),
+                    ItemsSource = this.Input.Children,
+                    SelectedItem = this.Input.Children.FirstOrDefault(i => i.Id == this.Value),
                     IsItemClickEnabled = true
                 };
 
-                Flyout flyout = new Flyout();
+                var flyout = new Flyout();
                 flyout.Content = new StackPanel()
                 {
                     Width = 300,
@@ -589,7 +589,7 @@ namespace NotificationsVisualizerLibrary
 
                 listView.ItemClick += (s, e) =>
                 {
-                    SelectItem(e.ClickedItem as Selection);
+                    this.SelectItem(e.ClickedItem as Selection);
                     flyout.Hide();
                 };
 
@@ -597,7 +597,7 @@ namespace NotificationsVisualizerLibrary
             }
         }
 
-        private ListViewButton CreateButton(string content, string arguments, string imageUri, ActivationType activationType, Scenario scenarioType)
+        private ListViewButton CreateButton(String content, String arguments, String imageUri, ActivationType activationType, Scenario scenarioType)
         {
             // Auto-generate content
             if (activationType == ActivationType.System && content.Length == 0)
@@ -615,14 +615,14 @@ namespace NotificationsVisualizerLibrary
                 }
             }
 
-            ListViewButton b = new ListViewButton()
+            var b = new ListViewButton()
             {
                 Content = content
             };
 
             b.Action = delegate
             {
-                TriggerActivation(arguments, activationType);
+                this.TriggerActivation(arguments, activationType);
             };
 
             return b;
@@ -630,22 +630,22 @@ namespace NotificationsVisualizerLibrary
 
         private void AddButton(ListViewButton el)
         {
-            if (_buttons.Count == 0)
+            if (this._buttons.Count == 0)
             {
-                _buttons.Add(el);
+                this._buttons.Add(el);
             }
             else
             {
-                _buttons.Insert(_buttons.Count - 1, el);
+                this._buttons.Insert(this._buttons.Count - 1, el);
             }
         }
 
-        private void TriggerActivation(string arguments, ActivationType activationType)
+        private void TriggerActivation(String arguments, ActivationType activationType)
         {
             if (arguments == null)
                 arguments = "";
 
-            PreviewToastNotificationActivatedEventArgs args = new PreviewToastNotificationActivatedEventArgs(arguments, GetCurrentUserInput());
+            var args = new PreviewToastNotificationActivatedEventArgs(arguments, this.GetCurrentUserInput());
 
             switch (activationType)
             {
@@ -673,7 +673,7 @@ namespace NotificationsVisualizerLibrary
 
         private ValueSet GetCurrentUserInput()
         {
-            ValueSet answer = new ValueSet();
+            var answer = new ValueSet();
 
             //foreach (var input in _currInputs)
             //{
@@ -704,7 +704,7 @@ namespace NotificationsVisualizerLibrary
             set { SetValue(DeviceFamilyProperty, value); }
         }
 
-        private static void OnDeviceFamilyChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private static void OnDeviceFamilyChanged(Object sender, DependencyPropertyChangedEventArgs e)
         {
             (sender as PreviewXboxToastInActionCenter).OnDeviceFamilyChanged(e);
         }
@@ -712,7 +712,7 @@ namespace NotificationsVisualizerLibrary
         private void OnDeviceFamilyChanged(DependencyPropertyChangedEventArgs e)
         {
             // Feature set is affected
-            UpdateFeatureSet();
+            this.UpdateFeatureSet();
         }
 
         #endregion
@@ -722,9 +722,9 @@ namespace NotificationsVisualizerLibrary
         /// <summary>
         /// Gets or sets the current OS version, which impacts what features and bug fixes are available.
         /// </summary>
-        public int OSBuildNumber
+        public Int32 OSBuildNumber
         {
-            get { return (int)GetValue(OSBuildNumberProperty); }
+            get { return (Int32)GetValue(OSBuildNumberProperty); }
             set { SetValue(OSBuildNumberProperty, value); }
         }
 
@@ -735,21 +735,21 @@ namespace NotificationsVisualizerLibrary
 
         private void OnOSBuildNumberChanged(DependencyPropertyChangedEventArgs e)
         {
-            UpdateFeatureSet();
+            this.UpdateFeatureSet();
         }
 
         internal FeatureSet CurrFeatureSet { get; private set; }
 
         private void UpdateFeatureSet()
         {
-            CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
+            this.CurrFeatureSet = FeatureSet.Get(this.DeviceFamily, this.OSBuildNumber);
 
             this.ReInitializeContent();
         }
 
         public ParseResult Initialize(XmlDocument content)
         {
-            return Initialize(content, null);
+            return this.Initialize(content, null);
         }
 
         public void Update(PreviewNotificationData data)
@@ -757,7 +757,7 @@ namespace NotificationsVisualizerLibrary
             // No-op for now
         }
 
-        private void ListViewButtons_ItemClick(object sender, ItemClickEventArgs e)
+        private void ListViewButtons_ItemClick(Object sender, ItemClickEventArgs e)
         {
             var item = e.ClickedItem as ListViewButton;
             if (item != null && item.Action != null)

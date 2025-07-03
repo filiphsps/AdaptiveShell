@@ -13,20 +13,20 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
     {
         public Selection(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
-        internal const string ATTR_ID = "id";
-        internal const string ATTR_CONTENT = "content";
+        internal const String ATTR_ID = "id";
+        internal const String ATTR_CONTENT = "content";
 
-        public string Id { get; set; }
+        public String Id { get; set; }
 
-        public string Content { get; set; }
+        public String Content { get; set; }
 
         internal void Parse(ParseResult result, XElement node)
         {
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(node, attributes, result);
+            this.ParseKnownAttributes(node, attributes, result);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
         }
 
         protected virtual void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result)
@@ -51,21 +51,21 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             this.Content = attrContent.Value;
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[] { };
+            return new String[] { };
         }
 
-        public override string ToString()
+        public override String ToString()
         {
-            return Content;
+            return this.Content;
         }
 
         public override ObjectModelObject ConvertToObject()
         {
             var obj = base.ConvertToObject();
-            obj.ConstructorValues.Add(new ObjectModelString(Id));
-            obj.ConstructorValues.Add(new ObjectModelString(Content));
+            obj.ConstructorValues.Add(new ObjectModelString(this.Id));
+            obj.ConstructorValues.Add(new ObjectModelString(this.Content));
             return obj;
         }
     }

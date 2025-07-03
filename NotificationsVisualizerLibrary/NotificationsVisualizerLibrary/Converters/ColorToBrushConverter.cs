@@ -11,7 +11,7 @@ namespace NotificationsVisualizerLibrary.Converters
 {
     public sealed class ColorToBrushConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
             if (value is Color)
                 return new SolidColorBrush((Color)value);
@@ -19,7 +19,7 @@ namespace NotificationsVisualizerLibrary.Converters
             return value;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        public Object ConvertBack(Object value, Type targetType, Object parameter, String language)
         {
             throw new NotImplementedException();
         }

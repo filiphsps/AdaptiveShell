@@ -11,30 +11,30 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
     [ObjectModelClass("ToastHeader", NotificationType.Toast)]
     internal class Header : AdaptiveParentElement
     {
-        private const string ATTR_ID = "id";
-        private const string ATTR_TITLE = "title";
+        private const String ATTR_ID = "id";
+        private const String ATTR_TITLE = "title";
 
         public Header(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
         [ObjectModelProperty("Id")]
-        public string Id { get; set; } = "";
+        public String Id { get; set; } = "";
 
         [ObjectModelProperty("Title")]
-        public string Title { get; set; } = "";
+        public String Title { get; set; } = "";
 
         [ObjectModelProperty("Arguments")]
-        public string Arguments { get; set; } = "";
+        public String Arguments { get; set; } = "";
 
         [ObjectModelProperty("ActivationType", ActivationType.Foreground)]
         public ActivationType ActivationType { get; set; } = ActivationType.Foreground;
 
         internal void Parse(ParseResult result, XElement node)
         {
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
-            ParseKnownAttributes(node, attributes, result);
+            this.ParseKnownAttributes(node, attributes, result);
 
-            HandleRemainingAttributes(attributes, result);
+            this.HandleRemainingAttributes(attributes, result);
         }
 
         internal void ParseKnownAttributes(XElement node, AttributesHelper attributes, ParseResult result)
@@ -54,14 +54,14 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(attrTitle.Value))
+                if (String.IsNullOrWhiteSpace(attrTitle.Value))
                 {
                     result.AddWarning("title attribute in header element must contain a string. The header will be dropped.", XmlTemplateParser.GetErrorPositionInfo(attrTitle));
                     throw new IncompleteElementException();
                 }
                 else
                 {
-                    Title = attrTitle.Value;
+                    this.Title = attrTitle.Value;
                 }
             }
 
@@ -73,14 +73,14 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(attrId.Value))
+                if (String.IsNullOrWhiteSpace(attrId.Value))
                 {
                     result.AddWarning("id attribute in header element must contain a string. The header will be dropped.", XmlTemplateParser.GetErrorPositionInfo(attrId));
                     throw new IncompleteElementException();
                 }
                 else
                 {
-                    Id = attrId.Value;
+                    this.Id = attrId.Value;
                 }
             }
 
@@ -93,20 +93,20 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             else
             {
                 // Empty string in arguments is allowed
-                Arguments = attrArguments.Value;
+                this.Arguments = attrArguments.Value;
             }
 
             // activationType is optional
             ActivationType type;
-            if (TryParseEnum(result, attributes, ATTR_ACTIVATIONTYPE, out type))
+            if (this.TryParseEnum(result, attributes, ATTR_ACTIVATIONTYPE, out type))
             {
-                ActivationType = type;
+                this.ActivationType = type;
             }
         }
 
-        protected override IEnumerable<string> GetAttributesNotSupportedByVisualizer()
+        protected override IEnumerable<String> GetAttributesNotSupportedByVisualizer()
         {
-            return new string[0];
+            return new String[0];
         }
 
         internal override IEnumerable<AdaptiveChildElement> GetAllChildren()

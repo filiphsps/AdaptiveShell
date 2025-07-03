@@ -7,54 +7,54 @@ using System.Threading.Tasks;
 
 namespace NotificationsVisualizerLibrary.Model
 {
-    internal class DataBindingValues : IEnumerable<KeyValuePair<string, string>>
+    internal class DataBindingValues : IEnumerable<KeyValuePair<String, String>>
     {
-        private Dictionary<string, string> _values;
-        public uint Version { get; private set; }
+        private Dictionary<String, String> _values;
+        public UInt32 Version { get; private set; }
 
         public DataBindingValues(PreviewNotificationData data)
         {
-            _values = new Dictionary<string, string>();
+            this._values = new Dictionary<String, String>();
             foreach (var pair in data.Values)
             {
-                _values[pair.Key] = pair.Value;
+                this._values[pair.Key] = pair.Value;
             }
-            Version = data.Version;
+            this.Version = data.Version;
         }
 
-        public bool TryGetValue(string key, out string value)
+        public Boolean TryGetValue(String key, out String value)
         {
-            return _values.TryGetValue(key, out value);
+            return this._values.TryGetValue(key, out value);
         }
 
-        public void Update(IEnumerable<KeyValuePair<string, string>> values)
+        public void Update(IEnumerable<KeyValuePair<String, String>> values)
         {
             foreach (var pair in values)
             {
-                _values[pair.Key] = pair.Value;
+                this._values[pair.Key] = pair.Value;
             }
 
             var newKeys = values.Select(i => i.Key).ToArray();
-            var oldKeys = _values.Keys.ToArray();
+            var oldKeys = this._values.Keys.ToArray();
             foreach (var oldKey in oldKeys)
             {
                 // If key no longer exists
                 if (!newKeys.Contains(oldKey))
                 {
                     // Remove the value
-                    _values.Remove(oldKey);
+                    this._values.Remove(oldKey);
                 }
             }
         }
 
-        public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+        public IEnumerator<KeyValuePair<String, String>> GetEnumerator()
         {
-            return _values.GetEnumerator();
+            return this._values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return this.GetEnumerator();
         }
     }
 }

@@ -11,16 +11,16 @@ namespace NotificationsVisualizerLibrary.Controls
 {
     public sealed class AdaptiveGrid : Grid, IAdaptiveControl
     {
-        public bool DoesAllContentFit { get; private set; }
+        public Boolean DoesAllContentFit { get; private set; }
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            DoesAllContentFit = true;
+            this.DoesAllContentFit = true;
 
             Size answer = base.MeasureOverride(availableSize);
 
             if (Children != null && Children.OfType<IAdaptiveControl>().Any(i => !i.DoesAllContentFit))
-                DoesAllContentFit = false;
+                this.DoesAllContentFit = false;
 
             return answer;
         }

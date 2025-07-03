@@ -10,34 +10,34 @@ namespace NotificationsVisualizerLibrary.Manifest
 {
     public sealed class VisualElements
     {
-        private string _square30X30Logo;
-        private string _square44X44Logo;
+        private String _square30X30Logo;
+        private String _square44X44Logo;
 
         [XmlAttribute]
-        public string DisplayName { get; set; }
+        public String DisplayName { get; set; }
 
         [XmlAttribute]
-        public string Square150x150Logo { get; set; }
+        public String Square150x150Logo { get; set; }
 
         [XmlAttribute]
-        public string Square30x30Logo
+        public String Square30x30Logo
         {
-            get { return _square30X30Logo; }
+            get { return this._square30X30Logo; }
             set
             {
-                _square30X30Logo = value;
-                _square44X44Logo = value;
+                this._square30X30Logo = value;
+                this._square44X44Logo = value;
             }
         }
 
         [XmlAttribute]
-        public string Square44x44Logo
+        public String Square44x44Logo
         {
-            get { return _square44X44Logo; }
+            get { return this._square44X44Logo; }
             set
             {
-                _square44X44Logo = value;
-                _square30X30Logo = value;
+                this._square44X44Logo = value;
+                this._square30X30Logo = value;
             }
         }
 

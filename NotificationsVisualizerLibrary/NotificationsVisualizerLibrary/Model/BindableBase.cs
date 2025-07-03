@@ -12,18 +12,18 @@ namespace NotificationsVisualizerLibrary.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        internal void SetProperty<T>(ref T storage, T value, [CallerMemberName]string name = "")
+        internal void SetProperty<T>(ref T storage, T value, [CallerMemberName] String name = "")
         {
-            if (object.Equals(storage, value))
+            if (Object.Equals(storage, value))
             {
                 return;
             }
 
             storage = value;
-            NotifyPropertyChanged(name);
+            this.NotifyPropertyChanged(name);
         }
 
-        internal void NotifyPropertyChanged(string name)
+        internal void NotifyPropertyChanged(String name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
@@ -31,9 +31,9 @@ namespace NotificationsVisualizerLibrary.Model
 
     internal class BindableBaseHelper
     {
-        internal static void SetProperty<T>(object sender, ref T storage, T value, PropertyChangedEventHandler handler, [CallerMemberName]string name = "")
+        internal static void SetProperty<T>(Object sender, ref T storage, T value, PropertyChangedEventHandler handler, [CallerMemberName] String name = "")
         {
-            if (object.Equals(storage, value))
+            if (Object.Equals(storage, value))
             {
                 return;
             }

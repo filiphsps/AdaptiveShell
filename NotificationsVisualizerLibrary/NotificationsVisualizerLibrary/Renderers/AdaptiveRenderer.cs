@@ -19,7 +19,7 @@ namespace NotificationsVisualizerLibrary.Renderers
     {
         public static UIElement Render(AdaptiveContainer adaptiveContainer, Thickness externalMargin)
         {
-            AdaptiveStackPanel answer = new AdaptiveStackPanel()
+            var answer = new AdaptiveStackPanel()
             {
                 IsTopLevel = true
             };
@@ -42,7 +42,7 @@ namespace NotificationsVisualizerLibrary.Renderers
 
             answer.VerticalAlignment = valignment;
 
-            double topMarginOffset = externalMargin.Top;
+            Double topMarginOffset = externalMargin.Top;
 
             GenerateItems(
                 children: adaptiveContainer.Children,
@@ -68,7 +68,7 @@ namespace NotificationsVisualizerLibrary.Renderers
         /// </summary>
         /// <param name="child"></param>
         /// <returns></returns>
-        private static bool IsChildInline(object child)
+        private static Boolean IsChildInline(Object child)
         {
             if (child is AdaptiveImage)
             {
@@ -91,14 +91,14 @@ namespace NotificationsVisualizerLibrary.Renderers
         private static void GenerateItems(
             IEnumerable<AdaptiveChildElement> children,
             UIElementCollection container,
-            bool isFirstGroup,
-            bool isInsideGroup,
-            double topMarginOffset,
+            Boolean isFirstGroup,
+            Boolean isInsideGroup,
+            Double topMarginOffset,
             Thickness externalMargin)
         {
-            int previousLineStyleIndex = -1;
-            bool isFirst = true;
-            bool needsImageMargin = false;
+            Int32 previousLineStyleIndex = -1;
+            Boolean isFirst = true;
+            Boolean needsImageMargin = false;
 
             foreach (var node in children.Where(i => IsChildInline(i)))
             {
@@ -126,7 +126,7 @@ namespace NotificationsVisualizerLibrary.Renderers
                     // An image on top of first group have 0 margin
                     // An image on top of another group should respond to topMarginOffset
                     // An image not on top of a group should have DefaultImageMargin
-                    double topMargin = isFirst ? (isFirstGroup ? 0.0 : topMarginOffset) : AdaptiveConstants.DefaultImageMargin;
+                    Double topMargin = isFirst ? (isFirstGroup ? 0.0 : topMarginOffset) : AdaptiveConstants.DefaultImageMargin;
 
                     uiChild = AdaptiveGenerator_Image.GenerateImage(
                         imageNode: imageNode,
@@ -167,14 +167,14 @@ namespace NotificationsVisualizerLibrary.Renderers
 
         private static FrameworkElement GenerateGroup(
             AdaptiveGroup group,
-            bool isFirstGroup,
-            bool needsImageMargin,
+            Boolean isFirstGroup,
+            Boolean needsImageMargin,
             Thickness externalMargin)
         {
             if (group.Subgroups.Count == 0)
                 return null;
 
-            double topMarginOffset = 0;
+            Double topMarginOffset = 0;
 
             if (!isFirstGroup)
             {
@@ -190,7 +190,7 @@ namespace NotificationsVisualizerLibrary.Renderers
                 }
             }
 
-            Thickness groupMargin = new Thickness(
+            var groupMargin = new Thickness(
                 0,
                 isFirstGroup ? 0.0 : AdaptiveConstants.DefaultGroupTopMargin,
                 0,
@@ -224,13 +224,13 @@ namespace NotificationsVisualizerLibrary.Renderers
                 };
 
                 // Get the calculated weights
-                int[] weights = CalculateWeights(group.Subgroups);
+                Int32[] weights = CalculateWeights(group.Subgroups);
 
 
-                for (int i = 0; i < group.Subgroups.Count; i++)
+                for (Int32 i = 0; i < group.Subgroups.Count; i++)
                 {
                     var subgroup = group.Subgroups[i];
-                    int weight = weights[i];
+                    Int32 weight = weights[i];
 
                     //add column for the subgroup
                     g.ColumnDefinitions.Add(new ColumnDefinition()
@@ -272,11 +272,11 @@ namespace NotificationsVisualizerLibrary.Renderers
             }
         }
 
-        private static int[] CalculateWeights(IList<AdaptiveSubgroup> subgroups)
+        private static Int32[] CalculateWeights(IList<AdaptiveSubgroup> subgroups)
         {
-            int[] weights = new int[subgroups.Count];
+            Int32[] weights = new Int32[subgroups.Count];
 
-            for (int i = 0; i < subgroups.Count; i++)
+            for (Int32 i = 0; i < subgroups.Count; i++)
             {
                 // If assigned, use its value
                 if (subgroups[i].HintWeight != null)
@@ -314,22 +314,22 @@ namespace NotificationsVisualizerLibrary.Renderers
         /// </summary>
         /// <param name="subgroups"></param>
         /// <returns></returns>
-        private static double GetSubgroupsTopMarginOffset(IList<AdaptiveSubgroup> subgroups)
+        private static Double GetSubgroupsTopMarginOffset(IList<AdaptiveSubgroup> subgroups)
         {
-            bool hasImage = false;
-            double maxOffset = 0.0;
+            Boolean hasImage = false;
+            Double maxOffset = 0.0;
 
             // Look through each subgroup that has children
             foreach (var subgroup in subgroups.Where(i => i.Children.Any()))
             {
                 var firstNode = subgroup.Children.Where(i => IsChildInline(i)).First();
-                double itemOffset = 0;
+                Double itemOffset = 0;
 
                 if (firstNode is AdaptiveTextField)
                 {
-                    bool ignore;
+                    Boolean ignore;
                     TextStyleInfo textStyleInfo = AdaptiveGenerator_Text.GetStyleIndex((firstNode as AdaptiveTextField).HintStyle, out ignore);
-                    int lineStyleIndex = textStyleInfo.Index;
+                    Int32 lineStyleIndex = textStyleInfo.Index;
                     itemOffset = AdaptiveGenerator_Text.DefaultTypeRamp[lineStyleIndex].TopOffset;
                 }
 
@@ -350,11 +350,11 @@ namespace NotificationsVisualizerLibrary.Renderers
 
         private static AdaptiveStackPanel GenerateSubgroup(
             AdaptiveSubgroup subgroup,
-            bool isFirstGroup,
-            double topMarginOffset,
+            Boolean isFirstGroup,
+            Double topMarginOffset,
             Thickness externalMargin)
         {
-            AdaptiveStackPanel sp = new AdaptiveStackPanel();
+            var sp = new AdaptiveStackPanel();
 
             GenerateItems(
                 children: subgroup.Children,

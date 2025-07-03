@@ -23,7 +23,7 @@ namespace NotificationsVisualizerLibrary.Parsers
     {
         public AttributesHelper(IEnumerable<XAttribute> attributes) : base(attributes) { }
 
-        public XAttribute PopAttribute(string name, bool caseSensitive = true)
+        public XAttribute PopAttribute(String name, Boolean caseSensitive = true)
         {
             XAttribute answer = this.FirstOrDefault(i => i.IsType(name, caseSensitive));
 
@@ -33,9 +33,9 @@ namespace NotificationsVisualizerLibrary.Parsers
             return answer;
         }
 
-        public string PopAttributeValue(string name, bool caseSensitive = true)
+        public String PopAttributeValue(String name, Boolean caseSensitive = true)
         {
-            XAttribute attr = PopAttribute(name, caseSensitive);
+            XAttribute attr = this.PopAttribute(name, caseSensitive);
 
             return attr?.Value;
         }
@@ -43,17 +43,17 @@ namespace NotificationsVisualizerLibrary.Parsers
 
     internal static class ExtensionHelpers
     {
-        internal static XElement FirstElementOrDefault(this XContainer currNode, string name)
+        internal static XElement FirstElementOrDefault(this XContainer currNode, String name)
         {
             return currNode.Elements().FirstOrDefault(i => i.IsType(name));
         }
 
-        internal static bool IsType(this XElement node, string name)
+        internal static Boolean IsType(this XElement node, String name)
         {
             return node.Name.LocalName.Equals(name, StringComparison.CurrentCultureIgnoreCase);
         }
 
-        internal static bool IsType(this XAttribute node, string name, bool caseSensitive = true)
+        internal static Boolean IsType(this XAttribute node, String name, Boolean caseSensitive = true)
         {
             return node.Name.LocalName.Equals(name, caseSensitive ? StringComparison.CurrentCulture : StringComparison.CurrentCultureIgnoreCase);
         }
@@ -68,93 +68,93 @@ namespace NotificationsVisualizerLibrary.Parsers
             , AdaptiveContent
         }
 
-        private static readonly string ATTR_TILE_VERSION = "version";
+        private static readonly String ATTR_TILE_VERSION = "version";
 
-        private static readonly string ATTR_VISUAL_VERSION = "version";
-        private static readonly string ATTR_VISUAL_BRANDING = "branding";
-        private static readonly string ATTR_VISUAL_DISPLAY_NAME = "displayName";
-        private static readonly string ATTR_VISUAL_LANG = "lang";
-        private static readonly string ATTR_VISUAL_BASEURI = "baseUri";
-        private static readonly string ATTR_VISUAL_ADDIMAGEQUERY = "addImageQuery";
-        private static readonly string ATTR_VISUAL_CONTENTID = "contentId";
+        private static readonly String ATTR_VISUAL_VERSION = "version";
+        private static readonly String ATTR_VISUAL_BRANDING = "branding";
+        private static readonly String ATTR_VISUAL_DISPLAY_NAME = "displayName";
+        private static readonly String ATTR_VISUAL_LANG = "lang";
+        private static readonly String ATTR_VISUAL_BASEURI = "baseUri";
+        private static readonly String ATTR_VISUAL_ADDIMAGEQUERY = "addImageQuery";
+        private static readonly String ATTR_VISUAL_CONTENTID = "contentId";
 
-        private static readonly string ATTR_BINDING_TEMPLATE = "template";
-        private static readonly string ATTR_BINDING_BRANDING = "branding";
-        private static readonly string ATTR_BINDING_DISPLAY_NAME = "displayName";
-        private static readonly string ATTR_BINDING_FALLBACK = "fallback";
-        private static readonly string ATTR_BINDING_LANG = "lang";
-        private static readonly string ATTR_BINDING_BASEURI = "baseUri";
-        private static readonly string ATTR_BINDING_ADDIMAGEQUERY = "addImageQuery";
-        private static readonly string ATTR_BINDING_CONTENTID = "contentId";
-        private static readonly string ATTR_BINDING_HINT_TEXT_STACKING = "hint-textStacking";
-        private static readonly string ATTR_BINDING_HINT_OVERLAY = "hint-overlay";
+        private static readonly String ATTR_BINDING_TEMPLATE = "template";
+        private static readonly String ATTR_BINDING_BRANDING = "branding";
+        private static readonly String ATTR_BINDING_DISPLAY_NAME = "displayName";
+        private static readonly String ATTR_BINDING_FALLBACK = "fallback";
+        private static readonly String ATTR_BINDING_LANG = "lang";
+        private static readonly String ATTR_BINDING_BASEURI = "baseUri";
+        private static readonly String ATTR_BINDING_ADDIMAGEQUERY = "addImageQuery";
+        private static readonly String ATTR_BINDING_CONTENTID = "contentId";
+        private static readonly String ATTR_BINDING_HINT_TEXT_STACKING = "hint-textStacking";
+        private static readonly String ATTR_BINDING_HINT_OVERLAY = "hint-overlay";
 
-        private static readonly string ATTR_SUBGROUP_HINT_WEIGHT = "hint-weight";
-        private static readonly string ATTR_SUBGROUP_HINT_TEXT_STACKING = "hint-textStacking";
-
-
-        private static readonly string ATTR_TEXT_HINT_STYLE = "hint-style";
-        private static readonly string ATTR_TEXT_HINT_WRAP = "hint-wrap";
-        private static readonly string ATTR_TEXT_HINT_MAX_LINES = "hint-maxLines";
-        private static readonly string ATTR_TEXT_HINT_MIN_LINES = "hint-minLines";
-        private static readonly string ATTR_TEXT_HINT_ALIGN = "hint-align";
-        private static readonly string ATTR_TEXT_LANG = "lang";
+        private static readonly String ATTR_SUBGROUP_HINT_WEIGHT = "hint-weight";
+        private static readonly String ATTR_SUBGROUP_HINT_TEXT_STACKING = "hint-textStacking";
 
 
-        private static readonly string ATTR_IMAGE_SRC = "src";
-        private static readonly string ATTR_IMAGE_PLACEMENT = "placement";
-        private static readonly string ATTR_IMAGE_ALT = "alt";
-        private static readonly string ATTR_IMAGE_ADDIMAGEQUERY = "addImageQuery";
-        private static readonly string ATTR_IMAGE_HINT_CROP = "hint-crop";
-        private static readonly string ATTR_IMAGE_HINT_REMOVE_MARGIN = "hint-removeMargin";
-        private static readonly string ATTR_IMAGE_HINT_ALIGN = "hint-align";
+        private static readonly String ATTR_TEXT_HINT_STYLE = "hint-style";
+        private static readonly String ATTR_TEXT_HINT_WRAP = "hint-wrap";
+        private static readonly String ATTR_TEXT_HINT_MAX_LINES = "hint-maxLines";
+        private static readonly String ATTR_TEXT_HINT_MIN_LINES = "hint-minLines";
+        private static readonly String ATTR_TEXT_HINT_ALIGN = "hint-align";
+        private static readonly String ATTR_TEXT_LANG = "lang";
+
+
+        private static readonly String ATTR_IMAGE_SRC = "src";
+        private static readonly String ATTR_IMAGE_PLACEMENT = "placement";
+        private static readonly String ATTR_IMAGE_ALT = "alt";
+        private static readonly String ATTR_IMAGE_ADDIMAGEQUERY = "addImageQuery";
+        private static readonly String ATTR_IMAGE_HINT_CROP = "hint-crop";
+        private static readonly String ATTR_IMAGE_HINT_REMOVE_MARGIN = "hint-removeMargin";
+        private static readonly String ATTR_IMAGE_HINT_ALIGN = "hint-align";
 
         /// <summary>
         /// 5 KB (5120 bytes) is too much, only up to 5119 bytes are allowed
         /// </summary>
-        private static readonly int PAYLOAD_SIZE_LIMIT = 5119;
+        private static readonly Int32 PAYLOAD_SIZE_LIMIT = 5119;
 
-        public bool IsMatch(string text)
+        public Boolean IsMatch(String text)
         {
             return text.Trim().StartsWith("<");
         }
 
-        internal ParseResult Parse(string text, FeatureSet supportedFeatures)
+        internal ParseResult Parse(String text, FeatureSet supportedFeatures)
         {
-            return Parse(text, NotificationType.Tile, supportedFeatures);
+            return this.Parse(text, NotificationType.Tile, supportedFeatures);
         }
 
-        internal ParseResult ParseToast(string text, FeatureSet supportedFeatures)
+        internal ParseResult ParseToast(String text, FeatureSet supportedFeatures)
         {
-            return Parse(text, NotificationType.Toast, supportedFeatures);
+            return this.Parse(text, NotificationType.Toast, supportedFeatures);
         }
 
-        internal ParseResult ParseAdaptiveContent(string text, FeatureSet supportedFeatures)
+        internal ParseResult ParseAdaptiveContent(String text, FeatureSet supportedFeatures)
         {
-            return Parse(text, NotificationType.AdaptiveContent, supportedFeatures);
+            return this.Parse(text, NotificationType.AdaptiveContent, supportedFeatures);
         }
 
-        private ParseResult Parse(string text, NotificationType type, FeatureSet supportedFeatures)
+        private ParseResult Parse(String text, NotificationType type, FeatureSet supportedFeatures)
         {
             XDocument doc;
 
             try { doc = XDocument.Load(new StringReader(text), LoadOptions.SetLineInfo); }
             catch { return ParseResult.GenerateForError(new ParseError(ParseErrorType.Error, "Invalid XML", ErrorPositionInfo.Default)); }
 
-            ParseResult result = new ParseResult();
+            var result = new ParseResult();
 
             HandlePayloadSizeError(result, text);
 
             switch (type)
             {
                 case NotificationType.Tile:
-                    return ParseTile(result, doc, supportedFeatures);
+                    return this.ParseTile(result, doc, supportedFeatures);
 
                 case NotificationType.Toast:
-                    return ParseToast(result, doc, supportedFeatures);
+                    return this.ParseToast(result, doc, supportedFeatures);
 
                 case NotificationType.AdaptiveContent:
-                    return ParseAdaptiveContent(result, doc, supportedFeatures);
+                    return this.ParseAdaptiveContent(result, doc, supportedFeatures);
 
                 default:
                     throw new NotImplementedException();
@@ -164,28 +164,28 @@ namespace NotificationsVisualizerLibrary.Parsers
 
         private ParseResult ParseTile(ParseResult result, XDocument doc, FeatureSet supportedFeatures)
         {
-            ParseTileHelper(result, doc, supportedFeatures);
+            this.ParseTileHelper(result, doc, supportedFeatures);
 
             return result;
         }
 
         private ParseResult ParseToast(ParseResult result, XDocument doc, FeatureSet supportedFeatures)
         {
-            ParseToastHelper(result, doc, supportedFeatures);
+            this.ParseToastHelper(result, doc, supportedFeatures);
 
             return result;
         }
 
         private ParseResult ParseAdaptiveContent(ParseResult result, XDocument doc, FeatureSet supportedFeatures)
         {
-            ParseAdaptiveContentHelper(result, doc.Root, supportedFeatures);
+            this.ParseAdaptiveContentHelper(result, doc.Root, supportedFeatures);
 
             return result;
         }
 
-        private static void HandlePayloadSizeError(ParseResult result, string xml)
+        private static void HandlePayloadSizeError(ParseResult result, String xml)
         {
-            int payloadSize = System.Text.Encoding.UTF8.GetByteCount(xml);
+            Int32 payloadSize = System.Text.Encoding.UTF8.GetByteCount(xml);
 
             if (payloadSize > PAYLOAD_SIZE_LIMIT)
                 result.AddErrorButRenderAllowed($"Your payload exceeds the 5 KB size limit (it is {payloadSize.ToString("N0")} Bytes). Please reduce your payload, or else Windows will not display it.", ErrorPositionInfo.Default);
@@ -219,7 +219,7 @@ namespace NotificationsVisualizerLibrary.Parsers
 
             try
             {
-                AttributesHelper attributes = new AttributesHelper(parentNode.Attributes());
+                var attributes = new AttributesHelper(parentNode.Attributes());
                 result.AdaptiveContent.ContinueParsing(result, parentNode, attributes, parentNode.Elements(), null, false);
             }
 
@@ -241,13 +241,13 @@ namespace NotificationsVisualizerLibrary.Parsers
 
             result.Tile = new Model.Tile(supportedFeatures);
 
-            AttributesHelper attributes = new AttributesHelper(node.Attributes());
+            var attributes = new AttributesHelper(node.Attributes());
 
             // tile doesn't have any attributes
 
             AddWarningsForUnknownAttributes(result, attributes);
 
-            ParseVisual(result, result.Tile.Visual, node);
+            this.ParseVisual(result, result.Tile.Visual, node);
         }
 
         private void ParseVisual(ParseResult result, Visual into, XElement parentNode)
@@ -268,9 +268,9 @@ namespace NotificationsVisualizerLibrary.Parsers
             catch (IncompleteElementException) { }
         }
 
-        internal static void AddWarningsForAttributesNotSupportedByVisualizer(ParseResult result, AttributesHelper attributes, params string[] attributeNames)
+        internal static void AddWarningsForAttributesNotSupportedByVisualizer(ParseResult result, AttributesHelper attributes, params String[] attributeNames)
         {
-            foreach (string attrName in attributeNames)
+            foreach (String attrName in attributeNames)
             {
                 XAttribute a = attributes.PopAttribute(attrName);
                 if (a != null)
@@ -290,7 +290,7 @@ namespace NotificationsVisualizerLibrary.Parsers
 
         internal static ErrorPositionInfo GetErrorPositionInfo(XObject xObject)
         {
-            IXmlLineInfo i = xObject as IXmlLineInfo;
+            var i = xObject as IXmlLineInfo;
 
             return new ErrorPositionInfo()
             {
@@ -299,9 +299,9 @@ namespace NotificationsVisualizerLibrary.Parsers
         }
         
         
-        internal static string ConstructUri(string src, string baseUri, bool addImageQuery)
+        internal static String ConstructUri(String src, String baseUri, Boolean addImageQuery)
         {
-            string answer = baseUri + src;
+            String answer = baseUri + src;
             
             if (addImageQuery)
             {
@@ -322,7 +322,7 @@ namespace NotificationsVisualizerLibrary.Parsers
         /// <param name="result"></param>
         /// <param name="node"></param>
         /// <returns></returns>
-        internal static bool EnsureNodeOnlyHasElementsAsChildren(ParseResult result, XElement node)
+        internal static Boolean EnsureNodeOnlyHasElementsAsChildren(ParseResult result, XElement node)
         {
             foreach (XNode child in node.Elements())
             {
@@ -331,7 +331,7 @@ namespace NotificationsVisualizerLibrary.Parsers
                     case System.Xml.XmlNodeType.Text:
 
                         // A text node might just be white space... but if it contains text, that's invalid
-                        if (!string.IsNullOrWhiteSpace((child as XText).Value))
+                        if (!String.IsNullOrWhiteSpace((child as XText).Value))
                         {
                             result.AddError($@"<{node.Name}> elements cannot have text directly as content. Your text was ""{(child as XText).Value.Trim()}"".", GetErrorPositionInfo(child));
                             return false;
@@ -344,12 +344,12 @@ namespace NotificationsVisualizerLibrary.Parsers
             return true;
         }
         
-        private ParseResult Error(string message)
+        private ParseResult Error(String message)
         {
             return ParseResult.GenerateForError(new ParseError(ParseErrorType.Error, message));
         }
 
-        internal static bool TryParseEnum<TEnum>(string text, out TEnum answer) where TEnum : struct
+        internal static Boolean TryParseEnum<TEnum>(String text, out TEnum answer) where TEnum : struct
         {
             if (text != null)
             {
@@ -367,7 +367,7 @@ namespace NotificationsVisualizerLibrary.Parsers
             return false;
         }
 
-        internal static bool TryParseEnum<TEnum>(ParseResult result, AttributesHelper attributes, string attributeName, out TEnum answer, bool caseSensitive = true) where TEnum : struct
+        internal static Boolean TryParseEnum<TEnum>(ParseResult result, AttributesHelper attributes, String attributeName, out TEnum answer, Boolean caseSensitive = true) where TEnum : struct
         {
             XAttribute attr = attributes.PopAttribute(attributeName, caseSensitive);
 
@@ -394,7 +394,7 @@ namespace NotificationsVisualizerLibrary.Parsers
             return false;
         }
 
-        internal static bool TryParse(ParseResult result, AttributesHelper attributes, string attributeName, out int answer)
+        internal static Boolean TryParse(ParseResult result, AttributesHelper attributes, String attributeName, out Int32 answer)
         {
             XAttribute attr = attributes.PopAttribute(attributeName);
 
@@ -405,7 +405,7 @@ namespace NotificationsVisualizerLibrary.Parsers
                 if (attr.Value != null)
                 {
                     // If it's an integer
-                    if (int.TryParse(attr.Value, out answer))
+                    if (Int32.TryParse(attr.Value, out answer))
                         return true;
 
                     // Otherwise warning about not being integer
@@ -418,11 +418,11 @@ namespace NotificationsVisualizerLibrary.Parsers
             }
 
             // Attribute isn't found, no warning
-            answer = default(int);
+            answer = default(Int32);
             return false;
         }
 
-        internal static bool TryParse(ParseResult result, AttributesHelper attributes, string attributeName, out double answer)
+        internal static Boolean TryParse(ParseResult result, AttributesHelper attributes, String attributeName, out Double answer)
         {
             XAttribute attr = attributes.PopAttribute(attributeName);
 
@@ -433,7 +433,7 @@ namespace NotificationsVisualizerLibrary.Parsers
                 if (attr.Value != null)
                 {
                     // If it's a double
-                    if (double.TryParse(attr.Value, out answer))
+                    if (Double.TryParse(attr.Value, out answer))
                         return true;
 
                     // Otherwise warning about not being double
@@ -446,11 +446,11 @@ namespace NotificationsVisualizerLibrary.Parsers
             }
 
             // Attribute isn't found, no warning
-            answer = default(double);
+            answer = default(Double);
             return false;
         }
 
-        internal static bool TryParse(ParseResult result, AttributesHelper attributes, string attributeName, out bool answer)
+        internal static Boolean TryParse(ParseResult result, AttributesHelper attributes, String attributeName, out Boolean answer)
         {
             XAttribute attr = attributes.PopAttribute(attributeName);
 
@@ -461,7 +461,7 @@ namespace NotificationsVisualizerLibrary.Parsers
                 if (attr.Value != null)
                 {
                     // If it's a bool
-                    if (bool.TryParse(attr.Value, out answer))
+                    if (Boolean.TryParse(attr.Value, out answer))
                         return true;
 
                     // Otherwise warning about not being double
@@ -474,7 +474,7 @@ namespace NotificationsVisualizerLibrary.Parsers
             }
 
             // Attribute isn't found, no warning
-            answer = default(bool);
+            answer = default(Boolean);
             return false;
         }
     }

@@ -8,11 +8,11 @@ namespace NotificationsVisualizerLibrary.Model.Enums
 {
     internal class XmlValueAttribute : Attribute
     {
-        public string XmlValue { get; private set; }
+        public String XmlValue { get; private set; }
 
-        public XmlValueAttribute(string xmlValue)
+        public XmlValueAttribute(String xmlValue)
         {
-            XmlValue = xmlValue;
+            this.XmlValue = xmlValue;
         }
     }
 }

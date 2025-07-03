@@ -1,4 +1,6 @@
-﻿using NotificationsVisualizerLibrary.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using NotificationsVisualizerLibrary.Controls;
 using NotificationsVisualizerLibrary.Helpers;
 using NotificationsVisualizerLibrary.Model;
 using NotificationsVisualizerLibrary.Model.Enums;
@@ -23,7 +25,7 @@ namespace NotificationsVisualizerLibrary.Renderers
         private static XmlTemplateParser _parser = new XmlTemplateParser();
         private Border _adaptiveContainer;
 
-        public double ExternalMargin { get; set; } = 8;
+        public Double ExternalMargin { get; set; } = 8;
 
         /// <summary>
         /// Constructs a new PreviewAdaptiveContent control.
@@ -40,9 +42,9 @@ namespace NotificationsVisualizerLibrary.Renderers
         {
             base.OnApplyTemplate();
 
-            _adaptiveContainer = GetTemplateChild("PART_AdaptiveContainer") as Border;
+            this._adaptiveContainer = this.GetTemplateChild("PART_AdaptiveContainer") as Border;
 
-            if (_adaptiveContainer == null)
+            if (this._adaptiveContainer == null)
                 throw new NullReferenceException("Template parts not available");
         }
         
@@ -50,13 +52,13 @@ namespace NotificationsVisualizerLibrary.Renderers
         /// Display the adaptive content
         /// </summary>
         /// <param name="adaptiveContent"></param>
-        public ParseResult Initialize(string adaptiveContent)
+        public ParseResult Initialize(String adaptiveContent)
         {
             ParseResult result = _parser.ParseAdaptiveContent(adaptiveContent, FeatureSet.Get(FeatureSet.GetCurrentDeviceFamily(), FeatureSet.GetCurrentOSBuildNumber()));
 
             if (result.IsOkForRender())
             {
-                InitializeContent(result.AdaptiveContent);
+                this.InitializeContent(result.AdaptiveContent);
             }
 
             return result;
@@ -64,19 +66,19 @@ namespace NotificationsVisualizerLibrary.Renderers
 
         private void InitializeContent(AdaptiveContainer adaptiveContent)
         {
-            Reset();
+            this.Reset();
 
-            _adaptiveContainer.Child = AdaptiveRenderer.Render(adaptiveContent, new Thickness(GetExternalMargin()));
+            this._adaptiveContainer.Child = AdaptiveRenderer.Render(adaptiveContent, new Windows.UI.Xaml.Thickness(this.GetExternalMargin()));
         }
 
         private void Reset()
         {
-            _adaptiveContainer.Child = null;
+            this._adaptiveContainer.Child = null;
         }
 
-        private double GetExternalMargin()
+        private Double GetExternalMargin()
         {
-            return ExternalMargin;
+            return this.ExternalMargin;
         }
     }
 }

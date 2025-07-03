@@ -15,22 +15,22 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         /// <summary>
         /// Returns true if this element uses data binding
         /// </summary>
-        public bool UsesDataBinding { get; private set; }
+        public Boolean UsesDataBinding { get; private set; }
 
         internal static ErrorPositionInfo GetErrorPositionInfo(XObject node)
         {
             return XmlTemplateParser.GetErrorPositionInfo(node);
         }
 
-        internal bool TryParseEnum<TEnum>(string text, out TEnum answer) where TEnum : struct, IConvertible
+        internal Boolean TryParseEnum<TEnum>(String text, out TEnum answer) where TEnum : struct, IConvertible
         {
-            var supportedEnums = GetSupportedEnums<TEnum>();
+            var supportedEnums = this.GetSupportedEnums<TEnum>();
 
             if (text != null)
             {
                 foreach (var e in supportedEnums)
                 {
-                    string xmlValue = GetXmlValueFromEnum((Enum)e);
+                    String xmlValue = GetXmlValueFromEnum((Enum)e);
                     if (text.Equals(xmlValue, StringComparison.CurrentCultureIgnoreCase))
                     {
                         answer = (TEnum)e;
@@ -45,7 +45,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             return false;
         }
 
-        private static string GetXmlValueFromEnum(Enum enumValue)
+        private static String GetXmlValueFromEnum(Enum enumValue)
         {
             XmlValueAttribute xmlValueAttribute = enumValue.GetType().GetTypeInfo().GetDeclaredField(enumValue.ToString()).GetCustomAttribute<XmlValueAttribute>();
 
@@ -55,7 +55,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             return enumValue.ToString();
         }
 
-        internal bool TryParseEnum<TEnum>(ParseResult result, AttributesHelper attributes, string attributeName, out TEnum answer, bool caseSensitive = true) where TEnum : struct, IConvertible
+        internal Boolean TryParseEnum<TEnum>(ParseResult result, AttributesHelper attributes, String attributeName, out TEnum answer, Boolean caseSensitive = true) where TEnum : struct, IConvertible
         {
             XAttribute attr = attributes.PopAttribute(attributeName, caseSensitive);
 
@@ -65,7 +65,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
                 // And the attribute has a value
                 if (attr.Value != null)
                 {
-                    if (TryParseEnum(attr.Value, out answer))
+                    if (this.TryParseEnum(attr.Value, out answer))
                         return true;
                     
                     // Couldn't find matching enum
@@ -85,12 +85,12 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             return false;
         }
 
-        private static bool TryGetUnknownEnum<TEnum>(out TEnum answer)
+        private static Boolean TryGetUnknownEnum<TEnum>(out TEnum answer)
         {
             // If there's an Unknown enum value, use that
             foreach (var e in Enum.GetValues(typeof(TEnum)))
             {
-                string xmlValue = GetXmlValueFromEnum((Enum)e);
+                String xmlValue = GetXmlValueFromEnum((Enum)e);
                 if (xmlValue.Equals("unknown", StringComparison.CurrentCultureIgnoreCase))
                 {
                     answer = (TEnum)e;
@@ -104,19 +104,19 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
         private class ConfiguredBinding
         {
-            public string DataName { get; private set; }
-            public Action<string> OnSet { get; private set; }
+            public String DataName { get; private set; }
+            public Action<String> OnSet { get; private set; }
             private ParseError _currentError;
             private ParseResult _result;
 
-            public ConfiguredBinding(ParseResult result, string dataName, Action<string> onSet)
+            public ConfiguredBinding(ParseResult result, String dataName, Action<String> onSet)
             {
-                DataName = dataName;
-                OnSet = onSet;
-                _result = result;
+                this.DataName = dataName;
+                this.OnSet = onSet;
+                this._result = result;
             }
 
-            public void Invoke(string value)
+            public void Invoke(String value)
             {
                 ParseError newError;
                 try
@@ -125,11 +125,11 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
                     if (value == null)
                     {
                         // We fall back to displaying {value} or whatever dev provided as plain text
-                        OnSet("{" + DataName + "}");
+                        this.OnSet("{" + this.DataName + "}");
                     }
                     else
                     {
-                        OnSet(value);
+                        this.OnSet(value);
                     }
                     newError = null;
                 }
@@ -138,36 +138,36 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
                     newError = ex.Error;
                 }
 
-                if (_currentError != null && newError == null)
+                if (this._currentError != null && newError == null)
                 {
-                    _result.Errors.Remove(_currentError);
-                    _currentError = null;
+                    this._result.Errors.Remove(this._currentError);
+                    this._currentError = null;
                     return;
                 }
 
                 if (newError != null)
                 {
-                    if (_currentError != null && newError.Equals(_currentError))
+                    if (this._currentError != null && newError.Equals(this._currentError))
                     {
                         return;
                     }
 
-                    else if (_currentError != null)
+                    else if (this._currentError != null)
                     {
-                        _result.Errors.Remove(_currentError);
+                        this._result.Errors.Remove(this._currentError);
                     }
 
-                    _result.Add(newError);
-                    _currentError = newError;
+                    this._result.Add(newError);
+                    this._currentError = newError;
                 }
             }
         }
 
         private List<ConfiguredBinding> _bindings = new List<ConfiguredBinding>();
 
-        internal void SetBinding(ParseResult result, string dataName, Action<string> onSet)
+        internal void SetBinding(ParseResult result, String dataName, Action<String> onSet)
         {
-            _bindings.Add(new ConfiguredBinding(result, dataName, onSet));
+            this._bindings.Add(new ConfiguredBinding(result, dataName, onSet));
         }
 
         internal class ParseErrorException : Exception
@@ -175,7 +175,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
             public ParseError Error { get; private set; }
             public ParseErrorException(ParseError error)
             {
-                Error = error;
+                this.Error = error;
             }
         }
 
@@ -185,14 +185,14 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         /// <param name="attributes"></param>
         /// <param name="attributeName"></param>
         /// <param name="processValue"></param>
-        internal bool TryPopAttributeValueWithBinding(ParseResult result, AttributesHelper attributes, string attributeName, out string bindingName, Action<string> processValue)
+        internal Boolean TryPopAttributeValueWithBinding(ParseResult result, AttributesHelper attributes, String attributeName, out String bindingName, Action<String> processValue)
         {
-            string attrValue = attributes.PopAttributeValue(attributeName);
+            String attrValue = attributes.PopAttributeValue(attributeName);
 
-            return TryProcessBindableValue(result, attrValue, out bindingName, processValue);
+            return this.TryProcessBindableValue(result, attrValue, out bindingName, processValue);
         }
 
-        internal bool TryProcessBindableValue(ParseResult result, string value, out string bindingName, Action<string> processValue)
+        internal Boolean TryProcessBindableValue(ParseResult result, String value, out String bindingName, Action<String> processValue)
         {
             bindingName = null;
 
@@ -203,9 +203,9 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
             if (IsDataBinding(value))
             {
-                string dataName = GetDataBindingName(value);
-                SetBinding(result, dataName, processValue);
-                UsesDataBinding = true;
+                String dataName = GetDataBindingName(value);
+                this.SetBinding(result, dataName, processValue);
+                this.UsesDataBinding = true;
                 bindingName = dataName;
             }
             else
@@ -225,9 +225,9 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
         protected void ApplyDataBindingToThisInstance(DataBindingValues dataBinding)
         {
-            foreach (var binding in _bindings)
+            foreach (var binding in this._bindings)
             {
-                string value;
+                String value;
                 if (dataBinding.TryGetValue(binding.DataName, out value))
                 {
                     binding.Invoke(value);
@@ -241,10 +241,10 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
         internal virtual void ApplyDataBinding(DataBindingValues dataBinding)
         {
-            ApplyDataBindingToThisInstance(dataBinding);
+            this.ApplyDataBindingToThisInstance(dataBinding);
         }
 
-        internal static bool IsDataBinding(string attributeValue)
+        internal static Boolean IsDataBinding(String attributeValue)
         {
             return attributeValue.StartsWith("{") && attributeValue.EndsWith("}");
         }
@@ -254,22 +254,22 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
         /// </summary>
         /// <param name="attributeValue"></param>
         /// <returns></returns>
-        internal static string GetDataBindingName(string attributeValue)
+        internal static String GetDataBindingName(String attributeValue)
         {
             return attributeValue.Substring(1, attributeValue.Length - 2);
         }
 
-        internal static bool TryParse(ParseResult result, AttributesHelper attributes, string attributeName, out int answer)
+        internal static Boolean TryParse(ParseResult result, AttributesHelper attributes, String attributeName, out Int32 answer)
         {
             return XmlTemplateParser.TryParse(result, attributes, attributeName, out answer);
         }
 
-        internal static bool TryParse(ParseResult result, AttributesHelper attributes, string attributeName, out double answer)
+        internal static Boolean TryParse(ParseResult result, AttributesHelper attributes, String attributeName, out Double answer)
         {
             return XmlTemplateParser.TryParse(result, attributes, attributeName, out answer);
         }
 
-        internal static bool TryParse(ParseResult result, AttributesHelper attributes, string attributeName, out bool answer)
+        internal static Boolean TryParse(ParseResult result, AttributesHelper attributes, String attributeName, out Boolean answer)
         {
             return XmlTemplateParser.TryParse(result, attributes, attributeName, out answer);
         }
@@ -281,11 +281,11 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
         protected void HandleRemainingAttributes(AttributesHelper attributes, ParseResult result)
         {
-            XmlTemplateParser.AddWarningsForAttributesNotSupportedByVisualizer(result, attributes, GetAttributesNotSupportedByVisualizer().ToArray());
+            XmlTemplateParser.AddWarningsForAttributesNotSupportedByVisualizer(result, attributes, this.GetAttributesNotSupportedByVisualizer().ToArray());
 
             XmlTemplateParser.AddWarningsForUnknownAttributes(result, attributes);
         }
 
-        protected abstract IEnumerable<string> GetAttributesNotSupportedByVisualizer();
+        protected abstract IEnumerable<String> GetAttributesNotSupportedByVisualizer();
     }
 }

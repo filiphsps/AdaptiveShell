@@ -8,6 +8,6 @@ namespace NotificationsVisualizerLibrary.Controls
 {
     public interface IAdaptiveControl
     {
-        bool DoesAllContentFit { get; }
+        Boolean DoesAllContentFit { get; }
     }
 }
