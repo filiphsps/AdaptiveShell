@@ -49,7 +49,7 @@ jobs:
       - name: Restore nuget
         id: run_nuget
         working-directory: ${{ github.workspace }}
-        run: nuget.exe restore .\AdaptiveShell.sln
+        run: dotnet restore --locked-mode .\AdaptiveShell.sln
 
       - name: Setup MSBuild path
         uses: microsoft/setup-msbuild@v1
