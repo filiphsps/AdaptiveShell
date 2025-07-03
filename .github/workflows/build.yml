@@ -24,7 +24,7 @@ jobs:
       matrix:
         configuration: [Debug, Release]
 
-    runs-on: windows-2022
+    runs-on: windows-2025
     name: Run MSBuild and VSTest
 
     steps:
