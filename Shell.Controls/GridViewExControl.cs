@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Media;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 
 // Thanks to https://www.codeproject.com/Articles/536519/Extending-GridView-with-Drag-and-Drop-for-Grouping
 // and https://www.codeproject.com/Articles/1037059/How-to-Upgrade-Extended-GridView-from-WinRT-to-Uni
@@ -85,7 +82,7 @@ namespace Shell.Controls {
         /// </summary>
         /// <param name="element"></param>
         /// <param name="item"></param>
-        protected virtual void OnPreparingContainerForItem(Windows.UI.Xaml.DependencyObject element, Object item) {
+        protected virtual void OnPreparingContainerForItem(DependencyObject element, Object item) {
             if (null != PreparingContainerForItem) {
                 PreparingContainerForItem(this, new PreparingContainerForItemEventArgs(element, item));
             }
@@ -125,21 +122,21 @@ namespace Shell.Controls {
         //----------------------------------------------------------------------
         #region ** overrides
         // set VariableSizedWrapGrid.ColumnSpan and RowSpan properties on element if they are set on item.
-        protected override void PrepareContainerForItemOverride(Windows.UI.Xaml.DependencyObject element, Object item) {
+        protected override void PrepareContainerForItemOverride(DependencyObject element, Object item) {
             element.SetValue(ContentControl.HorizontalContentAlignmentProperty, HorizontalAlignment.Stretch);
             element.SetValue(ContentControl.VerticalContentAlignmentProperty, VerticalAlignment.Stretch);
 
             var el = item as UIElement;
             if (el != null) {
-                Int32 colSpan = Windows.UI.Xaml.Controls.VariableSizedWrapGrid.GetColumnSpan(el);
-                Int32 rowSpan = Windows.UI.Xaml.Controls.VariableSizedWrapGrid.GetRowSpan(el);
+                Int32 colSpan = VariableSizedWrapGrid.GetColumnSpan(el);
+                Int32 rowSpan = VariableSizedWrapGrid.GetRowSpan(el);
                 if (rowSpan > 1) {
                     // only set it if it has non-defaul value
-                    element.SetValue(Windows.UI.Xaml.Controls.VariableSizedWrapGrid.RowSpanProperty, rowSpan);
+                    element.SetValue(VariableSizedWrapGrid.RowSpanProperty, rowSpan);
                 }
                 if (colSpan > 1) {
                     // only set it if it has non-defaul value
-                    element.SetValue(Windows.UI.Xaml.Controls.VariableSizedWrapGrid.ColumnSpanProperty, colSpan);
+                    element.SetValue(VariableSizedWrapGrid.ColumnSpanProperty, colSpan);
                 }
             }
             this.OnPreparingContainerForItem(element, item);
@@ -519,7 +516,7 @@ namespace Shell.Controls {
     /// Provides data for the <see cref="GridViewExControl.PreparingContainerForItem"/> event.
     /// </summary>
     public sealed class PreparingContainerForItemEventArgs : EventArgs {
-        internal PreparingContainerForItemEventArgs(Windows.UI.Xaml.DependencyObject element, Object item)
+        internal PreparingContainerForItemEventArgs(DependencyObject element, Object item)
             : base() {
             this.Element = element;
             this.Item = item;
@@ -535,7 +532,7 @@ namespace Shell.Controls {
         /// <summary>
         /// Gets the container prepared to show in UI.
         /// </summary>
-        public Windows.UI.Xaml.DependencyObject Element {
+        public DependencyObject Element {
             get;
             private set;
         }

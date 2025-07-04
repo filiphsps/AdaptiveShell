@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using NotificationsVisualizerLibrary.Renderers;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 
 namespace NotificationsVisualizerLibrary.Controls
 {
-    internal class CallingButton : Button
+    internal partial class CallingButton : Button
     {
         private Grid _grid;
         private TextBlock _textBlock;
@@ -78,7 +74,7 @@ namespace NotificationsVisualizerLibrary.Controls
             {
                 if (value)
                 {
-                    Background = new SolidColorBrush((Color)Application.Current.Resources["SystemColorHighlightColor"]);
+                    this.Background = new SolidColorBrush((Color)Application.Current.Resources["SystemColorHighlightColor"]);
                     this.Width = Double.NaN;
                     this.HorizontalAlignment = HorizontalAlignment.Stretch;
                 }

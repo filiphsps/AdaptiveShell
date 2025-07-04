@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.UI;
+using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI;
 
 namespace NotificationsVisualizerLibrary
 {
-    public sealed class PreviewTileVisualElements : INotifyPropertyChanged
+    public sealed partial class PreviewTileVisualElements : INotifyPropertyChanged
     {
         private Color _backgroundColor = Colors.Blue;
         public Color BackgroundColor
         {
             get { return this._backgroundColor; }
-            set { SetProperty(ref this._backgroundColor, value); }
+            set { this.SetProperty(ref this._backgroundColor, value); }
         }
 
         private Boolean _showNameOnSquare150x150Logo = false;

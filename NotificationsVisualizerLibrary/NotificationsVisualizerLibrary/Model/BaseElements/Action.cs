@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Parsers;
 using NotificationsVisualizerLibrary.Model.Enums;
@@ -10,7 +7,7 @@ using NotificationsVisualizerLibrary.Model.Enums;
 namespace NotificationsVisualizerLibrary.Model.BaseElements
 {
     [ObjectModelClass("ToastButton", NotificationType.Toast)]
-    internal class Action : AdaptiveChildElement, IActivatableElement
+    internal partial class Action : AdaptiveChildElement, IActivatableElement
     {
         public Action(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

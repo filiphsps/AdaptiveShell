@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model;
-using NotificationsVisualizerLibrary.Model.Enums;
 
 namespace NotificationsVisualizerLibrary.Parsers
 {
@@ -19,7 +16,7 @@ namespace NotificationsVisualizerLibrary.Parsers
 
     }
 
-    internal sealed class AttributesHelper : List<XAttribute>
+    internal sealed partial class AttributesHelper : List<XAttribute>
     {
         public AttributesHelper(IEnumerable<XAttribute> attributes) : base(attributes) { }
 
@@ -353,7 +350,7 @@ namespace NotificationsVisualizerLibrary.Parsers
         {
             if (text != null)
             {
-                foreach (var e in Enum.GetValues(typeof(TEnum)))
+                foreach (Object e in Enum.GetValues(typeof(TEnum)))
                 {
                     if (text.Equals(e.ToString(), StringComparison.CurrentCultureIgnoreCase))
                     {

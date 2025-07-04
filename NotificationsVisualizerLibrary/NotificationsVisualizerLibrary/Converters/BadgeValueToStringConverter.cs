@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Data;
 using NotificationsVisualizerLibrary.Model;
-using Windows.UI.Xaml.Data;
 
 namespace NotificationsVisualizerLibrary.Converters
 {
-    public sealed class BadgeValueToStringConverter : IValueConverter
+    public sealed partial class BadgeValueToStringConverter : IValueConverter
     {
         public Object Convert(Object value, Type targetType, Object parameter, String language)
         {

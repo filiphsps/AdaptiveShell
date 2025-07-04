@@ -1,15 +1,12 @@
 ﻿using NotificationsVisualizerLibrary.Parsers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace NotificationsVisualizerLibrary.Model
 {
     [ObjectModelClass("AdaptiveProgressBar")]
-    internal class AdaptiveProgress : AdaptiveChildElement, IBindingChild
+    internal partial class AdaptiveProgress : AdaptiveChildElement, IBindingChild
     {
         public AdaptiveProgress(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

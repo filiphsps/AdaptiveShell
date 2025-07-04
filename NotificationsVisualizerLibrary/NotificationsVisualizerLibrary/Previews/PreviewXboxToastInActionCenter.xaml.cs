@@ -8,18 +8,9 @@ using NotificationsVisualizerLibrary.Renderers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Data.Xml.Dom;
-using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -27,9 +18,9 @@ namespace NotificationsVisualizerLibrary
 {
     public sealed partial class PreviewXboxToastInActionCenter : UserControl, IPreviewToast
     {
-        private static XmlTemplateParser _parser = new XmlTemplateParser();
+        private static XmlTemplateParser _parser = new();
 
-        private ObservableCollection<ListViewButton> _buttons = new ObservableCollection<ListViewButton>();
+        private readonly ObservableCollection<ListViewButton> _buttons = new();
 
         public event EventHandler<PreviewToastNotificationActivatedEventArgs> ActivatedForeground, ActivatedBackground, ActivatedSystem, ActivatedProtocol;
 
@@ -97,7 +88,7 @@ namespace NotificationsVisualizerLibrary
             this.ImageAppLogo.Visibility = Visibility.Collapsed;
             this.CircleImageAppLogo.Visibility = Visibility.Collapsed;
 
-            this._elementsWithIds = new Dictionary<String, FrameworkElement>();
+            this._elementsWithIds = [];
 
             this._currLaunch = "";
             this._currActivationType = ActivationType.Foreground;
@@ -176,7 +167,7 @@ namespace NotificationsVisualizerLibrary
                         }
 
                         // Assign hero
-                        if (heroImages.Any())
+                        if (heroImages.Count != 0)
                         {
                             this.ImageHero.Visibility = Visibility.Visible;
                             this.ImageHeroBrush.ImageSource = ImageHelper.GetBitmap(heroImages.First().Src);
@@ -189,7 +180,7 @@ namespace NotificationsVisualizerLibrary
                         }
 
 
-                        texts = new List<AdaptiveTextField>();
+                        texts = [];
 
                         // Pull out all texts
                         for (Int32 i = 0; i < container.Children.Count; i++)
@@ -239,7 +230,7 @@ namespace NotificationsVisualizerLibrary
 
 
                         if (appLogoOverrides == null)
-                            appLogoOverrides = images.Where(i => i.Placement == Model.Enums.Placement.AppLogoOverride).ToList();
+                            appLogoOverrides = [.. images.Where(i => i.Placement == Model.Enums.Placement.AppLogoOverride)];
 
                         var appLogoOverride = appLogoOverrides.FirstOrDefault();
                         if (appLogoOverride != null)
@@ -278,7 +269,7 @@ namespace NotificationsVisualizerLibrary
                         // Attribution
                         if (toastContent.SupportedFeatures.RS1_Style_Toasts)
                         {
-                            if (attributionTexts.Any())
+                            if (attributionTexts.Count != 0)
                             {
                                 this.TextBlockAttributionSeparationDot.Visibility = Visibility.Visible;
                                 this.TextBlockAttributionSecondPart.Visibility = Visibility.Visible;
@@ -396,7 +387,7 @@ namespace NotificationsVisualizerLibrary
             this.ListViewButtons.SelectedIndex = 0;
         }
 
-        internal class ListViewButton : BindableBase
+        internal partial class ListViewButton : BindableBase
         {
             public String Title { get; set; }
 
@@ -423,7 +414,7 @@ namespace NotificationsVisualizerLibrary
             String Value { get; }
         }
 
-        internal class TextBoxButton : ListViewButton, IInput
+        internal partial class TextBoxButton : ListViewButton, IInput
         {
             public Input Input { get; private set; }
 
@@ -513,7 +504,7 @@ namespace NotificationsVisualizerLibrary
             }
         }
 
-        internal class SelectionButton : ListViewButton, IInput
+        internal partial class SelectionButton : ListViewButton, IInput
         {
             public Input Input { get; private set; }
 

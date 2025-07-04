@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace NotificationsVisualizerLibrary.Controls
 {
-    public sealed class AdaptiveGrid : Grid, IAdaptiveControl
+    public sealed partial class AdaptiveGrid : Grid, IAdaptiveControl
     {
         public Boolean DoesAllContentFit { get; private set; }
 
@@ -19,7 +15,7 @@ namespace NotificationsVisualizerLibrary.Controls
 
             Size answer = base.MeasureOverride(availableSize);
 
-            if (Children != null && Children.OfType<IAdaptiveControl>().Any(i => !i.DoesAllContentFit))
+            if (this.Children != null && this.Children.OfType<IAdaptiveControl>().Any(i => !i.DoesAllContentFit))
                 this.DoesAllContentFit = false;
 
             return answer;

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Parsers;
 
 namespace NotificationsVisualizerLibrary.Model.BaseElements
 {
     [ObjectModelClass("ToastTextBox", NotificationType.Toast)]
-    internal class Input : AdaptiveParentElement
+    internal partial class Input : AdaptiveParentElement
     {
         public Input(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

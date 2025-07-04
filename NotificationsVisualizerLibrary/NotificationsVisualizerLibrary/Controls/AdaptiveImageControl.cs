@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
+using System;
 using Windows.Foundation;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Shapes;
 
 namespace NotificationsVisualizerLibrary.Controls
 {
@@ -26,8 +19,8 @@ namespace NotificationsVisualizerLibrary.Controls
 
         public BitmapImage Source
         {
-            get { return GetValue(SourceProperty) as BitmapImage; }
-            set { SetValue(SourceProperty, value); }
+            get { return this.GetValue(SourceProperty) as BitmapImage; }
+            set { this.SetValue(SourceProperty, value); }
         }
 
         private static void OnSourcePropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -40,13 +33,13 @@ namespace NotificationsVisualizerLibrary.Controls
             var oldBitmap = e.OldValue as BitmapImage;
 
             if (oldBitmap != null)
-                oldBitmap.ImageOpened -= Bitmap_ImageOpened;
+                oldBitmap.ImageOpened -= this.Bitmap_ImageOpened;
             
             var newBitmap = e.NewValue as BitmapImage;
 
             if (newBitmap != null)
             {
-                newBitmap.ImageOpened += Bitmap_ImageOpened;
+                newBitmap.ImageOpened += this.Bitmap_ImageOpened;
             }
 
             base.InvalidateMeasure();
@@ -87,7 +80,7 @@ namespace NotificationsVisualizerLibrary.Controls
                         if (this.Source.PixelHeight > availableSize.Height)
                         {
                             this.DoesAllContentFit = false;
-                            return FitToHeight(availableSize.Height); // Then fit it to the height
+                            return this.FitToHeight(availableSize.Height); // Then fit it to the height
                         }
 
                         // Otherwise display at its full size
@@ -99,13 +92,13 @@ namespace NotificationsVisualizerLibrary.Controls
                         return new Size();
 
 
-                    Size fitted = FitToWidth(availableSize.Width);
+                    Size fitted = this.FitToWidth(availableSize.Width);
 
                     // If all can't fit, flag it as so and fit to its height
                     if (fitted.Height > availableSize.Height)
                     {
                         this.DoesAllContentFit = false;
-                        return FitToHeight(availableSize.Height);
+                        return this.FitToHeight(availableSize.Height);
                     }
 
                     return fitted;
@@ -121,11 +114,11 @@ namespace NotificationsVisualizerLibrary.Controls
 
                     // If need to fit to height
                     if (Double.IsInfinity(availableSize.Width) || (!Double.IsInfinity(availableSize.Height) && (this.Source.PixelHeight / (Double)this.Source.PixelWidth) >= (availableSize.Height / availableSize.Width)))
-                        return FitToHeight(availableSize.Height);
+                        return this.FitToHeight(availableSize.Height);
 
                     // Otherwise fit to width
                     else
-                        return FitToWidth(availableSize.Width);
+                        return this.FitToWidth(availableSize.Width);
 
 
                 default:
@@ -206,8 +199,8 @@ namespace NotificationsVisualizerLibrary.Controls
 
         public AdaptiveImageStretch Stretch
         {
-            get { return (AdaptiveImageStretch)GetValue(StretchProperty); }
-            set { SetValue(StretchProperty, value); }
+            get { return (AdaptiveImageStretch)this.GetValue(StretchProperty); }
+            set { this.SetValue(StretchProperty, value); }
         }
     }
 

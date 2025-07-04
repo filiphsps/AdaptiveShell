@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model.BaseElements;
 using NotificationsVisualizerLibrary.Parsers;
@@ -35,7 +33,7 @@ namespace NotificationsVisualizerLibrary.Model
     }
 
     [ObjectModelClass("ToastContent")]
-    internal class Toast : AdaptiveParentElement, IToast
+    internal partial class Toast : AdaptiveParentElement, IToast
     {
         private const String ATTR_LAUNCH = "launch";
         private const String ATTR_DURATION = "duration";

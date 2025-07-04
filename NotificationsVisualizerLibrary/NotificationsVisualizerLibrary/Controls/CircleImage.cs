@@ -2,20 +2,14 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
+
 
 // The Templated Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234235
 
 namespace NotificationsVisualizerLibrary.Controls
 {
-    public sealed class CircleImage : Control, IAdaptiveControl
+    public sealed partial class CircleImage : Control, IAdaptiveControl
     {
         public Boolean DoesAllContentFit { get; private set; }
 
@@ -98,7 +92,7 @@ namespace NotificationsVisualizerLibrary.Controls
                     // If width is infinite
                     if (Double.IsInfinity(availableSize.Width))
                     {
-                        // If both dimmensions are infinity
+                        // If both dimensions are infinity
                         if (Double.IsInfinity(availableSize.Height))
                             return new Size(min, min);
 
@@ -123,7 +117,6 @@ namespace NotificationsVisualizerLibrary.Controls
                         return new Size(availableSize.Height, availableSize.Height);
                     }
 
-
                 case CircleImageStretch.UniformToWidth:
 
                     if (Double.IsInfinity(availableSize.Width))
@@ -131,10 +124,8 @@ namespace NotificationsVisualizerLibrary.Controls
 
                     return new Size(availableSize.Width, availableSize.Width);
 
-
                 case CircleImageStretch.None:
                     return new Size(min, min);
-
 
                 default:
                     throw new NotImplementedException();

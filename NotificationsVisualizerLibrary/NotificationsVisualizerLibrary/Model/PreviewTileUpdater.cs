@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NotificationsVisualizerLibrary.Parsers;
-using Windows.Data.Xml.Dom;
+﻿using NotificationsVisualizerLibrary.Parsers;
 using Windows.UI.Notifications;
 
 namespace NotificationsVisualizerLibrary

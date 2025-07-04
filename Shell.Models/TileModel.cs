@@ -1,14 +1,10 @@
-﻿using NotificationsVisualizerLibrary;
+﻿using Microsoft.UI.Xaml.Media;
+using NotificationsVisualizerLibrary;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Data.Xml.Dom;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 
 namespace Shell.Models {
     public class TileDataModel {

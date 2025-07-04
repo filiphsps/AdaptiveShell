@@ -1,15 +1,12 @@
 ﻿using NotificationsVisualizerLibrary.Parsers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace NotificationsVisualizerLibrary.Model.BaseElements
 {
     [ObjectModelClass("ToastHeader", NotificationType.Toast)]
-    internal class Header : AdaptiveParentElement
+    internal partial class Header : AdaptiveParentElement
     {
         private const String ATTR_ID = "id";
         private const String ATTR_TITLE = "title";

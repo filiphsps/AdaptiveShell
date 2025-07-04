@@ -1,17 +1,12 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace NotificationsVisualizerLibrary.Controls
 {
-    public sealed class AdaptiveStackPanel : Panel, IAdaptiveControl
+    public sealed partial class AdaptiveStackPanel : Panel, IAdaptiveControl
     {
         /// <summary>
         /// This is updated after Measure has been called
@@ -27,8 +22,7 @@ namespace NotificationsVisualizerLibrary.Controls
             (sender as AdaptiveStackPanel).OnIsTopLevelChanged(e);
         }
 
-        private void OnIsTopLevelChanged(DependencyPropertyChangedEventArgs e)
-        {
+        private void OnIsTopLevelChanged(DependencyPropertyChangedEventArgs e) {
             base.InvalidateMeasure();
         }
 

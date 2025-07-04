@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
 using NotificationsVisualizerLibrary.Model;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Data;
 
 namespace NotificationsVisualizerLibrary.Converters
 {
-    public sealed class BadgeValueToVisibilityConverter : IValueConverter
+    public sealed partial class BadgeValueToVisibilityConverter : IValueConverter
     {
         public Object Convert(Object value, Type targetType, Object parameter, String language)
         {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using NotificationsVisualizerLibrary.Controls;
@@ -8,24 +7,16 @@ using NotificationsVisualizerLibrary.Model;
 using NotificationsVisualizerLibrary.Model.BaseElements;
 using NotificationsVisualizerLibrary.Parsers;
 using NotificationsVisualizerLibrary.Renderers;
-using Windows.ApplicationModel.Activation;
 using Windows.Data.Xml.Dom;
-using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
-using Windows.UI.Notifications;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using System.Dynamic;
-using System.Diagnostics;
 using Windows.Foundation.Metadata;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI;
+using Microsoft.UI.Xaml.Data;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -189,8 +180,8 @@ namespace NotificationsVisualizerLibrary
 
         public PreviewToastProperties Properties
         {
-            get { return GetValue(PropertiesProperty) as PreviewToastProperties; }
-            set { SetValue(PropertiesProperty, value); }
+            get { return this.GetValue(PropertiesProperty) as PreviewToastProperties; }
+            set { this.SetValue(PropertiesProperty, value); }
         }
 
         private static readonly DependencyProperty IsExpandedProperty = DependencyProperty.Register("IsExpanded", typeof(Boolean), typeof(PreviewToast), new PropertyMetadata(true, OnIsExpandedChanged));
@@ -221,8 +212,8 @@ namespace NotificationsVisualizerLibrary
 
         public Boolean IsExpanded
         {
-            get { return (Boolean)GetValue(IsExpandedProperty); }
-            set { SetValue(IsExpandedProperty, value); }
+            get { return (Boolean)this.GetValue(IsExpandedProperty); }
+            set { this.SetValue(IsExpandedProperty, value); }
         }
 
         private interface IInput
@@ -340,9 +331,9 @@ namespace NotificationsVisualizerLibrary
 
             this.CallingImageContainer.Child = null;
 
-            this.Pre19H2AppLogo.Visibility = this.CurrFeatureSet.R_19H2_Style_Toasts ? this.Visibility.Collapsed : this.Visibility.Visible;
-            this.ImageAppLogo.Visibility = this.Visibility.Collapsed;
-            this.CircleImageAppLogo.Visibility = this.Visibility.Collapsed;
+            this.Pre19H2AppLogo.Visibility = this.CurrFeatureSet.R_19H2_Style_Toasts ? Visibility.Collapsed : Visibility.Visible;
+            this.ImageAppLogo.Visibility = Visibility.Collapsed;
+            this.CircleImageAppLogo.Visibility = Visibility.Collapsed;
 
             this._elementsWithIds = new Dictionary<String, FrameworkElement>();
 
@@ -352,11 +343,11 @@ namespace NotificationsVisualizerLibrary
 
             this.AssignMenuFlyout(null);
 
-            this.StackPanelAttribution.Visibility = this.Visibility.Collapsed;
-            this.TextBlockAttributionFirstPart.Visibility = this.Visibility.Collapsed;
-            this.TextBlockAttributionSeparationDot.Visibility = this.Visibility.Collapsed;
-            this.TextBlockAttributionSecondPart.Visibility = this.Visibility.Collapsed;
-            this.AppLogoOverrideContainer.Visibility = this.Visibility.Collapsed;
+            this.StackPanelAttribution.Visibility =Visibility.Collapsed;
+            this.TextBlockAttributionFirstPart.Visibility = Visibility.Collapsed;
+            this.TextBlockAttributionSeparationDot.Visibility = Visibility.Collapsed;
+            this.TextBlockAttributionSecondPart.Visibility = Visibility.Collapsed;
+            this.AppLogoOverrideContainer.Visibility = Visibility.Collapsed;
         }
 
         private void InitializeContent(IToast toastContent)
@@ -451,15 +442,15 @@ namespace NotificationsVisualizerLibrary
                             }
 
                             // Assign hero
-                            if (heroImages.Any())
+                            if (heroImages.Count != 0)
                             {
-                                this.ImageHero.Visibility = this.Visibility.Visible;
+                                this.ImageHero.Visibility = Visibility.Visible;
                                 this.ImageHeroBrush.ImageSource = ImageHelper.GetBitmap(heroImages.First().Src);
                             }
 
                             else
                             {
-                                this.ImageHero.Visibility = this.Visibility.Collapsed;
+                                this.ImageHero.Visibility = Visibility.Collapsed;
                                 this.ImageHeroBrush.ImageSource = null;
                             }
 
@@ -516,18 +507,18 @@ namespace NotificationsVisualizerLibrary
                                         this.TextBlockBody.Text = bodyTextLine1.Text;
                                 }
 
-                                this.TextBlockBody.Visibility = this.Visibility.Visible;
+                                this.TextBlockBody.Visibility = Visibility.Visible;
                             }
 
                             else
-                                this.TextBlockBody.Visibility = this.Visibility.Collapsed;
+                                this.TextBlockBody.Visibility = Visibility.Collapsed;
                         }
 
                         else
                         {
                             this.TextBlockTitle.Text = this.Properties.DisplayName;
                             this.TextBlockBody.Text = "New notification";
-                            this.TextBlockBody.Visibility = this.Visibility.Visible;
+                            this.TextBlockBody.Visibility = Visibility.Visible;
                         }
 
                         var images = children.OfType<AdaptiveImage>().ToList();
@@ -542,7 +533,7 @@ namespace NotificationsVisualizerLibrary
                                 switch (callingImage.HintCrop)
                                 {
                                     case Model.Enums.HintCrop.Circle:
-                                        this.CallingImageContainer.Child = AssignId(new CircleImage()
+                                        this.CallingImageContainer.Child = this.AssignId(new CircleImage()
                                         {
                                             Source = ImageHelper.GetBitmap(callingImage.Src),
                                             Width = 96,
@@ -552,7 +543,7 @@ namespace NotificationsVisualizerLibrary
                                         break;
 
                                     default:
-                                        this.CallingImageContainer.Child = AssignId(new Image()
+                                        this.CallingImageContainer.Child = this.AssignId(new Image()
                                         {
                                             Source = ImageHelper.GetBitmap(callingImage.Src),
                                             Width = 200,
@@ -567,33 +558,33 @@ namespace NotificationsVisualizerLibrary
 
 
                         if (appLogoOverrides == null)
-                            appLogoOverrides = images.Where(i => i.Placement == Model.Enums.Placement.AppLogoOverride).ToList();
+                            appLogoOverrides = [.. images.Where(i => i.Placement == Model.Enums.Placement.AppLogoOverride)];
 
                         var appLogoOverride = appLogoOverrides.FirstOrDefault();
                         if (appLogoOverride != null)
                         {
-                            this.Pre19H2AppLogo.Visibility = this.Visibility.Collapsed;
-                            this.AppLogoOverrideContainer.Visibility = this.Visibility.Visible;
+                            this.Pre19H2AppLogo.Visibility = Visibility.Collapsed;
+                            this.AppLogoOverrideContainer.Visibility = Visibility.Visible;
 
                             var source = ImageHelper.GetBitmap(appLogoOverride.Src);
 
                             if (appLogoOverride.HintCrop == Model.Enums.HintCrop.Circle)
                             {
                                 this.CircleImageAppLogo.Source = source;
-                                this.CircleImageAppLogo.Visibility = this.Visibility.Visible;
+                                this.CircleImageAppLogo.Visibility = Visibility.Visible;
                             }
 
                             else
                             {
                                 this.ImageAppLogo.Source = source;
-                                this.ImageAppLogo.Visibility = this.Visibility.Visible;
+                                this.ImageAppLogo.Visibility = Visibility.Visible;
                             }
 
                             if (!this.CurrFeatureSet.R_19H2_Style_Toasts && this.CurrFeatureSet.RS1_Style_Toasts)
                             {
                                 // We also show the attribution app name
-                                this.StackPanelAttribution.Visibility = this.Visibility.Visible;
-                                this.TextBlockAttributionFirstPart.Visibility = this.Visibility.Visible;
+                                this.StackPanelAttribution.Visibility = Visibility.Visible;
+                                this.TextBlockAttributionFirstPart.Visibility = Visibility.Visible;
                             }
                         }
 
@@ -617,7 +608,7 @@ namespace NotificationsVisualizerLibrary
                                 MaxWidth = 84,
                                 MaxHeight = 84,
                                 Stretch = Stretch.Uniform,
-                                HorizontalAlignment = this.HorizontalAlignment.Left,
+                                HorizontalAlignment = HorizontalAlignment.Left,
                                 Margin = new Thickness(0, 12, 0, 0)
                             };
 
@@ -678,16 +669,16 @@ namespace NotificationsVisualizerLibrary
                         // Attribution
                         if (toastContent.SupportedFeatures.RS1_Style_Toasts)
                         {
-                            if (attributionTexts.Any())
+                            if (attributionTexts.Count != 0)
                             {
-                                this.StackPanelAttribution.Visibility = this.Visibility.Visible;
+                                this.StackPanelAttribution.Visibility = Visibility.Visible;
 
-                                if (this.TextBlockAttributionFirstPart.Visibility == this.Visibility.Visible)
+                                if (this.TextBlockAttributionFirstPart.Visibility == Visibility.Visible)
                                 {
-                                    this.TextBlockAttributionSeparationDot.Visibility = this.Visibility.Visible;
+                                    this.TextBlockAttributionSeparationDot.Visibility = Visibility.Visible;
                                 }
 
-                                this.TextBlockAttributionSecondPart.Visibility = this.Visibility.Visible;
+                                this.TextBlockAttributionSecondPart.Visibility = Visibility.Visible;
                                 this.TextBlockAttributionSecondPart.Text = attributionTexts.First().Text;
                             }
                         }
@@ -701,7 +692,7 @@ namespace NotificationsVisualizerLibrary
 
                     if (actions.HintSystemCommands == Model.Enums.HintSystemCommands.SnoozeAndDismiss)
                     {
-                        AddInput(this.CreateComboBox("systemSnoozeSelection", null, new Selection[]
+                        this.AddInput(this.CreateComboBox("systemSnoozeSelection", null, new Selection[]
                         {
                             new Selection(NotificationType.Toast, this.CurrFeatureSet)
                             {
@@ -740,8 +731,8 @@ namespace NotificationsVisualizerLibrary
                             }
                         }, "9", true));
 
-                        AddButton(this.CreateButton("Snooze", "snooze", null, ActivationType.System, toastContent.Scenario));
-                        AddButton(this.CreateButton("Dismiss", "dismiss", null, ActivationType.System, toastContent.Scenario));
+                        this.AddButton(this.CreateButton("Snooze", "snooze", null, ActivationType.System, toastContent.Scenario));
+                        this.AddButton(this.CreateButton("Dismiss", "dismiss", null, ActivationType.System, toastContent.Scenario));
                     }
 
                     else
@@ -775,10 +766,10 @@ namespace NotificationsVisualizerLibrary
 
                                 var uiButton = this.CreateImageButton(a.ImageUri, a.Arguments, a.ActivationType);
 
-                                AssignId(uiButton, a.Id);
+                                this.AssignId(uiButton, a.Id);
 
                                 if (!a.HintVisible)
-                                    uiButton.Visibility = this.Visibility.Collapsed;
+                                    uiButton.Visibility = Visibility.Collapsed;
 
                                 Grid.SetColumn(uiButton, 1);
                                 grid.Children.Add(uiButton);
@@ -800,7 +791,7 @@ namespace NotificationsVisualizerLibrary
 
                                 case Model.BaseElements.InputType.Selection:
 
-                                    ComboBox cb = CreateComboBox(i.Id, i.Title, i.Children.OfType<Selection>().ToArray(), i.DefaultInput, i.HintVisible);
+                                    ComboBox cb = this.CreateComboBox(i.Id, i.Title, i.Children.OfType<Selection>().ToArray(), i.DefaultInput, i.HintVisible);
 
                                     grid.Children.Add(cb);
 
@@ -810,7 +801,7 @@ namespace NotificationsVisualizerLibrary
                                     throw new NotImplementedException();
                             }
 
-                            AddInput(grid);
+                            this.AddInput(grid);
                         }
 
                         // If there's only one button
@@ -820,10 +811,10 @@ namespace NotificationsVisualizerLibrary
 
                             Button uiButton = this.CreateButton(a.Content, a.Arguments, a.ImageUri, a.ActivationType, toastContent.Scenario);
 
-                            AssignId(uiButton, a.Id);
+                            this.AssignId(uiButton, a.Id);
 
                             if (!a.HintVisible)
-                                uiButton.Visibility = this.Visibility.Collapsed;
+                                uiButton.Visibility = Visibility.Collapsed;
 
                             if (this.CurrFeatureSet.R_19H1_Style_Toasts)
                             {
@@ -836,17 +827,17 @@ namespace NotificationsVisualizerLibrary
                             {
                                 // In RS3 and higher, and also before RS1, we have it consume half the width on the right
                                 // by adding a blank entry first
-                                AddButton(new Border());
+                                this.AddButton(new Border());
                             }
 
                             else
                             {
                                 // In Anniversary Update the button will increase to fit the text
-                                uiButton.HorizontalAlignment = this.HorizontalAlignment.Right;
+                                uiButton.HorizontalAlignment = HorizontalAlignment.Right;
                             }
 
                             // Then add the actual button (so it appears on the right half)
-                            AddButton(uiButton);
+                            this.AddButton(uiButton);
                         }
 
                         else
@@ -856,12 +847,12 @@ namespace NotificationsVisualizerLibrary
                             {
                                 Button uiButton = this.CreateButton(a.Content, a.Arguments, a.ImageUri, a.ActivationType, toastContent.Scenario);
 
-                                AssignId(uiButton, a.Id);
+                                this.AssignId(uiButton, a.Id);
 
                                 if (!a.HintVisible)
-                                    uiButton.Visibility = this.Visibility.Collapsed;
+                                    uiButton.Visibility = Visibility.Collapsed;
 
-                                AddButton(uiButton);
+                                this.AddButton(uiButton);
                             }
                         }
                     }
@@ -884,7 +875,7 @@ namespace NotificationsVisualizerLibrary
                             items.Add(menuItem);
                         }
 
-                        this.AssignMenuFlyout(items.ToArray());
+                        this.AssignMenuFlyout([.. items]);
                     }
                 }
             }
@@ -943,7 +934,7 @@ namespace NotificationsVisualizerLibrary
                 this._elementsWithIds[id] = tb;
 
             if (!hintVisible)
-                tb.Visibility = this.Visibility.Collapsed;
+                tb.Visibility = Visibility.Collapsed;
 
             return tb;
         }
@@ -953,7 +944,7 @@ namespace NotificationsVisualizerLibrary
             var cb = new ComboBox()
             {
                 Margin = this.GetInputAndButtonMargin(),
-                HorizontalAlignment = this.HorizontalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
                 Tag = id
             };
 
@@ -971,7 +962,7 @@ namespace NotificationsVisualizerLibrary
                 this._elementsWithIds[id] = cb;
 
             if (!hintVisible)
-                cb.Visibility = this.Visibility.Collapsed;
+                cb.Visibility = Visibility.Collapsed;
 
             return cb;
         }
@@ -1022,9 +1013,9 @@ namespace NotificationsVisualizerLibrary
                     b = new Button()
                     {
                         Content = content,
-                        HorizontalAlignment = this.HorizontalAlignment.Stretch,
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
                         Margin = this.GetInputAndButtonMargin(),
-                        VerticalAlignment = this.VerticalAlignment.Top
+                        VerticalAlignment = VerticalAlignment.Top
                     };
                     break;
 
@@ -1045,7 +1036,7 @@ namespace NotificationsVisualizerLibrary
                 Source = ImageHelper.GetBitmap(src),
                 Stretch = Stretch.Uniform,
                 Margin = new Thickness(12, 0, 0, this.GetMarginBelowInputOrButton()),
-                VerticalAlignment = this.VerticalAlignment.Bottom,
+                VerticalAlignment = VerticalAlignment.Bottom,
                 Width = 32,
                 Height = 32
             };
@@ -1122,8 +1113,8 @@ namespace NotificationsVisualizerLibrary
         /// </summary>
         public DeviceFamily DeviceFamily
         {
-            get { return (DeviceFamily)GetValue(DeviceFamilyProperty); }
-            set { SetValue(DeviceFamilyProperty, value); }
+            get { return (DeviceFamily)this.GetValue(DeviceFamilyProperty); }
+            set { this.SetValue(DeviceFamilyProperty, value); }
         }
 
         private static void OnDeviceFamilyChanged(Object sender, DependencyPropertyChangedEventArgs e)
@@ -1146,8 +1137,8 @@ namespace NotificationsVisualizerLibrary
         /// </summary>
         public Int32 OSBuildNumber
         {
-            get { return (Int32)GetValue(OSBuildNumberProperty); }
-            set { SetValue(OSBuildNumberProperty, value); }
+            get { return (Int32)this.GetValue(OSBuildNumberProperty); }
+            set { this.SetValue(OSBuildNumberProperty, value); }
         }
 
         private static void OnOSBuildNumberChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)

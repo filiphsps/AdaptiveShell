@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Parsers;
 
 namespace NotificationsVisualizerLibrary.Model.BaseElements
 {
     [ObjectModelClass("ToastAudio", NotificationType.Toast)]
-    internal class Audio : AdaptiveChildElement
+    internal partial class Audio : AdaptiveChildElement
     {
         public Audio(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

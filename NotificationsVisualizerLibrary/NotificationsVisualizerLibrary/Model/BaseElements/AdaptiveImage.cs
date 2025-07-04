@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
@@ -10,7 +7,7 @@ using NotificationsVisualizerLibrary.Parsers;
 namespace NotificationsVisualizerLibrary.Model
 {
     [ObjectModelClass("AdaptiveImage")]
-    internal class AdaptiveImage : AdaptiveChildElement, IBindingChild
+    internal partial class AdaptiveImage : AdaptiveChildElement, IBindingChild
     {
         public AdaptiveImage(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

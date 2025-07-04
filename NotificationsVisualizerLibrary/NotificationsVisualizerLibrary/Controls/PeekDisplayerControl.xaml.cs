@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
+using System;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -37,8 +28,8 @@ namespace NotificationsVisualizerLibrary.Controls
 
         internal PreviewTileNotificationRaw PreviewTileNotificationRaw
         {
-            get { return GetValue(PreviewTileNotificationRawProperty) as PreviewTileNotificationRaw; }
-            set { SetValue(PreviewTileNotificationRawProperty, value); }
+            get { return this.GetValue(PreviewTileNotificationRawProperty) as PreviewTileNotificationRaw; }
+            set { this.SetValue(PreviewTileNotificationRawProperty, value); }
         }
 
         #endregion
@@ -59,8 +50,8 @@ namespace NotificationsVisualizerLibrary.Controls
 
         public PeekContentDisplayed PeekStartsOn
         {
-            get { return (PeekContentDisplayed)GetValue(PeekStartsOnProperty); }
-            set { SetValue(PeekStartsOnProperty, value); }
+            get { return (PeekContentDisplayed)this.GetValue(PeekStartsOnProperty); }
+            set { this.SetValue(PeekStartsOnProperty, value); }
         }
 
         #endregion
@@ -167,16 +158,13 @@ namespace NotificationsVisualizerLibrary.Controls
         {
             Double normalHeight = this.PresentationCanvas.ActualHeight;
 
-            if (this._storyboard != null)
-            {
-                this._storyboard.Stop();
-            }
+            this._storyboard?.Stop();
 
 
 
             this._storyboard = new Storyboard()
             {
-                RepeatBehavior = RepeatBehavior.Forever
+                RepeatBehavior = Microsoft.UI.Xaml.Media.Animation.RepeatBehavior.Forever
             };
 
 

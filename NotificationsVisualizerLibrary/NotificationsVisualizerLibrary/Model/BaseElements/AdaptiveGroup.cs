@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
 
 namespace NotificationsVisualizerLibrary.Model
 {
     [ObjectModelClass("AdaptiveGroup")]
-    internal class AdaptiveGroup : AdaptiveParentElement, IBindingChild
+    internal partial class AdaptiveGroup : AdaptiveParentElement, IBindingChild
     {
         public AdaptiveGroup(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
         public const String ATTR_ACTIONID = "actionId";

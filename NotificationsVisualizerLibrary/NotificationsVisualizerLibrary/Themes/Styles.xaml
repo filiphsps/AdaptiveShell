@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:NotificationsVisualizerLibrary.Themes">
+    xmlns:local="NotificationsVisualizerLibrary.Themes">
 
     <!-- Placeholder type ramp copied from generic.xaml -->
     <FontFamily x:Key="TypeRampFontFamily">Segoe UI</FontFamily>

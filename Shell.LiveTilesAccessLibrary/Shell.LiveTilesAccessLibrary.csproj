@@ -1,21 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
-		<OutputType>Library</OutputType>
-		<DefaultLanguage>en-US</DefaultLanguage>
 		<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
 		<TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-		<UseWinUI>true</UseWinUI>
-		<Platforms>x86;x64;arm64</Platforms>
-		<ApplicationManifest>app.manifest</ApplicationManifest>
-		<EnableMsiXTooling>true</EnableMsiXTooling>
+		<OutputType>Library</OutputType>
+		<Platforms>x64;arm64</Platforms>
 		<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
-		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
-
+		<WindowsPackageType>None</WindowsPackageType>
 		<WindowsAppSDKLatest>true</WindowsAppSDKLatest>
+		<UseWinUI>true</UseWinUI>
+
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM64'">
@@ -47,10 +49,10 @@
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.6" />
 
-		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.0" />
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
 		<PackageReference Include="Microsoft.Graphics.Win2D" Version="1.3.2" />
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.6" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>

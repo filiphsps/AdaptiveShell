@@ -1,18 +1,15 @@
-﻿using Microsoft.UI.Xaml;
+﻿
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using NotificationsVisualizerLibrary.Controls;
 using NotificationsVisualizerLibrary.Helpers;
 using NotificationsVisualizerLibrary.Model;
-using NotificationsVisualizerLibrary.Model.BaseElements;
 using NotificationsVisualizerLibrary.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace NotificationsVisualizerLibrary.Renderers
 {
@@ -43,15 +40,13 @@ namespace NotificationsVisualizerLibrary.Renderers
 
             answer.VerticalAlignment = valignment;
 
-            Double topMarginOffset = externalMargin.Top;
-
             GenerateItems(
                 children: adaptiveContainer.Children,
                 container: answer.Children,
                 isFirstGroup: true,
                 isInsideGroup: false,
                 topMarginOffset: 0,
-                externalMargin: externalMargin);
+                externalMargin);
 
             // If the first child is a group/subgroup, we set the top margin to 0
             if (answer.Children.FirstOrDefault() is AdaptiveStackPanel || answer.Children.FirstOrDefault() is AdaptiveGrid)

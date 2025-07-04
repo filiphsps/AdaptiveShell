@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
@@ -10,7 +8,7 @@ using NotificationsVisualizerLibrary.Parsers;
 namespace NotificationsVisualizerLibrary.Model.BaseElements
 {
     [ObjectModelClass("ToastActionsCustom", NotificationType.Toast)]
-    internal class Actions : AdaptiveParentElement
+    internal partial class Actions : AdaptiveParentElement
     {
         public Actions(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

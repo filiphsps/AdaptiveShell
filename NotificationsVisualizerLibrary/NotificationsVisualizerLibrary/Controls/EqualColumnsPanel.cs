@@ -1,17 +1,12 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace NotificationsVisualizerLibrary.Controls
 {
-    internal class EqualColumnsPanel : Panel
+    internal partial class EqualColumnsPanel : Panel
     {
         private static readonly DependencyProperty ColumnSpacingProperty = DependencyProperty.Register("ColumnSpacing", typeof(Double), typeof(EqualColumnsPanel), new PropertyMetadata(0.0, OnDisplayPropertyChanged));
 
@@ -86,7 +81,7 @@ namespace NotificationsVisualizerLibrary.Controls
             Int32 numOfCols = this.GetNumberOfColumns();
 
             if (numOfCols <= 0)
-                return new Double[0];
+                return Array.Empty<Double>();
 
             if (numOfCols == 1)
                 return new Double[] { totalSize.Width };

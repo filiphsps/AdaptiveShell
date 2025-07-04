@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
@@ -281,7 +278,7 @@ namespace NotificationsVisualizerLibrary.Model.BaseElements
 
         protected void HandleRemainingAttributes(AttributesHelper attributes, ParseResult result)
         {
-            XmlTemplateParser.AddWarningsForAttributesNotSupportedByVisualizer(result, attributes, this.GetAttributesNotSupportedByVisualizer().ToArray());
+            XmlTemplateParser.AddWarningsForAttributesNotSupportedByVisualizer(result, attributes, [.. this.GetAttributesNotSupportedByVisualizer()]);
 
             XmlTemplateParser.AddWarningsForUnknownAttributes(result, attributes);
         }

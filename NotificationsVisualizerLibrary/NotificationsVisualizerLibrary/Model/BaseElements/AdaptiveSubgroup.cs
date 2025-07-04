@@ -7,7 +7,7 @@ using NotificationsVisualizerLibrary.Parsers;
 namespace NotificationsVisualizerLibrary.Model
 {
     [ObjectModelClass("AdaptiveSubgroup")]
-    internal class AdaptiveSubgroup : AdaptiveParentElement
+    internal partial class AdaptiveSubgroup : AdaptiveParentElement
     {
         public AdaptiveSubgroup(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

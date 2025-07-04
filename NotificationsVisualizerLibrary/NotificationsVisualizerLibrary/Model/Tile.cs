@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotificationsVisualizerLibrary.Model
 {
@@ -14,7 +12,7 @@ namespace NotificationsVisualizerLibrary.Model
     }
 
     [ObjectModelClass("TileContent")]
-    internal sealed class Tile : AdaptiveParentElement, ITile
+    internal sealed partial class Tile : AdaptiveParentElement, ITile
     {
         [ObjectModelProperty("Visual")]
         public Visual Visual { get; set; }

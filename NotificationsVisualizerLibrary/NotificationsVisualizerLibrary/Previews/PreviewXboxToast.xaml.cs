@@ -6,17 +6,8 @@ using NotificationsVisualizerLibrary.Parsers;
 using NotificationsVisualizerLibrary.Renderers;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Data.Xml.Dom;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -24,7 +15,7 @@ namespace NotificationsVisualizerLibrary
 {
     public sealed partial class PreviewXboxToast : UserControl, IPreviewToast
     {
-        private static XmlTemplateParser _parser = new XmlTemplateParser();
+        private static readonly XmlTemplateParser _parser = new();
 
         public PreviewXboxToast()
         {
@@ -52,11 +43,11 @@ namespace NotificationsVisualizerLibrary
             return result;
         }
 
-        private String _currLaunch = "";
-        private ActivationType _currActivationType = ActivationType.Foreground;
-        private Dictionary<String, FrameworkElement> _elementsWithIds;
+        private readonly String _currLaunch = "";
+        private readonly ActivationType _currActivationType = ActivationType.Foreground;
+        private readonly Dictionary<String, FrameworkElement> _elementsWithIds;
 
-        private IToast _currContent;
+        private readonly IToast _currContent;
 
         public Boolean HasContent { get; private set; }
 

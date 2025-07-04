@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
@@ -11,7 +9,7 @@ namespace NotificationsVisualizerLibrary.Model
 {
     [ObjectModelClass("ToastBindingGeneric", NotificationType.Toast)]
     [ObjectModelClass("TileBinding", NotificationType.Tile)]
-    internal class AdaptiveBinding : AdaptiveParentElement
+    internal partial class AdaptiveBinding : AdaptiveParentElement
     {
         protected static readonly String ATTR_BINDING_TEMPLATE = "template";
         protected static readonly String ATTR_BINDING_FALLBACK = "fallback";

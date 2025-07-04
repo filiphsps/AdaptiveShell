@@ -2,9 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotificationsVisualizerLibrary.Model
 {
@@ -15,7 +12,7 @@ namespace NotificationsVisualizerLibrary.Model
         String ToCPlusPlusString(List<String> declaredVars);
     }
 
-    internal class ObjectModelObject : IObjectModelValue, IEnumerable<KeyValuePair<String, IObjectModelValue>>
+    internal partial class ObjectModelObject : IObjectModelValue, IEnumerable<KeyValuePair<String, IObjectModelValue>>
     {
         public const String ROOT_JS_NAMESPACE = "notifLib";
 

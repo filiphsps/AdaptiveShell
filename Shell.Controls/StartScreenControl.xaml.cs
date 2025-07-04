@@ -1,16 +1,12 @@
-﻿using NotificationsVisualizerLibrary;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Shell.LiveTilesAccessLibrary;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using Windows.System;
-using Windows.UI.Notifications;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shell.Controls {
     public sealed partial class StartScreenControl : UserControl {
@@ -36,8 +32,9 @@ namespace Shell.Controls {
                                             p.Type == UserType.LocalUser).FirstOrDefault();
 
                 Windows.Storage.Streams.IRandomAccessStreamReference userPicure = await user.GetPictureAsync(Windows.System.UserPictureSize.Size208x208);
-                var contact = new Windows.ApplicationModel.Contacts.Contact { };
-                contact.SourceDisplayPicture = userPicure;
+                var contact = new Windows.ApplicationModel.Contacts.Contact {
+                    SourceDisplayPicture = userPicure
+                };
                 this.ProfilePicture.Contact = contact;
             } catch { }
 

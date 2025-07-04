@@ -1,14 +1,9 @@
 ﻿using Microsoft.UI.Xaml.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Data;
 
 namespace NotificationsVisualizerLibrary.Converters
 {
-    public sealed class InvertConverter : IValueConverter
+    public sealed partial class InvertConverter : IValueConverter
     {
         public Object Convert(Object value, Type targetType, Object parameter, String language)
         {
@@ -22,7 +17,7 @@ namespace NotificationsVisualizerLibrary.Converters
         }
     }
 
-    public sealed class FontSizeToHeightConverter : IValueConverter
+    public sealed partial class FontSizeToHeightConverter : IValueConverter
     {
         private static Double COEFF = 0.715;
 
@@ -37,7 +32,7 @@ namespace NotificationsVisualizerLibrary.Converters
         }
     }
 
-    public sealed class FontSizeToLineHeightConverter : IValueConverter
+    public sealed partial class FontSizeToLineHeightConverter : IValueConverter
     {
         private static Double COEFF = 0.875;
 

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using NotificationsVisualizerLibrary;
 using Shell.Models;
 using System;
@@ -14,8 +16,6 @@ using Windows.Data.Xml.Dom;
 using Windows.Management.Deployment;
 using Windows.Storage;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 
 namespace Shell.LiveTilesAccessLibrary {
     public class ApplicationManager {

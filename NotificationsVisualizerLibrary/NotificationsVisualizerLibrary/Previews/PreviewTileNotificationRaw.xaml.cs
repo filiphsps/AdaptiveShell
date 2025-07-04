@@ -1,26 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using NotificationsVisualizerLibrary.Manifest;
 using NotificationsVisualizerLibrary.Model;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Controls;
-using System.Diagnostics;
-using Windows.Storage;
-using System.Threading.Tasks;
 using NotificationsVisualizerLibrary.Helpers;
-using Windows.UI.Notifications;
-using System.Collections;
 using NotificationsVisualizerLibrary.Renderers;
-using NotificationsVisualizerLibrary.Model.BaseElements;
-using NotificationsVisualizerLibrary.Parsers;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
@@ -33,7 +17,7 @@ namespace NotificationsVisualizerLibrary
 {
     internal sealed partial class PreviewTileNotificationRaw : UserControl
     {
-        private static Int32 BRANDING_HEIGHT = 28;
+        private static readonly Int32 BRANDING_HEIGHT = 28;
 
         public PreviewTileNotificationRaw()
         {
@@ -53,8 +37,7 @@ namespace NotificationsVisualizerLibrary
         /// <param name="binding"></param>
         public void InitializeFromXml(TileSize tileSize, PreviewTileVisualElements visualElements, Boolean isBrandingVisible, AdaptiveBinding binding)
         {
-            if (binding == null)
-                throw new ArgumentNullException("binding");
+            ArgumentNullException.ThrowIfNull(binding);
 
             this._binding = binding;
             this._tileSize = tileSize;

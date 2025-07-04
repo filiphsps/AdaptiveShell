@@ -2,6 +2,29 @@
   "version": 1,
   "dependencies": {
     "net8.0-windows10.0.22000": {
+      "CommunityToolkit.Common": {
+        "type": "Transitive",
+        "resolved": "8.2.1",
+        "contentHash": "LWuhy8cQKJ/MYcy3XafJ916U3gPH/YDvYoNGWyQWN11aiEKCZszzPOTJAOvBjP9yG8vHmIcCyPUt4L82OK47Iw=="
+      },
+      "CommunityToolkit.WinUI.Controls.Primitives": {
+        "type": "Transitive",
+        "resolved": "8.2.250402",
+        "contentHash": "Wx3t1zADrzBWDar45uRl+lmSxDO5Vx7tTMFm/mNgl3fs5xSQ1ySPdGqD10EFov3rkKc5fbpHGW5xj8t62Yisvg==",
+        "dependencies": {
+          "CommunityToolkit.WinUI.Extensions": "8.2.250402",
+          "Microsoft.WindowsAppSDK": "1.6.250108002"
+        }
+      },
+      "CommunityToolkit.WinUI.Extensions": {
+        "type": "Transitive",
+        "resolved": "8.2.250402",
+        "contentHash": "rAOYzNX6kdUeeE1ejGd6Q8B+xmyZvOrWFUbqCgOtP8OQsOL66en9ZQTtzxAlaaFC4qleLvnKcn8FJFBezujOlw==",
+        "dependencies": {
+          "CommunityToolkit.Common": "8.2.1",
+          "Microsoft.WindowsAppSDK": "1.6.250108002"
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Transitive",
         "resolved": "5.0.0",
@@ -27,11 +50,6 @@
         "dependencies": {
           "Microsoft.WindowsAppSDK": "1.6.241114003"
         }
-      },
-      "Microsoft.NETCore.Platforms": {
-        "type": "Transitive",
-        "resolved": "3.1.0",
-        "contentHash": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w=="
       },
       "Microsoft.Web.WebView2": {
         "type": "Transitive",
@@ -91,11 +109,6 @@
           "System.Web.Services.Description": "4.10.3"
         }
       },
-      "Microsoft.Windows.CsWinRT": {
-        "type": "Transitive",
-        "resolved": "2.2.0",
-        "contentHash": "R8MDVawukHrKgYCFgYaoLfbAna/FrImEFRxDK9k8ITbrXv3KLE5uN6tRqrNV83H4MFdqJ/uiA/hg1cSsXkl0vw=="
-      },
       "Microsoft.Windows.SDK.BuildTools": {
         "type": "Transitive",
         "resolved": "10.0.22621.756",
@@ -103,8 +116,8 @@
       },
       "Microsoft.WindowsAppSDK": {
         "type": "Transitive",
-        "resolved": "1.7.250606001",
-        "contentHash": "LdMRw0HqGu/w0DQKDRaABdIuSL8GiRitHSMiHH3SAR715/mEiWtVWPRJKp0aMcQ6JiBBqkQVZgu71MeXmQipkw==",
+        "resolved": "1.7.250513003",
+        "contentHash": "K5QqtDmMEa6Jy2PLAXKj9XWZoldG21IX5+TPe2XjxtNL/xLlciaqlOe22mjyET26Ry0gEVw0xOaQcpwtLCbMog==",
         "dependencies": {
           "Microsoft.Web.WebView2": "1.0.2903.40",
           "Microsoft.Windows.SDK.BuildTools": "10.0.22621.756"
@@ -392,23 +405,6 @@
           "System.Configuration.ConfigurationManager": "9.0.6"
         }
       },
-      "System.Runtime.WindowsRuntime": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "RQxUkf37fp7MSWbOfKRjUjyudyfZb2u79YY5i1s+d7vuD80A7kmr2YfefO0JprQUhanxSm8bhXigCVfX2kEh+w==",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0"
-        }
-      },
-      "System.Runtime.WindowsRuntime.UI.Xaml": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "6KDuUX4XfIJJyhvhYb40wZLHAXcKsObonUsvPzbmFh6VOQ9b/4zoUR33+VrzQo85+DGDI1RF9K4icQBD2sNRnw==",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0",
-          "System.Runtime.WindowsRuntime": "4.7.0"
-        }
-      },
       "System.Security.Cryptography.Pkcs": {
         "type": "Transitive",
         "resolved": "9.0.6",
@@ -527,14 +523,13 @@
         "resolved": "9.0.6",
         "contentHash": "t0NLE1cAXUmO2aiwCjesf9TVwttjaHnkKpiFBTm/d10QnQD6aiGYmrWLhS0HBIo4utB/jPkgRF0SJVbgrgfZ/Q=="
       },
-      "notificationsvisualizerlibrary": {
+      "NotificationVisualizerLibrary": {
         "type": "Project",
         "dependencies": {
+          "CommunityToolkit.WinUI.Controls.Primitives": "[8.2.250402, )",
           "Microsoft.Graphics.Win2D": "[1.3.2, )",
           "Microsoft.Windows.Compatibility": "[9.0.6, )",
-          "Microsoft.Windows.CsWinRT": "[2.2.0, )",
-          "Microsoft.WindowsAppSDK": "[1.7.250606001, )",
-          "System.Runtime.WindowsRuntime.UI.Xaml": "[4.7.0, )"
+          "Microsoft.WindowsAppSDK": "[1.7.250513003, )"
         }
       }
     },
@@ -564,8 +559,8 @@
       },
       "Microsoft.WindowsAppSDK": {
         "type": "Transitive",
-        "resolved": "1.7.250606001",
-        "contentHash": "LdMRw0HqGu/w0DQKDRaABdIuSL8GiRitHSMiHH3SAR715/mEiWtVWPRJKp0aMcQ6JiBBqkQVZgu71MeXmQipkw==",
+        "resolved": "1.7.250513003",
+        "contentHash": "K5QqtDmMEa6Jy2PLAXKj9XWZoldG21IX5+TPe2XjxtNL/xLlciaqlOe22mjyET26Ry0gEVw0xOaQcpwtLCbMog==",
         "dependencies": {
           "Microsoft.Web.WebView2": "1.0.2903.40",
           "Microsoft.Windows.SDK.BuildTools": "10.0.22621.756"
@@ -744,23 +739,6 @@
         "contentHash": "3U3JgtbP8+1+yDsGC4f5wFMi2S1ERaA5fsy0CPph0hdeMDaWDvGnUvH5VDkQZ1bCtV9UZN4hlYMxtMQ4TjluaQ==",
         "dependencies": {
           "System.Configuration.ConfigurationManager": "9.0.6"
-        }
-      },
-      "System.Runtime.WindowsRuntime": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "RQxUkf37fp7MSWbOfKRjUjyudyfZb2u79YY5i1s+d7vuD80A7kmr2YfefO0JprQUhanxSm8bhXigCVfX2kEh+w==",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0"
-        }
-      },
-      "System.Runtime.WindowsRuntime.UI.Xaml": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "6KDuUX4XfIJJyhvhYb40wZLHAXcKsObonUsvPzbmFh6VOQ9b/4zoUR33+VrzQo85+DGDI1RF9K4icQBD2sNRnw==",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0",
-          "System.Runtime.WindowsRuntime": "4.7.0"
         }
       },
       "System.Security.Cryptography.Pkcs": {
@@ -832,8 +810,8 @@
       },
       "Microsoft.WindowsAppSDK": {
         "type": "Transitive",
-        "resolved": "1.7.250606001",
-        "contentHash": "LdMRw0HqGu/w0DQKDRaABdIuSL8GiRitHSMiHH3SAR715/mEiWtVWPRJKp0aMcQ6JiBBqkQVZgu71MeXmQipkw==",
+        "resolved": "1.7.250513003",
+        "contentHash": "K5QqtDmMEa6Jy2PLAXKj9XWZoldG21IX5+TPe2XjxtNL/xLlciaqlOe22mjyET26Ry0gEVw0xOaQcpwtLCbMog==",
         "dependencies": {
           "Microsoft.Web.WebView2": "1.0.2903.40",
           "Microsoft.Windows.SDK.BuildTools": "10.0.22621.756"
@@ -1012,23 +990,6 @@
         "contentHash": "3U3JgtbP8+1+yDsGC4f5wFMi2S1ERaA5fsy0CPph0hdeMDaWDvGnUvH5VDkQZ1bCtV9UZN4hlYMxtMQ4TjluaQ==",
         "dependencies": {
           "System.Configuration.ConfigurationManager": "9.0.6"
-        }
-      },
-      "System.Runtime.WindowsRuntime": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "RQxUkf37fp7MSWbOfKRjUjyudyfZb2u79YY5i1s+d7vuD80A7kmr2YfefO0JprQUhanxSm8bhXigCVfX2kEh+w==",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0"
-        }
-      },
-      "System.Runtime.WindowsRuntime.UI.Xaml": {
-        "type": "Transitive",
-        "resolved": "4.7.0",
-        "contentHash": "6KDuUX4XfIJJyhvhYb40wZLHAXcKsObonUsvPzbmFh6VOQ9b/4zoUR33+VrzQo85+DGDI1RF9K4icQBD2sNRnw==",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.0",
-          "System.Runtime.WindowsRuntime": "4.7.0"
         }
       },
       "System.Security.Cryptography.Pkcs": {

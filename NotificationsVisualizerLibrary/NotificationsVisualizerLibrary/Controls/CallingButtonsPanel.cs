@@ -1,22 +1,21 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace NotificationsVisualizerLibrary.Controls
 {
-    internal class CallingButtonsPanel : Panel
+    internal partial class CallingButtonsPanel : Panel
     {
         private static readonly DependencyProperty ColumnSpacingProperty = DependencyProperty.Register("ColumnSpacing", typeof(Double), typeof(CallingButtonsPanel), new PropertyMetadata(12.0, OnDisplayPropertyChanged));
 
         public Double ColumnSpacing
         {
-            get { return (Double)GetValue(ColumnSpacingProperty); }
-            set { SetValue(ColumnSpacingProperty, value); }
+            get { return (Double)this.GetValue(ColumnSpacingProperty); }
+            set { this.SetValue(ColumnSpacingProperty, value); }
         }
 
         private static void OnDisplayPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
@@ -30,11 +29,12 @@ namespace NotificationsVisualizerLibrary.Controls
         }
 
         private static readonly DependencyProperty ButtonSizeProperty = DependencyProperty.Register("ButtonSize", typeof(Double), typeof(CallingButtonsPanel), new PropertyMetadata(72.0, OnDisplayPropertyChanged));
+        private new readonly Object Children;
 
         public Double ButtonSize
         {
-            get { return (Double)GetValue(ButtonSizeProperty); }
-            set { SetValue(ButtonSizeProperty, value); }
+            get { return (Double)this.GetValue(ButtonSizeProperty); }
+            set { this.SetValue(ButtonSizeProperty, value); }
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -157,7 +157,8 @@ namespace NotificationsVisualizerLibrary.Controls
 
         private IEnumerable<CallingButton> GetVisibleCallingButtons()
         {
-            return this.Children.OfType<CallingButton>().Where(i => CountsForDisplay(i));
+            // Cast Children to IEnumerable before using OfType
+            return (this.Children as IEnumerable)?.OfType<CallingButton>().Where(i => CountsForDisplay(i)) ?? Enumerable.Empty<CallingButton>();
         }
     }
 }

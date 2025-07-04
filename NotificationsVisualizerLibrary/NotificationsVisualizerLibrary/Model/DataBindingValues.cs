@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotificationsVisualizerLibrary.Model
 {
-    internal class DataBindingValues : IEnumerable<KeyValuePair<String, String>>
+    internal partial class DataBindingValues : IEnumerable<KeyValuePair<String, String>>
     {
         private Dictionary<String, String> _values;
         public UInt32 Version { get; private set; }

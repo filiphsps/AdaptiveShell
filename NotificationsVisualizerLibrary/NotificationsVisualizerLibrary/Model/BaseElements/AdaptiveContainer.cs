@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
-using NotificationsVisualizerLibrary.Model.BaseElements;
 
 namespace NotificationsVisualizerLibrary.Model
 {
-    internal class AdaptiveContainer : AdaptiveParentElement
+    internal partial class AdaptiveContainer : AdaptiveParentElement
     {
         public AdaptiveContainer(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

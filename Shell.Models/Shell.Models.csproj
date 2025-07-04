@@ -1,37 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
 		<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
 		<TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
-		<OutputType>WinExe</OutputType>
-		<RootNamespace>Shell</RootNamespace>
-		<AssemblyName>Shell</AssemblyName>
+		<OutputType>Library</OutputType>
 		<Platforms>x64;arm64</Platforms>
 		<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
-
+		<WindowsPackageType>None</WindowsPackageType>
+		<WindowsAppSDKLatest>true</WindowsAppSDKLatest>
 		<UseWinUI>true</UseWinUI>
-		<EnableMsixTooling>true</EnableMsixTooling>
 
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 
-		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+		<EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+		<AssemblyName>Shell.Models</AssemblyName>
+		<RootNamespace>Shell.Models</RootNamespace>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<AppxManifest Include="Package.appxmanifest">
-			<SubType>Designer</SubType>
-		</AppxManifest>
-
-		<Content Include="Assets\**" />
-
-		<None Include="Package.StoreAssociation.xml" />
-		<None Include="Shell_TemporaryKey.pfx" />
-
-		<EmbeddedResource Include="Shell.gclicx" />
-	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	  <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">
+	  <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	  <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+	  <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+	</PropertyGroup>
 
 	<ItemGroup>
 	</ItemGroup>

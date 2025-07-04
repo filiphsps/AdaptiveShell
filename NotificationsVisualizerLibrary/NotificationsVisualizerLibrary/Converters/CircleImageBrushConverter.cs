@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
+﻿using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Media;
+using System;
 
 namespace NotificationsVisualizerLibrary.Converters
 {
-    public sealed class CircleImageBrushConverter : IValueConverter
+    public sealed partial class CircleImageBrushConverter : IValueConverter
     {
         public Object Convert(Object value, Type targetType, Object parameter, String language)
         {

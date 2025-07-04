@@ -1,6 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<RootNamespace>Host</RootNamespace>
+		<AssemblyName>Host</AssemblyName>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
 		<SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
@@ -13,6 +14,7 @@
 		<RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
 		<UseWinUI>true</UseWinUI>
 		<WindowsAppSDKLatest>true</WindowsAppSDKLatest>
+		<WindowsPackageType>None</WindowsPackageType>
 
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 
@@ -23,7 +25,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="InputSimulator" Version="1.0.4" />
+		<PackageReference Include="H.InputSimulator" Version="1.5.0" />
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.6" />
 		<PackageReference Include="CommunityToolkit.Uwp.Controls.Primitives" Version="8.2.250402" />
 		<PackageReference Include="Microsoft.Toolkit.Wpf.UI.Controls" Version="6.1.2" />
@@ -36,7 +38,6 @@
 		<ProjectReference Include="..\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary\NotificationsVisualizerLibrary.csproj" />
 		<ProjectReference Include="..\Shell.Controls\Shell.Controls.csproj" />
 		<ProjectReference Include="..\Shell.LiveTilesAccessLibrary\Shell.LiveTilesAccessLibrary.csproj" />
-		<ProjectReference Include="..\Shell.Models\Shell.Models.csproj" />
 		<ProjectReference Include="..\Shell\Shell.UWP.csproj" />
 	</ItemGroup>
 </Project>

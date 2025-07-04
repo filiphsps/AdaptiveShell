@@ -1,18 +1,8 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using NotificationsVisualizerLibrary.Controls;
-using NotificationsVisualizerLibrary.Helpers;
 using NotificationsVisualizerLibrary.Model;
-using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Data.Xml.Dom;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace NotificationsVisualizerLibrary.Renderers
 {
@@ -20,9 +10,9 @@ namespace NotificationsVisualizerLibrary.Renderers
     /// A control that renders adaptive content.
     /// </summary>
     [TemplatePart(Name = "PART_AdaptiveContainer", Type = typeof(Border))]
-    public sealed class PreviewAdaptiveContent : Control
+    public sealed partial class PreviewAdaptiveContent : Control
     {
-        private static XmlTemplateParser _parser = new XmlTemplateParser();
+        private static XmlTemplateParser _parser = new();
         private Border _adaptiveContainer;
 
         public Double ExternalMargin { get; set; } = 8;
@@ -68,7 +58,7 @@ namespace NotificationsVisualizerLibrary.Renderers
         {
             this.Reset();
 
-            this._adaptiveContainer.Child = AdaptiveRenderer.Render(adaptiveContent, new Windows.UI.Xaml.Thickness(this.GetExternalMargin()));
+            this._adaptiveContainer.Child = AdaptiveRenderer.Render(adaptiveContent, new(this.GetExternalMargin()));
         }
 
         private void Reset()

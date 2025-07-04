@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
@@ -10,7 +7,7 @@ using NotificationsVisualizerLibrary.Parsers;
 namespace NotificationsVisualizerLibrary.Model
 {
     [ObjectModelClass("AdaptiveText")]
-    internal class AdaptiveTextField : AdaptiveChildElement, IBindingChild
+    internal partial class AdaptiveTextField : AdaptiveChildElement, IBindingChild
     {
         public AdaptiveTextField(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 

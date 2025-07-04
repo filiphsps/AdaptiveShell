@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
+using System;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel.Store;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -26,15 +17,15 @@ namespace Shell.Controls {
         public ObservableCollection<NavLink> NavLinks { get; } = new ObservableCollection<NavLink>() {
             new NavLink() {
                 Label = "Start",
-                Symbol = Windows.UI.Xaml.Controls.Symbol.Home,
+                Symbol = Symbol.Home,
             },
             new NavLink() {
                 Label = "Advanced",
-                Symbol = Windows.UI.Xaml.Controls.Symbol.Admin
+                Symbol = Symbol.Admin
             },
             new NavLink() {
                 Label = "About",
-                Symbol = Windows.UI.Xaml.Controls.Symbol.OutlineStar
+                Symbol = Symbol.OutlineStar
             },
         };
 
@@ -86,9 +77,9 @@ namespace Shell.Controls {
             this.SettingsUpdated(this.Settings);
         }
 
-        private async void SupportIAP_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args) {
+        private async void SupportIAP_Click(Hyperlink sender, HyperlinkClickEventArgs args) {
             try {
-                await Windows.ApplicationModel.Store.CurrentApp.RequestProductPurchaseAsync("support", false);
+                await CurrentApp.RequestProductPurchaseAsync("support", false);
             } catch { } // TODO: handle.
         }
     }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Windows.UI;
 
 namespace NotificationsVisualizerLibrary.Helpers
@@ -11,7 +7,7 @@ namespace NotificationsVisualizerLibrary.Helpers
     public sealed class ColorConverter
     {
         // From http://blog.tedd.no/2013/09/18/converting-hex-string-into-color-windows-phone/
-        private static Regex _hexColorMatchRegex = new Regex("^#?(?<a>[a-z0-9][a-z0-9])?(?<r>[a-z0-9][a-z0-9])(?<g>[a-z0-9][a-z0-9])(?<b>[a-z0-9][a-z0-9])$", RegexOptions.IgnoreCase);
+        private static readonly Regex _hexColorMatchRegex = new("^#?(?<a>[a-z0-9][a-z0-9])?(?<r>[a-z0-9][a-z0-9])(?<g>[a-z0-9][a-z0-9])(?<b>[a-z0-9][a-z0-9])$", RegexOptions.IgnoreCase);
         public static Color GetColorFromHex(String hexColorString)
         {
             if (hexColorString == null)

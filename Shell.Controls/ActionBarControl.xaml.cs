@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using System;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Shell.Controls {
     public sealed partial class ActionBarControl : UserControl {
-        public Windows.UI.Xaml.GridLength ActionBarItemHeight { get; set; } = new Windows.UI.Xaml.GridLength(48);
-        public Windows.UI.Xaml.GridLength ActionBarItemWidth { get; set; } = new Windows.UI.Xaml.GridLength(48);
+        public GridLength ActionBarItemHeight { get; set; } = new GridLength(48);
+        public GridLength ActionBarItemWidth { get; set; } = new GridLength(48);
 
         public Action OnBack { get; set; }
         public Action OnTaskView { get; set; }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using NotificationsVisualizerLibrary.Model.BaseElements;
 using NotificationsVisualizerLibrary.Model.Enums;
 using NotificationsVisualizerLibrary.Parsers;
 
@@ -12,7 +9,7 @@ namespace NotificationsVisualizerLibrary.Model
 {
     [ObjectModelClass("ToastVisual", NotificationType.Toast)]
     [ObjectModelClass("TileVisual", NotificationType.Tile)]
-    internal class Visual : AdaptiveParentElement
+    internal partial class Visual : AdaptiveParentElement
     {
         public Visual(NotificationType context, FeatureSet supportedFeatures) : base(context, supportedFeatures) { }
 
