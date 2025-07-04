@@ -59,8 +59,8 @@ namespace Shell.Host {
             // var settings = ((Shell.Host.App)Application.Current).Settings;
             control.Height = this.Height;
             control.Width = this.Width;
-            control.ActionBarItemHeight = new Windows.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
-            control.ActionBarItemWidth = new Windows.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
+            control.ActionBarItemHeight = new Microsoft.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
+            control.ActionBarItemWidth = new Microsoft.UI.Xaml.GridLength(Functions.ACTIONBAR_HEIGHT);
 
             control.OnBack += () => {
                 Debug.WriteLine("Back requested!");

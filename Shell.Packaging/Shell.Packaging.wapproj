@@ -25,6 +25,7 @@
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
     <ProjectGuid>e5f83d86-9edb-45d6-ad33-8e8c5b668255</ProjectGuid>
+	  <TargetFramework>net8.0-windows10.0.22000.0</TargetFramework>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
