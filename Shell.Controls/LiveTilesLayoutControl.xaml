@@ -7,7 +7,7 @@
     xmlns:local="using:Shell.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:media="using:Windows.UI.Xaml.Media"
+    xmlns:media="using:Microsoft.UI.Xaml.Media"
     xmlns:common="using:Shell.Controls.Common"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -57,7 +57,6 @@
                             Drop="LiveTile_Drop">
                             <Grid.Background>
                                 <media:AcrylicBrush
-                                    BackgroundSource="HostBackdrop"
                                     TintOpacity="0.95"
                                     TintLuminosityOpacity="0.55"
                                     AlwaysUseFallback="True"
