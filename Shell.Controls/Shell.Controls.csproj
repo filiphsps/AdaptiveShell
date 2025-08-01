@@ -25,7 +25,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.2.250402" />
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.6" />
+		<PackageReference Include="Microsoft.Windows.Compatibility" Version="9.0.7" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
