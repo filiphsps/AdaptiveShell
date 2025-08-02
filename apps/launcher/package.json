@@ -8,8 +8,8 @@
         "node": ">=24.0.0"
     },
     "scripts": {
-        "test": "jest --passWithNoTests",
-        "test:watch": "jest --watchAll",
+        "test": "dotenv -c -- jest --passWithNoTests",
+        "test:watch": "dotenv -c -- jest --watchAll",
         "start": "dotenv -c -- expo start",
         "build": "dotenv -c -- expo prebuild",
         "android": "dotenv -c -- expo run:android",

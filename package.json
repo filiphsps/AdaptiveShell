@@ -12,7 +12,7 @@
         "test": "dotenv -c -- turbo run test && pnpm run coverage:merge",
         "start": "dotenv -c -- expo start",
         "build": "dotenv -c -- turbo run build --env-mode=loose",
-        "build:packages": "turbo run build --filter=./packages/* --env-mode=loose",
+        "build:packages": "dotenv -c -- turbo run build --filter=./packages/* --env-mode=loose",
         "lint": "turbo run lint --",
         "typecheck": "turbo run typecheck --",
         "prettier": "turbo run prettier",
