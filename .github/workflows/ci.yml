@@ -130,7 +130,7 @@ jobs:
                   publish: pnpm run release
                   setupGitUser: true
                   commit: |
-                      Changeset: Increment package & dependency versions.
+                      ci(release): Release packages and bump versions
 
                       Congratulations on the new release! 🎉
                       This is an automated commit triggered by the `release` workflow.
