@@ -25,7 +25,7 @@
             "cache": true,
             "outputLogs": "new-only",
             "dependsOn": ["^build"],
-            "outputs": [".next/**", "!.next/cache/**", "dist/**", "ios/**", "android/**"],
+            "outputs": [".tsup/**", ".expo/**", "!.expo/cache/**", "dist/**", "ios/**", "android/**"],
             "inputs": [
                 "$TURBO_DEFAULT$",
                 "!README.md",
@@ -41,14 +41,8 @@
         "typecheck": {
             "cache": false
         },
-        "prettier": {
-            "cache": false
-        },
-        "format:eslint": {
-            "cache": false
-        },
-        "format:prettier": {
-            "cache": false
-        }
+        "prettier": {},
+        "format:eslint": {},
+        "format:prettier": {}
     }
 }
