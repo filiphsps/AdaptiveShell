@@ -1,8 +1,37 @@
 {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.locale": "en",
+    "git.autofetch": "all",
+    "git.countBadge": "tracked",
+    "git.fetchOnPull": true,
+    "git.inputValidationSubjectLength": 72,
+    "git.inputValidationLength": 72,
+    "git.inputValidation": true,
+    "git.showPushSuccessNotification": true,
+    "github.copilot.enable": {
+        "plaintext": true,
+        "markdown": true
+    },
+    "github.copilot.chat.localeOverride": "en",
     "editor.codeActionsOnSave": {
         "source.fixAll": "explicit",
         "source.organizeImports": "explicit",
         "source.sortMembers": "explicit"
     },
-    "cSpell.words": ["bitcode", "codegen", "commitlint", "nativewind", "Pressable", "startscreen", "Subviews", "tsup"]
+    "files.autoSave": "off",
+    "files.trimTrailingWhitespace": true,
+    "files.eol": "\n",
+    "files.trimFinalNewlines": false,
+    "[plaintext]": {
+        "editor.formatOnSave": false
+    },
+    "[git-commit]": {
+        "editor.rulers": [72],
+        "editor.wordWrap": "off",
+        "workbench.editor.restoreViewState": false
+    },
+    "cSpell.words": ["bitcode", "codegen", "commitlint", "nativewind", "Pressable", "startscreen", "Subviews", "tsup"],
+    "githubCodeOwners.format.enabled": true,
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.experimental.expandableHover": true
 }

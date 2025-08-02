@@ -16,5 +16,5 @@
     "snapshot": {
         "useCalculatedVersion": true
     },
-    "ignore": ["@metro-ui/metro", "@metro-ui/launcher"]
+    "ignore": ["@metro-ui/launcher"]
 }

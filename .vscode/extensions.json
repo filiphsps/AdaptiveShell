@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "bradlc.vscode-tailwindcss",
+        "mikestead.dotenv",
+        "orta.vscode-jest",
+        "expo.vscode-expo-tools",
+        "dbaeumer.vscode-eslint",
+        "yoavbls.pretty-ts-errors",
+        "christian-kohler.path-intellisense",
+        "christian-kohler.npm-intellisense",
+        "chdsbd.github-code-owners"
+    ]
+}
