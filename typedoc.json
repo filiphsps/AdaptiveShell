@@ -32,7 +32,7 @@
     "includeVersion": true,
     "out": "./docs",
     "readme": "./README.md",
-    "projectDocuments": ["./README.md", "./CONTRIBUTING.md", "./LICENSE"],
+    "projectDocuments": ["./CONTRIBUTING.md", "./LICENSE"],
     "excludeExternals": true,
     "excludeInternal": true,
     "excludePrivate": true,
