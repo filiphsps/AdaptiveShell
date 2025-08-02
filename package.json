@@ -25,7 +25,8 @@
         "release": "changeset publish",
         "release:unstable": "changeset publish --snapshot --no-git-tag --tag unstable",
         "changeset": "changeset",
-        "changeset:conventional": "changeset-conventional"
+        "changeset:conventional": "changeset-conventional",
+        "docs": "typedoc"
     },
     "contributors": [
         {
@@ -63,6 +64,14 @@
         "nyc": "17.1.0",
         "turbo-ignore": "2.5.5",
         "turbo": "2.5.5",
+        "typedoc-material-theme": "1.4.0",
+        "typedoc-plugin-dt-links": "2.0.12",
+        "typedoc-plugin-extras": "4.0.1",
+        "typedoc-plugin-inline-sources": "1.3.0",
+        "typedoc-plugin-merge-modules": "7.0.0",
+        "typedoc-plugin-missing-exports": "4.0.0",
+        "typedoc-plugin-rename-defaults": "0.7.3",
+        "typedoc": "0.28.9",
         "typescript": "5.9.2"
     },
     "pnpm": {

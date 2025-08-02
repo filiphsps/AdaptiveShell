@@ -30,7 +30,7 @@ This guide helps you submit effective bug reports for our projects. Clear, detai
 Before creating a new report, please review [this list](#before-submitting-a-bug-report) to avoid duplicate submissions. When reporting bugs, [include comprehensive details](#how-do-i-submit-a-good-bug-report) and use [our template](https://github.com/filiphsps/AdaptiveShell/blob/master/.github/ISSUE_TEMPLATE/bug_report.md) to ensure all necessary information is provided.
 
 > [!NOTE]
-> If you find a **Closed** issue similar to your problem, create a new issue and reference the original one in your description.
+> If you find a **closed** issue similar to your current problem, please create a new issue and reference the original one in your description as that will help us find the regression way faster.
 
 ### How Do I Submit A (Good) Bug Report?
 

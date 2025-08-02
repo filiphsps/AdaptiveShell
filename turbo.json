@@ -43,6 +43,12 @@
         },
         "prettier": {},
         "format:eslint": {},
-        "format:prettier": {}
+        "format:prettier": {},
+        "docs": {
+            "cache": true,
+            "outputs": ["docs/**"],
+            "dependsOn": ["^docs"],
+            "inputs": ["$TURBO_DEFAULT$", "!README.md", "typedoc.json", "**/typedoc.json"]
+        }
     }
 }

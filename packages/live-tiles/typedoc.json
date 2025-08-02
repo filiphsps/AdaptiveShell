@@ -1,0 +1,8 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "name": "LiveTiles",
+    "entryPoints": ["src/index.ts"],
+    "readme": "./README.md",
+    "basePath": "./src",
+    "projectDocuments": ["./docs/**/*.md"]
+}

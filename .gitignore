@@ -36,6 +36,7 @@ coverage-temp/
 .turbo
 android
 ios
+/docs/
 
 notes.txt
 project.inlang

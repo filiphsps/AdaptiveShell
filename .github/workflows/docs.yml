@@ -1,0 +1,28 @@
+name: docs
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    docs:
+        name: 📖 Docs
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v4
+
+            - name: 🚀 Bootstrap
+              uses: ./.github/common/bootstrap
+
+            - name: 🔨 Build docs
+              run: pnpm run docs
+
+            - uses: peaceiris/actions-gh-pages@v4
+              if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./docs
+                  enable_jekyll: false
+                  commit_message: ${{ github.event.head_commit.message }}
+                  force_orphan: true
