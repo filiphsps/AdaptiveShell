@@ -20,6 +20,7 @@
         "format:eslint": "turbo run format:eslint --",
         "format:prettier": "turbo run format:prettier --",
         "coverage:merge": "istanbul-merge --out coverage/coverage-final.json ./packages/**/coverage/coverage-final.json ./apps/**/coverage/coverage-final.json && nyc report --reporter=html --reporter=text --reporter=lcov --reporter=clover --report-dir=coverage --temp-dir=coverage",
+        "version": "changeset version",
         "version:unstable": "changeset version --snapshot unstable",
         "release": "changeset publish",
         "release:unstable": "changeset publish --snapshot --no-git-tag --tag unstable",
