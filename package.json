@@ -77,7 +77,8 @@
     "pnpm": {
         "overrides": {
             "@typescript-eslint/eslint-plugin": "$@typescript-eslint/eslint-plugin",
-            "@typescript-eslint/parser": "$@typescript-eslint/parser"
+            "@typescript-eslint/parser": "$@typescript-eslint/parser",
+            "typescript": "$typescript"
         }
     }
 }
