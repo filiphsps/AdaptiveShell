@@ -40,5 +40,6 @@
     "externalPattern": ["**/node_modules/**", ".*+(apps|packages)(/[^/]+)/.*"],
     "sourceLinkExternal": true,
     "footerLastModified": true,
+    "useTsLinkResolution": true,
     "githubPages": true
 }
