@@ -9,7 +9,7 @@ export function Text({ className, type = 'default', ...rest }: TextProps) {
     return (
         <RNText
             className={cn(
-                'text-base text-text-base',
+                'text-text-base text-base',
                 type === 'defaultSemiBold' && 'font-semibold',
 
                 type === 'title' && 'text-4xl font-bold leading-[1.1]',

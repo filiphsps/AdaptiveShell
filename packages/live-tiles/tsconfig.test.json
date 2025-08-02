@@ -1,23 +1,9 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": ["../../tsconfig.test.json", "./tsconfig.json"],
-    "references": [
-        {
-            "path": "./tsconfig.json"
-        },
-        {
-            "path": "./packages/live-tiles/tsconfig.json"
-        }
-    ],
+    "extends": ["./tsconfig.json", "../../tsconfig.test.json"],
     "compilerOptions": {
-        "jsx": "react",
-        "isolatedModules": true,
-        "moduleResolution": "node",
-        "types": ["react", "jest"],
-        "lib": ["DOM", "ESNext"],
-        "noUnusedLocals": false,
-        "noUnusedParameters": false
+        "types": ["jest"]
     },
-    "include": ["metro.config.cjs", "src/**/*.test.*", "eslint.config.mjs"],
+    "include": ["eslint.config.mjs", "jest.config.ts"],
     "exclude": ["build", "node_modules"]
 }

@@ -38,7 +38,7 @@ export default function SplashProvider({ children }: { children: ReactNode }) {
         <>
             <View
                 className={cn(
-                    'absolute inset-0 z-[1000] flex-1 bg-background-base opacity-100 transition-opacity duration-500',
+                    'bg-background-base absolute inset-0 z-[1000] flex-1 opacity-100 transition-opacity duration-500',
                     !showSplash && 'pointer-events-none opacity-0'
                 )}
             >

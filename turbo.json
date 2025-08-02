@@ -1,0 +1,54 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "ui": "stream",
+    "globalDependencies": [
+        "**/.env.*local",
+        "tsconfig.json",
+        "**/tsconfig.json",
+        "package.json",
+        "**/package.json",
+        ".env",
+        "**/.env",
+        "*.env",
+        "**/*.env"
+    ],
+    "tasks": {
+        "test": {
+            "cache": false
+        },
+        "start": {
+            "cache": false,
+            "persistent": true,
+            "inputs": ["$TURBO_DEFAULT$", ".env.development.local", ".env.local", ".env.development", ".env"]
+        },
+        "build": {
+            "cache": true,
+            "outputLogs": "new-only",
+            "dependsOn": ["^build"],
+            "outputs": [".next/**", "!.next/cache/**", "dist/**", "ios/**", "android/**"],
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                "!README.md",
+                ".env.production.local",
+                ".env.local",
+                ".env.production",
+                ".env"
+            ]
+        },
+        "lint": {
+            "cache": false
+        },
+        "typecheck": {
+            "cache": false
+        },
+        "prettier": {
+            "cache": false
+        },
+        "format:eslint": {
+            "cache": false
+        },
+        "format:prettier": {
+            "cache": false
+        }
+    }
+}

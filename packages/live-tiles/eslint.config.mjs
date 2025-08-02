@@ -1,9 +1,5 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import react from 'eslint-plugin-react';
-import reactCompiler from 'eslint-plugin-react-compiler';
 import unusedImports from 'eslint-plugin-unused-imports';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
@@ -12,11 +8,6 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
 
 export default defineConfig([
     // prettierRecommendedConfig,
@@ -42,16 +33,12 @@ export default defineConfig([
         'src/utils/i18n.ts'
     ]),
     {
-        extends: compat.extends('plugin:react/recommended'),
-
         files: ['./src/**/*'],
 
         plugins: {
             // prettier,
-            'react-compiler': reactCompiler,
             '@typescript-eslint': typescriptEslint,
-            'unused-imports': unusedImports,
-            react
+            'unused-imports': unusedImports
         },
 
         languageOptions: {

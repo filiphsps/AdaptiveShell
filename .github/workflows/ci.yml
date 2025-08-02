@@ -15,26 +15,12 @@ on:
 
 env:
     CI: true
+    # Make sure we disable husky as it might interfere with some operations here
+    HUSKY: 0
 
 jobs:
-    build:
-        name: 🔨 Build
-        needs: [lint, typecheck, test]
-        timeout-minutes: 25
-        runs-on: ubuntu-latest
-        steps:
-            - name: 🕶️ Checkout repository
-              uses: actions/checkout@v4
-
-            - name: 🚀 Bootstrap
-              uses: ./.github/common/bootstrap
-
-            - name: 🔨 Build All
-              run: pnpm run build
-
     lint:
         name: 📋 Lint
-        timeout-minutes: 15
         runs-on: ubuntu-latest
         steps:
             - name: 🕶️ Checkout repository
@@ -48,7 +34,6 @@ jobs:
 
     typecheck:
         name: ✅ Typecheck
-        timeout-minutes: 15
         runs-on: ubuntu-latest
         steps:
             - name: 🕶️ Checkout repository
@@ -60,10 +45,26 @@ jobs:
             - name: ✅ Typecheck
               run: pnpm run typecheck
 
+    build:
+        name: 🔨 Build
+        needs: [lint, typecheck]
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v4
+
+            - name: 🚀 Bootstrap
+              uses: ./.github/common/bootstrap
+
+            - name: 🔬 Verify integrity
+              run: npm audit signatures
+
+            - name: 🔨 Build all
+              run: pnpm run build
+
     test:
         name: 🧪 Test
         needs: [lint, typecheck]
-        timeout-minutes: 15
         runs-on: ubuntu-latest
         steps:
             - name: 🕶️ Checkout repository
@@ -74,3 +75,72 @@ jobs:
 
             - name: 🧪 Test
               run: pnpm run test
+
+            - name: 🦺 Codecov coverage reports
+              if: ${{ !cancelled() }}
+              uses: codecov/codecov-action@v5
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  slug: filiphsps/AdaptiveShell
+
+            - name: 🦺 Upload test results to Codecov
+              if: ${{ !cancelled() }}
+              uses: codecov/test-results-action@v1
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  slug: filiphsps/AdaptiveShell
+
+    release:
+        name: 🚢 Release
+        needs: [build, test]
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/master'
+        permissions: write-all
+        concurrency:
+            group: ${{ github.workflow }}-${{ github.ref }}
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  submodules: 'recursive'
+
+            - name: 🚀 Bootstrap
+              uses: ./.github/common/bootstrap
+
+            - name: 🔬 Verify integrity
+              run: npm audit signatures
+
+            - name: 🔨 Build all
+              run: pnpm run build:packages
+
+            - name: 📦 Generate changeset(s) from commit messages
+              run: pnpm changeset:conventional
+
+            - name: 🤝 Create release PR or 📦 Publish
+              id: changesets
+              uses: changesets/action@v1
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  createGithubReleases: true
+                  version: pnpm run version
+                  publish: pnpm run release
+                  setupGitUser: true
+                  commit: |
+                      Changeset: Increment package & dependency versions.
+
+                      Congratulations on the new release! 🎉
+                      This is an automated commit triggered by the `release` workflow.
+                  title: 🚀 Release packages
+
+            - name: 🫨 Create Unstable Release
+              if: steps.changesets.outputs.published != 'true'
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  git checkout master
+                  pnpm run version:unstable
+                  pnpm run release:unstable

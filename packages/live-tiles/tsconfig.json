@@ -3,9 +3,8 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "composite": false,
+        "composite": true,
         "outDir": "./dist",
-        "rootDir": "./",
         "tsBuildInfoFile": ".tsbuildinfo",
         "typeRoots": ["./node_modules/@types", "./src/@types"],
         "types": [],

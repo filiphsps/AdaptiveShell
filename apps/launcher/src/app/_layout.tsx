@@ -15,7 +15,7 @@ export default function Layout() {
     const activeTheme = colorScheme === 'dark' ? 'dark' : 'light';
 
     return (
-        <GestureHandlerRootView className="flex-1 bg-background-base" style={TAILWIND_THEME[activeTheme]}>
+        <GestureHandlerRootView className="bg-background-base flex-1" style={TAILWIND_THEME[activeTheme]}>
             <ProvidersRegistry theme={theme}>
                 <StatusBar style="auto" />
 

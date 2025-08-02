@@ -1,0 +1,17 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": ["./tsconfig.json", "../../tsconfig.test.json"],
+    "compilerOptions": {
+        "jsx": "react-native",
+        "types": ["react", "jest"]
+    },
+    "include": [
+        "src/**/*.test.*",
+        "metro.config.cjs",
+        "eslint.config.mjs",
+        "tailwind.config.ts",
+        "babel.config.cjs",
+        "app.config.ts"
+    ],
+    "exclude": ["build", "node_modules"]
+}

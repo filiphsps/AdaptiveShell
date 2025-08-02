@@ -15,6 +15,9 @@ export default {
     clean: true,
     external: ['react'],
     dts: {
+        compilerOptions: {
+            composite: false // Work-around for dts failing when we're using `composite` mode.
+        },
         entry: entries,
         resolve: true
     },

@@ -5,10 +5,9 @@ const jestConfig: Config = {
         __DEV__: true
     },
     rootDir: '.',
-    preset: 'react-native',
     collectCoverage: true,
     coverageProvider: 'v8',
-    coverageReporters: ['json', 'text', 'text-summary'],
+    coverageReporters: ['json'],
     json: true,
     collectCoverageFrom: ['./src/**/*.*', '!**/node_modules/**'],
     testEnvironment: 'node',
@@ -16,12 +15,15 @@ const jestConfig: Config = {
         '^.+\\.tsx?$': [
             'ts-jest',
             {
-                tsconfig: 'tsconfig.test.json'
+                tsconfig: './tsconfig.test.json'
             }
         ],
         '^.+\\.jsx?$': ['babel-jest', { configFile: './babel.config.cjs' }]
     },
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+    moduleNameMapper: {
+        '^@/(.*)$': '<rootDir>/src/$1'
+    },
     testPathIgnorePatterns: ['dist/', 'node_modules/'],
     transformIgnorePatterns: ['/node_modules/(?!(@react-native|react-native|react-native-gesture-handler)/).*/'],
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.[mc]?[jt]sx?$',

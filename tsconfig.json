@@ -2,11 +2,11 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "expo/tsconfig.base",
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
         "allowJs": false,
         "allowSyntheticDefaultImports": true,
-        "allowImportingTsExtensions": true,
         "baseUrl": "./",
-        "composite": false,
+        "composite": true,
         "declaration": true,
         "declarationMap": true,
         "downlevelIteration": false,
@@ -24,12 +24,10 @@
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "outDir": "./dist",
         "plugins": [],
         "preserveConstEnums": true,
         "removeComments": false,
         "resolveJsonModule": true,
-        "rootDir": "./",
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
@@ -39,28 +37,8 @@
         "strictPropertyInitialization": true,
         "tsBuildInfoFile": ".tsbuildinfo",
         "typeRoots": ["node_modules/@types", "./src/@types", "**/src/@types"],
-        "types": ["node", "nativewind/types"],
-        "useDefineForClassFields": true,
-        // Keep this at the bottom so we can sort the other ones
-        "paths": {
-            "*": ["*", "./src/@types/*"],
-
-            "@/*": ["src/*"],
-            "@/assets/*": ["./assets/*"],
-            "@/utils/*": ["src/utils/*"],
-            "@/i18n/*": ["./i18n/*"],
-            "@/providers/*": ["src/providers/*"],
-            "@/pages/*": ["src/app/(root)/*"]
-        }
+        "types": ["node"],
+        "useDefineForClassFields": true
     },
-    "exclude": ["dist", "tailwind.config.ts", "build", "node_modules", "**/*.test.ts", "**/*.test.tsx"],
-    "include": [
-        "./index.ts",
-        "src",
-        "src/@types",
-        "packages/**/src/**/*",
-        ".expo/types/**/*.ts",
-        "expo-env.d.ts",
-        "nativewind-env.d.ts"
-    ]
+    "exclude": ["dist", "tailwind.config.ts", "build", "node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }
