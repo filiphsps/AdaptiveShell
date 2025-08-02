@@ -8,6 +8,7 @@
         "yoavbls.pretty-ts-errors",
         "christian-kohler.path-intellisense",
         "christian-kohler.npm-intellisense",
-        "chdsbd.github-code-owners"
+        "chdsbd.github-code-owners",
+        "bierner.jsdoc-markdown-highlighting"
     ]
 }

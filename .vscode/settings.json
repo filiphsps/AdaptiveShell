@@ -30,8 +30,20 @@
         "editor.wordWrap": "off",
         "workbench.editor.restoreViewState": false
     },
-    "cSpell.words": ["bitcode", "codegen", "commitlint", "nativewind", "Pressable", "startscreen", "Subviews", "tsup"],
+    "cSpell.words": [
+        "bitcode",
+        "codegen",
+        "commitlint",
+        "nativewind",
+        "nvmrc",
+        "Pressable",
+        "startscreen",
+        "Subviews",
+        "tsup"
+    ],
     "githubCodeOwners.format.enabled": true,
     "typescript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.experimental.expandableHover": true
+    "typescript.experimental.expandableHover": true,
+    "jsdoc-generator.includeExport": false,
+    "jsdoc-generator.emptyLineAfterHeader": true
 }
