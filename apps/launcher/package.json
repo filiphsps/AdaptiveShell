@@ -1,6 +1,6 @@
 {
     "name": "@metro-ui/launcher",
-    "version": "0.0.1",
+    "version": "0.0.0",
     "private": true,
     "main": "index.ts",
     "packageManager": "pnpm@10.14.0",

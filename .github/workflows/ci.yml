@@ -98,6 +98,10 @@ jobs:
         permissions: write-all
         concurrency:
             group: ${{ github.workflow }}-${{ github.ref }}
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         steps:
             - name: 🕶️ Checkout repository
               uses: actions/checkout@v4
@@ -120,9 +124,6 @@ jobs:
             - name: 🤝 Create release PR or 📦 Publish
               id: changesets
               uses: changesets/action@v1
-              env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               with:
                   createGithubReleases: true
                   version: pnpm run version
@@ -137,9 +138,6 @@ jobs:
 
             - name: 🫨 Create Unstable Release
               if: steps.changesets.outputs.published != 'true'
-              env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   git checkout master
                   pnpm run version:unstable

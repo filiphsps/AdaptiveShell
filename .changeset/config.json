@@ -7,17 +7,14 @@
         }
     ],
     "commit": false,
-    "fixed": [["{,@metro-ui/}{,*,!launcher}"]],
-    "linked": [],
+    "fixed": [],
+    "linked": [["{,@metro-ui/}{,*,!launcher}"]],
     "access": "public",
     "baseBranch": "master",
     "updateInternalDependencies": "patch",
-    "privatePackages": {
-        "tag": true,
-        "version": true
-    },
+    "privatePackages": false,
     "snapshot": {
         "useCalculatedVersion": true
     },
-    "ignore": ["@metro-ui/launcher"]
+    "ignore": ["@metro-ui/metro", "@metro-ui/launcher"]
 }
