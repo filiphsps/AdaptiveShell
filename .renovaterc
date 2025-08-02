@@ -1,0 +1,19 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended",
+        ":semanticCommitTypeAll(chore)",
+        ":automergeMajor"
+    ],
+    "ignoreDeps": [
+        "@testing-library/react-native",
+        "@types/jest",
+        "jest",
+        "react-dom",
+        "react-native-keyboard-controller",
+        "react-native-reanimated",
+        "react-native",
+        "react",
+        "tailwindcss"
+    ]
+}

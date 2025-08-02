@@ -1,0 +1,11 @@
+packages:
+  - .
+  - packages/*
+
+enablePrePostScripts: true
+
+nodeLinker: hoisted
+
+onlyBuiltDependencies:
+  - esbuild
+  - unrs-resolver

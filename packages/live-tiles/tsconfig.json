@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "composite": false,
+        "outDir": "./dist",
+        "rootDir": "./",
+        "tsBuildInfoFile": ".tsbuildinfo",
+        "typeRoots": ["./node_modules/@types", "./src/@types"],
+        "types": [],
+        "paths": {
+            "*": ["*", "./src/@types/*"],
+
+            "@/*": ["src/*"],
+            "@/utils/*": ["src/utils/*"],
+            "@/types": ["src/@types/index.ts"]
+        }
+    },
+    "exclude": ["dist"],
+    "include": ["src", "src/@types"]
+}

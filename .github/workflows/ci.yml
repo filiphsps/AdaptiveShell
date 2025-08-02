@@ -1,0 +1,76 @@
+name: CI
+
+on:
+    pull_request:
+    push:
+        branches:
+            - master
+            - staging
+            - 'dev/*'
+            - 'fix/*'
+        paths-ignore:
+            - '**.md'
+            - '**.txt'
+            - 'LICENSE'
+
+env:
+    CI: true
+
+jobs:
+    build:
+        name: 🔨 Build
+        needs: [lint, typecheck, test]
+        timeout-minutes: 25
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v4
+
+            - name: 🚀 Bootstrap
+              uses: ./.github/common/bootstrap
+
+            - name: 🔨 Build All
+              run: pnpm run build
+
+    lint:
+        name: 📋 Lint
+        timeout-minutes: 15
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v4
+
+            - name: 🚀 Bootstrap
+              uses: ./.github/common/bootstrap
+
+            - name: 📋 Lint
+              run: pnpm run lint
+
+    typecheck:
+        name: ✅ Typecheck
+        timeout-minutes: 15
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v4
+
+            - name: 🚀 Bootstrap
+              uses: ./.github/common/bootstrap
+
+            - name: ✅ Typecheck
+              run: pnpm run typecheck
+
+    test:
+        name: 🧪 Test
+        needs: [lint, typecheck]
+        timeout-minutes: 15
+        runs-on: ubuntu-latest
+        steps:
+            - name: 🕶️ Checkout repository
+              uses: actions/checkout@v4
+
+            - name: 🚀 Bootstrap
+              uses: ./.github/common/bootstrap
+
+            - name: 🧪 Test
+              run: pnpm run test
