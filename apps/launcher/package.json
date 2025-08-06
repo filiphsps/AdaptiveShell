@@ -103,7 +103,7 @@
         "babel-preset-expo": "13.2.3",
         "dotenv-cli": "10.0.0",
         "eslint-config-expo": "9.2.0",
-        "eslint-plugin-prettier": "5.5.3",
+        "eslint-plugin-prettier": "5.5.4",
         "eslint-plugin-react-compiler": "19.1.0-rc.2",
         "eslint-plugin-unused-imports": "4.1.4",
         "eslint": "9.32.0",
