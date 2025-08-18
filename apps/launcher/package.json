@@ -105,7 +105,7 @@
         "eslint-config-expo": "9.2.0",
         "eslint-plugin-prettier": "5.5.4",
         "eslint-plugin-react-compiler": "19.1.0-rc.2",
-        "eslint-plugin-unused-imports": "4.1.4",
+        "eslint-plugin-unused-imports": "4.2.0",
         "eslint": "9.33.0",
         "expo-module-scripts": "4.1.10",
         "jest-expo": "53.0.9",

@@ -264,8 +264,8 @@ importers:
         specifier: 19.1.0-rc.2
         version: 19.1.0-rc.2(eslint@9.33.0(jiti@2.5.1))
       eslint-plugin-unused-imports:
-        specifier: 4.1.4
-        version: 4.1.4(@typescript-eslint/eslint-plugin@8.39.1(@typescript-eslint/parser@8.39.1(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))
+        specifier: 4.2.0
+        version: 4.2.0(@typescript-eslint/eslint-plugin@8.39.1(@typescript-eslint/parser@8.39.1(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))
       expo-module-scripts:
         specifier: 4.1.10
         version: 4.1.10(@babel/core@7.28.3)(@jest/types@29.6.3)(@types/eslint@9.6.1)(babel-jest@29.7.0(@babel/core@7.28.3))(babel-plugin-react-compiler@19.1.0-rc.2)(eslint@9.33.0(jiti@2.5.1))(expo@53.0.20(@babel/core@7.28.3)(@expo/metro-runtime@5.0.4(react-native@0.79.5(@babel/core@7.28.3)(@types/react@19.1.10)(react@19.0.0)))(babel-plugin-react-compiler@19.1.0-rc.2)(react-native-webview@13.15.0(react-native@0.79.5(@babel/core@7.28.3)(@types/react@19.1.10)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.3)(@types/react@19.1.10)(react@19.0.0))(react@19.0.0))(jest@29.7.0(@types/node@24.3.0)(ts-node@10.9.2(@types/node@24.3.0)(typescript@5.9.2)))(prettier@3.6.2)(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.3)(@types/react@19.1.10)(react@19.0.0))(react-test-renderer@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.101.0)
@@ -327,8 +327,8 @@ importers:
         specifier: 5.5.4
         version: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.33.0(jiti@2.5.1)))(eslint@9.33.0(jiti@2.5.1))(prettier@3.6.2)
       eslint-plugin-unused-imports:
-        specifier: 4.1.4
-        version: 4.1.4(@typescript-eslint/eslint-plugin@8.39.1(@typescript-eslint/parser@8.39.1(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))
+        specifier: 4.2.0
+        version: 4.2.0(@typescript-eslint/eslint-plugin@8.39.1(@typescript-eslint/parser@8.39.1(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))
       glob:
         specifier: 11.0.3
         version: 11.0.3
@@ -3802,8 +3802,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
-  eslint-plugin-unused-imports@4.1.4:
-    resolution: {integrity: sha512-YptD6IzQjDardkl0POxnnRBhU1OEePMV0nd6siHaRBbd+lyh6NAhFEobiznKU7kTsSsDeSD62Pe7kAM1b7dAZQ==}
+  eslint-plugin-unused-imports@4.2.0:
+    resolution: {integrity: sha512-hLbJ2/wnjKq4kGA9AUaExVFIbNzyxYdVo49QZmKCnhk5pc9wcYRbfgLHvWJ8tnsdcseGhoUAddm9gn/lt+d74w==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': 8.39.1
       eslint: ^9.0.0 || ^8.0.0
@@ -11990,7 +11990,7 @@ snapshots:
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-unused-imports@4.1.4(@typescript-eslint/eslint-plugin@8.39.1(@typescript-eslint/parser@8.39.1(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1)):
+  eslint-plugin-unused-imports@4.2.0(@typescript-eslint/eslint-plugin@8.39.1(@typescript-eslint/parser@8.39.1(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1))(typescript@5.9.2))(eslint@9.33.0(jiti@2.5.1)):
     dependencies:
       eslint: 9.33.0(jiti@2.5.1)
     optionalDependencies:
