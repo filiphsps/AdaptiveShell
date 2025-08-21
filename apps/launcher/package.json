@@ -54,7 +54,7 @@
         "@react-navigation/bottom-tabs": "7.4.6",
         "@react-navigation/elements": "2.6.3",
         "@react-navigation/native": "7.1.17",
-        "@shopify/flash-list": "2.0.2",
+        "@shopify/flash-list": "2.0.3",
         "@tanstack/react-query": "5.85.5",
         "clsx": "2.1.1",
         "expo-application": "6.1.5",
