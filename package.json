@@ -71,7 +71,7 @@
         "typedoc-plugin-merge-modules": "7.0.0",
         "typedoc-plugin-missing-exports": "4.1.0",
         "typedoc-plugin-rename-defaults": "0.7.3",
-        "typedoc": "0.28.10",
+        "typedoc": "0.28.11",
         "typescript": "5.9.2"
     },
     "pnpm": {
