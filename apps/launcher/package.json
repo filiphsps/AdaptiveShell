@@ -99,7 +99,7 @@
         "@types/react": "19.1.12",
         "@typescript-eslint/eslint-plugin": "8.41.0",
         "@typescript-eslint/parser": "8.41.0",
-        "babel-plugin-react-compiler": "19.1.0-rc.2",
+        "babel-plugin-react-compiler": "19.1.0-rc.3",
         "babel-preset-expo": "13.2.3",
         "dotenv-cli": "10.0.0",
         "eslint-config-expo": "9.2.0",
