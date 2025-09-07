@@ -72,7 +72,7 @@
         "expo-symbols": "0.4.5",
         "expo-system-ui": "5.0.10",
         "expo": "53.0.22",
-        "i18next": "25.4.2",
+        "i18next": "25.5.2",
         "lodash": "4.17.21",
         "nativewind": "4.1.23",
         "react-dom": "19.0.0",
