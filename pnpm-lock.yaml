@@ -152,8 +152,8 @@ importers:
         specifier: 16.1.6
         version: 16.1.6(expo@53.0.22(@babel/core@7.28.4)(@expo/metro-runtime@5.0.4(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0)))(babel-plugin-react-compiler@19.1.0-rc.3)(react-native-webview@13.15.0(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react@19.0.0)
       expo-router:
-        specifier: 5.1.4
-        version: 5.1.4(d2a81ddcf84c58242d40c0b5e7293b8d)
+        specifier: 5.1.6
+        version: 5.1.6(d2a81ddcf84c58242d40c0b5e7293b8d)
       expo-splash-screen:
         specifier: 0.30.10
         version: 0.30.10(expo@53.0.22(@babel/core@7.28.4)(@expo/metro-runtime@5.0.4(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0)))(babel-plugin-react-compiler@19.1.0-rc.3)(react-native-webview@13.15.0(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))
@@ -4088,8 +4088,8 @@ packages:
   expo-modules-core@2.5.0:
     resolution: {integrity: sha512-aIbQxZE2vdCKsolQUl6Q9Farlf8tjh/ROR4hfN1qT7QBGPl1XrJGnaOKkcgYaGrlzCPg/7IBe0Np67GzKMZKKQ==}
 
-  expo-router@5.1.4:
-    resolution: {integrity: sha512-8GulCelVN9x+VSOio74K1ZYTG6VyCdJw417gV+M/J8xJOZZTA7rFxAdzujBZZ7jd6aIAG7WEwOUU3oSvUO76Vw==}
+  expo-router@5.1.6:
+    resolution: {integrity: sha512-Tc7QFurWqLItrHvbL2TB4OLq8WA4y8fCXPkRG+q9zP4Lk4xKIDskO7/8ff3+XAOHJB5Z8GHn5IhXv4Ik89SVUA==}
     peerDependencies:
       '@react-navigation/drawer': ^7.3.9
       '@testing-library/jest-native': '*'
@@ -12525,9 +12525,10 @@ snapshots:
     dependencies:
       invariant: 2.2.4
 
-  expo-router@5.1.4(d2a81ddcf84c58242d40c0b5e7293b8d):
+  expo-router@5.1.6(d2a81ddcf84c58242d40c0b5e7293b8d):
     dependencies:
       '@expo/metro-runtime': 5.0.4(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))
+      '@expo/schema-utils': 0.1.0
       '@expo/server': 0.6.3
       '@radix-ui/react-slot': 1.2.0(@types/react@19.1.12)(react@19.0.0)
       '@react-navigation/bottom-tabs': 7.4.7(@react-navigation/native@7.1.17(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-screens@4.16.0(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
@@ -12542,7 +12543,6 @@ snapshots:
       react-native-is-edge-to-edge: 1.2.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
       react-native-safe-area-context: 5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
       react-native-screens: 4.16.0(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)
-      schema-utils: 4.3.2
       semver: 7.6.3
       server-only: 0.0.1
       shallowequal: 1.1.0
