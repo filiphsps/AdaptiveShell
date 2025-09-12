@@ -173,8 +173,8 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       nativewind:
-        specifier: 4.1.23
-        version: 4.1.23(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2)))
+        specifier: 4.2.0
+        version: 4.2.0(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2)))
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -5927,8 +5927,8 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     hasBin: true
 
-  nativewind@4.1.23:
-    resolution: {integrity: sha512-oLX3suGI6ojQqWxdQezOSM5GmJ4KvMnMtmaSMN9Ggb5j7ysFt4nHxb1xs8RDjZR7BWc+bsetNJU8IQdQMHqRpg==}
+  nativewind@4.2.0:
+    resolution: {integrity: sha512-FjH4mu474tdEQRGfE5PwhPLmM3ldp5XLAEQN7yciOMF2ZEMHw6Qm3gmRwzRbhpOOefxAnjkZ5c9NY3ZWvKFx5w==}
     engines: {node: '>=16'}
     peerDependencies:
       tailwindcss: '>3.3.0'
@@ -6534,8 +6534,8 @@ packages:
   react-is@19.1.1:
     resolution: {integrity: sha512-tr41fA15Vn8p4X9ntI+yCyeGSf1TlYaY5vlTZfQmeLBrFo3psOPX6HhTDnFNL9uj3EhP0KAQ80cugCl4b4BERA==}
 
-  react-native-css-interop@0.1.22:
-    resolution: {integrity: sha512-Mu01e+H9G+fxSWvwtgWlF5MJBJC4VszTCBXopIpeR171lbeBInHb8aHqoqRPxmJpi3xIHryzqKFOJYAdk7PBxg==}
+  react-native-css-interop@0.2.0:
+    resolution: {integrity: sha512-16eCBhbUwgux5hk0Awm2A6GaMkiIBO+ynh+Yqfoy9a/huNJTfEMSCeg409mNiD4oYqC2CVaOjg5t6lbKPEPaUw==}
     engines: {node: '>=18'}
     peerDependencies:
       react: '>=18'
@@ -15203,11 +15203,11 @@ snapshots:
 
   napi-postinstall@0.3.2: {}
 
-  nativewind@4.1.23(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2))):
+  nativewind@4.2.0(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2))):
     dependencies:
       comment-json: 4.2.5
       debug: 4.4.1
-      react-native-css-interop: 0.1.22(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2)))
+      react-native-css-interop: 0.2.0(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2)))
       tailwindcss: 3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2))
     transitivePeerDependencies:
       - react
@@ -15751,11 +15751,11 @@ snapshots:
 
   react-is@19.1.1: {}
 
-  react-native-css-interop@0.1.22(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2))):
+  react-native-css-interop@0.2.0(react-native-reanimated@3.17.4(@babel/core@7.28.4)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-safe-area-context@5.6.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.1.12)(react@19.0.0))(react@19.0.0)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.1)(typescript@5.9.2))):
     dependencies:
       '@babel/helper-module-imports': 7.27.1
-      '@babel/traverse': 7.28.3
-      '@babel/types': 7.28.2
+      '@babel/traverse': 7.28.4
+      '@babel/types': 7.28.4
       debug: 4.4.1
       lightningcss: 1.27.0
       react: 19.0.0
