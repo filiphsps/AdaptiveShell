@@ -95,7 +95,7 @@
         "@testing-library/react-native": "13.1.1",
         "@types/jest": "29.5.14",
         "@types/lodash": "4.17.20",
-        "@types/node": "24.3.3",
+        "@types/node": "24.4.0",
         "@types/react": "19.1.13",
         "@typescript-eslint/eslint-plugin": "8.43.0",
         "@typescript-eslint/parser": "8.43.0",
