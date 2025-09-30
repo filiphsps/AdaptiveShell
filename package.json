@@ -72,7 +72,7 @@
         "typedoc-plugin-missing-exports": "4.1.0",
         "typedoc-plugin-rename-defaults": "0.7.3",
         "typedoc": "0.28.13",
-        "typescript": "5.9.2"
+        "typescript": "5.9.3"
     },
     "pnpm": {
         "overrides": {
