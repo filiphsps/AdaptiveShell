@@ -50,7 +50,7 @@
         "@changesets/changelog-github": "0.5.1",
         "@changesets/cli": "2.29.7",
         "@changesets/types": "6.1.0",
-        "@commitlint/cli": "20.0.0",
+        "@commitlint/cli": "20.1.0",
         "@commitlint/config-conventional": "20.0.0",
         "@types/node": "24.6.0",
         "@typescript-eslint/eslint-plugin": "8.45.0",
