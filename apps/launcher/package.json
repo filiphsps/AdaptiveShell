@@ -52,7 +52,7 @@
         "@expo/vector-icons": "15.0.2",
         "@metro-ui/live-tiles": "workspace:*",
         "@react-navigation/bottom-tabs": "7.4.8",
-        "@react-navigation/elements": "2.6.4",
+        "@react-navigation/elements": "2.6.5",
         "@react-navigation/native": "7.1.18",
         "@shopify/flash-list": "2.1.0",
         "@tanstack/react-query": "5.90.2",
