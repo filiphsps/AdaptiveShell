@@ -143,8 +143,8 @@ importers:
         specifier: 15.0.7
         version: 15.0.7(expo@54.0.12)
       expo-image:
-        specifier: 3.0.8
-        version: 3.0.8(expo@54.0.12)(react-native-web@0.21.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
+        specifier: 3.0.9
+        version: 3.0.9(expo@54.0.12)(react-native-web@0.21.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
       expo-linking:
         specifier: 8.0.8
         version: 8.0.8(expo@54.0.12)(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
@@ -4298,8 +4298,8 @@ packages:
     peerDependencies:
       expo: '*'
 
-  expo-image@3.0.8:
-    resolution: {integrity: sha512-L83fTHVjvE5hACxUXPk3dpABteI/IypeqxKMeOAAcT2eB/jbqT53ddsYKEvKAP86eoByQ7+TCtw9AOUizEtaTQ==}
+  expo-image@3.0.9:
+    resolution: {integrity: sha512-GkPIjeqrODMBdpbRWOzbwiq8ztxjgq1rdZrnqwt/pzQavgXPlr4rW/7aigue9Jm5t5vebhMNAuc1A/XIXXqpcA==}
     peerDependencies:
       expo: '*'
       react: '*'
@@ -13115,7 +13115,7 @@ snapshots:
     dependencies:
       expo: 54.0.12(@babel/core@7.28.4)(@expo/metro-runtime@6.1.1)(expo-router@6.0.10)(react-native-webview@13.15.0(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
 
-  expo-image@3.0.8(expo@54.0.12)(react-native-web@0.21.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0):
+  expo-image@3.0.9(expo@54.0.12)(react-native-web@0.21.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0):
     dependencies:
       expo: 54.0.12(@babel/core@7.28.4)(@expo/metro-runtime@6.1.1)(expo-router@6.0.10)(react-native-webview@13.15.0(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.4)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
       react: 19.0.0
