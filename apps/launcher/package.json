@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "@bacons/text-decoder": "0.0.0",
-        "@expo/vector-icons": "15.0.2",
+        "@expo/vector-icons": "15.0.3",
         "@metro-ui/live-tiles": "workspace:*",
         "@react-navigation/bottom-tabs": "7.4.9",
         "@react-navigation/elements": "2.6.5",
