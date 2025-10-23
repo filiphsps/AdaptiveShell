@@ -88,7 +88,7 @@
         "tailwindcss": "3.4.17"
     },
     "devDependencies": {
-        "@babel/core": "7.28.4",
+        "@babel/core": "7.28.5",
         "@eslint/eslintrc": "3.3.1",
         "@eslint/js": "9.38.0",
         "@jest/globals": "30.2.0",
