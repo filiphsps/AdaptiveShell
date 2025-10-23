@@ -182,8 +182,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
       react-i18next:
-        specifier: 16.1.5
-        version: 16.1.5(i18next@25.6.0(typescript@5.9.3))(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)(typescript@5.9.3)
+        specifier: 16.1.6
+        version: 16.1.6(i18next@25.6.0(typescript@5.9.3))(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)(typescript@5.9.3)
       react-native:
         specifier: 0.79.5
         version: 0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0)
@@ -6587,8 +6587,8 @@ packages:
     peerDependencies:
       react: '>=17.0.0'
 
-  react-i18next@16.1.5:
-    resolution: {integrity: sha512-+0dHUH7zQOXPhS3jt60Dq9nWIg+7xmN9ZrzN2YrBc1MN6kZl9u81qbN5JCkV/F5nsOu0udMbK7n7DiFMCs0PWg==}
+  react-i18next@16.1.6:
+    resolution: {integrity: sha512-62Iy0TO/2hJpTa80XaTIbHM4yjpile1YNieeg70vmdi91N2L3Q3MuxXBT0n6JpsryT88utpkqv0QbnIrDSxbAQ==}
     peerDependencies:
       i18next: '>= 25.5.2'
       react: '>= 16.8.0'
@@ -15135,7 +15135,7 @@ snapshots:
   metro-source-map@0.82.5:
     dependencies:
       '@babel/traverse': 7.28.4
-      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.28.4'
+      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.28.5'
       '@babel/types': 7.28.4
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
@@ -15150,7 +15150,7 @@ snapshots:
   metro-source-map@0.83.2:
     dependencies:
       '@babel/traverse': 7.28.4
-      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.28.4'
+      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.28.5'
       '@babel/types': 7.28.4
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
@@ -15953,7 +15953,7 @@ snapshots:
     dependencies:
       react: 19.0.0
 
-  react-i18next@16.1.5(i18next@25.6.0(typescript@5.9.3))(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)(typescript@5.9.3):
+  react-i18next@16.1.6(i18next@25.6.0(typescript@5.9.3))(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)(typescript@5.9.3):
     dependencies:
       '@babel/runtime': 7.28.2
       html-parse-stringify: 3.0.1
