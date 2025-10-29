@@ -57,7 +57,7 @@
         "@typescript-eslint/parser": "8.46.2",
         "changeset-conventional-commits": "0.2.5",
         "concurrently": "9.2.1",
-        "dotenv-cli": "10.0.0",
+        "dotenv-cli": "11.0.0",
         "husky": "9.1.7",
         "istanbul-merge": "2.0.0",
         "lint-staged": "16.2.6",
