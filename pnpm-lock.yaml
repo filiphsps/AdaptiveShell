@@ -153,7 +153,7 @@ importers:
         version: 17.0.7(expo@54.0.21)(react@19.0.0)
       expo-router:
         specifier: 6.0.14
-        version: 6.0.14(0011dcb9b478ab3c12d4123b094fc186)
+        version: 6.0.14(ce891d4207b964e11a76af25ed4e3c37)
       expo-splash-screen:
         specifier: 31.0.10
         version: 31.0.10(expo@54.0.21)
@@ -188,8 +188,8 @@ importers:
         specifier: 0.79.5
         version: 0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0)
       react-native-gesture-handler:
-        specifier: 2.29.0
-        version: 2.29.0(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
+        specifier: 2.29.1
+        version: 2.29.1(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
       react-native-keyboard-controller:
         specifier: 1.18.2
         version: 1.18.2(react-native-reanimated@3.17.4(@babel/core@7.28.5)(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
@@ -6632,8 +6632,8 @@ packages:
       react-native-svg:
         optional: true
 
-  react-native-gesture-handler@2.29.0:
-    resolution: {integrity: sha512-nxikN5b2ebSTPqqhIlTHQJqIHTu0Y5GAhST3w3/G1pm9BlqHVFcLFPZfIaT4A3TVKjQDcKElij1hhHKpAVUcOQ==}
+  react-native-gesture-handler@2.29.1:
+    resolution: {integrity: sha512-du3qmv0e3Sm7qsd9SfmHps+AggLiylcBBQ8ztz7WUtd8ZjKs5V3kekAbi9R2W9bRLSg47Ntp4GGMYZOhikQdZA==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -9603,7 +9603,7 @@ snapshots:
       wrap-ansi: 7.0.0
       ws: 8.18.3
     optionalDependencies:
-      expo-router: 6.0.14(0011dcb9b478ab3c12d4123b094fc186)
+      expo-router: 6.0.14(ce891d4207b964e11a76af25ed4e3c37)
       react-native: 0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0)
     transitivePeerDependencies:
       - '@modelcontextprotocol/sdk'
@@ -13267,7 +13267,7 @@ snapshots:
       react: 19.0.0
       react-native: 0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0)
 
-  expo-router@6.0.14(0011dcb9b478ab3c12d4123b094fc186):
+  expo-router@6.0.14(ce891d4207b964e11a76af25ed4e3c37):
     dependencies:
       '@expo/metro-runtime': 6.1.1(expo@54.0.21)(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
       '@expo/schema-utils': 0.1.7
@@ -13302,7 +13302,7 @@ snapshots:
     optionalDependencies:
       '@testing-library/react-native': 13.1.1(jest@29.7.0(@types/node@24.10.0)(ts-node@10.9.2(@types/node@24.10.0)(typescript@5.9.3)))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react-test-renderer@19.1.0(react@19.0.0))(react@19.0.0)
       react-dom: 19.0.0(react@19.0.0)
-      react-native-gesture-handler: 2.29.0(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
+      react-native-gesture-handler: 2.29.1(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
       react-native-reanimated: 3.17.4(@babel/core@7.28.5)(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0)
       react-native-web: 0.21.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-server-dom-webpack: 19.0.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(webpack@5.101.0)
@@ -15999,7 +15999,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  react-native-gesture-handler@2.29.0(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0):
+  react-native-gesture-handler@2.29.1(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.2)(react@19.0.0))(react@19.0.0):
     dependencies:
       '@egjs/hammerjs': 2.0.17
       hoist-non-react-statics: 3.3.2
