@@ -259,7 +259,7 @@ importers:
         version: 10.0.0(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3)
       eslint-plugin-prettier:
         specifier: 5.5.4
-        version: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.0)
+        version: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.1)
       eslint-plugin-react-compiler:
         specifier: 19.1.0-rc.2
         version: 19.1.0-rc.2(eslint@9.39.1(jiti@2.5.1))
@@ -268,7 +268,7 @@ importers:
         version: 4.3.0(@typescript-eslint/eslint-plugin@8.48.0(@typescript-eslint/parser@8.48.0(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.5.1))
       expo-module-scripts:
         specifier: 5.0.7
-        version: 5.0.7(@babel/core@7.28.5)(@babel/runtime@7.28.4)(@jest/types@29.6.3)(@types/eslint@9.6.1)(babel-jest@29.7.0(@babel/core@7.28.5))(eslint@9.39.1(jiti@2.5.1))(expo@54.0.25)(jest@29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(prettier@3.7.0)(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(react-refresh@0.14.2)(react-test-renderer@19.1.0(react@19.0.0))(react@19.0.0)(webpack@5.101.0)
+        version: 5.0.7(@babel/core@7.28.5)(@babel/runtime@7.28.4)(@jest/types@29.6.3)(@types/eslint@9.6.1)(babel-jest@29.7.0(@babel/core@7.28.5))(eslint@9.39.1(jiti@2.5.1))(expo@54.0.25)(jest@29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(prettier@3.7.1)(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(react-refresh@0.14.2)(react-test-renderer@19.1.0(react@19.0.0))(react@19.0.0)(webpack@5.101.0)
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
@@ -276,14 +276,14 @@ importers:
         specifier: 54.0.13
         version: 54.0.13(@babel/core@7.28.5)(expo@54.0.25)(jest@29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(react@19.0.0)(webpack@5.101.0)
       prettier:
-        specifier: 3.7.0
-        version: 3.7.0
+        specifier: 3.7.1
+        version: 3.7.1
       prettier-eslint:
         specifier: 16.4.2
         version: 16.4.2(typescript@5.9.3)
       prettier-plugin-tailwindcss:
         specifier: 0.7.1
-        version: 0.7.1(prettier@3.7.0)
+        version: 0.7.1(prettier@3.7.1)
       react-native-svg-transformer:
         specifier: 1.5.2
         version: 1.5.2(react-native-svg@15.12.1(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(typescript@5.9.3)
@@ -325,7 +325,7 @@ importers:
         version: 9.39.1(jiti@2.5.1)
       eslint-plugin-prettier:
         specifier: 5.5.4
-        version: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.0)
+        version: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.1)
       eslint-plugin-unused-imports:
         specifier: 4.3.0
         version: 4.3.0(@typescript-eslint/eslint-plugin@8.48.0(@typescript-eslint/parser@8.48.0(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.5.1))
@@ -336,8 +336,8 @@ importers:
         specifier: 29.7.0
         version: 29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3))
       prettier:
-        specifier: 3.7.0
-        version: 3.7.0
+        specifier: 3.7.1
+        version: 3.7.1
       ts-jest:
         specifier: 29.4.5
         version: 29.4.5(@babel/core@7.28.5)(@jest/transform@30.2.0)(@jest/types@30.2.0)(babel-jest@29.7.0(@babel/core@7.28.5))(esbuild@0.27.0)(jest-util@30.2.0)(jest@29.7.0(@types/node@24.10.1))(typescript@5.9.3)
@@ -6477,8 +6477,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.7.0:
-    resolution: {integrity: sha512-pBiBj/gjRY9Qpk1b7cDda6Rbwvkaggos779AHQ0Ek/odwDx6xG6DRBxtnp1QmxbuD7pAO8/SQ8vuhtGv9LoLWA==}
+  prettier@3.7.1:
+    resolution: {integrity: sha512-RWKXE4qB3u5Z6yz7omJkjWwmTfLdcbv44jUVHC5NpfXwFGzvpQM798FGv/6WNK879tc+Cn0AAyherCl1KjbyZQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -12696,7 +12696,7 @@ snapshots:
     dependencies:
       eslint: 9.39.1(jiti@2.5.1)
 
-  eslint-config-universe@15.0.3(@types/eslint@9.6.1)(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.0)(typescript@5.9.3):
+  eslint-config-universe@15.0.3(@types/eslint@9.6.1)(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.1)(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/eslint-plugin': 8.48.0(@typescript-eslint/parser@8.48.0(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3)
       '@typescript-eslint/parser': 8.48.0(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3)
@@ -12705,12 +12705,12 @@ snapshots:
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.48.0(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.1(jiti@2.5.1))
       eslint-plugin-n: 17.21.3(eslint@9.39.1(jiti@2.5.1))(typescript@5.9.3)
       eslint-plugin-node: 11.1.0(eslint@9.39.1(jiti@2.5.1))
-      eslint-plugin-prettier: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.0)
+      eslint-plugin-prettier: 5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.1)
       eslint-plugin-react: 7.37.5(eslint@9.39.1(jiti@2.5.1))
       eslint-plugin-react-hooks: 5.2.0(eslint@9.39.1(jiti@2.5.1))
       globals: 16.3.0
     optionalDependencies:
-      prettier: 3.7.0
+      prettier: 3.7.1
     transitivePeerDependencies:
       - '@types/eslint'
       - eslint-import-resolver-typescript
@@ -12828,10 +12828,10 @@ snapshots:
       resolve: 1.22.10
       semver: 6.3.1
 
-  eslint-plugin-prettier@5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.0):
+  eslint-plugin-prettier@5.5.4(@types/eslint@9.6.1)(eslint-config-prettier@9.1.2(eslint@9.39.1(jiti@2.5.1)))(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.1):
     dependencies:
       eslint: 9.39.1(jiti@2.5.1)
-      prettier: 3.7.0
+      prettier: 3.7.1
       prettier-linter-helpers: 1.0.0
       synckit: 0.11.11
     optionalDependencies:
@@ -13172,7 +13172,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  expo-module-scripts@5.0.7(@babel/core@7.28.5)(@babel/runtime@7.28.4)(@jest/types@29.6.3)(@types/eslint@9.6.1)(babel-jest@29.7.0(@babel/core@7.28.5))(eslint@9.39.1(jiti@2.5.1))(expo@54.0.25)(jest@29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(prettier@3.7.0)(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(react-refresh@0.14.2)(react-test-renderer@19.1.0(react@19.0.0))(react@19.0.0)(webpack@5.101.0):
+  expo-module-scripts@5.0.7(@babel/core@7.28.5)(@babel/runtime@7.28.4)(@jest/types@29.6.3)(@types/eslint@9.6.1)(babel-jest@29.7.0(@babel/core@7.28.5))(eslint@9.39.1(jiti@2.5.1))(expo@54.0.25)(jest@29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(prettier@3.7.1)(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(react-refresh@0.14.2)(react-test-renderer@19.1.0(react@19.0.0))(react@19.0.0)(webpack@5.101.0):
     dependencies:
       '@babel/cli': 7.28.0(@babel/core@7.28.5)
       '@babel/plugin-transform-export-namespace-from': 7.27.1(@babel/core@7.28.5)
@@ -13185,7 +13185,7 @@ snapshots:
       babel-plugin-dynamic-import-node: 2.3.3
       babel-preset-expo: 54.0.7(@babel/core@7.28.5)(@babel/runtime@7.28.4)(expo@54.0.25)(react-refresh@0.14.2)
       commander: 12.1.0
-      eslint-config-universe: 15.0.3(@types/eslint@9.6.1)(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.0)(typescript@5.9.3)
+      eslint-config-universe: 15.0.3(@types/eslint@9.6.1)(eslint@9.39.1(jiti@2.5.1))(prettier@3.7.1)(typescript@5.9.3)
       glob: 10.4.5
       jest-expo: 54.0.13(@babel/core@7.28.5)(expo@54.0.25)(jest@29.7.0(@types/node@24.10.1)(ts-node@10.9.2(@types/node@24.10.1)(typescript@5.9.3)))(react-dom@19.0.0(react@19.0.0))(react-native@0.79.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.0.0))(react@19.0.0)(webpack@5.101.0)
       jest-snapshot-prettier: prettier@2.8.8
@@ -15803,7 +15803,7 @@ snapshots:
       indent-string: 4.0.0
       lodash.merge: 4.6.2
       loglevel-colored-level-prefix: 1.0.0
-      prettier: 3.7.0
+      prettier: 3.7.1
       pretty-format: 29.7.0
       require-relative: 0.8.7
       tslib: 2.8.1
@@ -15816,13 +15816,13 @@ snapshots:
     dependencies:
       fast-diff: 1.3.0
 
-  prettier-plugin-tailwindcss@0.7.1(prettier@3.7.0):
+  prettier-plugin-tailwindcss@0.7.1(prettier@3.7.1):
     dependencies:
-      prettier: 3.7.0
+      prettier: 3.7.1
 
   prettier@2.8.8: {}
 
-  prettier@3.7.0: {}
+  prettier@3.7.1: {}
 
   pretty-bytes@5.6.0: {}
 
