@@ -51,7 +51,7 @@
         "@bacons/text-decoder": "0.0.0",
         "@expo/vector-icons": "15.0.3",
         "@metro-ui/live-tiles": "workspace:*",
-        "@react-navigation/bottom-tabs": "7.8.7",
+        "@react-navigation/bottom-tabs": "7.8.8",
         "@react-navigation/elements": "2.8.4",
         "@react-navigation/native": "7.1.22",
         "@shopify/flash-list": "2.2.0",
