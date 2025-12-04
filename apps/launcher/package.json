@@ -55,7 +55,7 @@
         "@react-navigation/elements": "2.9.1",
         "@react-navigation/native": "7.1.24",
         "@shopify/flash-list": "2.2.0",
-        "@tanstack/react-query": "5.90.11",
+        "@tanstack/react-query": "5.90.12",
         "clsx": "2.1.1",
         "expo-application": "7.0.7",
         "expo-blur": "15.0.7",
