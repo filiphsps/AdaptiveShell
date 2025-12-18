@@ -1,35 +1,35 @@
 {
-	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "../../tsconfig.json",
-	"compilerOptions": {
-		"baseUrl": "./",
-		"composite": true,
-		"jsx": "react-native",
-		"outDir": "./dist",
-		"tsBuildInfoFile": ".tsbuildinfo",
-		"typeRoots": ["./src/@types"],
-		"types": ["nativewind/types"],
-		"paths": {
-			"*": ["*", "./src/@types/*"],
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "composite": true,
+        "jsx": "react-native",
+        "outDir": "./dist",
+        "tsBuildInfoFile": ".tsbuildinfo",
+        "typeRoots": ["./src/@types"],
+        "types": ["nativewind/types"],
+        "paths": {
+            "*": ["*", "./src/@types/*"],
 
-			"~/*": ["src/*"],
-			"~/assets/*": ["./assets/*"],
-			"~/utils/*": ["src/utils/*"],
-			"~/i18n/*": ["./i18n/*"],
-			"~/providers/*": ["src/providers/*"],
-			"~/pages/*": ["src/app/(root)/*"],
-			"~/hooks/*": ["src/hooks/*"],
-			"~/styles/*": ["src/styles/*"]
-		}
-	},
-	"exclude": ["dist"],
-	"include": [
-		"./index.ts",
-		"src",
-		"src/@types",
-		"i18n/*.json",
-		".expo/types/**/*.ts",
-		"expo-env.d.ts",
-		"nativewind-env.d.ts"
-	]
+            "~/*": ["src/*"],
+            "~/assets/*": ["./assets/*"],
+            "~/utils/*": ["src/utils/*"],
+            "~/i18n/*": ["./i18n/*"],
+            "~/providers/*": ["src/providers/*"],
+            "~/pages/*": ["src/app/(root)/*"],
+            "~/hooks/*": ["src/hooks/*"],
+            "~/styles/*": ["src/styles/*"]
+        }
+    },
+    "exclude": ["dist"],
+    "include": [
+        "./index.ts",
+        "src",
+        "src/@types",
+        "i18n/*.json",
+        ".expo/types/**/*.ts",
+        "expo-env.d.ts",
+        "nativewind-env.d.ts"
+    ]
 }

@@ -35,15 +35,9 @@
                 ".env"
             ]
         },
-        "lint": {
-            "cache": false
-        },
         "typecheck": {
             "cache": false
         },
-        "prettier": {},
-        "format:eslint": {},
-        "format:prettier": {},
         "docs": {
             "cache": true,
             "outputs": ["docs/**"],

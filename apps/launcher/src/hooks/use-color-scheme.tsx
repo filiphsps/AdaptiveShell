@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
-import { Appearance } from 'react-native';
 import _ from 'lodash';
+import { useCallback, useEffect, useState } from 'react';
+import { Appearance } from 'react-native';
 
 export function useColorScheme(delay = 250) {
     const [colorScheme, setColorScheme] = useState(Appearance.getColorScheme());
@@ -14,7 +14,7 @@ export function useColorScheme(delay = 250) {
             delay,
             { leading: false }
         ),
-        [delay, setColorScheme]
+        []
     );
 
     useEffect(() => {

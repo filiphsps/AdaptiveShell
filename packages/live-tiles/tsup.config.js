@@ -1,6 +1,6 @@
-import * as glob from 'glob';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import * as glob from 'glob';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

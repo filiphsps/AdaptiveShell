@@ -1,11 +1,11 @@
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { cn } from '@/utils/cn';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { cn } from '@/utils/cn';
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
@@ -43,9 +43,7 @@ export default function SplashProvider({ children }: { children: ReactNode }) {
                 )}
             >
                 <SafeAreaView className="flex-1 select-none items-center justify-center gap-6">
-                    <Text className="text-center">
-                        <>{loadingState ? ` ${loadingState}` : ''}...</>
-                    </Text>
+                    <Text className="text-center">{loadingState ? ` ${loadingState}` : ''}...</Text>
                 </SafeAreaView>
             </View>
 

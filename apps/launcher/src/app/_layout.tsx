@@ -1,12 +1,12 @@
 import '@/styles/global.css';
 
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useTheme } from '@/hooks/use-theme';
 import { ProvidersRegistry } from '@/providers/registry';
 import { TAILWIND_THEME } from '@/styles/theme';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function Layout() {
     const { theme } = useTheme();

@@ -25,14 +25,14 @@ describe('Size', () => {
     });
 
     it('should set and get the width coordinate correctly', () => {
-        let size = new Size();
+        const size = new Size();
 
         size.setWidth(10);
         expect(size.getWidth()).toBe(10);
     });
 
     it('should set and get the height coordinate correctly', () => {
-        let size = new Size();
+        const size = new Size();
 
         size.setHeight(10);
         expect(size.getHeight()).toBe(10);

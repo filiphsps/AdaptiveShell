@@ -13,12 +13,12 @@
         "start": "dotenv -c -- expo start",
         "build": "dotenv -c -- turbo run build --env-mode=loose",
         "build:packages": "dotenv -c -- turbo run build --filter=./packages/* --env-mode=loose",
-        "lint": "turbo run lint --",
+        "lint": "biome lint .",
         "typecheck": "turbo run typecheck --",
-        "prettier": "turbo run prettier",
-        "format": "concurrently pnpm:format:*",
-        "format:eslint": "turbo run format:eslint --",
-        "format:prettier": "turbo run format:prettier --",
+        "format": "biome format --write .",
+        "format:check": "biome format .",
+        "check": "biome check .",
+        "check:fix": "biome check --write --unsafe .",
         "coverage:merge": "istanbul-merge --out coverage/coverage-final.json ./packages/**/coverage/coverage-final.json ./apps/**/coverage/coverage-final.json && nyc report --reporter=html --reporter=text --reporter=lcov --reporter=clover --report-dir=coverage --temp-dir=coverage",
         "version": "changeset version",
         "version:unstable": "changeset version --snapshot unstable",
@@ -52,10 +52,7 @@
         "@commitlint/cli": "20.2.0",
         "@commitlint/config-conventional": "20.2.0",
         "@types/node": "24.10.4",
-        "@typescript-eslint/eslint-plugin": "8.50.0",
-        "@typescript-eslint/parser": "8.50.0",
         "changeset-conventional-commits": "0.2.5",
-        "concurrently": "9.2.1",
         "dotenv-cli": "11.0.0",
         "husky": "9.1.7",
         "istanbul-merge": "2.0.0",
@@ -75,8 +72,6 @@
     },
     "pnpm": {
         "overrides": {
-            "@typescript-eslint/eslint-plugin": "$@typescript-eslint/eslint-plugin",
-            "@typescript-eslint/parser": "$@typescript-eslint/parser",
             "typescript": "$typescript"
         }
     }

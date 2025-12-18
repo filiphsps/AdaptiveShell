@@ -1,11 +1,11 @@
-import i18next from '@/utils/i18n';
 import type { Theme } from '@react-navigation/native';
 import { ThemeProvider } from '@react-navigation/native';
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
-import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
+import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
+import i18next from '@/utils/i18n';
 import SplashProvider from './splash-provider';
 
 const queryClient = new QueryClient({
