@@ -1,5 +1,5 @@
-import { cn } from '@/utils/cn';
 import { Text as RNText, type TextProps as RNTextProps } from 'react-native';
+import { cn } from '~/utils/cn';
 
 export type TextProps = RNTextProps & {
     type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link';

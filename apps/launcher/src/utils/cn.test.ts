@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 
-import { cn } from '@/utils/cn';
+import { cn } from '~/utils/cn';
 
 describe('utils', () => {
     describe('cn', () => {

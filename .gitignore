@@ -44,3 +44,9 @@ project.inlang
 # local env files
 .env*.local
 !.env
+
+# AI
+CLAUDE.md
+.agent/
+.claude/
+.gemini/
