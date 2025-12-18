@@ -22,7 +22,7 @@ const jestConfig: Config = {
     },
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     moduleNameMapper: {
-        '^@/(.*)$': '<rootDir>/src/$1'
+        '^~/(.*)$': '<rootDir>/src/$1'
     },
     testPathIgnorePatterns: ['dist/', 'node_modules/'],
     transformIgnorePatterns: ['/node_modules/(?!(@react-native|react-native|react-native-gesture-handler)/).*/'],

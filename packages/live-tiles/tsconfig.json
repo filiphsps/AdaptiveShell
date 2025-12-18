@@ -11,9 +11,9 @@
         "paths": {
             "*": ["*", "./src/@types/*"],
 
-            "@/*": ["src/*"],
-            "@/utils/*": ["src/utils/*"],
-            "@/types": ["src/@types/index.ts"]
+            "~/*": ["src/*"],
+            "~/utils/*": ["src/utils/*"],
+            "~/types": ["src/@types/index.ts"]
         }
     },
     "exclude": ["dist"],

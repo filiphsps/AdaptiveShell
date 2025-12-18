@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { cn } from '@/utils/cn';
+import { useColorScheme } from '~/hooks/use-color-scheme';
+import { cn } from '~/utils/cn';
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({

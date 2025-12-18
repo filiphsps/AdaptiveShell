@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
-import i18next from '@/utils/i18n';
+import i18next from '~/utils/i18n';
 import SplashProvider from './splash-provider';
 
 const queryClient = new QueryClient({

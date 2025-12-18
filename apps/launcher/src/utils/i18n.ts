@@ -3,7 +3,7 @@
 import { getLocales } from 'expo-localization';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import english from '@/i18n/en.json';
+import english from '~/i18n/en.json';
 
 export type i18nKey = keyof typeof english;
 
