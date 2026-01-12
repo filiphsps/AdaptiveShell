@@ -88,7 +88,7 @@
         "tailwindcss": "3.4.17"
     },
     "devDependencies": {
-        "@babel/core": "7.28.5",
+        "@babel/core": "7.28.6",
         "@jest/globals": "30.2.0",
         "@testing-library/react-native": "13.1.1",
         "@types/jest": "29.5.14",
