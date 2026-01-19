@@ -5,7 +5,7 @@
     "types": "./dist/index.d.ts",
     "main": "./dist/index.js",
     "type": "module",
-    "packageManager": "pnpm@10.28.0",
+    "packageManager": "pnpm@10.28.1",
     "engines": {
         "node": ">=24.0.0"
     },
