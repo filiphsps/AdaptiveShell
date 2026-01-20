@@ -94,7 +94,7 @@
         "@types/jest": "29.5.14",
         "@types/lodash": "4.17.23",
         "@types/node": "24.10.9",
-        "@types/react": "19.2.8",
+        "@types/react": "19.2.9",
         "babel-plugin-react-compiler": "19.1.0-rc.3",
         "babel-preset-expo": "54.0.9",
         "dotenv-cli": "11.0.0",
