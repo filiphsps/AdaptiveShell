@@ -101,7 +101,7 @@
         "expo-module-scripts": "5.0.8",
         "jest-expo": "54.0.16",
         "jest": "29.7.0",
-        "react-native-svg-transformer": "1.5.2",
+        "react-native-svg-transformer": "1.5.3",
         "ts-jest": "29.4.6",
         "ts-node": "10.9.2",
         "typescript": "5.9.3"
