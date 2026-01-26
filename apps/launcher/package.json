@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "main": "index.ts",
-    "packageManager": "pnpm@10.28.1",
+    "packageManager": "pnpm@10.28.2",
     "engines": {
         "node": ">=24.0.0"
     },
