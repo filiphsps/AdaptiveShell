@@ -1,0 +1,215 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="../"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>LiveTiles | AdaptiveShell</title><link rel="icon" href="../assets/favicon.png" type="image/png"/><meta name="description" content="Documentation for AdaptiveShell"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/icons.js" id="tsd-icons-script"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script><script async src="../assets/hierarchy.js" id="tsd-hierarchy-script"></script><style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-sys-color-primary: #a3c9ff;
+    --md-sys-color-on-primary: #00315c;
+    --md-sys-color-primary-container: #004883;
+    --md-sys-color-on-primary-container: #d3e3ff;
+    --md-sys-color-secondary: #bcc7db;
+    --md-sys-color-on-secondary: #263141;
+    --md-sys-color-secondary-container: #3c4758;
+    --md-sys-color-on-secondary-container: #d8e3f8;
+    --md-sys-color-tertiary: #d9bde3;
+    --md-sys-color-on-tertiary: #3c2946;
+    --md-sys-color-tertiary-container: #543f5e;
+    --md-sys-color-on-tertiary-container: #f5d9ff;
+    --md-sys-color-error: #ffb4ab;
+    --md-sys-color-on-error: #690005;
+    --md-sys-color-error-container: #93000a;
+    --md-sys-color-on-error-container: #ffb4ab;
+    --md-sys-color-background: #1a1c1e;
+    --md-sys-color-on-background: #e3e2e6;
+    --md-sys-color-surface: #1a1c1e;
+    --md-sys-color-on-surface: #e3e2e6;
+    --md-sys-color-surface-variant: #43474e;
+    --md-sys-color-on-surface-variant: #c3c6cf;
+    --md-sys-color-outline: #8d9199;
+    --md-sys-color-outline-variant: #43474e;
+    --md-sys-color-shadow: #000000;
+    --md-sys-color-scrim: #000000;
+    --md-sys-color-inverse-surface: #e3e2e6;
+    --md-sys-color-inverse-on-surface: #2f3033;
+    --md-sys-color-inverse-primary: #0060ab;
+    --md-sys-color-surface-dim: #121316;
+    --md-sys-color-surface-bright: #38393c;
+    --md-sys-color-surface-container-lowest: #0d0e11;
+    --md-sys-color-surface-container-low: #1a1c1e;
+    --md-sys-color-surface-container: #1e2022;
+    --md-sys-color-surface-container-high: #292a2d;
+    --md-sys-color-surface-container-highest: #333538
+  }
+}
+:root[data-theme="dark"] {
+  --md-sys-color-primary: #a3c9ff;
+  --md-sys-color-on-primary: #00315c;
+  --md-sys-color-primary-container: #004883;
+  --md-sys-color-on-primary-container: #d3e3ff;
+  --md-sys-color-secondary: #bcc7db;
+  --md-sys-color-on-secondary: #263141;
+  --md-sys-color-secondary-container: #3c4758;
+  --md-sys-color-on-secondary-container: #d8e3f8;
+  --md-sys-color-tertiary: #d9bde3;
+  --md-sys-color-on-tertiary: #3c2946;
+  --md-sys-color-tertiary-container: #543f5e;
+  --md-sys-color-on-tertiary-container: #f5d9ff;
+  --md-sys-color-error: #ffb4ab;
+  --md-sys-color-on-error: #690005;
+  --md-sys-color-error-container: #93000a;
+  --md-sys-color-on-error-container: #ffb4ab;
+  --md-sys-color-background: #1a1c1e;
+  --md-sys-color-on-background: #e3e2e6;
+  --md-sys-color-surface: #1a1c1e;
+  --md-sys-color-on-surface: #e3e2e6;
+  --md-sys-color-surface-variant: #43474e;
+  --md-sys-color-on-surface-variant: #c3c6cf;
+  --md-sys-color-outline: #8d9199;
+  --md-sys-color-outline-variant: #43474e;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-inverse-surface: #e3e2e6;
+  --md-sys-color-inverse-on-surface: #2f3033;
+  --md-sys-color-inverse-primary: #0060ab;
+  --md-sys-color-surface-dim: #121316;
+  --md-sys-color-surface-bright: #38393c;
+  --md-sys-color-surface-container-lowest: #0d0e11;
+  --md-sys-color-surface-container-low: #1a1c1e;
+  --md-sys-color-surface-container: #1e2022;
+  --md-sys-color-surface-container-high: #292a2d;
+  --md-sys-color-surface-container-highest: #333538
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --md-sys-color-primary: #0060ab;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #d3e3ff;
+    --md-sys-color-on-primary-container: #001c39;
+    --md-sys-color-secondary: #545f71;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #d8e3f8;
+    --md-sys-color-on-secondary-container: #111c2b;
+    --md-sys-color-tertiary: #6d5677;
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #f5d9ff;
+    --md-sys-color-on-tertiary-container: #261430;
+    --md-sys-color-error: #ba1a1a;
+    --md-sys-color-on-error: #ffffff;
+    --md-sys-color-error-container: #ffdad6;
+    --md-sys-color-on-error-container: #410002;
+    --md-sys-color-background: #fdfcff;
+    --md-sys-color-on-background: #1a1c1e;
+    --md-sys-color-surface: #fdfcff;
+    --md-sys-color-on-surface: #1a1c1e;
+    --md-sys-color-surface-variant: #dfe2eb;
+    --md-sys-color-on-surface-variant: #43474e;
+    --md-sys-color-outline: #73777f;
+    --md-sys-color-outline-variant: #c3c6cf;
+    --md-sys-color-shadow: #000000;
+    --md-sys-color-scrim: #000000;
+    --md-sys-color-inverse-surface: #2f3033;
+    --md-sys-color-inverse-on-surface: #f1f0f4;
+    --md-sys-color-inverse-primary: #a3c9ff;
+    --md-sys-color-surface-dim: #dad9dd;
+    --md-sys-color-surface-bright: #faf9fd;
+    --md-sys-color-surface-container-lowest: #ffffff;
+    --md-sys-color-surface-container-low: #f4f3f7;
+    --md-sys-color-surface-container: #eeedf1;
+    --md-sys-color-surface-container-high: #e8e8eb;
+    --md-sys-color-surface-container-highest: #e3e2e6
+  }
+}
+:root[data-theme="light"] {
+  --md-sys-color-primary: #0060ab;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d3e3ff;
+  --md-sys-color-on-primary-container: #001c39;
+  --md-sys-color-secondary: #545f71;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #d8e3f8;
+  --md-sys-color-on-secondary-container: #111c2b;
+  --md-sys-color-tertiary: #6d5677;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #f5d9ff;
+  --md-sys-color-on-tertiary-container: #261430;
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
+  --md-sys-color-background: #fdfcff;
+  --md-sys-color-on-background: #1a1c1e;
+  --md-sys-color-surface: #fdfcff;
+  --md-sys-color-on-surface: #1a1c1e;
+  --md-sys-color-surface-variant: #dfe2eb;
+  --md-sys-color-on-surface-variant: #43474e;
+  --md-sys-color-outline: #73777f;
+  --md-sys-color-outline-variant: #c3c6cf;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-inverse-surface: #2f3033;
+  --md-sys-color-inverse-on-surface: #f1f0f4;
+  --md-sys-color-inverse-primary: #a3c9ff;
+  --md-sys-color-surface-dim: #dad9dd;
+  --md-sys-color-surface-bright: #faf9fd;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #f4f3f7;
+  --md-sys-color-surface-container: #eeedf1;
+  --md-sys-color-surface-container-high: #e8e8eb;
+  --md-sys-color-surface-container-highest: #e3e2e6
+}
+</style><link rel="stylesheet" href="../assets/material-style.css"/></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="../index.html" class="title">AdaptiveShell</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><ul class="tsd-breadcrumb" aria-label="Breadcrumb"><li><a href="" aria-current="page">LiveTiles</a></li></ul><h1>Module LiveTiles</h1></div><section class="tsd-panel tsd-typography"><h1 id="metro-uilive-tiles" class="tsd-anchor-link">@metro-ui/live-tiles<a href="#metro-uilive-tiles" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p><a href="https://www.npmjs.com/package/@metro-ui/live-tiles"><img src="https://img.shields.io/npm/dt/@metro-ui/live-tiles.svg" alt="npm downloads"></a>
+<a href="https://www.npmjs.com/package/@metro-ui/live-tiles"><img src="https://img.shields.io/npm/v/@metro-ui/live-tiles.svg?style=flat" alt="npm version"></a></p>
+</section><details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Enumerations"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h2>Enumerations</h2></summary><dl class="tsd-member-summaries"><dt class="tsd-member-summary" id="adaptiveimagealign"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><a href="../enums/LiveTiles.AdaptiveImageAlign.html">AdaptiveImageAlign</a><a href="#adaptiveimagealign" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="adaptivetextalign"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><a href="../enums/LiveTiles.AdaptiveTextAlign.html">AdaptiveTextAlign</a><a href="#adaptivetextalign" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="adaptivetextstacking"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><a href="../enums/LiveTiles.AdaptiveTextStacking.html">AdaptiveTextStacking</a><a href="#adaptivetextstacking" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="adaptivetextstyle"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><a href="../enums/LiveTiles.AdaptiveTextStyle.html">AdaptiveTextStyle</a><a href="#adaptivetextstyle" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilebranding"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><a href="../enums/LiveTiles.LiveTileBranding.html">LiveTileBranding</a><a href="#livetilebranding" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilesize"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><a href="../enums/LiveTiles.LiveTileSize.html">LiveTileSize</a><a href="#livetilesize" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd></dl></details><details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Classes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h2>Classes</h2></summary><dl class="tsd-member-summaries"><dt class="tsd-member-summary" id="adaptivecontent"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.AdaptiveContent.html">AdaptiveContent</a><a href="#adaptivecontent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="adaptiveimage"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.AdaptiveImage.html">AdaptiveImage</a><a href="#adaptiveimage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="adaptivetext"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.AdaptiveText.html">AdaptiveText</a><a href="#adaptivetext" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilebackgroundimage"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileBackgroundImage.html">LiveTileBackgroundImage</a><a href="#livetilebackgroundimage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilebadgeimage"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileBadgeImage.html">LiveTileBadgeImage</a><a href="#livetilebadgeimage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilebinding"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileBinding.html">LiveTileBinding</a><a href="#livetilebinding" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilecontent"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileContent.html">LiveTileContent</a><a href="#livetilecontent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilecontentadaptive"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileContentAdaptive.html">LiveTileContentAdaptive</a><a href="#livetilecontentadaptive" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilecontenticonwithbadge"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileContentIconWithBadge.html">LiveTileContentIconWithBadge</a><a href="#livetilecontenticonwithbadge" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilecontenttilesquareblock"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileContentTileSquareBlock.html">LiveTileContentTileSquareBlock</a><a href="#livetilecontenttilesquareblock" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetileimage"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTileImage.html">LiveTileImage</a><a href="#livetileimage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="livetilepeekimage"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.LiveTilePeekImage.html">LiveTilePeekImage</a><a href="#livetilepeekimage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="size"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.Size.html">Size</a><a href="#size" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="tiledensity"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><a href="../classes/LiveTiles.TileDensity.html">TileDensity</a><a href="#tiledensity" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd></dl></details><details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Functions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h2>Functions</h2></summary><dl class="tsd-member-summaries"><dt class="tsd-member-summary" id="visualizelivetile"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTile.html">VisualizeLiveTile</a><a href="#visualizelivetile" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="visualizelivetilebranding"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTileBranding.html">VisualizeLiveTileBranding</a><a href="#visualizelivetilebranding" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="visualizelivetilebrandinglogo"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTileBrandingLogo.html">VisualizeLiveTileBrandingLogo</a><a href="#visualizelivetilebrandinglogo" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="visualizelivetilebrandingname"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTileBrandingName.html">VisualizeLiveTileBrandingName</a><a href="#visualizelivetilebrandingname" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="visualizelivetilecontent"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTileContent.html">VisualizeLiveTileContent</a><a href="#visualizelivetilecontent" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="visualizelivetilecontentadaptive"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTileContentAdaptive.html">VisualizeLiveTileContentAdaptive</a><a href="#visualizelivetilecontentadaptive" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="visualizelivetilecontenticonwithbadge"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTileContentIconWithBadge.html">VisualizeLiveTileContentIconWithBadge</a><a href="#visualizelivetilecontenticonwithbadge" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd><dt class="tsd-member-summary" id="visualizelivetilecontenttilesquareblock"><span class="tsd-member-summary-name"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><a href="../functions/LiveTiles.VisualizeLiveTileContentTileSquareBlock.html">VisualizeLiveTileContentTileSquareBlock</a><a href="#visualizelivetilecontenttilesquareblock" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></span></dt><dd class="tsd-member-summary"></dd></dl></details></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#metro-uilive-tiles"><span>@metro-<wbr/>ui/live-<wbr/>tiles</span></a><details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Enumerations"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Enumerations</summary><div><a href="#adaptiveimagealign"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><span>Adaptive<wbr/>Image<wbr/>Align</span></a><a href="#adaptivetextalign"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><span>Adaptive<wbr/>Text<wbr/>Align</span></a><a href="#adaptivetextstacking"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><span>Adaptive<wbr/>Text<wbr/>Stacking</span></a><a href="#adaptivetextstyle"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><span>Adaptive<wbr/>Text<wbr/>Style</span></a><a href="#livetilebranding"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><span>Live<wbr/>Tile<wbr/>Branding</span></a><a href="#livetilesize"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Enumeration"><use href="../assets/icons.svg#icon-8"></use></svg><span>Live<wbr/>Tile<wbr/>Size</span></a></div></details><details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Classes"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Classes</summary><div><a href="#adaptivecontent"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Adaptive<wbr/>Content</span></a><a href="#adaptiveimage"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Adaptive<wbr/>Image</span></a><a href="#adaptivetext"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Adaptive<wbr/>Text</span></a><a href="#livetilebackgroundimage"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Background<wbr/>Image</span></a><a href="#livetilebadgeimage"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Badge<wbr/>Image</span></a><a href="#livetilebinding"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Binding</span></a><a href="#livetilecontent"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Content</span></a><a href="#livetilecontentadaptive"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Content<wbr/>Adaptive</span></a><a href="#livetilecontenticonwithbadge"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Content<wbr/>Icon<wbr/>With<wbr/>Badge</span></a><a href="#livetilecontenttilesquareblock"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Content<wbr/>Tile<wbr/>Square<wbr/>Block</span></a><a href="#livetileimage"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Image</span></a><a href="#livetilepeekimage"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Live<wbr/>Tile<wbr/>Peek<wbr/>Image</span></a><a href="#size"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Size</span></a><a href="#tiledensity"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Class"><use href="../assets/icons.svg#icon-128"></use></svg><span>Tile<wbr/>Density</span></a></div></details><details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Functions"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Functions</summary><div><a href="#visualizelivetile"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile</span></a><a href="#visualizelivetilebranding"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile<wbr/>Branding</span></a><a href="#visualizelivetilebrandinglogo"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile<wbr/>Branding<wbr/>Logo</span></a><a href="#visualizelivetilebrandingname"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile<wbr/>Branding<wbr/>Name</span></a><a href="#visualizelivetilecontent"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile<wbr/>Content</span></a><a href="#visualizelivetilecontentadaptive"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile<wbr/>Content<wbr/>Adaptive</span></a><a href="#visualizelivetilecontenticonwithbadge"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile<wbr/>Content<wbr/>Icon<wbr/>With<wbr/>Badge</span></a><a href="#visualizelivetilecontenttilesquareblock"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Function"><use href="../assets/icons.svg#icon-64"></use></svg><span>Visualize<wbr/>Live<wbr/>Tile<wbr/>Content<wbr/>Tile<wbr/>Square<wbr/>Block</span></a></div></details></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="../modules.html">AdaptiveShell</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a><br>
+            <span id="generation-date"></span>
+            <script>
+                window.GENERATION_DATE = 1769638336315;
+
+                (() => {
+                    
+        const formatter = new Intl.RelativeTimeFormat('en', {
+            numeric: 'auto',
+            style: 'short',
+        });
+
+        const divisions = [
+            { amount: 60, name: 'seconds' },
+            { amount: 60, name: 'minutes' },
+            { amount: 24, name: 'hours' },
+            { amount: 7, name: 'days' },
+            { amount: 4.34524, name: 'weeks' },
+            { amount: 12, name: 'months' },
+            { amount: Number.POSITIVE_INFINITY, name: 'years' }
+        ];
+
+        function formatTimeAgo(date) {
+            let duration = (date - new Date()) / 1000;
+            
+            for (const division of divisions) {
+                if (Math.abs(duration) < division.amount) {
+                    return formatter.format(Math.round(duration), division.name);
+                }
+                duration /= division.amount;
+            }
+        }
+
+        document.getElementById('generation-date').title = new Date(window.GENERATION_DATE).toLocaleString();
+        document.getElementById('generation-date').innerText = `Last modified ${formatTimeAgo(window.GENERATION_DATE)}`;
+    
+                })();
+            </script>
+        </p></footer><div class="overlay"></div><script>
+          try {
+            const generateLinkElement = document.querySelector(".tsd-generator a");
+            const link = document.createElement("a");
+            Object.assign(link, {
+              href: "https://github.com/dmnsgn/typedoc-material-theme",
+              target: "_blank",
+              rel: "noreferrer",
+              innerText: "typedoc-material-theme."
+            });
+            generateLinkElement.insertAdjacentElement("afterend", link);
+            generateLinkElement.insertAdjacentText("afterend", " with ");
+          } catch (error) {
+
+          }
+        </script></body></html>
