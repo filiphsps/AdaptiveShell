@@ -1,6 +1,6 @@
 {
     "name": "@metro-ui/live-tiles",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "private": false,
     "types": "./dist/index.d.ts",
     "main": "./dist/index.js",
